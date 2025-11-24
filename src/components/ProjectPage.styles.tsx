@@ -236,7 +236,7 @@ export const DeviceContainer = styled.div<{ $device: string }>`
   ${({ $device }) => {
     switch ($device) {
       case 'ipad':
-        return `max-width: 500px;`;
+        return `max-width: 600px;`;
       case 'iphone':
         return `max-width: 300px;`;
       case 'mmc':
@@ -254,7 +254,6 @@ export const DeviceFrame = styled.img<{ $device: string }>`
   height: auto;
   display: block;
   position: relative;
-  z-index: 2;
 `;
 
 export const DeviceScreen = styled.div<{ $device: string }>`

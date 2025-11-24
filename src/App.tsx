@@ -1,6 +1,7 @@
 import './App.css'
 import HeroSection from './components/HeroSection'
 import ProjectPage from './components/ProjectPage'
+import BishopVideoOverlay from './components/BishopVideoOverlay'
 import styled from '@emotion/styled'
 
 // Placeholder - replace with actual AeroT screenshot
@@ -50,7 +51,7 @@ function App() {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         techStack="Technology Stack Here"
         buttonLink="https://example.com/bishop"
-        projectImage={""}
+        projectImage={<BishopVideoOverlay />}
         device="ipad"
       />
 

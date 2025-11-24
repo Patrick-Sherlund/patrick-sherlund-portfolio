@@ -35,7 +35,7 @@ interface ProjectPageProps {
   techStack: string;
   buttonText?: string;
   buttonLink?: string;
-  projectImage: string;
+  projectImage: string | React.ReactNode;
   device?: DeviceType;
 }
 
@@ -70,17 +70,25 @@ const ProjectPage = ({
           <BubbleIn>
             {device === 'laptop' ? (
               <ProjectLaptopContainer>
-                <LaptopFrame src={deviceFrame} alt="Laptop frame" />
                 <LaptopScreen>
-                  <ProjectScreenshot src={projectImage} alt={title} />
+                  {typeof projectImage === 'string' ? (
+                    <ProjectScreenshot src={projectImage} alt={title} />
+                  ) : (
+                    projectImage
+                  )}
                 </LaptopScreen>
+                <LaptopFrame src={deviceFrame} alt="Laptop frame" />
               </ProjectLaptopContainer>
             ) : (
               <DeviceContainer $device={device}>
-                <DeviceFrame src={deviceFrame} alt={`${device} frame`} $device={device} />
                 <DeviceScreen $device={device}>
-                  <ProjectScreenshot src={projectImage} alt={title} />
+                  {typeof projectImage === 'string' ? (
+                    <ProjectScreenshot src={projectImage} alt={title} />
+                  ) : (
+                    projectImage
+                  )}
                 </DeviceScreen>
+                <DeviceFrame src={deviceFrame} alt={`${device} frame`} $device={device} />
               </DeviceContainer>
             )}
           </BubbleIn>
