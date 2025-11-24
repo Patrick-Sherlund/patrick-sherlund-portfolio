@@ -23,6 +23,7 @@ import iphoneFrame from '../assets/images/pages/devices/iphone.png';
 import mmcFrame from '../assets/images/pages/devices/mmc.png';
 import appleDisplayFrame from '../assets/images/pages/devices/apple-display.png';
 import buttonArrow from '../assets/images/pages/button-arrow.svg';
+import BubbleIn from './BubbleIn';
 
 type DeviceType = 'laptop' | 'ipad' | 'iphone' | 'mmc' | 'apple-display';
 
@@ -66,21 +67,23 @@ const ProjectPage = ({
           <ProjectNumber>
             {number} <strong>{title}</strong>
           </ProjectNumber>
-          {device === 'laptop' ? (
-            <ProjectLaptopContainer>
-              <LaptopFrame src={deviceFrame} alt="Laptop frame" />
-              <LaptopScreen>
-                <ProjectScreenshot src={projectImage} alt={title} />
-              </LaptopScreen>
-            </ProjectLaptopContainer>
-          ) : (
-            <DeviceContainer $device={device}>
-              <DeviceFrame src={deviceFrame} alt={`${device} frame`} $device={device} />
-              <DeviceScreen $device={device}>
-                <ProjectScreenshot src={projectImage} alt={title} />
-              </DeviceScreen>
-            </DeviceContainer>
-          )}
+          <BubbleIn>
+            {device === 'laptop' ? (
+              <ProjectLaptopContainer>
+                <LaptopFrame src={deviceFrame} alt="Laptop frame" />
+                <LaptopScreen>
+                  <ProjectScreenshot src={projectImage} alt={title} />
+                </LaptopScreen>
+              </ProjectLaptopContainer>
+            ) : (
+              <DeviceContainer $device={device}>
+                <DeviceFrame src={deviceFrame} alt={`${device} frame`} $device={device} />
+                <DeviceScreen $device={device}>
+                  <ProjectScreenshot src={projectImage} alt={title} />
+                </DeviceScreen>
+              </DeviceContainer>
+            )}
+          </BubbleIn>
         </ProjectLeft>
 
         <ProjectRight>
