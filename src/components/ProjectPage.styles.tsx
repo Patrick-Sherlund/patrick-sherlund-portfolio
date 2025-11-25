@@ -236,7 +236,7 @@ export const DeviceContainer = styled.div<{ $device: string }>`
   ${({ $device }) => {
     switch ($device) {
       case 'ipad':
-        return `max-width: 600px;`;
+        return `max-width: 660px;`;
       case 'iphone':
         return `max-width: 300px;`;
       case 'mmc':
