@@ -90,7 +90,6 @@ export const LaptopFrame = styled.img`
   height: auto;
   display: block;
   position: relative;
-  z-index: 2;
 `;
 
 export const LaptopScreen = styled.div`
@@ -236,15 +235,15 @@ export const DeviceContainer = styled.div<{ $device: string }>`
   ${({ $device }) => {
     switch ($device) {
       case 'ipad':
-        return `max-width: 660px;`;
+        return `max-width: 660px; margin: 0 auto;`;
       case 'iphone':
-        return `max-width: 300px;`;
+        return `max-width: 275px; margin: 0 auto;`;
       case 'mmc':
-        return `max-width: 600px;`;
+        return `max-width: 700px; margin: 0 auto;`;
       case 'apple-display':
-        return `max-width: 600px;`;
+        return `max-width: 1000px; margin: 0 auto;`;
       default:
-        return `max-width: 600px;`;
+        return `max-width: 600px; margin: 0 auto;`;
     }
   }}
 `;
@@ -289,10 +288,9 @@ export const DeviceScreen = styled.div<{ $device: string }>`
         `;
       case 'apple-display':
         return `
-          top: 4.5%;
-          left: 4.5%;
-          width: 91%;
-          height: 84%;
+          top: 3.5%;
+          width: 100%;
+          height: 70%;
           border-radius: 3px;
         `;
       default:

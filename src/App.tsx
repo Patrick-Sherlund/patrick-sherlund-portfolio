@@ -1,7 +1,12 @@
 import './App.css'
 import HeroSection from './components/HeroSection'
 import ProjectPage from './components/ProjectPage'
+import AerotVideoOverlay from './components/AerotVideoOverlay'
 import BishopVideoOverlay from './components/BishopVideoOverlay'
+import SpartaGifOverlay from './components/SpartaGifOverlay'
+import RaiderGifOverlay from './components/RaiderGifOverlay'
+import ExodusVideoOverlay from './components/ExodusVideoOverlay'
+import CrusaderVideoOverlay from './components/CrusaderVideoOverlay'
 import styled from '@emotion/styled'
 
 // Placeholder - replace with actual AeroT screenshot
@@ -40,16 +45,16 @@ function App() {
         description="From ideation to MVP, AeroT is the friendly force EM training tool for the United States Marine Corps."
         techStack="Full-stack, C++, Typescript, React"
         buttonLink="https://example.com/aerot"
-        projectImage={""}
+        projectImage={<AerotVideoOverlay />}
         device="laptop"
       />
 
       <ProjectPage
         number="02"
         title="BISHOP"
-        subtitle="Project Subtitle"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        techStack="Technology Stack Here"
+        subtitle="SAR Video Intelligence"
+        description="Transforms hours of mission footage into actionable intelligence in minutes using edge-optimized computer vision for Search and Rescue."
+        techStack="C++, TypeScript, React, Drogon, ONNX"
         buttonLink="https://example.com/bishop"
         projectImage={<BishopVideoOverlay />}
         device="ipad"
@@ -58,44 +63,44 @@ function App() {
       <ProjectPage
         number="03"
         title="SPARTA"
-        subtitle="Project Subtitle"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        techStack="Technology Stack Here"
+        subtitle="Maritime Radar Tracker"
+        description="Cross-platform radar tracking application that integrates commercial drones to automate maritime target acquisition and data forwarding for 450+ users."
+        techStack="Java, Kotlin, Spring, TypeScript, React"
         buttonLink="https://example.com/sparta"
-        projectImage={""}
+        projectImage={<SpartaGifOverlay />}
         device="iphone"
       />
 
       <ProjectPage
         number="04"
         title="RAIDER"
-        subtitle="Project Subtitle"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        techStack="Technology Stack Here"
+        subtitle="RF Alerting Plugin"
+        description="Windows TAK plugin that automates signal violation detection, reducing analysis time from days to seconds through real-time event processing."
+        techStack="C#, .NET, WinTAK, Hardware APIs"
         buttonLink="https://example.com/raider"
-        projectImage={""}
+        projectImage={<RaiderGifOverlay />}
         device="mmc"
       />
 
       <ProjectPage
         number="05"
         title="EXODUS"
-        subtitle="Project Subtitle"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        techStack="Technology Stack Here"
+        subtitle="Biometric Identity Tool"
+        description="On-device computer vision pipeline that processes identity documents in sub-second speeds for field operations without relying on cloud connectivity."
+        techStack="Java, Kotlin, Android SDK, ONNX, OCR"
         buttonLink="https://example.com/exodus"
-        projectImage={""}
+        projectImage={<ExodusVideoOverlay />}
         device="apple-display"
       />
 
       <ProjectPage
         number="06"
         title="CRUSADER"
-        subtitle="Project Subtitle"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        techStack="Technology Stack Here"
+        subtitle="Radar Control & Tracking"
+        description="Full-stack radar control system with predictive tracking, clutter filtering, and target detection algorithms for Navico and Furuno hardware integration."
+        techStack="TypeScript, React, C++, Drogon"
         buttonLink="https://example.com/crusader"
-        projectImage={""}
+        projectImage={<CrusaderVideoOverlay />}
         device="apple-display"
       />
     </>
