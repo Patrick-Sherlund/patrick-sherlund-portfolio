@@ -105,7 +105,7 @@ const HeroSection = () => {
             <a href="https://github.com/patrick-sherlund" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon-2">
               <img src={githubIcon} alt="GitHub" />
             </a>
-            <a href="https://www.figma.com/@patrick_sherlund" target="_blank" rel="noopener noreferrer" aria-label="Figma" className="social-icon-3">
+            <a href="https://www.figma.com/@patricksherlund" target="_blank" rel="noopener noreferrer" aria-label="Figma" className="social-icon-3">
               <img src={figmaIcon} alt="Figma" />
             </a>
           </div>
