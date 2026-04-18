@@ -1,0 +1,254 @@
+.bishop-hero-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px 120px;
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.bishop-hero-container {
+  max-width: 1600px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 100px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Left Side */
+.bishop-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 40px;
+}
+
+.bishop-number {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  letter-spacing: 0.5px;
+}
+
+.bishop-logo-container {
+  margin-bottom: 8px;
+}
+
+.bishop-logo {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+.bishop-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4b5563;
+  max-width: 500px;
+  margin: 0;
+}
+
+.bishop-timeline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6b7280;
+  margin: 8px 0 16px 0;
+}
+
+.bishop-team-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.bishop-team-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bishop-team-role {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.bishop-team-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.bishop-team-divider {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #d1d5db;
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+/* Right Side - iPad */
+.bishop-hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+.bishop-ipad-container {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 4/3;
+}
+
+.bishop-ipad-screen {
+  position: absolute;
+  top: 3.8%;
+  left: 3.8%;
+  width: 92.4%;
+  height: 92.4%;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.bishop-ipad-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Scroll Indicator */
+.bishop-scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bishop-scroll-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  letter-spacing: 0.3px;
+}
+
+.bishop-scroll-icon {
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .bishop-hero-container {
+    gap: 60px;
+  }
+  
+  .bishop-hero-left {
+    padding-left: 20px;
+  }
+  
+  .bishop-hero-right {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 968px) {
+  .bishop-hero-section {
+    padding: 60px 24px 100px;
+  }
+  
+  .bishop-hero-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    max-width: 700px;
+  }
+  
+  .bishop-hero-left {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bishop-hero-right {
+    padding-right: 0;
+    order: -1;
+  }
+  
+  .bishop-description {
+    max-width: 100%;
+  }
+  
+  .bishop-team-info {
+    align-items: center;
+  }
+  
+  .bishop-team-role {
+    min-width: auto;
+  }
+  
+  .bishop-logo {
+    height: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-hero-section {
+    padding: 40px 20px 80px;
+  }
+  
+  .bishop-logo {
+    height: 48px;
+  }
+  
+  .bishop-description {
+    font-size: 18px;
+  }
+  
+  .bishop-timeline {
+    font-size: 14px;
+  }
+  
+  .bishop-team-row {
+    font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .bishop-scroll-indicator {
+    bottom: 40px;
+  }
+  
+  .bishop-scroll-text {
+    font-size: 12px;
+  }
+  
+  .bishop-scroll-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

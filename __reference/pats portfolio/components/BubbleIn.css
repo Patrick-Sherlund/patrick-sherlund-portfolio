@@ -1,0 +1,10 @@
+.bubble-in-container {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bubble-in-container.bubble-in-visible {
+  opacity: 1;
+  transform: scale(1);
+}

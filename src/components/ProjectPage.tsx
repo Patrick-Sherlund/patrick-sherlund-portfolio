@@ -1,29 +1,10 @@
-import {
-  ProjectPageSection,
-  ProjectContainer,
-  ProjectLeft,
-  ProjectNumber,
-  ProjectLaptopContainer,
-  LaptopFrame,
-  LaptopScreen,
-  ProjectScreenshot,
-  ProjectRight,
-  ProjectSubtitle,
-  ProjectDescription,
-  ProjectTechStack,
-  ProjectButton,
-  ButtonArrow,
-  DeviceContainer,
-  DeviceFrame,
-  DeviceScreen,
-} from './ProjectPage.styles';
-import laptopFrame from '../assets/images/pages/devices/laptop.png';
-import ipadFrame from '../assets/images/pages/devices/ipad.png';
-import iphoneFrame from '../assets/images/pages/devices/iphone.png';
-import mmcFrame from '../assets/images/pages/devices/mmc.png';
-import appleDisplayFrame from '../assets/images/pages/devices/apple-display.png';
-import buttonArrow from '../assets/images/pages/button-arrow.svg';
+'use client';
+
 import BubbleIn from './BubbleIn';
+import { useTheme } from '../contexts/ThemeContext';
+import { ProjectButtonArrow } from './ProjectButtonArrow';
+import Link from 'next/link';
+import { pageAssets } from '@/lib/assetPaths';
 
 type DeviceType = 'laptop' | 'ipad' | 'iphone' | 'mmc' | 'apple-display';
 
@@ -40,14 +21,14 @@ interface ProjectPageProps {
 }
 
 const deviceFrames: Record<DeviceType, string> = {
-  laptop: laptopFrame,
-  ipad: ipadFrame,
-  iphone: iphoneFrame,
-  mmc: mmcFrame,
-  'apple-display': appleDisplayFrame,
+  laptop: pageAssets.devices.laptop,
+  ipad: pageAssets.devices.ipad,
+  iphone: pageAssets.devices.iphone,
+  mmc: pageAssets.devices.mmc,
+  'apple-display': pageAssets.devices.appleDisplay,
 };
 
-const ProjectPage = ({
+export function ProjectPage({
   number,
   title,
   subtitle,
@@ -57,57 +38,89 @@ const ProjectPage = ({
   buttonLink,
   projectImage,
   device = 'laptop',
-}: ProjectPageProps) => {
+}: ProjectPageProps) {
+  useTheme();
   const deviceFrame = deviceFrames[device];
 
   return (
-    <ProjectPageSection>
-      <ProjectContainer>
-        <ProjectLeft>
-          <ProjectNumber>
-            {number} <strong>{title}</strong>
-          </ProjectNumber>
+    <section className="project-page-section">
+      <div className="project-container">
+        <div className="project-left">
+          <BubbleIn>
+            <div className="project-number">
+              {number} <strong>{title}</strong>
+            </div>
+          </BubbleIn>
           <BubbleIn>
             {device === 'laptop' ? (
-              <ProjectLaptopContainer>
-                <LaptopScreen>
+              <div className="project-laptop-container">
+                <div className="laptop-screen">
                   {typeof projectImage === 'string' ? (
-                    <ProjectScreenshot src={projectImage} alt={title} />
+                    <img src={projectImage} alt={title} className="project-screenshot" />
                   ) : (
                     projectImage
                   )}
-                </LaptopScreen>
-                <LaptopFrame src={deviceFrame} alt="Laptop frame" />
-              </ProjectLaptopContainer>
+                </div>
+                <img 
+                  src={deviceFrame}
+                  alt="Laptop frame" 
+                  className="laptop-frame"
+                />
+              </div>
             ) : (
-              <DeviceContainer $device={device}>
-                <DeviceScreen $device={device}>
+              <div className={`device-container device-${device}`}>
+                <div className={`device-screen device-screen-${device}`}>
                   {typeof projectImage === 'string' ? (
-                    <ProjectScreenshot src={projectImage} alt={title} />
+                    <img src={projectImage} alt={title} className="project-screenshot" />
                   ) : (
                     projectImage
                   )}
-                </DeviceScreen>
-                <DeviceFrame src={deviceFrame} alt={`${device} frame`} $device={device} />
-              </DeviceContainer>
+                </div>
+                <img 
+                  src={deviceFrame}
+                  alt={`${device} frame`} 
+                  className={`device-frame device-frame-${device}`}
+                />
+              </div>
             )}
           </BubbleIn>
-        </ProjectLeft>
+        </div>
 
-        <ProjectRight>
-          <ProjectSubtitle>{subtitle}</ProjectSubtitle>
-          <ProjectDescription>{description}</ProjectDescription>
-          <ProjectTechStack>{techStack}</ProjectTechStack>
+        <div className="project-right">
+          <BubbleIn>
+            <h2 className="project-subtitle">{subtitle}</h2>
+          </BubbleIn>
+          <BubbleIn>
+            <p className="project-description">{description}</p>
+          </BubbleIn>
+          <BubbleIn>
+            <p className="project-tech-stack">{techStack}</p>
+          </BubbleIn>
           {buttonLink && (
-            <ProjectButton href={buttonLink} target="_blank" rel="noopener noreferrer">
-              <span>{buttonText}</span>
-              <ButtonArrow src={buttonArrow} alt="" />
-            </ProjectButton>
+            <BubbleIn>
+              {buttonLink.startsWith('/') ? (
+                <Link 
+                  href={buttonLink}
+                  className="project-button"
+                >
+                  <span>{buttonText}</span>
+                  <ProjectButtonArrow />
+                </Link>
+              ) : (
+                <a 
+                  href={buttonLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="project-button"
+                >
+                  <span>{buttonText}</span>
+                  <ProjectButtonArrow />
+                </a>
+              )}
+            </BubbleIn>
           )}
-        </ProjectRight>
-      </ProjectContainer>
-    </ProjectPageSection>
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default ProjectPage;
+}

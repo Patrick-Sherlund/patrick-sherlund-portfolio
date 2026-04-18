@@ -1,0 +1,159 @@
+.bishop-my-role-stack-wrapper {
+  width: 100%;
+  /* Height: 200vh for crossfade + 400px for extra sticky time at the end */
+  height: calc(200vh + 400px);
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.bishop-my-role-stack-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+}
+
+.bishop-my-role-panel,
+.bishop-stack-panel {
+  position: absolute;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-mrs-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 72px 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-mrs-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: #111;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 850px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.bishop-stack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.bishop-stack-column {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.bishop-stack-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bishop-stack-category {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.bishop-stack-tech {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bishop-stack-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.bishop-stack-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.bishop-stack-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bishop-my-role-stack-content {
+    padding: 60px 24px;
+  }
+  
+  .bishop-mrs-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .bishop-mrs-text {
+    font-size: 24px;
+  }
+
+  .bishop-stack-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .bishop-stack-column {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-my-role-stack-content {
+    padding: 40px 20px;
+  }
+
+  .bishop-mrs-title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .bishop-mrs-text {
+    font-size: 20px;
+  }
+
+  .bishop-stack-grid {
+    gap: 32px;
+  }
+
+  .bishop-stack-name {
+    font-size: 16px;
+  }
+}

@@ -1,5 +1,6 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
-import './BubbleIn.css';
 
 interface BubbleInProps {
   children: React.ReactNode;
@@ -18,8 +19,8 @@ const BubbleIn = ({ children, className = '' }: BubbleInProps) => {
         }
       },
       {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px', // Trigger slightly before it enters viewport
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
       }
     );
 

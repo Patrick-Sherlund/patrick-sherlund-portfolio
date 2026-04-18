@@ -1,0 +1,87 @@
+.bishop-stack-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background-color: #FFFFFF;
+}
+
+.bishop-stack-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-stack-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 60px 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-stack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.bishop-stack-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.bishop-stack-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bishop-stack-category {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bishop-stack-tech {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bishop-stack-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.bishop-stack-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.bishop-stack-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #000;
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+}

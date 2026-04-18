@@ -1,0 +1,123 @@
+.bishop-users-saw {
+  width: 100%;
+  /* Height: 100vh for initial view + 800px for sticky scroll */
+  height: calc(100vh + 800px);
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.bishop-users-saw-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 120px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+}
+
+.bishop-users-saw-title {
+  font-size: 48px;
+  color: #000000;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.bishop-users-saw-title.bubble-in {
+  animation: bubbleIn 0.6s ease-out forwards;
+}
+
+.bishop-users-saw-stats {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bishop-stat-card {
+  position: relative;
+  background: linear-gradient(135deg, #3CCAF4 0%, #578DF3 25%, #7C52BE 50%, #F93C95 75%, #FC6E5D 88%, #FFAC49 100%);
+  border-radius: 24px;
+  padding: 2px;
+  min-width: 280px;
+  max-width: 400px;
+  flex: 1;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.bishop-stat-card.bubble-in {
+  animation: bubbleIn 0.6s ease-out forwards;
+}
+
+.bishop-stat-card-inner {
+  background-color: #ffffff;
+  border-radius: 21px;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+}
+
+.bishop-stat-value {
+  font-size: 64px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+}
+
+.bishop-stat-label {
+  font-size: 18px;
+  color: #000000;
+  line-height: 1.4;
+}
+
+@keyframes bubbleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bishop-users-saw-container {
+    padding: 80px 24px;
+    gap: 48px;
+  }
+
+  .bishop-users-saw-title {
+    font-size: 36px;
+  }
+
+  .bishop-users-saw-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .bishop-stat-card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .bishop-stat-value {
+    font-size: 48px;
+  }
+
+  .bishop-stat-label {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,175 @@
+.bishop-context-research-wrapper {
+  width: 100%;
+  /* Extended height for smooth transition: 2vh for crossfade + 2vh for carousel viewing */
+  height: 400vh;
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.bishop-context-research-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+.bishop-context-panel,
+.bishop-research-panel {
+  position: absolute;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-context-title-text {
+  color: #000;
+  margin: 0;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.bishop-context-text {
+  color: #000;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 32px;
+  text-align: center;
+}
+
+.bishop-context-text strong {
+  font-weight: 700;
+}
+
+.bishop-research-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 180px;
+  letter-spacing: -1.5px;
+}
+
+/* Carousel Styles */
+.bishop-carousel-container {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bishop-carousel-track {
+  position: absolute;
+  display: flex;
+  gap: 40px;
+  animation: scrollCarousel 60s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.bishop-carousel-image {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.bishop-carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Individual image sizing based on Figma design */
+.carousel-img-1 {
+  width: 300px;
+  height: 220px;
+  top: 20%;
+}
+
+.carousel-img-2 {
+  width: 320px;
+  height: 240px;
+  top: 60%;
+}
+
+.carousel-img-3 {
+  width: 290px;
+  height: 215px;
+  top: 5%;
+}
+
+.carousel-img-4 {
+  width: 310px;
+  height: 230px;
+  top: 45%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bishop-context-research-content {
+    padding: 60px 24px;
+  }
+  
+  .bishop-context-title-text {
+    margin-bottom: 60px;
+  }
+  
+  .bishop-context-text {
+    font-size: 24px;
+  }
+  
+  .bishop-research-title {
+    font-size: 36px;
+  }
+
+  .carousel-img-1,
+  .carousel-img-2,
+  .carousel-img-3,
+  .carousel-img-4 {
+    width: 280px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-context-text {
+    font-size: 20px;
+  }
+  
+  .bishop-research-title {
+    font-size: 28px;
+  }
+
+  .carousel-img-1,
+  .carousel-img-2,
+  .carousel-img-3,
+  .carousel-img-4 {
+    width: 220px;
+    height: 160px;
+  }
+}

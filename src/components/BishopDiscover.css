@@ -1,0 +1,1372 @@
+.bishop-discover {
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Sticky Header */
+.bishop-discover-header {
+  position: relative;
+  padding: 80px 40px 60px 40px;
+  background-color: #ffffff;
+  z-index: 100;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Sticky state: stays left-aligned initially */
+.bishop-discover-header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 100;
+}
+
+/* Content wrapper that animates */
+.bishop-discover-header-content {
+  width: fit-content; /* ensures we can truly center the content box */
+  transform: translateX(0);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* When centered, animate to a computed perfect-center shift */
+.bishop-discover-header.sticky.centered
+  .bishop-discover-header-content {
+  transform: translateX(var(--discover-center-shift, 0px));
+  text-align: center;
+}
+
+.bishop-discover-title {
+  color: #000;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.bishop-discover-subtitle {
+  color: #6b7280;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* Context Research Section */
+.bishop-context-research-wrapper {
+  width: 100%;
+  height: 400vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-context-research-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+.bishop-context-panel,
+.bishop-research-panel {
+  position: absolute;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+  pointer-events: none; /* Allow hover events to pass through to carousel */
+}
+
+.bishop-context-title-text {
+  color: #000;
+  margin: 0;
+  margin-bottom: 80px;
+  text-align: center;
+  font-size: 48px;
+}
+
+.bishop-context-text {
+  color: #000;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 28px;
+  text-align: center;
+}
+
+.bishop-context-text strong {
+  font-weight: 700;
+}
+
+.bishop-research-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 180px;
+  letter-spacing: -1.5px;
+}
+
+/* Carousel Styles */
+.bishop-carousel-container {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  overflow: visible; /* Allow content to overflow */
+  z-index: 1;
+  padding: 40px 0; /* Extra padding to prevent clipping */
+}
+
+.bishop-carousel-track {
+  position: absolute;
+  display: flex;
+  gap: 40px;
+  animation: scrollCarousel 20s linear infinite; /* Adjusted for 4 videos */
+  will-change: transform;
+}
+
+/* Pause animation when hovering over any carousel item */
+.bishop-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Updated for 4 videos (100% / 2 duplicates = 50%) */
+  }
+}
+
+.bishop-carousel-image {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  z-index: 1;
+  transform-origin: bottom center; /* Grow upward */
+}
+
+/* Scale up on hover */
+.bishop-carousel-image:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  z-index: 10; /* Bring to front when hovered */
+}
+
+/* Preserve vertical offset while scaling on hover - all grow upward */
+.carousel-img-1:hover {
+  transform: translateY(-40px) scale(1.3);
+}
+
+.carousel-img-2:hover {
+  transform: translateY(40px) scale(1.3);
+}
+
+.carousel-img-3:hover {
+  transform: translateY(-40px) scale(1.3);
+}
+
+.carousel-img-4:hover {
+  transform: translateY(40px) scale(1.3);
+}
+
+.bishop-carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bishop-carousel-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Changed from contain to cover to fill without black bars */
+  display: block;
+  background: #000; /* Black background for letterboxing */
+}
+
+/* Individual image sizing based on Figma design */
+.carousel-img-1 {
+  width: 442px; /* 1.15x of 384px */
+  height: 248px; /* 1.15x of 216px */
+  transform: translateY(-40px);
+}
+
+.carousel-img-2 {
+  width: 442px;
+  height: 248px;
+  transform: translateY(40px);
+}
+
+.carousel-img-3 {
+  width: 442px;
+  height: 248px;
+  transform: translateY(-40px);
+}
+
+.carousel-img-4 {
+  width: 442px;
+  height: 248px;
+  transform: translateY(40px);
+}
+
+/* ============================================
+   PERSONA CAROUSEL - SPECIFIC OVERRIDES
+   ============================================ */
+
+/* Persona carousel container - allow overflow */
+.bishop-persona-carousel-container {
+  overflow: visible !important; /* Allow images to overflow without clipping */
+}
+
+/* Slower animation for persona carousel only */
+.bishop-persona-carousel-track {
+  animation: scrollPersonaCarousel 60s linear infinite; /* Slower and smoother */
+}
+
+@keyframes scrollPersonaCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Loop through half (12 images / 2 = 6 visible sets) */
+  }
+}
+
+/* Remove border radius for persona carousel images only */
+.bishop-persona-carousel-image {
+  border-radius: 0 !important;
+  overflow: visible; /* Don't clip images */
+}
+
+/* Persona carousel images - use object-fit: contain and auto width */
+.bishop-persona-carousel-image img {
+  width: auto; /* Auto width to maintain aspect ratio */
+  height: 360px; /* Fixed height */
+  object-fit: contain; /* Show full image without cropping */
+  display: block;
+}
+
+/* Base sizes for persona carousel - honor true aspect ratio of the images */
+/* Original persona cards appear to be ~1.77:1 aspect ratio (landscape) */
+.bishop-persona-carousel-image.persona-carousel-img-1,
+.bishop-persona-carousel-image.persona-carousel-img-2,
+.bishop-persona-carousel-image.persona-carousel-img-3 {
+  width: auto; /* Auto width based on image aspect ratio */
+  height: 360px; /* Fixed height */
+}
+
+/* Alternating vertical offsets */
+.bishop-persona-carousel-image.persona-offset-up {
+  transform: translateY(-40px);
+}
+
+.bishop-persona-carousel-image.persona-offset-down {
+  transform: translateY(40px);
+}
+
+/* Preserve offsets on hover for persona carousel */
+.bishop-persona-carousel-image.persona-offset-up:hover {
+  transform: translateY(-40px) scale(1.15);
+}
+
+.bishop-persona-carousel-image.persona-offset-down:hover {
+  transform: translateY(40px) scale(1.15);
+}
+
+/* ============================================ */
+
+/* Persona Mapping Section */
+.bishop-persona-learned-wrapper {
+  width: 100%;
+  height: 400vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-persona-learned-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px 80px 40px; /* Reduced top padding from 80px to 20px (60px shift up) */
+  overflow: hidden;
+}
+
+.bishop-persona-panel,
+.bishop-learned-main-panel {
+  position: absolute;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+  pointer-events: none; /* Allow hover events to pass through to carousel */
+}
+
+.bishop-persona-section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #ffffff;
+  padding: 200px 40px 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bishop-persona-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 64vh;
+}
+
+.bishop-persona-section-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px; /* Match research title */
+  font-weight: 700; /* Match research title */
+  color: #111;
+  text-align: center;
+  margin: 340px 0 60px 0; /* Increased from 300px for more clearance */
+  letter-spacing: -1.5px; /* Match research title */
+  flex-shrink: 0;
+}
+
+/* ============================================
+   PERSONA CAROUSEL
+   ============================================ */
+
+.bishop-persona-carousel-wrapper {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-top: 10px; /* Shifted up 30px (from 40px to 10px) */
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: all; /* Re-enable pointer events for carousel */
+}
+
+@keyframes scrollPersonaLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.bishop-persona-carousel-track {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  width: fit-content;
+  animation: scrollPersonaLeft 30s linear infinite;
+  will-change: transform;
+  padding-left: 40px;
+}
+
+.bishop-persona-carousel-track.paused {
+  animation-play-state: paused;
+}
+
+.bishop-persona-carousel-card {
+  flex: 0 0 auto;
+  max-width: none; /* Remove max-width constraint */
+  max-height: 330px; /* Reduced from 360px to 330px */
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bishop-persona-carousel-card.offset-top {
+  transform: translateY(-80px); /* Shifted up by 40px from -40px */
+}
+
+.bishop-persona-carousel-card.offset-bottom {
+  transform: translateY(0px); /* Shifted up by 40px from 40px */
+}
+
+.bishop-persona-carousel-card.offset-top:hover {
+  transform: translateY(-80px) scale(1.1); /* Maintain -80px offset on hover */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+}
+
+.bishop-persona-carousel-card.offset-bottom:hover {
+  transform: translateY(0px) scale(1.1); /* Maintain 0px offset on hover */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+}
+
+.bishop-persona-photo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 12px;
+}
+
+.bishop-persona-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.bishop-persona-photo {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bishop-persona-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 10px;
+  border-left: 3px solid #111;
+}
+
+.bishop-persona-quote-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #111;
+  font-style: italic;
+}
+
+.bishop-persona-quote-attribution {
+  font-family: "Roboto", sans-serif;
+  font-size: 9px;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.bishop-persona-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.bishop-persona-info-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 3px 0;
+}
+
+.bishop-persona-info-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.bishop-persona-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bishop-persona-list li {
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #111;
+  padding-left: 14px;
+  position: relative;
+}
+
+.bishop-persona-list li::before {
+  content: "•";
+  position: absolute;
+  left: 4px;
+  color: #111;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bishop-discover-header {
+    padding: 60px 24px 40px 24px;
+  }
+  .bishop-discover-header.sticky {
+    padding: 24px 24px;
+  }
+
+  .bishop-context-research-content {
+    padding: 60px 24px;
+  }
+
+  .bishop-context-title-text {
+    margin-bottom: 60px;
+    font-size: 36px;
+  }
+
+  .bishop-context-text {
+    font-size: 24px;
+  }
+
+  .bishop-research-title {
+    font-size: 36px;
+    margin-bottom: 100px; /* Reduced spacing for mobile */
+  }
+
+  /* Larger carousel items for mobile */
+  .bishop-carousel-container {
+    height: 60%; /* Increased height */
+    padding: 60px 0; /* More padding for scaled items */
+  }
+
+  .carousel-img-1,
+  .carousel-img-2,
+  .carousel-img-3,
+  .carousel-img-4 {
+    width: 380px; /* Increased from 280px */
+    height: 280px; /* Increased from 200px */
+  }
+
+  .bishop-persona-learned-content {
+    padding: 60px 24px;
+  }
+
+  .bishop-persona-section-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .bishop-persona-card {
+    padding-top: 12px;
+  }
+
+  .bishop-persona-card-title {
+    font-size: 16px;
+    padding: 0 12px 8px 12px;
+  }
+
+  .bishop-persona-card-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .bishop-persona-left,
+  .bishop-persona-demographic,
+  .bishop-persona-behaviors,
+  .bishop-persona-needs {
+    padding: 16px;
+  }
+
+  .bishop-persona-photo {
+    max-width: 140px;
+  }
+
+  .bishop-learned-title {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 60px;
+  }
+
+  .bishop-learned-cards {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 0 24px;
+  }
+
+  .bishop-learned-card-title {
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .bishop-learned-card-text {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-discover-header {
+    padding: 40px 20px 32px 20px;
+  }
+  .bishop-discover-header.sticky {
+    padding: 20px 20px;
+  }
+
+  .bishop-context-text {
+    font-size: 20px;
+  }
+
+  .bishop-research-title {
+    font-size: 28px;
+    margin-bottom: 80px; /* Reduced spacing for smaller mobile */
+  }
+
+  /* Even larger carousel items for smaller mobile screens */
+  .bishop-carousel-container {
+    height: 65%; /* Even more height */
+    padding: 80px 0; /* Extra padding for scaled hover */
+  }
+
+  .carousel-img-1,
+  .carousel-img-2,
+  .carousel-img-3,
+  .carousel-img-4 {
+    width: 320px; /* Increased from 220px */
+    height: 240px; /* Increased from 160px */
+  }
+
+  .bishop-persona-learned-content {
+    padding: 40px 20px;
+  }
+
+  .bishop-persona-section-title {
+    font-size: 20px;
+  }
+
+  .bishop-persona-card-title {
+    font-size: 14px;
+  }
+
+  .bishop-persona-left,
+  .bishop-persona-demographic,
+  .bishop-persona-behaviors,
+  .bishop-persona-needs {
+    padding: 12px;
+  }
+
+  .bishop-learned-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .bishop-learned-cards {
+    gap: 40px;
+  }
+
+  .bishop-learned-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bishop-learned-card:nth-child(2) .bishop-learned-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .bishop-learned-card:nth-child(3) .bishop-learned-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .bishop-learned-card-title {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .bishop-learned-card-text {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .bishop-reality-section {
+    padding: 60px 24px;
+  }
+
+  .bishop-reality-content {
+    gap: 50px;
+    padding: 60px 24px;
+  }
+
+  .bishop-reality-title {
+    font-size: 36px;
+  }
+
+  .bishop-reality-text {
+    font-size: 24px;
+  }
+}
+
+@keyframes bubbleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* What We Learned Section */
+.bishop-learned-wrapper {
+  width: 100%;
+  height: 300vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-learned-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+.bishop-learned-fade-panel,
+.bishop-learned-main-panel {
+  position: absolute;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-learned-fade-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-learned-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 80px 0;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+}
+
+.bishop-learned-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  animation: bubbleIn 0.8s ease-out forwards;
+  padding: 0 40px;
+}
+
+.bishop-learned-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.bishop-learned-icon {
+  width: 58.59px;
+  height: 58.59px;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+.bishop-learned-card:nth-child(2) .bishop-learned-icon {
+  width: 55.105px;
+  height: 55.105px;
+}
+
+.bishop-learned-card:nth-child(3) .bishop-learned-icon {
+  width: 43.875px;
+  height: 43.875px;
+}
+
+.bishop-learned-card-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #4b5563;
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.bishop-learned-card-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 26px;
+  color: #111;
+  margin: 0;
+  max-width: 400px;
+}
+
+/* The Reality Today Section */
+.bishop-reality-section {
+  width: 100%;
+  /* Height: 100vh for initial view + 800px for sticky scroll */
+  height: calc(100vh + 800px);
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-reality-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.bishop-reality-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.bishop-reality-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.bishop-reality-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+}
+
+.bishop-reality-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  line-height: 1.6;
+  color: #111;
+  margin: 0;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.bishop-reality-text strong {
+  font-weight: 700;
+}
+
+/* ============================================
+   DEFINE - PROBLEM STATEMENT SECTION
+   ============================================ */
+
+.bishop-define-problem-statement {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 120px;
+  background: white;
+}
+
+.bishop-problem-content {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+}
+
+.bishop-problem-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.bishop-problem-icon {
+  width: 56px;
+  height: 56px;
+  background: #191f3c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.bishop-problem-title {
+  color: #191f3c;
+  margin: 0;
+}
+
+.bishop-problem-text {
+  color: #191f3c;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 28px;
+}
+
+.bishop-problem-text strong {
+  font-weight: 700;
+}
+
+/* Responsive - Problem Statement */
+@media (max-width: 1024px) {
+  .bishop-define-problem-statement {
+    padding: 60px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-define-problem-statement {
+    padding: 48px 32px;
+    min-height: 80vh;
+  }
+
+  .bishop-problem-header {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .bishop-problem-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bishop-problem-text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-define-problem-statement {
+    padding: 40px 24px;
+  }
+
+  .bishop-problem-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bishop-problem-text {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   PROBLEM → SUCCESS TRANSITION SECTION
+   ============================================ */
+
+.bishop-problem-success-wrapper {
+  width: 100%;
+  height: 400vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-problem-success-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 120px;
+  overflow: hidden;
+}
+
+.bishop-problem-fade-panel,
+.bishop-success-panel {
+  position: absolute;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-success-main-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 80px 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-success-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px; /* Increased from 20px */
+  width: 100%;
+  max-width: min(1200px, 90vw); /* Scales with viewport, max 1200px */
+}
+
+.bishop-metric-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px; /* Increased from 12px */
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px); /* Scales with viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* Increased from 6px */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 180px; /* Added minimum height for consistency */
+}
+
+.bishop-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.bishop-metric-icon-wrapper {
+  width: clamp(28px, 3vw, 40px); /* Scales with viewport */
+  height: clamp(28px, 3vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px; /* Increased from 2px */
+}
+
+.bishop-metric-icon {
+  color: #111;
+  width: 70%; /* Icon scales relative to wrapper */
+  height: 70%;
+}
+
+.bishop-metric-label {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(10px, 1vw, 13px); /* Scales with viewport */
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+.bishop-metric-value {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(24px, 2.5vw, 36px); /* Scales from 24px to 36px */
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.bishop-metric-description {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(13px, 1.2vw, 17px); /* Scales with viewport */
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive - Success Metrics */
+@media (max-width: 1024px) {
+  .bishop-problem-success-content {
+    padding: 60px 80px;
+  }
+
+  .bishop-success-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-problem-success-content {
+    padding: 48px 32px;
+  }
+
+  .bishop-success-main-title {
+    font-size: 36px;
+    margin-bottom: 48px;
+  }
+
+  .bishop-success-metrics {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bishop-metric-card {
+    padding: 20px 18px;
+  }
+
+  .bishop-metric-value {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-problem-success-content {
+    padding: 40px 24px;
+  }
+
+  .bishop-success-main-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .bishop-metric-card {
+    padding: 18px 16px;
+  }
+}
+
+/* ============================================
+   PROPOSED → PROVED TRANSITION SECTION
+   ============================================ */
+
+.bishop-proposed-proved-wrapper {
+  width: 100%;
+  height: 400vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-proposed-proved-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+.bishop-proposed-fade-panel,
+.bishop-proved-panel {
+  position: absolute;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-proposed-fade-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-proved-main-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 80px 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-proved-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 32px);
+  width: 100%;
+  max-width: min(1200px, 95vw);
+  padding: 0 20px;
+}
+
+.bishop-proved-card {
+  background: white;
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(white, white),
+    linear-gradient(135deg, #3CCAF4 0%, #578DF3 25%, #7C52BE 50%, #F93C95 75%, #FC6E5D 88%, #FFAC49 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 20px;
+  padding: clamp(20px, 2.5vw, 32px) clamp(16px, 2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 200px;
+}
+
+.bishop-proved-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.bishop-proved-card-top {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #6b7280;
+  margin: 0;
+}
+
+.bishop-proved-arrow {
+  font-size: 28px;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.bishop-proved-card-bottom {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #111;
+  margin: 0;
+}
+
+/* Responsive - Proved Section */
+@media (max-width: 1200px) {
+  .bishop-proved-cards {
+    max-width: 92vw;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bishop-proposed-proved-content {
+    padding: 60px 32px;
+  }
+
+  .bishop-proved-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-proposed-proved-content {
+    padding: 48px 32px;
+  }
+
+  .bishop-proposed-fade-title,
+  .bishop-proved-main-title {
+    font-size: 36px;
+    margin-bottom: 48px;
+  }
+
+  .bishop-proved-card {
+    padding: 28px 24px;
+  }
+
+  .bishop-proved-card-top {
+    font-size: 16px;
+  }
+
+  .bishop-proved-arrow {
+    font-size: 24px;
+  }
+
+  .bishop-proved-card-bottom {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-proposed-proved-content {
+    padding: 40px 24px;
+  }
+
+  .bishop-proposed-fade-title,
+  .bishop-proved-main-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .bishop-proved-card {
+    padding: 24px 20px;
+  }
+
+  .bishop-proved-card-top {
+    font-size: 15px;
+  }
+
+  .bishop-proved-arrow {
+    font-size: 22px;
+  }
+
+  .bishop-proved-card-bottom {
+    font-size: 17px;
+  }
+}

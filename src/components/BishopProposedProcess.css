@@ -1,0 +1,431 @@
+.bishop-proposed-process {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 200px 80px 120px 80px;
+  background-color: #ffffff;
+}
+
+.bishop-proposed-content {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.bishop-proposed-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -1.5px;
+}
+
+.bishop-proposed-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+/* ============================================
+   LEFT SIDE: STATE TRACKER
+   ============================================ */
+
+.bishop-process-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 40px 0;
+}
+
+.bishop-process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bishop-step-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.bishop-step-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Active state */
+.bishop-process-step.active .bishop-step-icon {
+  background-color: #111;
+  border-color: #111;
+  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Completed state */
+.bishop-process-step.completed .bishop-step-icon {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+/* Connector line between steps */
+.bishop-step-connector {
+  width: 2px;
+  height: 80px;
+  background-color: #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.4s ease;
+}
+
+/* Progress fill showing how far through the current step */
+.bishop-step-connector::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--progress, 0) * 100%);
+  background-color: #10b981;
+  transition: height 0.1s linear;
+}
+
+/* Filled connector (when step is completed) */
+.bishop-step-connector.filled {
+  background-color: #10b981;
+}
+
+.bishop-step-connector.filled::before {
+  display: none;
+}
+
+.bishop-step-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #6b7280;
+  padding-top: 16px;
+  transition: all 0.3s ease;
+  line-height: 1.4;
+}
+
+/* Active label styling */
+.bishop-process-step.active .bishop-step-label {
+  color: #111;
+  font-weight: 700;
+  transform: translateX(4px);
+}
+
+/* Completed label styling */
+.bishop-process-step.completed .bishop-step-label {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ============================================
+   RIGHT SIDE: VIDEO
+   ============================================ */
+
+.bishop-process-video-container {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 4/3;
+}
+
+.bishop-process-ipad-screen {
+  position: absolute;
+  top: 3.8%;
+  left: 3.8%;
+  width: 92.4%;
+  height: 92.4%;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.bishop-process-ipad-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bishop-process-video {
+  width: auto;
+  height: 75%;
+  margin-top: -5%;
+  margin-left: -7%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .bishop-proposed-process {
+    padding: 180px 60px 100px 60px;
+  }
+
+  .bishop-proposed-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 60px;
+  }
+
+  .bishop-step-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .bishop-step-label {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bishop-proposed-process {
+    padding: 160px 40px 80px 40px;
+  }
+
+  .bishop-proposed-title {
+    font-size: 42px;
+  }
+
+  .bishop-proposed-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  /* Horizontal tracker for tablet */
+  .bishop-process-tracker {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    gap: 0;
+  }
+
+  .bishop-process-step {
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 16px;
+  }
+
+  .bishop-step-icon-wrapper {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bishop-step-connector {
+    width: 100%;
+    height: 2px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .bishop-step-connector::after {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #10b981 50%,
+      transparent
+    );
+    animation: flowRight 1.5s ease-in-out infinite;
+  }
+
+  @keyframes flowRight {
+    0% {
+      width: 0%;
+      left: 0%;
+    }
+    50% {
+      width: 100%;
+      left: 0%;
+    }
+    100% {
+      width: 0%;
+      left: 100%;
+    }
+  }
+
+  .bishop-step-label {
+    padding-top: 0;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .bishop-process-step.active .bishop-step-label {
+    transform: translateX(0) translateY(4px);
+  }
+
+  .bishop-process-video-container {
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-proposed-process {
+    padding: 140px 32px 60px 32px;
+  }
+
+  .bishop-proposed-content {
+    gap: 60px;
+  }
+
+  .bishop-proposed-title {
+    font-size: 36px;
+  }
+
+  .bishop-step-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bishop-step-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bishop-step-label {
+    font-size: 14px;
+  }
+
+  .bishop-process-video-container {
+    max-height: 50vh;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-proposed-process {
+    padding: 120px 24px 60px 24px;
+  }
+
+  .bishop-proposed-title {
+    font-size: 32px;
+  }
+
+  /* Stack vertically on mobile */
+  .bishop-process-tracker {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bishop-process-step {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .bishop-step-icon-wrapper {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .bishop-step-connector {
+    width: 2px;
+    height: 60px;
+    margin: 0;
+  }
+
+  .bishop-step-connector::after {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      #10b981 50%,
+      transparent
+    );
+    animation: flowDown 1.5s ease-in-out infinite;
+  }
+
+  .bishop-step-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .bishop-step-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bishop-step-label {
+    padding-top: 12px;
+    text-align: left;
+    font-size: 15px;
+  }
+
+  .bishop-process-step.active .bishop-step-label {
+    transform: translateX(4px) translateY(0);
+  }
+
+  .bishop-process-video-container {
+    max-height: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-proposed-process {
+    padding: 100px 20px 50px 20px;
+  }
+
+  .bishop-proposed-title {
+    font-size: 28px;
+  }
+
+  .bishop-step-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bishop-step-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .bishop-step-label {
+    font-size: 14px;
+  }
+
+  .bishop-process-video-container {
+    border-radius: 12px;
+    max-height: 40vh;
+  }
+}

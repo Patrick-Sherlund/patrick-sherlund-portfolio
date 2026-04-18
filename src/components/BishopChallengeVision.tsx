@@ -1,0 +1,110 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { bishopAssets } from "@/lib/assetPaths";
+
+const bubblePositions = [
+  { top: "8%", left: "5%", width: 213.63, height: 150 },
+  { top: "5%", left: "40%", width: 278.39, height: 150 },
+  { top: "10%", left: "75%", width: 211.83, height: 150 },
+  { top: "68%", left: "8%", width: 281.76, height: 150 },
+  { top: "70%", left: "70%", width: 280.28, height: 150 },
+];
+
+const bubbleImages = bishopAssets.bubbles;
+
+function BishopChallengeVision() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [challengeVisionProgress, setChallengeVisionProgress] = useState(0);
+  const [bubbleProgress, setBubbleProgress] = useState<number[]>([0, 0, 0, 0, 0]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top <= 0 && rect.top > -viewportHeight) {
+        const scrollDistance = Math.abs(rect.top);
+        const newProgress = Math.min(Math.max(scrollDistance / viewportHeight, 0), 1);
+        setChallengeVisionProgress(newProgress);
+        setBubbleProgress([0, 0, 0, 0, 0]);
+      } else if (rect.top > 0) {
+        setChallengeVisionProgress(0);
+        setBubbleProgress([0, 0, 0, 0, 0]);
+      } else if (rect.top <= -viewportHeight) {
+        setChallengeVisionProgress(1);
+        const bubbleScrollStart = viewportHeight;
+        const scrollPerBubble = viewportHeight * 0.5;
+        const totalBubbleScroll = scrollPerBubble * 5;
+        const bubbleScrollDistance = Math.abs(rect.top) - bubbleScrollStart;
+
+        if (bubbleScrollDistance < 0) {
+          setBubbleProgress([0, 0, 0, 0, 0]);
+        } else if (bubbleScrollDistance > totalBubbleScroll) {
+          setBubbleProgress([1, 1, 1, 1, 1]);
+        } else {
+          const newBubbleProgress = bubbleImages.map((_, index) => {
+            const bubbleStart = index * scrollPerBubble;
+            const progress = (bubbleScrollDistance - bubbleStart) / scrollPerBubble;
+            return Math.min(Math.max(progress, 0), 1);
+          });
+          setBubbleProgress(newBubbleProgress);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="bishop-challenge-vision-wrapper" ref={containerRef}>
+      <div className="bishop-challenge-vision-content">
+        <div className="bishop-challenge-panel" style={{ opacity: 1 - challengeVisionProgress }}>
+          <h2 className="bishop-cv-title">The Challenge</h2>
+          <p className="bishop-cv-text">
+            Locating <strong>distressed humans</strong> quickly &amp; efficiently during <strong>search &amp; rescue</strong> missions.
+          </p>
+        </div>
+
+        <div className="bishop-vision-panel" style={{ opacity: challengeVisionProgress }}>
+          <h2 className="bishop-cv-title bishop-vision-title">
+            <img src={bishopAssets.sparkle} alt="" className="vision-sparkle-img" /> The Vision
+          </h2>
+          <p className="bishop-cv-text">
+            <strong>AI powered</strong> drone search &amp; rescue application designed for <strong>speed, safety,</strong> and <strong>hope.</strong>
+          </p>
+        </div>
+
+        {bubbleImages.map((img, index) => {
+          const position = bubblePositions[index];
+          const progress = bubbleProgress[index];
+          const isTopRow = index < 3;
+
+          return (
+            <div
+              key={index}
+              className={`bishop-bubble-image ${isTopRow ? "bishop-bubble-top" : "bishop-bubble-bottom"}`}
+              style={{
+                top: position.top,
+                left: position.left,
+                width: `${position.width}px`,
+                height: `${position.height}px`,
+                opacity: progress,
+                transform: `scale(${0.5 + progress * 0.5})`,
+              }}
+            >
+              <img src={img} alt="" />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default BishopChallengeVision;

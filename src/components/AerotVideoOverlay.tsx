@@ -1,37 +1,14 @@
-import styled from '@emotion/styled';
-
-const VideoContainer = styled.div`
-
-  margin-top: -17%;
-  margin-left: -2.7%;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Video = styled.video`
-  width: 92%;
-  height: 60%;
-  object-fit: fill;
-  border-radius: 3px;
-`;
-
-const AerotVideoOverlay = () => {
+export function AerotVideoOverlay() {
   return (
-    <VideoContainer>
-      <Video
+    <div className="video-container">
+      <video
         autoPlay
         loop
         muted
         playsInline
       >
         <source src="/assets/videos/aerot.mp4" type="video/mp4" />
-      </Video>
-    </VideoContainer>
+      </video>
+    </div>
   );
-};
-
-export default AerotVideoOverlay;
+}
