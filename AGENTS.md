@@ -20,6 +20,8 @@ Port before refactor: For framework migrations, first produce a fully working po
 
 No unapproved visual drift: Do not change layout, spacing, typography, colors, animation timing, responsive behavior, copy, or interaction patterns unless explicitly requested in this chat.
 
+Mobile-first compatibility: Ensure the portfolio/case study website is fully responsive and production-quality on mobile, tablet, and desktop, preserving readability, navigation, media behavior, interaction quality, touch targets, spacing, and visual polish across viewport sizes.
+
 SEO changes must be non-invasive: Improve indexing, metadata, rendering strategy, sitemap, robots, structured data, and page semantics without changing the visible UI unless required and approved.
 
 Prefer minimal-risk migrations: When moving frameworks or build systems, preserve existing component logic where practical. Avoid rewrites into a different UI paradigm if a lower-risk migration path exists.

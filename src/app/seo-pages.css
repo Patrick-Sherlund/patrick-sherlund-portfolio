@@ -1,0 +1,144 @@
+.seo-page-shell {
+  min-height: 100vh;
+  background: #e7f4ff;
+  color: #111111;
+}
+
+.seo-page-content {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+}
+
+.seo-eyebrow {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.seo-title {
+  margin: 0 0 24px;
+  max-width: 860px;
+}
+
+.seo-title span {
+  display: inline-block;
+}
+
+.seo-lead {
+  max-width: 820px;
+  margin: 0 0 40px;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.seo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.seo-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.06);
+}
+
+.seo-card h2 {
+  margin: 0 0 16px;
+}
+
+.seo-card p:last-child,
+.seo-card ul:last-child {
+  margin-bottom: 0;
+}
+
+.seo-list,
+.seo-link-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.seo-link-list li + li,
+.seo-list li + li {
+  margin-top: 10px;
+}
+
+.seo-link-list a,
+.seo-link-button {
+  color: #0f4f85;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.seo-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #0f4f85;
+}
+
+.seo-project-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.seo-project-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.06);
+}
+
+.seo-project-card h2 {
+  margin: 0 0 8px;
+}
+
+.seo-project-number,
+.seo-project-subtitle,
+.seo-project-stack {
+  margin: 0 0 12px;
+}
+
+.seo-stack-card {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .seo-grid,
+  .seo-project-list {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-page-content {
+    padding-top: 104px;
+  }
+}
+
+@media (max-width: 640px) {
+  .seo-title {
+    font-size: 38px;
+    line-height: 44px;
+  }
+
+  .seo-lead {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .seo-card,
+  .seo-project-card {
+    padding: 22px;
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { homeAssets, pageAssets } from '@/lib/assetPaths';
+import { homeAssets } from '@/features/home/data/home-assets';
+import { sharedAssets } from '@/shared/media/asset-paths';
 
 export function usePreloadImages() {
   useEffect(() => {
@@ -7,11 +8,11 @@ export function usePreloadImages() {
       homeAssets.heroPattern,
       homeAssets.heroPatternMobile,
       homeAssets.patrickLight,
-      pageAssets.buttonArrow,
+      sharedAssets.buttonArrow,
       homeAssets.heroPatternDarkMobile,
       homeAssets.heroPatternDark,
       homeAssets.patrickDark,
-      pageAssets.buttonArrowDark,
+      sharedAssets.buttonArrowDark,
       homeAssets.figmaIcon,
       homeAssets.githubIcon,
       homeAssets.linkedinIcon

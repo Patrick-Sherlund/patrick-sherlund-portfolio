@@ -1,0 +1,1 @@
+export { BishopRoute } from "./BishopRoute";
