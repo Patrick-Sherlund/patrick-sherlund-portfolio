@@ -5,6 +5,7 @@ out/
 .npm-cache/
 .turbo/
 
+AGENTS.md
 .env
 .env.local
 .env.development.local

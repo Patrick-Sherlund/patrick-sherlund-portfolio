@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useTheme } from '@/features/theme/ThemeProvider';
@@ -14,7 +14,7 @@ type ProfessionalProjectsBannerProps = {
 
 const projectCategories: { id: ProjectCategory; label: string }[] = [
   { id: "software-engineering", label: "Software Engineering" },
-  { id: "product-design", label: "Product Design" },
+  { id: "product-design", label: "Design Systems" },
 ];
 
 export function ProfessionalProjectsBanner({
@@ -23,20 +23,59 @@ export function ProfessionalProjectsBanner({
   onCategoryChange,
 }: ProfessionalProjectsBannerProps) {
   const { theme } = useTheme();
-  const [opacity, setOpacity] = useState(1);
+  const stickyControlsRef = useRef<HTMLDivElement | null>(null);
+  const [contentFadeProgress, setContentFadeProgress] = useState(0);
+  const [stickyFadeProgress, setStickyFadeProgress] = useState(0);
+  const [dimmedStickyTabs, setDimmedStickyTabs] = useState<Record<ProjectCategory, boolean>>({
+    "software-engineering": false,
+    "product-design": false,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
-      const fadePoint = windowHeight * 0.4;
-      const newOpacity = Math.max(0, 1 - (scrolled / fadePoint));
-      setOpacity(newOpacity);
+      const contentFadeDistance = windowHeight * 0.4;
+      const stickyFadeDistance = windowHeight * 0.18;
+      const newContentFadeProgress = Math.min(1, Math.max(0, scrolled / contentFadeDistance));
+      const newStickyFadeProgress = Math.min(1, Math.max(0, (scrolled - contentFadeDistance) / stickyFadeDistance));
+      setContentFadeProgress(newContentFadeProgress);
+      setStickyFadeProgress(newStickyFadeProgress);
+
+      const stickyTabs = Array.from(
+        stickyControlsRef.current?.querySelectorAll<HTMLButtonElement>('.project-category-tab') ?? []
+      );
+      const overlapTargets = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          '.project-number, .project-laptop-container, .laptop-screen, .laptop-frame, .video-container, .video-container video, .device-container, .project-subtitle, .project-description, .project-tech-stack, .project-button'
+        )
+      );
+      const targetRects = overlapTargets.map((target) => target.getBoundingClientRect());
+      const nextDimmedStickyTabs = projectCategories.reduce<Record<ProjectCategory, boolean>>((dimmedTabs, category) => {
+        const tab = stickyTabs.find((stickyTab) => stickyTab.dataset.category === category.id);
+        const tabRect = tab?.getBoundingClientRect();
+        dimmedTabs[category.id] = Boolean(tabRect && targetRects.some((targetRect) => (
+          tabRect.left < targetRect.right &&
+          tabRect.right > targetRect.left &&
+          tabRect.top < targetRect.bottom &&
+          tabRect.bottom > targetRect.top
+        )));
+        return dimmedTabs;
+      }, {
+        "software-engineering": false,
+        "product-design": false,
+      });
+      setDimmedStickyTabs(nextDimmedStickyTabs);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [firstProjectSectionId]);
 
   const scrollToProjects = () => {
     const projectSection = document.getElementById(firstProjectSectionId);
@@ -44,6 +83,25 @@ export function ProfessionalProjectsBanner({
       projectSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const contentOpacity = 1 - contentFadeProgress;
+  const contentInteractive = contentOpacity > 0.05;
+  const stickyInteractive = stickyFadeProgress > 0.05;
+  const renderCategoryTabs = (isSticky: boolean) => (
+    projectCategories.map((category) => (
+      <button
+        key={category.id}
+        type="button"
+        aria-pressed={activeCategory === category.id}
+        tabIndex={isSticky ? (stickyInteractive ? undefined : -1) : (contentInteractive ? undefined : -1)}
+        data-category={category.id}
+        className={`project-category-tab${activeCategory === category.id ? " active" : ""}${isSticky && dimmedStickyTabs[category.id] ? " project-category-tab-dimmed" : ""}`}
+        onClick={() => onCategoryChange(category.id)}
+      >
+        {category.label}
+      </button>
+    ))
+  );
 
   return (
     <div style={{
@@ -56,12 +114,26 @@ export function ProfessionalProjectsBanner({
       alignItems: 'center',
       gap: '24px'
     }}>
+      <div
+        ref={stickyControlsRef}
+        className="project-category-controls project-category-controls-sticky"
+        aria-label="Project category"
+        aria-hidden={!stickyInteractive}
+        style={{
+          opacity: stickyFadeProgress,
+          transform: `translateY(${(1 - stickyFadeProgress) * -16}px)`,
+          pointerEvents: stickyInteractive ? 'auto' : 'none'
+        }}
+      >
+        {renderCategoryTabs(true)}
+      </div>
       <div style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '24px',
-        opacity: opacity,
+        gap: '36px',
+        opacity: contentOpacity,
+        pointerEvents: contentInteractive ? 'auto' : 'none',
         transition: 'opacity 0.1s ease-out'
       }}>
         <h2 style={{
@@ -81,27 +153,13 @@ export function ProfessionalProjectsBanner({
           Professional Projects
         </h2>
 
-        <div className="project-category-controls" aria-label="Project category">
-          {projectCategories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              aria-pressed={activeCategory === category.id}
-              className={`project-category-tab${activeCategory === category.id ? " active" : ""}`}
-              onClick={() => onCategoryChange(category.id)}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
-        
         <motion.div
           onClick={scrollToProjects}
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '12px',
+            gap: '16px',
             cursor: 'pointer'
           }}
           whileHover={{ scale: 1.05 }}

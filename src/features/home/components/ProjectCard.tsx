@@ -10,6 +10,8 @@ type ProjectCardProps = Omit<ProjectSummary, "id" | "category" | "sectionId" | "
 
 export function ProjectCard({
   number,
+  role,
+  yearRange,
   title,
   subtitle,
   description,
@@ -18,20 +20,50 @@ export function ProjectCard({
   buttonLink,
   media,
   device = 'laptop',
+  useDeviceFrame = true,
 }: ProjectCardProps) {
+  const mediaContent = useDeviceFrame ? (
+    <DeviceFrame device={device} title={title}>
+      {media}
+    </DeviceFrame>
+  ) : (
+    <div className="project-laptop-container">
+      {media}
+    </div>
+  );
+
   return (
     <section className="project-page-section">
       <div className="project-container">
         <div className="project-left">
           <BubbleIn>
             <div className="project-number">
-              {number} <strong>{title}</strong>
+              <span>{number}</span>
+              <div className="project-heading-text">
+                <strong>{title}</strong>
+                {(role || yearRange) && (
+                  <span className="project-heading-meta">
+                    {role && <span className="project-heading-role">{role}</span>}
+                    {yearRange && <span className="project-heading-year">{yearRange}</span>}
+                  </span>
+                )}
+              </div>
             </div>
           </BubbleIn>
           <BubbleIn>
-            <DeviceFrame device={device} title={title}>
-              {media}
-            </DeviceFrame>
+            {buttonLink ? (
+              buttonLink.startsWith('/') ? (
+                <Link href={buttonLink} className="project-media-link" aria-label={`View ${title} case study`}>
+                  {mediaContent}
+                </Link>
+              ) : (
+                <a href={buttonLink} target="_blank" rel="noopener noreferrer" className="project-media-link" aria-label={`View ${title} case study`}>
+                  {mediaContent}
+                </a>
+              )
+            ) : (
+              mediaContent
+            )}
           </BubbleIn>
         </div>
 
@@ -45,7 +77,7 @@ export function ProjectCard({
           <BubbleIn>
             <p className="project-tech-stack">{techStack}</p>
           </BubbleIn>
-          {buttonLink && (
+          {buttonLink ? (
             <BubbleIn>
               {buttonLink.startsWith('/') ? (
                 <Link 
@@ -66,6 +98,13 @@ export function ProjectCard({
                   <ProjectButtonArrow />
                 </a>
               )}
+            </BubbleIn>
+          ) : (
+            <BubbleIn>
+              <button type="button" className="project-button project-button-placeholder" disabled>
+                <span>{buttonText}</span>
+                <ProjectButtonArrow />
+              </button>
             </BubbleIn>
           )}
         </div>

@@ -14,7 +14,12 @@ export function HomeRoute() {
   const [activeProjectCategory, setActiveProjectCategory] =
     useState<ProjectCategory>("software-engineering");
   const firstProjectSectionId = useMemo(() => {
-    return projects.find((project) => project.category === activeProjectCategory)?.sectionId ?? "aerot-section";
+    const categoryProjects = projects.filter((project) => project.category === activeProjectCategory);
+    const firstProject =
+      activeProjectCategory === "software-engineering"
+        ? categoryProjects[categoryProjects.length - 1]
+        : categoryProjects[0];
+    return firstProject?.sectionId ?? "bishop-section";
   }, [activeProjectCategory]);
 
   return (
