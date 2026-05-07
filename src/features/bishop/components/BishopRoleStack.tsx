@@ -3,11 +3,20 @@
 import { useEffect, useRef, useState } from 'react';
 import svgPaths from "@/lib/svg-pagdlx3wn8";
 
-export function BishopRoleStack() {
+type BishopRoleStackProps = {
+  isInteractive: boolean;
+};
+
+export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [myRoleStackProgress, setMyRoleStackProgress] = useState(0);
 
   useEffect(() => {
+    if (!isInteractive) {
+      setMyRoleStackProgress(0);
+      return;
+    }
+
     const handleScroll = () => {
       if (!containerRef.current) return;
 
@@ -32,14 +41,14 @@ export function BishopRoleStack() {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isInteractive]);
 
   return (
     <div className="bishop-my-role-stack-wrapper" ref={containerRef}>
       <div className="bishop-my-role-stack-content">
         <div 
           className="bishop-my-role-panel"
-          style={{ opacity: 1 - myRoleStackProgress }}
+          style={isInteractive ? { opacity: 1 - myRoleStackProgress } : undefined}
         >
           <h2 className="bishop-mrs-title">My role</h2>
           <p className="bishop-mrs-text">
@@ -49,7 +58,7 @@ export function BishopRoleStack() {
 
         <div 
           className="bishop-stack-panel"
-          style={{ opacity: myRoleStackProgress }}
+          style={isInteractive ? { opacity: myRoleStackProgress } : undefined}
         >
           <h2 className="bishop-mrs-title">The Stack</h2>
           

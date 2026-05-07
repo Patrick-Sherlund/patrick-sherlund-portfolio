@@ -2,11 +2,17 @@
 
 import { useEffect, useState, type RefObject } from "react";
 
-export function useCrossfadeScroll(ref: RefObject<HTMLElement | null>) {
+export function useCrossfadeScroll(ref: RefObject<HTMLElement | null>, enabled = true) {
   const [progress, setProgress] = useState(0);
   const [isPastHalf, setIsPastHalf] = useState(false);
 
   useEffect(() => {
+    if (!enabled) {
+      setProgress(0);
+      setIsPastHalf(false);
+      return;
+    }
+
     const handleScroll = () => {
       const element = ref.current;
       if (!element) {
@@ -42,7 +48,7 @@ export function useCrossfadeScroll(ref: RefObject<HTMLElement | null>) {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [ref]);
+  }, [enabled, ref]);
 
   return { progress, isPastHalf };
 }

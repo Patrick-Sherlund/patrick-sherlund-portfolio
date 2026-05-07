@@ -139,10 +139,6 @@
 }
 
 /* Pause animation when hovering over any carousel item */
-.bishop-carousel-track:hover {
-  animation-play-state: paused;
-}
-
 @keyframes scrollCarousel {
   0% {
     transform: translateX(0);
@@ -164,28 +160,6 @@
 }
 
 /* Scale up on hover */
-.bishop-carousel-image:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-  z-index: 10; /* Bring to front when hovered */
-}
-
-/* Preserve vertical offset while scaling on hover - all grow upward */
-.carousel-img-1:hover {
-  transform: translateY(-40px) scale(1.3);
-}
-
-.carousel-img-2:hover {
-  transform: translateY(40px) scale(1.3);
-}
-
-.carousel-img-3:hover {
-  transform: translateY(-40px) scale(1.3);
-}
-
-.carousel-img-4:hover {
-  transform: translateY(40px) scale(1.3);
-}
-
 .bishop-carousel-image img {
   width: 100%;
   height: 100%;
@@ -282,14 +256,6 @@
 }
 
 /* Preserve offsets on hover for persona carousel */
-.bishop-persona-carousel-image.persona-offset-up:hover {
-  transform: translateY(-40px) scale(1.15);
-}
-
-.bishop-persona-carousel-image.persona-offset-down:hover {
-  transform: translateY(40px) scale(1.15);
-}
-
 /* ============================================ */
 
 /* Persona Mapping Section */
@@ -309,7 +275,8 @@
   align-items: center;
   justify-content: center;
   padding: 20px 40px 80px 40px; /* Reduced top padding from 80px to 20px (60px shift up) */
-  overflow: hidden;
+  overflow-x: visible;
+  overflow-y: hidden;
 }
 
 .bishop-persona-panel,
@@ -363,9 +330,11 @@
    ============================================ */
 
 .bishop-persona-carousel-wrapper {
+  --bishop-persona-carousel-overfill: clamp(406px, 34vw, 560px);
+  --bishop-persona-carousel-overfill-half: clamp(203px, 17vw, 280px);
   position: relative;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: calc(100vw + var(--bishop-persona-carousel-overfill));
+  margin-left: calc(-50vw + 50% - var(--bishop-persona-carousel-overfill-half));
   margin-top: 10px; /* Shifted up 30px (from 40px to 10px) */
   height: 600px;
   overflow: hidden;
@@ -379,7 +348,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-33.333%);
   }
 }
 
@@ -387,16 +356,13 @@
   position: relative;
   z-index: 2;
   display: flex;
-  gap: 40px;
+  gap: 18px;
   align-items: center;
   width: fit-content;
   animation: scrollPersonaLeft 30s linear infinite;
   will-change: transform;
-  padding-left: 40px;
-}
-
-.bishop-persona-carousel-track.paused {
-  animation-play-state: paused;
+  margin-left: -180px;
+  padding-left: 0;
 }
 
 .bishop-persona-carousel-card {
@@ -420,18 +386,6 @@
 
 .bishop-persona-carousel-card.offset-bottom {
   transform: translateY(0px); /* Shifted up by 40px from 40px */
-}
-
-.bishop-persona-carousel-card.offset-top:hover {
-  transform: translateY(-80px) scale(1.1); /* Maintain -80px offset on hover */
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-  z-index: 10;
-}
-
-.bishop-persona-carousel-card.offset-bottom:hover {
-  transform: translateY(0px) scale(1.1); /* Maintain 0px offset on hover */
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-  z-index: 10;
 }
 
 .bishop-persona-photo-section {

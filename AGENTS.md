@@ -39,3 +39,14 @@ No speculative cleanup: Do not rename, move, split, or delete files purely for s
 Verification required for migrations: After significant framework or architecture changes, run the relevant build/tests if available and report what was verified and what could not be verified.
 
 Document assumptions in the final response: If any behavior had to be inferred during migration, state the assumption clearly instead of silently changing implementation details.
+
+Verification policy: Do not start or run the dev server unless explicitly requested. Do not run npm run dev, next dev, vite dev, or any long-running local server command by default. For normal UI/content/style changes, prefer fast verification only: run type checks if available and reasonably fast, plus targeted lint/tests only when directly relevant to the changed files. Do not run full production builds for small visual/content changes unless the change affects routing, framework config, SSR/SSG behavior, data loading, or deployment behavior.
+
+Known verification failures: Do not repeatedly chase known environment/sandbox failures. If a command fails due to a known pre-existing issue, permission issue, Git safe-directory issue, sandbox policy issue, Windows EPERM/spawn issue, or unrelated existing project error, stop after the first clear failure. Report it once in the final response and do not try alternate launch paths, background process starts, port probing, or repeated command variants unless explicitly requested.
+
+Type checks: Type checks are the preferred verification step when available. If type checks fail because of unrelated pre-existing errors, report the failure briefly and do not fix unrelated files. If type checks pass, do not continue into slower verification unless the change warrants it.
+
+Final response verification format: Always summarize verification as:
+- Verified: <commands that passed>
+- Not run: <commands intentionally skipped and why>
+- Blocked: <commands that failed due to environment/pre-existing issues, if any>

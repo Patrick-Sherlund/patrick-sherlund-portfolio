@@ -1,4 +1,6 @@
 import svgPaths from "@/lib/svg-r3w32ldrgh";
+import { useRef } from "react";
+import { useInViewOnce } from "../../hooks/useInViewOnce";
 import { LearnedCardIcon } from "./icons";
 
 type PersonaAsset = {
@@ -13,35 +15,50 @@ type LearnedCard = {
 
 type PersonaLearnedSectionProps = {
   sectionRef: React.RefObject<HTMLDivElement | null>;
+  isInteractive: boolean;
   progress: number;
   learnedContentVisible: boolean;
   personaTitle: string;
   learnedTitle: string;
   personaAssets: PersonaAsset[];
-  isPersonaHovering: boolean;
-  setIsPersonaHovering: (value: boolean) => void;
   learnedCards: readonly LearnedCard[];
 };
 
 export function PersonaLearnedSection({
   sectionRef,
+  isInteractive,
   progress,
   learnedContentVisible,
   personaTitle,
   learnedTitle,
   personaAssets,
-  isPersonaHovering,
-  setIsPersonaHovering,
   learnedCards,
 }: PersonaLearnedSectionProps) {
+  const personaPanelRef = useRef<HTMLDivElement>(null);
+  const learnedPanelRef = useRef<HTMLDivElement>(null);
+  const normalPersonaVisible = useInViewOnce(personaPanelRef, !isInteractive);
+  const normalLearnedVisible = useInViewOnce(learnedPanelRef, !isInteractive);
+  const repeatedPersonaAssets = [
+    ...personaAssets,
+    ...personaAssets,
+    ...personaAssets,
+    ...personaAssets,
+    ...personaAssets,
+    ...personaAssets,
+  ];
+
   return (
     <div className="bishop-persona-learned-wrapper" ref={sectionRef}>
       <div className="bishop-persona-learned-content">
-        <div className="bishop-persona-panel" style={{ opacity: 1 - progress }}>
+        <div
+          ref={personaPanelRef}
+          className="bishop-persona-panel"
+          style={isInteractive ? { opacity: 1 - progress } : undefined}
+        >
           <h2 className="bishop-persona-section-title">{personaTitle}</h2>
-          <div className="bishop-persona-carousel-wrapper">
-            <div className={`bishop-persona-carousel-track ${isPersonaHovering ? "paused" : ""}`}>
-              {[...personaAssets, ...personaAssets, ...personaAssets, ...personaAssets].map(
+          <div className={`bishop-persona-carousel-wrapper ${!isInteractive && normalPersonaVisible ? "normal-bubble-visible" : ""}`}>
+            <div className="bishop-persona-carousel-track">
+              {repeatedPersonaAssets.map(
                 (persona, index) => {
                   const isEven = index % 2 === 0;
                   return (
@@ -50,8 +67,6 @@ export function PersonaLearnedSection({
                       src={persona.src}
                       alt={`Persona ${(index % personaAssets.length) + 1}`}
                       className={`bishop-persona-carousel-card ${isEven ? "offset-top" : "offset-bottom"}`}
-                      onMouseEnter={() => setIsPersonaHovering(true)}
-                      onMouseLeave={() => setIsPersonaHovering(false)}
                     />
                   );
                 }
@@ -60,11 +75,15 @@ export function PersonaLearnedSection({
           </div>
         </div>
 
-        <div className="bishop-learned-main-panel" style={{ opacity: progress }}>
+        <div
+          ref={learnedPanelRef}
+          className="bishop-learned-main-panel"
+          style={isInteractive ? { opacity: progress } : undefined}
+        >
           <h2 className="bishop-learned-title">{learnedTitle}</h2>
 
-          {learnedContentVisible && (
-            <div className="bishop-learned-cards">
+          {(!isInteractive || learnedContentVisible) && (
+            <div className={`bishop-learned-cards ${!isInteractive && normalLearnedVisible ? "normal-bubble-visible" : ""}`}>
               {learnedCards.map((card) => (
                 <div className="bishop-learned-card" key={card.title}>
                   <LearnedCardIcon icon={card.icon} svgPaths={svgPaths} />

@@ -28,13 +28,46 @@ function getTranslateX(el: HTMLElement) {
 export function useStickySection(
   sectionRef: RefObject<HTMLElement | null>,
   headerRef: RefObject<HTMLDivElement | null>,
-  currentSection: StickySection
+  currentSection: StickySection,
+  enabled = true
 ) {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [showCentered, setShowCentered] = useState(false);
+  const isHeaderStickyRef = useRef(false);
+  const showCenteredRef = useRef(false);
   const previousSectionRef = useRef<StickySection>("discover");
+  const centerTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const setStickyState = (nextValue: boolean) => {
+      if (isHeaderStickyRef.current === nextValue) {
+        return;
+      }
+
+      isHeaderStickyRef.current = nextValue;
+      setIsHeaderSticky(nextValue);
+    };
+
+    const setCenteredState = (nextValue: boolean) => {
+      if (showCenteredRef.current === nextValue) {
+        return;
+      }
+
+      showCenteredRef.current = nextValue;
+      setShowCentered(nextValue);
+    };
+
+    if (!enabled) {
+      if (centerTimeoutRef.current !== null) {
+        window.clearTimeout(centerTimeoutRef.current);
+        centerTimeoutRef.current = null;
+      }
+      setCenteredState(false);
+      setStickyState(false);
+      headerRef.current?.style.removeProperty("--discover-center-shift");
+      return;
+    }
+
     const computeCenterShift = () => {
       const headerEl = headerRef.current;
       if (!headerEl) {
@@ -71,18 +104,23 @@ export function useStickySection(
       const headerHeight = headerEl.offsetHeight;
       const shouldBeSticky = sectionRect.top <= 0 && sectionRect.bottom > headerHeight;
 
-      if (shouldBeSticky && !isHeaderSticky) {
-        setIsHeaderSticky(true);
-        window.setTimeout(() => {
+      if (shouldBeSticky && !isHeaderStickyRef.current) {
+        setStickyState(true);
+        centerTimeoutRef.current = window.setTimeout(() => {
+          centerTimeoutRef.current = null;
           computeCenterShift();
-          setShowCentered(true);
+          setCenteredState(true);
         }, 50);
         return;
       }
 
-      if (!shouldBeSticky && isHeaderSticky) {
-        setShowCentered(false);
-        setIsHeaderSticky(false);
+      if (!shouldBeSticky && isHeaderStickyRef.current) {
+        if (centerTimeoutRef.current !== null) {
+          window.clearTimeout(centerTimeoutRef.current);
+          centerTimeoutRef.current = null;
+        }
+        setCenteredState(false);
+        setStickyState(false);
         headerEl.style.removeProperty("--discover-center-shift");
       }
     };
@@ -90,11 +128,17 @@ export function useStickySection(
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [headerRef, isHeaderSticky, sectionRef]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (centerTimeoutRef.current !== null) {
+        window.clearTimeout(centerTimeoutRef.current);
+        centerTimeoutRef.current = null;
+      }
+    };
+  }, [enabled, headerRef, sectionRef]);
 
   useEffect(() => {
-    if (!isHeaderSticky) {
+    if (!enabled || !isHeaderSticky) {
       return;
     }
 
@@ -125,9 +169,13 @@ export function useStickySection(
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [headerRef, isHeaderSticky, showCentered]);
+  }, [enabled, headerRef, isHeaderSticky, showCentered]);
 
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
     const headerEl = headerRef.current;
     if (!headerEl || !isHeaderSticky || !showCentered || previousSectionRef.current === currentSection) {
       return;

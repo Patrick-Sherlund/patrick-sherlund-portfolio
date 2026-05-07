@@ -1,0 +1,283 @@
+.bishop-view-mode-toggle {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bishop-view-mode-toggle:hover {
+  color: #111;
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+.bishop-view-mode-toggle.active {
+  color: #ffffff;
+  background-color: #111;
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.12), 0 8px 26px rgba(17, 17, 17, 0.22), 0 0 18px rgba(87, 141, 243, 0.34);
+}
+
+.bishop-view-mode-toggle:focus-visible {
+  outline: 2px solid #578df3;
+  outline-offset: 2px;
+}
+
+.bishop-view-mode-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bishop-view-mode-slash {
+  position: absolute;
+  inset: auto;
+  color: currentColor;
+}
+
+.bishop-page-normal .bishop-my-role-stack-wrapper,
+.bishop-page-normal .bishop-challenge-vision-wrapper,
+.bishop-page-normal .bishop-users-saw,
+.bishop-page-normal .bishop-context-research-wrapper,
+.bishop-page-normal .bishop-persona-learned-wrapper,
+.bishop-page-normal .bishop-reality-section,
+.bishop-page-normal .bishop-problem-success-wrapper,
+.bishop-page-normal .bishop-proposed-proved-wrapper {
+  height: auto;
+  min-height: 0;
+}
+
+.bishop-page-normal .bishop-my-role-stack-content,
+.bishop-page-normal .bishop-challenge-vision-content,
+.bishop-page-normal .bishop-users-saw-container,
+.bishop-page-normal .bishop-context-research-content,
+.bishop-page-normal .bishop-persona-learned-content,
+.bishop-page-normal .bishop-problem-success-content,
+.bishop-page-normal .bishop-proposed-proved-content {
+  position: relative;
+  top: auto;
+  height: auto;
+  min-height: 0;
+  display: block;
+  overflow: visible;
+  padding: 0;
+}
+
+.bishop-page-normal .bishop-users-saw-container {
+  min-height: 100vh;
+  padding: 96px 40px;
+  display: flex;
+}
+
+.bishop-page-normal .bishop-my-role-panel,
+.bishop-page-normal .bishop-stack-panel,
+.bishop-page-normal .bishop-challenge-panel,
+.bishop-page-normal .bishop-vision-panel,
+.bishop-page-normal .bishop-context-panel,
+.bishop-page-normal .bishop-research-panel,
+.bishop-page-normal .bishop-persona-panel,
+.bishop-page-normal .bishop-learned-main-panel,
+.bishop-page-normal .bishop-problem-fade-panel,
+.bishop-page-normal .bishop-success-panel,
+.bishop-page-normal .bishop-proposed-fade-panel,
+.bishop-page-normal .bishop-proved-panel {
+  position: relative;
+  min-height: 100vh;
+  max-width: none;
+  width: 100%;
+  padding: 96px 40px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bishop-page-normal .bishop-my-role-panel > *,
+.bishop-page-normal .bishop-stack-panel > *,
+.bishop-page-normal .bishop-challenge-panel > *,
+.bishop-page-normal .bishop-vision-panel > *,
+.bishop-page-normal .bishop-context-panel > *,
+.bishop-page-normal .bishop-research-panel > *,
+.bishop-page-normal .bishop-persona-panel > *,
+.bishop-page-normal .bishop-learned-main-panel > *,
+.bishop-page-normal .bishop-problem-fade-panel > *,
+.bishop-page-normal .bishop-success-panel > *,
+.bishop-page-normal .bishop-proved-panel > * {
+  max-width: 1400px;
+}
+
+.bishop-page-normal .bishop-vision-panel,
+.bishop-page-normal .bishop-research-panel,
+.bishop-page-normal .bishop-persona-panel {
+  overflow: hidden;
+}
+
+.bishop-page-normal .bishop-bubble-image {
+  opacity: 1;
+}
+
+.bishop-page-normal .bishop-carousel-container {
+  position: relative;
+  width: calc(100vw + 80px);
+  max-width: none;
+  height: 360px;
+  bottom: auto;
+  left: auto;
+  margin-top: 64px;
+  margin-left: calc(-50vw + 50% - 40px);
+  overflow: hidden;
+  padding: 64px 0;
+}
+
+.bishop-page-normal .bishop-carousel-track {
+  left: -442px;
+  top: 64px;
+}
+
+.bishop-page-normal .bishop-persona-carousel-wrapper {
+  width: calc(100vw + 80px);
+  max-width: none;
+  margin-left: calc(-50vw + 50% - 40px);
+}
+
+.bishop-page-normal .bishop-persona-carousel-track {
+  margin-left: -370px;
+}
+
+.bishop-page-normal .bishop-research-title {
+  margin-bottom: 0;
+}
+
+.bishop-page-normal .bishop-persona-section-title {
+  margin-top: 0;
+}
+
+.bishop-page-normal .bishop-proposed-content,
+.bishop-page-normal .bishop-proposed-layout {
+  transform: none !important;
+}
+
+.bishop-page-normal .bishop-proposed-process {
+  min-height: 0;
+  padding: 0;
+}
+
+.bishop-page-normal .bishop-discover-header.sticky {
+  position: sticky;
+  top: 0;
+  left: auto;
+  right: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 32px 40px;
+}
+
+.bishop-page-normal .bishop-discover-header-content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  transform: none;
+}
+
+.bishop-page-normal .bishop-discover-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bishop-page-normal .bishop-reality-content {
+  position: relative;
+  top: auto;
+  min-height: 100vh;
+}
+
+.bishop-page-normal .normal-bubble-visible:not(.bishop-bubble-image) {
+  animation: normalBubbleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.bishop-page-normal .bishop-persona-carousel-wrapper:not(.normal-bubble-visible),
+.bishop-page-normal .bishop-learned-cards:not(.normal-bubble-visible),
+.bishop-page-normal .bishop-success-metrics:not(.normal-bubble-visible),
+.bishop-page-normal .bishop-proved-cards:not(.normal-bubble-visible) {
+  opacity: 0;
+  transform: translateY(28px) scale(0.82);
+  animation: none;
+}
+
+.bishop-page-normal .bishop-bubble-image {
+  transition: opacity 0.45s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.bishop-page-normal .bishop-bubble-image:nth-child(3n + 1) {
+  transition-delay: 0.08s;
+}
+
+.bishop-page-normal .bishop-bubble-image:nth-child(3n + 2) {
+  transition-delay: 0.18s;
+}
+
+.bishop-page-normal .bishop-bubble-image:nth-child(3n + 3) {
+  transition-delay: 0.28s;
+}
+
+@keyframes normalBubbleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.82);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .bishop-view-mode-toggle {
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .bishop-page-normal .bishop-my-role-panel,
+  .bishop-page-normal .bishop-stack-panel,
+  .bishop-page-normal .bishop-challenge-panel,
+  .bishop-page-normal .bishop-vision-panel,
+  .bishop-page-normal .bishop-context-panel,
+  .bishop-page-normal .bishop-research-panel,
+  .bishop-page-normal .bishop-persona-panel,
+  .bishop-page-normal .bishop-learned-main-panel,
+  .bishop-page-normal .bishop-problem-fade-panel,
+  .bishop-page-normal .bishop-success-panel,
+  .bishop-page-normal .bishop-proposed-fade-panel,
+  .bishop-page-normal .bishop-proved-panel {
+    padding: 80px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bishop-view-mode-toggle {
+    top: 20px;
+    right: 20px;
+  }
+
+  .bishop-page-normal .bishop-carousel-container {
+    height: 340px;
+  }
+}

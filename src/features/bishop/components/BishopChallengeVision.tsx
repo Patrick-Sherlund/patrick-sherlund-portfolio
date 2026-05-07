@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { bishopMediaAssets } from "../data/bishop-assets";
+import { useInViewOnce } from "../hooks/useInViewOnce";
 
 const bubblePositions = [
   { top: "8%", left: "5%", width: 213.63, height: 150 },
@@ -13,12 +14,24 @@ const bubblePositions = [
 
 const bubbleImages = bishopMediaAssets.bubbles;
 
-export function BishopChallengeVision() {
+type BishopChallengeVisionProps = {
+  isInteractive: boolean;
+};
+
+export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const visionPanelRef = useRef<HTMLDivElement>(null);
   const [challengeVisionProgress, setChallengeVisionProgress] = useState(0);
   const [bubbleProgress, setBubbleProgress] = useState<number[]>([0, 0, 0, 0, 0]);
+  const normalBubblesVisible = useInViewOnce(visionPanelRef, !isInteractive);
 
   useEffect(() => {
+    if (!isInteractive) {
+      setChallengeVisionProgress(0);
+      setBubbleProgress(normalBubblesVisible ? [1, 1, 1, 1, 1] : [0, 0, 0, 0, 0]);
+      return;
+    }
+
     const handleScroll = () => {
       if (!containerRef.current) return;
 
@@ -59,49 +72,60 @@ export function BishopChallengeVision() {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isInteractive, normalBubblesVisible]);
+
+  const renderBubbles = (progressValues: number[]) =>
+    bubbleImages.map((img, index) => {
+      const position = bubblePositions[index];
+      const progress = progressValues[index];
+      const isTopRow = index < 3;
+
+      return (
+        <div
+          key={index}
+          className={`bishop-bubble-image ${isTopRow ? "bishop-bubble-top" : "bishop-bubble-bottom"} ${!isInteractive && progress > 0 ? "normal-bubble-visible" : ""}`}
+          style={{
+            top: position.top,
+            left: position.left,
+            width: `${position.width}px`,
+            height: `${position.height}px`,
+            opacity: progress,
+            transform: `scale(${0.5 + progress * 0.5})`,
+          }}
+        >
+          <img src={img} alt="" />
+        </div>
+      );
+    });
 
   return (
     <div className="bishop-challenge-vision-wrapper" ref={containerRef}>
       <div className="bishop-challenge-vision-content">
-        <div className="bishop-challenge-panel" style={{ opacity: 1 - challengeVisionProgress }}>
+        <div
+          className="bishop-challenge-panel"
+          style={isInteractive ? { opacity: 1 - challengeVisionProgress } : undefined}
+        >
           <h2 className="bishop-cv-title">The Challenge</h2>
           <p className="bishop-cv-text">
             Locating <strong>distressed humans</strong> quickly &amp; efficiently during <strong>search &amp; rescue</strong> missions.
           </p>
         </div>
 
-        <div className="bishop-vision-panel" style={{ opacity: challengeVisionProgress }}>
+        <div
+          ref={visionPanelRef}
+          className="bishop-vision-panel"
+          style={isInteractive ? { opacity: challengeVisionProgress } : undefined}
+        >
           <h2 className="bishop-cv-title bishop-vision-title">
             <img src={bishopMediaAssets.sparkle} alt="" className="vision-sparkle-img" /> The Vision
           </h2>
           <p className="bishop-cv-text">
             <strong>AI powered</strong> drone search &amp; rescue application designed for <strong>speed, safety,</strong> and <strong>hope.</strong>
           </p>
+          {!isInteractive && renderBubbles(bubbleProgress)}
         </div>
 
-        {bubbleImages.map((img, index) => {
-          const position = bubblePositions[index];
-          const progress = bubbleProgress[index];
-          const isTopRow = index < 3;
-
-          return (
-            <div
-              key={index}
-              className={`bishop-bubble-image ${isTopRow ? "bishop-bubble-top" : "bishop-bubble-bottom"}`}
-              style={{
-                top: position.top,
-                left: position.left,
-                width: `${position.width}px`,
-                height: `${position.height}px`,
-                opacity: progress,
-                transform: `scale(${0.5 + progress * 0.5})`,
-              }}
-            >
-              <img src={img} alt="" />
-            </div>
-          );
-        })}
+        {isInteractive && renderBubbles(bubbleProgress)}
       </div>
     </div>
   );

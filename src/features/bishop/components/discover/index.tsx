@@ -14,7 +14,11 @@ import { ProblemSuccessSection } from "./ProblemSuccessSection";
 import { ProposedProvedSection } from "./ProposedProvedSection";
 import { RealitySection } from "./RealitySection";
 
-export function BishopDiscover() {
+type BishopDiscoverProps = {
+  isInteractive: boolean;
+};
+
+export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const contextResearchRef = useRef<HTMLDivElement>(null);
@@ -25,16 +29,20 @@ export function BishopDiscover() {
   const processVideoRef = useRef<HTMLVideoElement>(null);
   const carouselVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [currentSection, setCurrentSection] = useState<"discover" | "define">("discover");
-  const [isPersonaHovering, setIsPersonaHovering] = useState(false);
-  const [hoveredCarouselVideo, setHoveredCarouselVideo] = useState<number | null>(null);
+  const currentSectionRef = useRef<"discover" | "define">("discover");
 
   const { progress: contextResearchProgress, isPastHalf: carouselVisible } =
-    useCrossfadeScroll(contextResearchRef);
+    useCrossfadeScroll(contextResearchRef, isInteractive);
   const { progress: personaLearnedProgress, isPastHalf: learnedContentVisible } =
-    useCrossfadeScroll(personaLearnedRef);
-  const { progress: problemSuccessProgress } = useCrossfadeScroll(problemSuccessRef);
-  const { progress: proposedProvedProgress } = useCrossfadeScroll(proposedProvedRef);
-  const { isHeaderSticky, showCentered } = useStickySection(sectionRef, headerRef, currentSection);
+    useCrossfadeScroll(personaLearnedRef, isInteractive);
+  const { progress: problemSuccessProgress } = useCrossfadeScroll(problemSuccessRef, isInteractive);
+  const { progress: proposedProvedProgress } = useCrossfadeScroll(proposedProvedRef, isInteractive);
+  const { isHeaderSticky, showCentered } = useStickySection(
+    sectionRef,
+    headerRef,
+    currentSection,
+    isInteractive
+  );
   const { activeStep, stepProgress, selectStep } = useVideoStepProgress(processVideoRef, processSteps);
 
   useEffect(() => {
@@ -45,36 +53,25 @@ export function BishopDiscover() {
       }
 
       const defineRect = defineElement.getBoundingClientRect();
-      setCurrentSection(defineRect.top <= 100 ? "define" : "discover");
+      const nextSection = defineRect.top <= 100 ? "define" : "discover";
+      if (currentSectionRef.current !== nextSection) {
+        currentSectionRef.current = nextSection;
+        setCurrentSection(nextSection);
+      }
     };
 
     window.addEventListener("scroll", handleDefineScroll, { passive: true });
     handleDefineScroll();
 
     return () => window.removeEventListener("scroll", handleDefineScroll);
-  }, []);
-
-  useEffect(() => {
-    if (hoveredCarouselVideo === null) {
-      carouselVideoRefs.current.forEach((video) => {
-        video?.play().catch(() => {});
-      });
-      return;
-    }
-
-    carouselVideoRefs.current.forEach((video, index) => {
-      if (video && index !== hoveredCarouselVideo) {
-        video.pause();
-      }
-    });
-  }, [hoveredCarouselVideo]);
+  }, [isInteractive]);
 
   return (
     <section className="bishop-discover" ref={sectionRef}>
       <DiscoverHeader
         headerRef={headerRef}
-        isHeaderSticky={isHeaderSticky}
-        showCentered={showCentered}
+        isHeaderSticky={isInteractive ? isHeaderSticky : true}
+        showCentered={isInteractive ? showCentered : false}
         currentSection={currentSection}
         discoverTitle={bishopContent.discoverLabels.discoverTitle}
         discoverSubtitle={bishopContent.discoverLabels.discoverSubtitle}
@@ -84,6 +81,7 @@ export function BishopDiscover() {
 
       <ContextResearchSection
         sectionRef={contextResearchRef}
+        isInteractive={isInteractive}
         progress={contextResearchProgress}
         carouselVisible={carouselVisible}
         title={bishopContent.contextResearch.contextTitle}
@@ -91,18 +89,16 @@ export function BishopDiscover() {
         researchTitle={bishopContent.contextResearch.researchTitle}
         carouselImages={bishopMediaAssets.researchCarousel}
         carouselVideoRefs={carouselVideoRefs}
-        setHoveredCarouselVideo={setHoveredCarouselVideo}
       />
 
       <PersonaLearnedSection
         sectionRef={personaLearnedRef}
+        isInteractive={isInteractive}
         progress={personaLearnedProgress}
         learnedContentVisible={learnedContentVisible}
         personaTitle={bishopContent.personaLearned.personaTitle}
         learnedTitle={bishopContent.personaLearned.learnedTitle}
         personaAssets={bishopMediaAssets.personaCarousel}
-        isPersonaHovering={isPersonaHovering}
-        setIsPersonaHovering={setIsPersonaHovering}
         learnedCards={bishopContent.personaLearned.learnedCards}
       />
 
@@ -114,6 +110,7 @@ export function BishopDiscover() {
       <ProblemSuccessSection
         wrapperRef={problemSuccessRef}
         defineStartRef={defineStartRef}
+        isInteractive={isInteractive}
         progress={problemSuccessProgress}
         problemTitle={bishopContent.problem.title}
         problemText={bishopContent.problem.text}
@@ -123,6 +120,7 @@ export function BishopDiscover() {
 
       <ProposedProvedSection
         wrapperRef={proposedProvedRef}
+        isInteractive={isInteractive}
         progress={proposedProvedProgress}
         title={bishopContent.proposed.title}
         videoRef={processVideoRef}
