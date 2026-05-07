@@ -1,4 +1,5 @@
 User-Agent: *
 Allow: /
 
+Host: https://patricksherlund.com
 Sitemap: https://patricksherlund.com/sitemap.xml
