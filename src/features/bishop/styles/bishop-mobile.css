@@ -257,6 +257,36 @@
     max-width: 100%;
   }
 
+  .bishop-discover-header-nav {
+    min-height: 44px;
+  }
+
+  .bishop-discover-header-nav-item {
+    width: 150px;
+  }
+
+  .bishop-discover-header-nav-item.previous {
+    left: 19%;
+  }
+
+  .bishop-discover-header-nav-item.next {
+    left: 81%;
+  }
+
+  .bishop-discover-nav-title {
+    font-size: clamp(18px, 5vw, 22px);
+  }
+
+  .bishop-discover-nav-subtitle {
+    align-self: center;
+    font-size: clamp(10px, 3vw, 12px);
+  }
+
+  .bishop-discover-header-nav-item.previous .bishop-discover-nav-title,
+  .bishop-discover-header-nav-item.next .bishop-discover-nav-title {
+    font-size: 12px;
+  }
+
   .bishop-context-research-wrapper,
   .bishop-persona-learned-wrapper,
   .bishop-problem-success-wrapper,

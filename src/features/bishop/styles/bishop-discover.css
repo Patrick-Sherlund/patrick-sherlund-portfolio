@@ -29,9 +29,19 @@
 /* Content wrapper that animates */
 .bishop-discover-header-content {
   width: fit-content; /* ensures we can truly center the content box */
+  margin: 0 auto;
   transform: translateX(0);
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+}
+
+.bishop-discover-header:not(.sticky) .bishop-discover-header-content {
+  text-align: center;
+}
+
+.bishop-discover-header:not(.sticky) .bishop-discover-subtitle {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* When centered, animate to a computed perfect-center shift */
@@ -51,6 +61,90 @@
   color: #6b7280;
   margin: 0;
   max-width: 600px;
+}
+
+.bishop-discover-header-nav {
+  position: relative;
+  min-height: 62px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bishop-discover-header-nav-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(420px, 38vw);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.96);
+  transition: left 0.65s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.65s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.bishop-discover-header-nav-item.active {
+  left: 50%;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.bishop-discover-header-nav-item.previous {
+  left: 14%;
+  opacity: 0.48;
+  pointer-events: auto;
+}
+
+.bishop-discover-header-nav-item.next {
+  left: 86%;
+  opacity: 0.48;
+  pointer-events: auto;
+}
+
+.bishop-discover-header-nav-item.previous:hover,
+.bishop-discover-header-nav-item.next:hover {
+  opacity: 0.9;
+}
+
+.bishop-discover-header-nav-item.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bishop-discover-nav-title {
+  color: inherit;
+  font-family: "Roboto", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.bishop-discover-nav-subtitle {
+  color: #6b7280;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.bishop-discover-header-nav-item.previous .bishop-discover-nav-title,
+.bishop-discover-header-nav-item.next .bishop-discover-nav-title {
+  font-size: 18px;
+}
+
+.bishop-discover-header-nav-item.previous .bishop-discover-nav-subtitle,
+.bishop-discover-header-nav-item.next .bishop-discover-nav-subtitle {
+  display: none;
 }
 
 /* Context Research Section */

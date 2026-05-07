@@ -45,6 +45,17 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   );
   const { activeStep, stepProgress, selectStep } = useVideoStepProgress(processVideoRef, processSteps);
 
+  const selectCaseStudySection = (section: "discover" | "define") => {
+    const target =
+      section === "discover" ? sectionRef.current : problemSuccessRef.current;
+    if (!target) {
+      return;
+    }
+
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const handleDefineScroll = () => {
       const defineElement = defineStartRef.current;
@@ -73,6 +84,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         isHeaderSticky={isInteractive ? isHeaderSticky : true}
         showCentered={isInteractive ? showCentered : false}
         currentSection={currentSection}
+        onSectionSelect={selectCaseStudySection}
         discoverTitle={bishopContent.discoverLabels.discoverTitle}
         discoverSubtitle={bishopContent.discoverLabels.discoverSubtitle}
         defineTitle={bishopContent.discoverLabels.defineTitle}
