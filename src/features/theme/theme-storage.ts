@@ -1,6 +1,6 @@
 export type Theme = "light" | "dark";
 
-const THEME_KEY = "theme";
+const THEME_KEY = "portfolio-theme";
 
 export function getStoredTheme(): Theme | null {
   if (typeof window === "undefined") {
