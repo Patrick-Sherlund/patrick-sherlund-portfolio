@@ -87,6 +87,9 @@
   .bishop-stack-grid {
     gap: 22px;
     align-items: stretch;
+    width: min(100%, 320px);
+    max-width: 320px;
+    justify-items: stretch;
   }
 
   .bishop-stack-column {
@@ -97,6 +100,11 @@
   .bishop-stack-tech {
     align-items: flex-start;
     gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .bishop-stack-item {
+    width: 100%;
   }
 
   .bishop-stack-icons {
@@ -300,13 +308,15 @@
 
   .bishop-persona-carousel-wrapper {
     height: 340px;
-    width: calc(100vw + 220px);
-    margin-left: calc(-50vw + 50% - 110px);
+    width: calc(100vw + 24px);
+    max-width: none;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
   }
 
   .bishop-persona-carousel-track {
     gap: 14px;
-    margin-left: -120px;
+    margin-left: -220px;
   }
 
   .bishop-persona-carousel-card {
@@ -320,6 +330,16 @@
 
   .bishop-persona-carousel-card.offset-bottom {
     transform: translateY(8px);
+  }
+
+  .bishop-persona-panel {
+    justify-content: center;
+    transform: translateY(-34px);
+  }
+
+  .bishop-persona-section-title {
+    margin-top: 0;
+    margin-bottom: 28px;
   }
 
   .bishop-learned-cards,
@@ -404,11 +424,13 @@
 
   .bishop-proposed-content {
     gap: 28px;
+    transform: translateY(-52px) !important;
   }
 
   .bishop-proposed-layout {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 18px;
+    transform: none !important;
   }
 
   .bishop-process-tracker {
@@ -452,7 +474,8 @@
   }
 
   .bishop-process-video-container {
-    max-width: 330px;
+    width: calc(100vw - 36px);
+    max-width: 440px;
     max-height: none;
   }
 
@@ -516,9 +539,11 @@
   }
 
   .bishop-page-normal .bishop-persona-carousel-wrapper {
-    width: calc(100vw + 32px);
+    width: calc(100vw + 24px);
+    max-width: none;
     height: 300px;
-    margin-left: calc(-50vw + 50% - 16px);
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
   }
 
   .bishop-page-normal .bishop-persona-carousel-track {

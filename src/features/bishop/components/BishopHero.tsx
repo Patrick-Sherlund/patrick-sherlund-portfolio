@@ -24,9 +24,10 @@ export function BishopHero() {
   }, []);
 
   const handleScrollToStack = () => {
-    const stackSection = document.getElementById('the-stack');
-    if (stackSection) {
-      stackSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const firstSection = document.getElementById('bishop-case-study-start');
+    if (firstSection) {
+      const targetTop = firstSection.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
     }
   };
 

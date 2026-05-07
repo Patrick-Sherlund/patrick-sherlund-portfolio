@@ -44,7 +44,7 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
   }, [isInteractive]);
 
   return (
-    <div className="bishop-my-role-stack-wrapper" ref={containerRef}>
+    <div className="bishop-my-role-stack-wrapper" id="bishop-case-study-start" ref={containerRef}>
       <div className="bishop-my-role-stack-content">
         <div 
           className="bishop-my-role-panel"
