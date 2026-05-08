@@ -189,8 +189,11 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         iterationHeadline={bishopContent.iterationOne.headline}
         papers={bishopMediaAssets.researchPapers}
         annotateHeadline={bishopContent.iterationOne.annotateHeadline}
-        annotateImage={bishopMediaAssets.annotateSegmentations}
-        annotateMobileImage={bishopMediaAssets.annotateSegmentationsMobile}
+        annotateImage={bishopMediaAssets.annotateImage}
+        annotateVideo={bishopMediaAssets.annotateVideo}
+        annotateMobileImage={bishopMediaAssets.annotateMobileImage}
+        annotateMobileVideo={bishopMediaAssets.annotateMobileVideo}
+        trainModelImage={bishopMediaAssets.trainModel}
       />
     </section>
   );

@@ -9,6 +9,8 @@ export const bishopMediaAssets = {
     "/assets/videos/Bishop User Session.mp4",
     "/assets/videos/FigJam Board.mp4",
     "/assets/videos/bishop_demo_slowed.mp4",
+    "/assets/images/bishop/annotate.mp4",
+    "/assets/images/bishop/mobile_annotate.mp4",
   ],
   researchCarousel: [
     {

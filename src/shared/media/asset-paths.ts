@@ -62,6 +62,9 @@ export const bishopAssets = {
     "/assets/images/bishop/research_paper_6.png",
     "/assets/images/bishop/research_paper_7.png",
   ],
-  annotateSegmentations: "/assets/images/bishop/annotate_segmentations.png",
-  annotateSegmentationsMobile: "/assets/images/bishop/annotate_segmentations_mobile.png",
+  annotateImage: "/assets/images/bishop/annotate_image.png",
+  annotateVideo: "/assets/images/bishop/annotate.mp4",
+  annotateMobileImage: "/assets/images/bishop/mobile_annotate.png",
+  annotateMobileVideo: "/assets/images/bishop/mobile_annotate.mp4",
+  trainModel: "/assets/images/bishop/ml_train.png",
 };

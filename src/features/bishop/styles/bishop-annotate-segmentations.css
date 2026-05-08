@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 132px 36px 48px;
+  padding: 180px 36px 36px;
   overflow: hidden;
 }
 
@@ -31,29 +31,55 @@
   font-weight: 700;
 }
 
-.bishop-annotate-picture,
-.bishop-annotate-image {
+.bishop-annotate-media-stack {
+  position: relative;
+  width: min(100%, 980px);
+  aspect-ratio: 1.39;
+  margin-right: clamp(32px, 5vw, 76px);
+}
+
+.bishop-annotate-background-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 74%;
   display: block;
 }
 
-.bishop-annotate-picture {
-  width: min(100%, 980px);
+.bishop-annotate-background {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(17, 17, 17, 0.14);
 }
 
-.bishop-annotate-image {
+.bishop-annotate-video-card {
+  position: absolute;
+  right: 0;
+  bottom: 18%;
+  width: 82%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111827;
+  box-shadow: 0 22px 56px rgba(17, 17, 17, 0.26);
+}
+
+.bishop-annotate-video {
+  display: block;
   width: 100%;
   height: auto;
 }
 
 @media (max-width: 900px) {
   .bishop-annotate-section {
-    padding: 112px 24px 48px;
+    padding: 132px 24px 36px;
   }
 }
 
 @media (max-width: 640px) {
   .bishop-annotate-section {
-    padding: 84px 18px 40px;
+    padding: 104px 18px 32px;
   }
 
   .bishop-annotate-content {
@@ -69,15 +95,106 @@
     margin-bottom: 28px;
   }
 
-  .bishop-annotate-picture {
+  .bishop-annotate-media-stack {
     width: 100%;
-    max-height: calc(100svh - 230px);
+    aspect-ratio: 0.82;
+    margin-right: 0;
     align-self: stretch;
   }
 
-  .bishop-annotate-image {
+  .bishop-annotate-background-frame {
+    width: 84%;
+    left: 0;
+    top: 0;
+  }
+
+  .bishop-annotate-video-card {
+    width: 84%;
+    right: 2%;
+    bottom: 14%;
+  }
+
+  .bishop-annotate-video {
+    max-height: calc(100svh - 360px);
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 390px) {
+  .bishop-annotate-media-stack {
+    aspect-ratio: 0.78;
+  }
+
+  .bishop-annotate-video-card {
+    width: 86%;
+    right: 1%;
+  }
+}
+
+.bishop-train-model-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 172px 36px 96px;
+  overflow: hidden;
+}
+
+.bishop-train-model-content {
+  width: min(100%, 1080px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-train-model-headline {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0 0 36px;
+}
+
+.bishop-train-model-headline strong {
+  font-weight: 700;
+}
+
+.bishop-train-model-image {
+  display: block;
+  width: min(100%, 960px);
+  max-height: calc(100vh - 340px);
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #bfc3c8;
+  border-radius: 4px;
+  box-shadow: 0 18px 48px rgba(17, 17, 17, 0.12);
+}
+
+@media (max-width: 900px) {
+  .bishop-train-model-section {
+    padding: 136px 24px 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-train-model-section {
+    min-height: 100svh;
+    padding: 104px 18px 56px;
+  }
+
+  .bishop-train-model-headline {
+    font-size: clamp(24px, 7.2vw, 32px);
+    margin-bottom: 28px;
+  }
+
+  .bishop-train-model-image {
     width: 100%;
-    max-height: calc(100svh - 230px);
+    max-height: calc(100svh - 240px);
     object-fit: contain;
   }
 }

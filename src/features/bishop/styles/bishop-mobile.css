@@ -301,6 +301,19 @@
     will-change: transform;
   }
 
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-sticky-stage > .bishop-develop-iteration-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-annotate-train-wrapper > .bishop-annotate-train-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #ffffff;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
   .bishop-discover-title {
     font-size: clamp(18px, 5.2vw, 22px);
     line-height: 1.2;
@@ -350,8 +363,12 @@
   .bishop-context-research-wrapper,
   .bishop-persona-learned-wrapper,
   .bishop-problem-success-wrapper,
-  .bishop-proposed-proved-wrapper,
-  .bishop-develop-iteration-wrapper {
+  .bishop-proposed-proved-wrapper {
+    overflow-anchor: none;
+    height: 300svh;
+  }
+
+  .bishop-develop-sticky-stage {
     overflow-anchor: none;
     height: 300svh;
   }

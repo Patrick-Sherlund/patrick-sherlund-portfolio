@@ -34,6 +34,30 @@
   display: flex;
 }
 
+.bishop-page-normal .bishop-develop-sticky-stage {
+  height: auto;
+}
+
+.bishop-page-normal .bishop-annotate-train-wrapper {
+  height: auto;
+}
+
+.bishop-page-normal .bishop-annotate-train-content {
+  position: relative;
+  top: auto;
+  height: auto;
+  overflow: visible;
+}
+
+.bishop-page-normal .bishop-annotate-transition-panel,
+.bishop-page-normal .bishop-train-model-transition-panel {
+  position: relative;
+  inset: auto;
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .bishop-page-normal .bishop-persona-learned-wrapper,
 .bishop-page-normal .bishop-persona-learned-content {
   overflow-x: clip;
