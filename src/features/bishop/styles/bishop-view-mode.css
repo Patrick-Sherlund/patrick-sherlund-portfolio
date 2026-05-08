@@ -34,6 +34,15 @@
   display: flex;
 }
 
+.bishop-page-normal .bishop-persona-learned-wrapper,
+.bishop-page-normal .bishop-persona-learned-content {
+  overflow-x: clip;
+}
+
+.bishop-page-normal .bishop-learned-main-panel {
+  box-sizing: border-box;
+}
+
 .bishop-page-normal .bishop-my-role-panel,
 .bishop-page-normal .bishop-stack-panel,
 .bishop-page-normal .bishop-challenge-panel,

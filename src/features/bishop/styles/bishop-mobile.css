@@ -498,18 +498,50 @@
     margin-bottom: 24px;
   }
 
+  .bishop-success-panel {
+    justify-content: center;
+  }
+
+  .bishop-success-main-title {
+    font-size: clamp(25px, 7.2vw, 31px);
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+
+  .bishop-success-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
   .bishop-metric-card {
     min-height: 0;
-    padding: 18px 16px;
+    padding: 12px 10px;
+    gap: 5px;
+    border-radius: 12px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bishop-metric-icon-wrapper {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0;
+  }
+
+  .bishop-metric-label {
+    font-size: 9px;
+    line-height: 1.15;
   }
 
   .bishop-metric-value {
     white-space: normal;
-    font-size: 24px;
+    font-size: clamp(15px, 4.5vw, 20px);
+    line-height: 1.12;
   }
 
   .bishop-metric-description {
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 1.25;
   }
 
   .bishop-proposed-process {
@@ -659,10 +691,46 @@
   .bishop-challenge-vision-content,
   .bishop-context-research-content,
   .bishop-persona-learned-content,
-  .bishop-problem-success-content,
   .bishop-proposed-proved-content,
   .bishop-develop-iteration-content {
     min-height: 680px;
+  }
+
+  .bishop-problem-success-content {
+    min-height: 100svh;
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .bishop-success-main-title {
+    font-size: 25px;
+    margin-bottom: 14px;
+  }
+
+  .bishop-success-metrics {
+    gap: 8px;
+  }
+
+  .bishop-metric-card {
+    padding: 10px 8px;
+    gap: 4px;
+  }
+
+  .bishop-metric-icon-wrapper {
+    width: 21px;
+    height: 21px;
+  }
+
+  .bishop-metric-label {
+    font-size: 8px;
+  }
+
+  .bishop-metric-value {
+    font-size: 15px;
+  }
+
+  .bishop-metric-description {
+    font-size: 11px;
   }
 
   .bishop-context-title-text,
