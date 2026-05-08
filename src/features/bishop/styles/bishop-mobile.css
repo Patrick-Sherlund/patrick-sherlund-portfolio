@@ -40,7 +40,7 @@
   }
 
   .bishop-scroll-indicator {
-    bottom: max(16px, env(safe-area-inset-bottom));
+    bottom: max(4px, env(safe-area-inset-bottom));
   }
 
   .bishop-ipad-container,
