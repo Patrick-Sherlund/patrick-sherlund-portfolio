@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { bishopMediaAssets } from "../../data/bishop-assets";
 import { bishopContent } from "../../data/bishop-content";
 import { processSteps, successMetrics } from "../../data/bishop-metrics";
@@ -45,7 +45,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   );
   const { activeStep, stepProgress, selectStep } = useVideoStepProgress(processVideoRef, processSteps);
 
-  const selectCaseStudySection = (section: "discover" | "define") => {
+  const selectCaseStudySection = useCallback((section: "discover" | "define") => {
     const target =
       section === "discover" ? sectionRef.current : problemSuccessRef.current;
     if (!target) {
@@ -54,7 +54,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
 
     const targetTop = target.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({ top: targetTop, behavior: "smooth" });
-  };
+  }, []);
 
   useEffect(() => {
     const handleDefineScroll = () => {

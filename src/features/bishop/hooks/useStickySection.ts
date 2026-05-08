@@ -102,7 +102,15 @@ export function useStickySection(
 
       const sectionRect = sectionEl.getBoundingClientRect();
       const headerHeight = headerEl.offsetHeight;
-      const shouldBeSticky = sectionRect.top <= 0 && sectionRect.bottom > headerHeight;
+      const isMobileViewport = window.matchMedia("(max-width: 640px)").matches;
+      const stickyTolerance = isMobileViewport ? 64 : 0;
+      const hasReachedTop = isHeaderStickyRef.current
+        ? sectionRect.top <= stickyTolerance
+        : sectionRect.top <= 0;
+      const hasEnoughRoom = isHeaderStickyRef.current
+        ? sectionRect.bottom > headerHeight - stickyTolerance
+        : sectionRect.bottom > headerHeight;
+      const shouldBeSticky = hasReachedTop && hasEnoughRoom;
 
       if (shouldBeSticky && !isHeaderStickyRef.current) {
         setStickyState(true);

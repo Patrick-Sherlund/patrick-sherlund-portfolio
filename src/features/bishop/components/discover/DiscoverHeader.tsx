@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type DiscoverHeaderProps = {
   headerRef: React.RefObject<HTMLDivElement | null>;
   isHeaderSticky: boolean;
@@ -23,7 +25,7 @@ const headerSections = [
   },
 ] as const;
 
-export function DiscoverHeader({
+export const DiscoverHeader = memo(function DiscoverHeader({
   headerRef,
   isHeaderSticky,
   showCentered,
@@ -80,4 +82,4 @@ export function DiscoverHeader({
       )}
     </div>
   );
-}
+});
