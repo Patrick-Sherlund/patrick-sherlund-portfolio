@@ -4,12 +4,14 @@ type DiscoverHeaderProps = {
   headerRef: React.RefObject<HTMLDivElement | null>;
   isHeaderSticky: boolean;
   showCentered: boolean;
-  currentSection: "discover" | "define";
-  onSectionSelect: (section: "discover" | "define") => void;
+  currentSection: "discover" | "define" | "develop";
+  onSectionSelect: (section: "discover" | "define" | "develop") => void;
   discoverTitle: string;
   discoverSubtitle: string;
   defineTitle: string;
   defineSubtitle: string;
+  developTitle: string;
+  developSubtitle: string;
 };
 
 const headerSections = [
@@ -23,6 +25,11 @@ const headerSections = [
     titleKey: "defineTitle",
     subtitleKey: "defineSubtitle",
   },
+  {
+    id: "develop",
+    titleKey: "developTitle",
+    subtitleKey: "developSubtitle",
+  },
 ] as const;
 
 export const DiscoverHeader = memo(function DiscoverHeader({
@@ -35,12 +42,16 @@ export const DiscoverHeader = memo(function DiscoverHeader({
   discoverSubtitle,
   defineTitle,
   defineSubtitle,
+  developTitle,
+  developSubtitle,
 }: DiscoverHeaderProps) {
   const labels = {
     discoverTitle,
     discoverSubtitle,
     defineTitle,
     defineSubtitle,
+    developTitle,
+    developSubtitle,
   };
   const currentIndex = headerSections.findIndex((section) => section.id === currentSection);
 
@@ -73,10 +84,10 @@ export const DiscoverHeader = memo(function DiscoverHeader({
       ) : (
         <div className="bishop-discover-header-content">
           <h2 className="bishop-discover-title">
-            {currentSection === "discover" ? discoverTitle : defineTitle}
+            {labels[`${currentSection}Title`]}
           </h2>
           <p className="bishop-discover-subtitle">
-            {currentSection === "discover" ? discoverSubtitle : defineSubtitle}
+            {labels[`${currentSection}Subtitle`]}
           </p>
         </div>
       )}

@@ -1,0 +1,184 @@
+.bishop-develop-iteration-wrapper {
+  width: 100%;
+  height: 500vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-develop-iteration-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bishop-design-decisions-panel,
+.bishop-iteration-one-panel,
+.bishop-annotate-segmentations-panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s linear;
+  z-index: 10;
+}
+
+.bishop-design-decisions-section {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 142px 24px 42px;
+}
+
+.bishop-design-decisions-content {
+  width: min(100%, 650px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.bishop-design-decisions-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0 0 58px;
+}
+
+.bishop-design-decisions-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.bishop-design-decision-group {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.bishop-design-decision-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #111111;
+  margin: 0;
+}
+
+.bishop-design-decision-label strong,
+.bishop-design-decision-label b {
+  font-weight: 700;
+}
+
+.bishop-design-decision-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.bishop-design-decision-card {
+  min-height: 126px;
+  border: 1px solid #d7dce3;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  text-align: center;
+}
+
+.bishop-design-decision-card.rainbow {
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(white, white),
+    linear-gradient(135deg, #3CCAF4 0%, #578DF3 25%, #7C52BE 50%, #F93C95 75%, #FC6E5D 88%, #FFAC49 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.bishop-design-decision-card p {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.22;
+  color: #4b5563;
+  margin: 0;
+}
+
+.bishop-design-decision-card strong {
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .bishop-design-decisions-section {
+    min-height: auto;
+    padding: 96px 24px 72px;
+  }
+
+  .bishop-design-decisions-content {
+    width: min(100%, 560px);
+  }
+
+  .bishop-design-decisions-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .bishop-design-decision-cards {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-design-decisions-section {
+    padding: 92px 14px 24px;
+  }
+
+  .bishop-design-decisions-title {
+    font-size: clamp(24px, 7vw, 28px);
+    line-height: 1.12;
+    margin-bottom: 22px;
+  }
+
+  .bishop-design-decisions-groups {
+    gap: 18px;
+  }
+
+  .bishop-design-decision-group {
+    gap: 10px;
+  }
+
+  .bishop-design-decision-label {
+    font-size: 12px;
+  }
+
+  .bishop-design-decision-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .bishop-design-decision-card {
+    min-height: 82px;
+    border-radius: 8px;
+    padding: 8px 6px;
+  }
+
+  .bishop-design-decision-card p {
+    font-size: clamp(9px, 2.65vw, 11px);
+    line-height: 1.16;
+  }
+}

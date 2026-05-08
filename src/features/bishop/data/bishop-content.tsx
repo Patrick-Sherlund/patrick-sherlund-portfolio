@@ -38,6 +38,8 @@ export const bishopContent = {
     discoverSubtitle: "Understand the context, painpoints, and user insights",
     defineTitle: "02 | Define",
     defineSubtitle: "Frame the MVP",
+    developTitle: "03 | Develop",
+    developSubtitle: "Iterate & build",
   },
   contextResearch: {
     contextTitle: "Why this started",
@@ -125,5 +127,104 @@ export const bishopContent = {
         bottom: "Roughly 60 FPS during video playback",
       },
     ],
+  },
+  designDecisions: {
+    title: "Design Decisions",
+    groups: [
+      {
+        label: (
+          <>
+            01 | <strong>Performance</strong>
+          </>
+        ),
+        cards: [
+          <>
+            There&apos;s tons of data,
+            <br />
+            it <strong>must be fast</strong>
+          </>,
+          <>
+            <strong>We need elastic scaling</strong>
+            <br />
+            with increasing workload
+          </>,
+          <>
+            <strong>Deterministic</strong>
+            <br />
+            performance with
+            <br />
+            <strong>reliable</strong>, repeatable
+            <br />
+            outcomes
+          </>,
+        ],
+      },
+      {
+        label: (
+          <>
+            02 | <strong>Seamless Integration</strong>
+          </>
+        ),
+        cards: [
+          <>
+            <strong>Interoperates</strong> with
+            <br />
+            existing <strong>infrastructure</strong>
+          </>,
+          <>
+            <strong>Aligns</strong> technology
+            <br />
+            with existing user
+            <br />
+            <strong>workflows</strong>
+          </>,
+          <>
+            <strong>Mirrors</strong> the existing
+            <br />
+            <strong>ecosystem</strong> and
+            <br />
+            interfaces
+          </>,
+        ],
+      },
+      {
+        label: (
+          <>
+            03 | <strong>User Experience</strong>
+          </>
+        ),
+        cards: [
+          <>
+            <strong>Understands</strong> quickly
+            <br />
+            and acts immediately
+          </>,
+          <>
+            <strong>Low friction</strong> use with
+            <br />
+            minimal <strong>training</strong>
+          </>,
+          <>
+            <strong>Adopts</strong> quickly
+            <br />
+            across <strong>teams</strong>
+          </>,
+        ],
+      },
+    ],
+  },
+  iterationOne: {
+    title: "Iteration 1",
+    subtitle: "Week 2 - Gather, Annotate & Train",
+    headline: (
+      <>
+        <strong>Gather</strong> datasets from published research
+      </>
+    ),
+    annotateHeadline: (
+      <>
+        <strong>Annotate</strong> segmentations within the images
+      </>
+    ),
   },
 };

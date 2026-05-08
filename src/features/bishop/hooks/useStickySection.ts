@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 
-type StickySection = "discover" | "define";
+type StickySection = "discover" | "define" | "develop";
 
 function getTranslateX(el: HTMLElement) {
   const transform = window.getComputedStyle(el).transform;

@@ -9,6 +9,8 @@ import { useStickySection } from "../../hooks/useStickySection";
 import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
 import { useVideoStepProgress } from "../../hooks/useVideoStepProgress";
 import { ContextResearchSection } from "./ContextResearchSection";
+import { ConceptsSection } from "./ConceptsSection";
+import { DesignDecisionsSection } from "./DesignDecisionsSection";
 import { DiscoverHeader } from "./DiscoverHeader";
 import { PersonaLearnedSection } from "./PersonaLearnedSection";
 import { ProblemSuccessSection } from "./ProblemSuccessSection";
@@ -27,10 +29,11 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   const defineStartRef = useRef<HTMLDivElement>(null);
   const problemSuccessRef = useRef<HTMLDivElement>(null);
   const proposedProvedRef = useRef<HTMLDivElement>(null);
+  const developStartRef = useRef<HTMLDivElement>(null);
   const processVideoRef = useRef<HTMLVideoElement>(null);
   const carouselVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const [currentSection, setCurrentSection] = useState<"discover" | "define">("discover");
-  const currentSectionRef = useRef<"discover" | "define">("discover");
+  const [currentSection, setCurrentSection] = useState<"discover" | "define" | "develop">("discover");
+  const currentSectionRef = useRef<"discover" | "define" | "develop">("discover");
 
   const { progress: contextResearchProgress, isPastHalf: carouselVisible } =
     useCrossfadeScroll(contextResearchRef, isInteractive);
@@ -38,10 +41,12 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
     useCrossfadeScroll(personaLearnedRef, isInteractive);
   const { progress: problemSuccessProgress } = useCrossfadeScroll(problemSuccessRef, isInteractive);
   const { progress: proposedProvedProgress } = useCrossfadeScroll(proposedProvedRef, isInteractive);
+  const { progress: developIterationProgress } = useCrossfadeScroll(developStartRef, isInteractive);
   const isContextResearchMobilePinned = useMobilePinnedSection(contextResearchRef, isInteractive);
   const isPersonaLearnedMobilePinned = useMobilePinnedSection(personaLearnedRef, isInteractive);
   const isProblemSuccessMobilePinned = useMobilePinnedSection(problemSuccessRef, isInteractive);
   const isProposedProvedMobilePinned = useMobilePinnedSection(proposedProvedRef, isInteractive);
+  const isDevelopIterationMobilePinned = useMobilePinnedSection(developStartRef, isInteractive);
   const isNormalHeaderMobilePinned = useMobilePinnedSection(sectionRef, !isInteractive);
   const { isHeaderSticky, showCentered } = useStickySection(
     sectionRef,
@@ -51,9 +56,13 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   );
   const { activeStep, stepProgress, selectStep } = useVideoStepProgress(processVideoRef, processSteps);
 
-  const selectCaseStudySection = useCallback((section: "discover" | "define") => {
+  const selectCaseStudySection = useCallback((section: "discover" | "define" | "develop") => {
     const target =
-      section === "discover" ? sectionRef.current : problemSuccessRef.current;
+      section === "discover"
+        ? sectionRef.current
+        : section === "define"
+          ? problemSuccessRef.current
+          : developStartRef.current;
     if (!target) {
       return;
     }
@@ -65,12 +74,19 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   useEffect(() => {
     const handleDefineScroll = () => {
       const defineElement = defineStartRef.current;
+      const developElement = developStartRef.current;
       if (!defineElement) {
         return;
       }
 
       const defineRect = defineElement.getBoundingClientRect();
-      const nextSection = defineRect.top <= 100 ? "define" : "discover";
+      const developRect = developElement?.getBoundingClientRect();
+      const nextSection =
+        developRect && developRect.top <= 100
+          ? "develop"
+          : defineRect.top <= 100
+            ? "define"
+            : "discover";
       if (currentSectionRef.current !== nextSection) {
         currentSectionRef.current = nextSection;
         setCurrentSection(nextSection);
@@ -98,6 +114,8 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         discoverSubtitle={bishopContent.discoverLabels.discoverSubtitle}
         defineTitle={bishopContent.discoverLabels.defineTitle}
         defineSubtitle={bishopContent.discoverLabels.defineSubtitle}
+        developTitle={bishopContent.discoverLabels.developTitle}
+        developSubtitle={bishopContent.discoverLabels.developSubtitle}
       />
 
       <ContextResearchSection
@@ -155,6 +173,24 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         onStepClick={selectStep}
         provedTitle={bishopContent.proved.title}
         provedCards={bishopContent.proved.cards}
+      />
+
+      <ConceptsSection images={bishopMediaAssets.concepts} />
+
+      <DesignDecisionsSection
+        sectionRef={developStartRef}
+        isInteractive={isInteractive}
+        isMobilePinned={isDevelopIterationMobilePinned}
+        progress={developIterationProgress}
+        title={bishopContent.designDecisions.title}
+        groups={bishopContent.designDecisions.groups}
+        iterationTitle={bishopContent.iterationOne.title}
+        iterationSubtitle={bishopContent.iterationOne.subtitle}
+        iterationHeadline={bishopContent.iterationOne.headline}
+        papers={bishopMediaAssets.researchPapers}
+        annotateHeadline={bishopContent.iterationOne.annotateHeadline}
+        annotateImage={bishopMediaAssets.annotateSegmentations}
+        annotateMobileImage={bishopMediaAssets.annotateSegmentationsMobile}
       />
     </section>
   );

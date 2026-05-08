@@ -58,7 +58,8 @@
   .bishop-context-research-content,
   .bishop-persona-learned-content,
   .bishop-problem-success-content,
-  .bishop-proposed-proved-content {
+  .bishop-proposed-proved-content,
+  .bishop-develop-iteration-content {
     overflow-anchor: none;
     height: 100svh;
     min-height: 620px;
@@ -287,7 +288,8 @@
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-context-research-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-persona-learned-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-problem-success-content,
-  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-proposed-proved-content {
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-proposed-proved-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-iteration-content {
     position: fixed;
     top: 0;
     left: 0;
@@ -348,7 +350,8 @@
   .bishop-context-research-wrapper,
   .bishop-persona-learned-wrapper,
   .bishop-problem-success-wrapper,
-  .bishop-proposed-proved-wrapper {
+  .bishop-proposed-proved-wrapper,
+  .bishop-develop-iteration-wrapper {
     overflow-anchor: none;
     height: 300svh;
   }
@@ -360,7 +363,10 @@
   .bishop-problem-fade-panel,
   .bishop-success-panel,
   .bishop-proposed-fade-panel,
-  .bishop-proved-panel {
+  .bishop-proved-panel,
+  .bishop-design-decisions-panel,
+  .bishop-iteration-one-panel,
+  .bishop-annotate-segmentations-panel {
     max-width: 100%;
     padding-left: 18px;
     padding-right: 18px;
@@ -593,7 +599,8 @@
   .bishop-page-normal .bishop-persona-learned-wrapper,
   .bishop-page-normal .bishop-reality-section,
   .bishop-page-normal .bishop-problem-success-wrapper,
-  .bishop-page-normal .bishop-proposed-proved-wrapper {
+  .bishop-page-normal .bishop-proposed-proved-wrapper,
+  .bishop-page-normal .bishop-develop-iteration-wrapper {
     height: auto;
     min-height: 0;
   }
@@ -609,7 +616,10 @@
   .bishop-page-normal .bishop-problem-fade-panel,
   .bishop-page-normal .bishop-success-panel,
   .bishop-page-normal .bishop-proposed-fade-panel,
-  .bishop-page-normal .bishop-proved-panel {
+  .bishop-page-normal .bishop-proved-panel,
+  .bishop-page-normal .bishop-design-decisions-panel,
+  .bishop-page-normal .bishop-iteration-one-panel,
+  .bishop-page-normal .bishop-annotate-segmentations-panel {
     min-height: 100svh;
     padding: 72px 18px;
   }
@@ -650,7 +660,8 @@
   .bishop-context-research-content,
   .bishop-persona-learned-content,
   .bishop-problem-success-content,
-  .bishop-proposed-proved-content {
+  .bishop-proposed-proved-content,
+  .bishop-develop-iteration-content {
     min-height: 680px;
   }
 
