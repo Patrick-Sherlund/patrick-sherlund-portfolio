@@ -16,11 +16,19 @@ export function AnnotateSegmentationsSection({
   mobileImage,
   mobileVideo,
 }: AnnotateSegmentationsSectionProps) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+    const updateSelectedVideo = () => {
+      setSelectedVideo(mediaQuery.matches ? mobileVideo : video);
+    };
+
+    updateSelectedVideo();
+    mediaQuery.addEventListener("change", updateSelectedVideo);
+
+    return () => mediaQuery.removeEventListener("change", updateSelectedVideo);
+  }, [mobileVideo, video]);
 
   return (
     <div className="bishop-annotate-section">
@@ -37,19 +45,14 @@ export function AnnotateSegmentationsSection({
           </picture>
           <div className="bishop-annotate-video-card">
             <video
+              key={selectedVideo ?? "pending"}
+              src={selectedVideo ?? undefined}
               className="bishop-annotate-video"
               autoPlay
               loop
               muted
               playsInline
-            >
-              {isMounted && (
-                <>
-                  <source media="(max-width: 640px)" src={mobileVideo} type="video/mp4" />
-                  <source src={video} type="video/mp4" />
-                </>
-              )}
-            </video>
+            />
           </div>
         </div>
       </div>

@@ -5,11 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 124px 24px 54px;
+  padding: 124px 0 54px;
+  overflow: hidden;
 }
 
 .bishop-concepts-content {
-  width: min(100%, 880px);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,13 +24,30 @@
   color: #111111;
   text-align: center;
   letter-spacing: 0;
-  margin: 0 0 78px;
+  margin: 0 0 70px;
+  padding: 0 24px;
+}
+
+.bishop-concepts-carousel {
+  --concepts-collage-width: clamp(1080px, 72vw, 1320px);
+  --concepts-collage-gap: clamp(21px, 2.35vw, 44px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.bishop-concepts-carousel-track {
+  display: flex;
+  gap: var(--concepts-collage-gap);
+  width: max-content;
+  animation: bishopConceptsCarousel 28s linear infinite;
+  will-change: transform;
 }
 
 .bishop-concepts-collage {
   position: relative;
-  width: 100%;
-  height: 374px;
+  flex: 0 0 var(--concepts-collage-width);
+  width: var(--concepts-collage-width);
+  height: calc(var(--concepts-collage-width) * 0.425);
 }
 
 .bishop-concept-image {
@@ -39,119 +57,82 @@
 }
 
 .bishop-concept-image-1 {
-  width: 196px;
+  width: 22.4%;
   left: 0;
   top: 0;
 }
 
 .bishop-concept-image-2 {
-  width: 196px;
+  width: 22.4%;
   left: 0;
-  top: 180px;
+  top: 48.1%;
 }
 
 .bishop-concept-image-3 {
-  width: 199px;
-  left: 232px;
-  top: 64px;
+  width: 22.7%;
+  left: 26.5%;
+  top: 17.1%;
 }
 
 .bishop-concept-image-4 {
-  width: 203px;
-  left: 225px;
-  top: 242px;
+  width: 23.2%;
+  left: 25.7%;
+  top: 64.7%;
 }
 
 .bishop-concept-image-5 {
-  width: 196px;
-  left: 456px;
+  width: 22.4%;
+  left: 52.1%;
   top: 0;
 }
 
 .bishop-concept-image-6 {
-  width: 196px;
-  left: 456px;
-  top: 180px;
+  width: 22.4%;
+  left: 52.1%;
+  top: 48.1%;
 }
 
 .bishop-concept-image-7 {
-  width: 197px;
-  left: 674px;
-  top: 55px;
+  width: 22.5%;
+  left: 77%;
+  top: 14.7%;
 }
 
 .bishop-concept-image-8 {
-  width: 196px;
-  left: 679px;
-  top: 228px;
+  width: 22.4%;
+  left: 77.6%;
+  top: 61%;
+}
+
+@keyframes bishopConceptsCarousel {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc((var(--concepts-collage-width) + var(--concepts-collage-gap)) * -1));
+  }
 }
 
 @media (max-width: 940px) {
-  .bishop-concepts-content {
-    width: min(100%, 760px);
+  .bishop-concepts-section {
+    padding-top: 104px;
   }
 
   .bishop-concepts-title {
-    margin-bottom: 64px;
+    margin-bottom: 56px;
   }
 
-  .bishop-concepts-collage {
-    height: min(42.5vw, 374px);
-  }
-
-  .bishop-concept-image-1 {
-    width: 22.3%;
-    left: 0;
-    top: 0;
-  }
-
-  .bishop-concept-image-2 {
-    width: 22.3%;
-    left: 0;
-    top: 48.1%;
-  }
-
-  .bishop-concept-image-3 {
-    width: 22.6%;
-    left: 26.4%;
-    top: 17.1%;
-  }
-
-  .bishop-concept-image-4 {
-    width: 23.1%;
-    left: 25.6%;
-    top: 64.7%;
-  }
-
-  .bishop-concept-image-5 {
-    width: 22.3%;
-    left: 51.8%;
-    top: 0;
-  }
-
-  .bishop-concept-image-6 {
-    width: 22.3%;
-    left: 51.8%;
-    top: 48.1%;
-  }
-
-  .bishop-concept-image-7 {
-    width: 22.4%;
-    left: 76.6%;
-    top: 14.7%;
-  }
-
-  .bishop-concept-image-8 {
-    width: 22.3%;
-    left: 77.2%;
-    top: 61%;
+  .bishop-concepts-carousel {
+    --concepts-collage-width: 980px;
+    --concepts-collage-gap: 24px;
   }
 }
 
 @media (max-width: 640px) {
   .bishop-concepts-section {
     min-height: auto;
-    padding: 72px 18px;
+    padding: 72px 0;
   }
 
   .bishop-concepts-title {
@@ -160,26 +141,13 @@
     margin-bottom: 32px;
   }
 
-  .bishop-concepts-collage {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 14px;
-    height: auto;
+  .bishop-concepts-carousel {
+    --concepts-collage-width: 720px;
+    --concepts-collage-gap: 16px;
   }
 
-  .bishop-concept-image {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-  }
-
-  .bishop-concept-image:nth-child(odd) {
-    transform: translateY(-8px);
-  }
-
-  .bishop-concept-image:nth-child(even) {
-    transform: translateY(8px);
+  .bishop-concepts-carousel-track {
+    animation-duration: 24s;
   }
 }
 
@@ -188,7 +156,14 @@
     font-size: 26px;
   }
 
-  .bishop-concepts-collage {
-    gap: 14px 10px;
+  .bishop-concepts-carousel {
+    --concepts-collage-width: 660px;
+    --concepts-collage-gap: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bishop-concepts-carousel-track {
+    animation-duration: 70s;
   }
 }
