@@ -551,7 +551,7 @@
 
   .bishop-proposed-content {
     gap: 28px;
-    transform: translateY(-52px) !important;
+    transform: translateY(18px) !important;
   }
 
   .bishop-proposed-layout {
