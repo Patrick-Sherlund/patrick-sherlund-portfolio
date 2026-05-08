@@ -86,8 +86,9 @@
 }
 
 .project-category-tab.active {
-  color: #1A1A1A;
+  color: #07111A;
   font-weight: 500;
+  opacity: 1;
 }
 
 .dark .project-category-tab.active {
@@ -101,6 +102,11 @@
 
 .project-category-tab.project-category-tab-dimmed {
   opacity: 0.52;
+}
+
+.project-category-tab.active:not(.project-category-tab-dimmed):hover,
+.project-category-tab.active:not(.project-category-tab-dimmed):focus-visible {
+  opacity: 1;
 }
 
 .project-category-tab:focus-visible {
@@ -519,7 +525,7 @@
 
 @media (max-width: 768px) {
   .project-category-controls-sticky {
-    top: 76px;
+    top: max(20px, env(safe-area-inset-top));
     padding: 2px 0 4px;
   }
 

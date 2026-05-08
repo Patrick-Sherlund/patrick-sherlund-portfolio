@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { usePreloadImages } from "@/hooks/usePreloadImages";
-import { ThemeToggle } from "@/features/theme/ThemeToggle";
 import { HomeHero } from "./components/HomeHero";
 import { ProfessionalProjectsBanner } from "./components/ProfessionalProjectsBanner";
 import { ProjectShowcase } from "./components/ProjectShowcase";
@@ -53,7 +52,6 @@ export function HomeRoute() {
 
   return (
     <div className="min-h-screen bg-[#e7f4ff] dark:bg-[#041825]" style={{ transition: "background-color 0.4s ease-in-out" }}>
-      <ThemeToggle />
       <HomeHero />
       <ProfessionalProjectsBanner
         activeCategory={activeProjectCategory}

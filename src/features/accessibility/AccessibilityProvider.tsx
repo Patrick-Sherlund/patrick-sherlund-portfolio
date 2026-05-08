@@ -114,7 +114,7 @@ function SettingSwitch({
 }
 
 export function AccessibilityProvider({ children }: { children: ReactNode }) {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [settings, setSettings] = useState(defaultSettings);
   const [isOpen, setIsOpen] = useState(false);
   const [interactiveScrollingControl, setInteractiveScrollingControl] =
@@ -273,6 +273,15 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
     setSettings(defaultSettings);
   }, []);
 
+  const handleThemeChange = useCallback(
+    (checked: boolean) => {
+      if ((checked && theme !== "dark") || (!checked && theme !== "light")) {
+        toggleTheme();
+      }
+    },
+    [theme, toggleTheme]
+  );
+
   const contextValue = useMemo(
     () => ({
       setInteractiveScrollingControl,
@@ -318,6 +327,7 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
             </div>
 
             <div className="accessibility-options">
+              <SettingSwitch label="Dark mode" checked={theme === "dark"} onChange={handleThemeChange} />
               {interactiveScrollingControl && (
                 <SettingSwitch
                   label="Interactive scrolling"

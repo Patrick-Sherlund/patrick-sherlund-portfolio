@@ -70,8 +70,10 @@
   right: 0;
   bottom: 64px;
   width: min(340px, calc(100vw - 32px));
-  max-height: min(620px, calc(100vh - 112px));
+  max-height: min(620px, calc(100dvh - 112px));
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.96);
@@ -290,7 +292,16 @@ html.a11y-reduce-motion body :where(video):not(.accessibility-widget *) {
 
   .accessibility-panel {
     width: min(360px, calc(100vw - 36px));
-    max-height: calc(100vh - 104px);
+    max-height: min(560px, calc(100dvh - 104px));
+  }
+
+  .accessibility-options {
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  .accessibility-option {
+    min-height: 40px;
   }
 }
 
@@ -302,6 +313,7 @@ html.a11y-reduce-motion body :where(video):not(.accessibility-widget *) {
 
   .accessibility-panel {
     width: calc(100vw - 32px);
+    max-height: calc(100dvh - 96px);
     padding: 14px;
   }
 }
