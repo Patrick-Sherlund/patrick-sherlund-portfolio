@@ -9,6 +9,8 @@ export const homeAssets = {
   patrickLight: "/assets/images/home/patrick-light.png",
   patrickDark: "/assets/images/home/patrick-dark.png",
   peacePatrick: "/assets/images/home/peace-patrick.png",
+  accessibilityBlackIcon: "/assets/images/home/accessibility-black.png",
+  accessibilityWhiteIcon: "/assets/images/home/accessibility-white.png",
 };
 
 export const sharedAssets = {

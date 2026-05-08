@@ -1,0 +1,307 @@
+.accessibility-widget {
+  position: fixed;
+  right: max(40px, env(safe-area-inset-right));
+  bottom: max(40px, env(safe-area-inset-bottom));
+  z-index: 1200;
+  color: #111;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.accessibility-toggle {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.accessibility-toggle:hover {
+  color: #111;
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+.dark .accessibility-toggle {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(17, 24, 39, 0.72);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.dark .accessibility-toggle:hover {
+  color: #ffffff;
+  background-color: rgba(17, 24, 39, 0.9);
+}
+
+.accessibility-toggle.active {
+  color: #ffffff;
+  background-color: #111;
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.12), 0 8px 26px rgba(17, 17, 17, 0.22), 0 0 18px rgba(87, 141, 243, 0.34);
+}
+
+.dark .accessibility-toggle.active {
+  border-color: rgba(255, 255, 255, 0.18);
+  background-color: #111;
+}
+
+.accessibility-toggle:focus-visible,
+.accessibility-panel:focus-visible,
+.accessibility-icon-button:focus-visible,
+.accessibility-option input:focus-visible + .accessibility-switch {
+  outline: 2px solid #578df3;
+  outline-offset: 2px;
+}
+
+.accessibility-toggle img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.accessibility-panel {
+  position: absolute;
+  right: 0;
+  bottom: 64px;
+  width: min(340px, calc(100vw - 32px));
+  max-height: min(620px, calc(100vh - 112px));
+  overflow-y: auto;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 48px rgba(17, 17, 17, 0.18);
+  padding: 16px;
+}
+
+.accessibility-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.accessibility-panel-header h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #111;
+}
+
+.accessibility-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accessibility-icon-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  background: rgba(255, 255, 255, 0.74);
+  cursor: pointer;
+}
+
+.accessibility-options {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+}
+
+.accessibility-option {
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  color: #111;
+}
+
+.accessibility-option.disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.accessibility-option-label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.accessibility-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.accessibility-switch {
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: #d1d5db;
+  transition: background-color 0.2s ease;
+}
+
+.accessibility-switch-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.24);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.accessibility-option input:checked + .accessibility-switch {
+  background: #111;
+}
+
+.accessibility-option input:checked + .accessibility-switch .accessibility-switch-thumb {
+  transform: translateX(20px);
+}
+
+.accessibility-reading-guide {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 42px;
+  z-index: 1190;
+  pointer-events: none;
+  transform: translateY(-50%);
+  border-top: 2px solid rgba(87, 141, 243, 0.88);
+  border-bottom: 2px solid rgba(87, 141, 243, 0.88);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.12);
+}
+
+html.a11y-accessible-font body :where(h1, h2, h3, h4, h5, h6, p, a, button, span, small, li, label, input, textarea, select):not(.accessibility-widget, .accessibility-widget *) {
+  font-family: "Atkinson Hyperlegible", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+html.a11y-large-text body {
+  zoom: 1.1;
+}
+
+html.a11y-large-text .accessibility-widget {
+  zoom: 0.9091;
+}
+
+html.a11y-text-spacing body :where(h1, h2, h3, h4, h5, h6, p, a, small, li, label, blockquote, figcaption):not(.accessibility-widget, .accessibility-widget *) {
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.08em !important;
+  line-height: 1.65 !important;
+}
+
+html.a11y-underline-links body a:not(.accessibility-widget *) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 0.12em !important;
+  text-underline-offset: 0.18em !important;
+}
+
+html.a11y-enhanced-focus body :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 4px solid #ffbf47 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 2px #111 !important;
+}
+
+html.a11y-high-contrast body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast body :where(main, section, article, aside, header, footer, nav):not(.accessibility-widget, .accessibility-widget *) {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast body :where(h1, h2, h3, h4, h5, h6, p, a, button, span, small, li, label):not(.accessibility-widget, .accessibility-widget *) {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+html.a11y-high-contrast body :where(a):not(.accessibility-widget *) {
+  color: #0000ee !important;
+}
+
+html.a11y-high-contrast body :where(button):not(.accessibility-widget *) {
+  border-color: #000000 !important;
+}
+
+html.a11y-high-contrast body :where(input, textarea, select):not(.accessibility-widget *) {
+  color: #000000 !important;
+  background: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+html.a11y-high-contrast body :where(img, video):not(.accessibility-widget *) {
+  filter: contrast(1.18) saturate(0.92) !important;
+}
+
+html.a11y-reduce-transparency body :where(*):not(.accessibility-widget, .accessibility-widget *) {
+  backdrop-filter: none !important;
+}
+
+html.a11y-reduce-transparency body :where([class*="backdrop"], [class*="overlay"], [class*="sticky"], [class*="panel"]):not(.accessibility-widget, .accessibility-widget *) {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+html.a11y-reduce-motion,
+html.a11y-reduce-motion *:not(.accessibility-widget, .accessibility-widget *) {
+  scroll-behavior: auto !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  animation-delay: 0ms !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0ms !important;
+}
+
+html.a11y-reduce-motion body :where(video):not(.accessibility-widget *) {
+  animation: none !important;
+}
+
+@media (max-width: 768px) {
+  .accessibility-widget {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  .accessibility-toggle {
+    background-color: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  }
+
+  .accessibility-panel {
+    width: min(360px, calc(100vw - 36px));
+    max-height: calc(100vh - 104px);
+  }
+}
+
+@media (max-width: 480px) {
+  .accessibility-widget {
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .accessibility-panel {
+    width: calc(100vw - 32px);
+    padding: 14px;
+  }
+}

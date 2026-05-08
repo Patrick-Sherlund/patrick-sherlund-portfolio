@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAccessibility } from "@/features/accessibility";
 import { BackLink } from "@/shared/components/BackLink";
 import { bishopMediaAssets } from "./data/bishop-assets";
 import { BishopChallengeVision } from "./components/BishopChallengeVision";
@@ -8,10 +9,12 @@ import { BishopDiscover } from "./components/discover";
 import { BishopHero } from "./components/BishopHero";
 import { BishopRoleStack } from "./components/BishopRoleStack";
 import { BishopUsersSaw } from "./components/BishopUsersSaw";
-import { BishopViewModeToggle, type BishopViewMode } from "./components/BishopViewModeToggle";
+
+type BishopViewMode = "interactive" | "normal";
 
 export function BishopRoute() {
   const [viewMode, setViewMode] = useState<BishopViewMode>("interactive");
+  const { setInteractiveScrollingControl } = useAccessibility();
   const isInteractive = viewMode === "interactive";
 
   useEffect(() => {
@@ -35,10 +38,18 @@ export function BishopRoute() {
     };
   }, []);
 
+  useEffect(() => {
+    setInteractiveScrollingControl({
+      enabled: isInteractive,
+      setEnabled: (enabled) => setViewMode(enabled ? "interactive" : "normal"),
+    });
+
+    return () => setInteractiveScrollingControl(null);
+  }, [isInteractive, setInteractiveScrollingControl]);
+
   return (
     <div className={`bishop-page bishop-page-${viewMode} min-h-screen bg-[#e7f4ff]`}>
       <BackLink />
-      <BishopViewModeToggle viewMode={viewMode} onViewModeChange={setViewMode} />
       <BishopHero />
       <BishopRoleStack isInteractive={isInteractive} />
       <BishopChallengeVision isInteractive={isInteractive} />
