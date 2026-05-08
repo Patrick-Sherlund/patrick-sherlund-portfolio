@@ -249,10 +249,13 @@
 
 @media (max-width: 768px) {
   .bishop-view-mode-toggle {
-    top: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
+    top: auto;
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
   }
 
   .bishop-page-normal .bishop-my-role-panel,
@@ -273,8 +276,8 @@
 
 @media (max-width: 480px) {
   .bishop-view-mode-toggle {
-    top: 20px;
-    right: 20px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
   }
 
   .bishop-page-normal .bishop-carousel-container {

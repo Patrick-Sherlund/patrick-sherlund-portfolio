@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { bishopMediaAssets } from "../data/bishop-assets";
 import { useInViewOnce } from "../hooks/useInViewOnce";
+import { useMobilePinnedSection } from "../hooks/useMobilePinnedSection";
 
 const bubblePositions = [
   { top: "8%", left: "5%", width: 213.63, height: 150 },
@@ -24,6 +25,7 @@ export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionPr
   const [challengeVisionProgress, setChallengeVisionProgress] = useState(0);
   const [bubbleProgress, setBubbleProgress] = useState<number[]>([0, 0, 0, 0, 0]);
   const normalBubblesVisible = useInViewOnce(visionPanelRef, !isInteractive);
+  const isMobilePinned = useMobilePinnedSection(containerRef, isInteractive);
 
   useEffect(() => {
     if (!isInteractive) {
@@ -99,7 +101,7 @@ export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionPr
     });
 
   return (
-    <div className="bishop-challenge-vision-wrapper" ref={containerRef}>
+    <div className={`bishop-challenge-vision-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
       <div className="bishop-challenge-vision-content">
         <div
           className="bishop-challenge-panel"

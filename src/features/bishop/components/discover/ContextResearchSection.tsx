@@ -10,6 +10,7 @@ type CarouselAsset = {
 type ContextResearchSectionProps = {
   sectionRef: React.RefObject<HTMLDivElement | null>;
   isInteractive: boolean;
+  isMobilePinned: boolean;
   progress: number;
   carouselVisible: boolean;
   title: string;
@@ -22,6 +23,7 @@ type ContextResearchSectionProps = {
 export function ContextResearchSection({
   sectionRef,
   isInteractive,
+  isMobilePinned,
   progress,
   carouselVisible,
   title,
@@ -61,7 +63,7 @@ export function ContextResearchSection({
   );
 
   return (
-    <div className="bishop-context-research-wrapper" ref={sectionRef}>
+    <div className={`bishop-context-research-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
       <div className="bishop-context-research-content">
         <div
           className="bishop-context-panel"

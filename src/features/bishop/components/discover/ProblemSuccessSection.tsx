@@ -6,6 +6,7 @@ type ProblemSuccessSectionProps = {
   wrapperRef: React.RefObject<HTMLDivElement | null>;
   defineStartRef: React.RefObject<HTMLDivElement | null>;
   isInteractive: boolean;
+  isMobilePinned: boolean;
   progress: number;
   problemTitle: string;
   problemText: React.ReactNode;
@@ -38,6 +39,7 @@ export function ProblemSuccessSection({
   wrapperRef,
   defineStartRef,
   isInteractive,
+  isMobilePinned,
   progress,
   problemTitle,
   problemText,
@@ -48,7 +50,7 @@ export function ProblemSuccessSection({
   const normalSuccessVisible = useInViewOnce(successPanelRef, !isInteractive);
 
   return (
-    <div className="bishop-problem-success-wrapper" ref={wrapperRef}>
+    <div className={`bishop-problem-success-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
       <div className="bishop-problem-success-content" ref={defineStartRef}>
         <div
           className="bishop-problem-fade-panel"

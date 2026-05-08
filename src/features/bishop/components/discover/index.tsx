@@ -6,6 +6,7 @@ import { bishopContent } from "../../data/bishop-content";
 import { processSteps, successMetrics } from "../../data/bishop-metrics";
 import { useCrossfadeScroll } from "../../hooks/useCrossfadeScroll";
 import { useStickySection } from "../../hooks/useStickySection";
+import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
 import { useVideoStepProgress } from "../../hooks/useVideoStepProgress";
 import { ContextResearchSection } from "./ContextResearchSection";
 import { DiscoverHeader } from "./DiscoverHeader";
@@ -37,6 +38,10 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
     useCrossfadeScroll(personaLearnedRef, isInteractive);
   const { progress: problemSuccessProgress } = useCrossfadeScroll(problemSuccessRef, isInteractive);
   const { progress: proposedProvedProgress } = useCrossfadeScroll(proposedProvedRef, isInteractive);
+  const isContextResearchMobilePinned = useMobilePinnedSection(contextResearchRef, isInteractive);
+  const isPersonaLearnedMobilePinned = useMobilePinnedSection(personaLearnedRef, isInteractive);
+  const isProblemSuccessMobilePinned = useMobilePinnedSection(problemSuccessRef, isInteractive);
+  const isProposedProvedMobilePinned = useMobilePinnedSection(proposedProvedRef, isInteractive);
   const { isHeaderSticky, showCentered } = useStickySection(
     sectionRef,
     headerRef,
@@ -94,6 +99,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
       <ContextResearchSection
         sectionRef={contextResearchRef}
         isInteractive={isInteractive}
+        isMobilePinned={isContextResearchMobilePinned}
         progress={contextResearchProgress}
         carouselVisible={carouselVisible}
         title={bishopContent.contextResearch.contextTitle}
@@ -106,6 +112,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
       <PersonaLearnedSection
         sectionRef={personaLearnedRef}
         isInteractive={isInteractive}
+        isMobilePinned={isPersonaLearnedMobilePinned}
         progress={personaLearnedProgress}
         learnedContentVisible={learnedContentVisible}
         personaTitle={bishopContent.personaLearned.personaTitle}
@@ -123,6 +130,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         wrapperRef={problemSuccessRef}
         defineStartRef={defineStartRef}
         isInteractive={isInteractive}
+        isMobilePinned={isProblemSuccessMobilePinned}
         progress={problemSuccessProgress}
         problemTitle={bishopContent.problem.title}
         problemText={bishopContent.problem.text}
@@ -133,6 +141,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
       <ProposedProvedSection
         wrapperRef={proposedProvedRef}
         isInteractive={isInteractive}
+        isMobilePinned={isProposedProvedMobilePinned}
         progress={proposedProvedProgress}
         title={bishopContent.proposed.title}
         videoRef={processVideoRef}

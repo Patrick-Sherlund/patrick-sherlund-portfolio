@@ -16,6 +16,7 @@ type LearnedCard = {
 type PersonaLearnedSectionProps = {
   sectionRef: React.RefObject<HTMLDivElement | null>;
   isInteractive: boolean;
+  isMobilePinned: boolean;
   progress: number;
   learnedContentVisible: boolean;
   personaTitle: string;
@@ -27,6 +28,7 @@ type PersonaLearnedSectionProps = {
 export function PersonaLearnedSection({
   sectionRef,
   isInteractive,
+  isMobilePinned,
   progress,
   learnedContentVisible,
   personaTitle,
@@ -48,7 +50,7 @@ export function PersonaLearnedSection({
   ];
 
   return (
-    <div className="bishop-persona-learned-wrapper" ref={sectionRef}>
+    <div className={`bishop-persona-learned-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
       <div className="bishop-persona-learned-content">
         <div
           ref={personaPanelRef}

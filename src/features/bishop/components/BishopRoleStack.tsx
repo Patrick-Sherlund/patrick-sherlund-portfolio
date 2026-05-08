@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import svgPaths from "@/lib/svg-pagdlx3wn8";
+import { useMobilePinnedSection } from '../hooks/useMobilePinnedSection';
 
 type BishopRoleStackProps = {
   isInteractive: boolean;
@@ -10,6 +11,7 @@ type BishopRoleStackProps = {
 export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [myRoleStackProgress, setMyRoleStackProgress] = useState(0);
+  const isMobilePinned = useMobilePinnedSection(containerRef, isInteractive);
 
   useEffect(() => {
     if (!isInteractive) {
@@ -44,7 +46,7 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
   }, [isInteractive]);
 
   return (
-    <div className="bishop-my-role-stack-wrapper" id="bishop-case-study-start" ref={containerRef}>
+    <div className={`bishop-my-role-stack-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} id="bishop-case-study-start" ref={containerRef}>
       <div className="bishop-my-role-stack-content">
         <div 
           className="bishop-my-role-panel"

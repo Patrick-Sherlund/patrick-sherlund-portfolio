@@ -6,6 +6,7 @@ import { ProcessStepper } from "./ProcessStepper";
 type ProposedProvedSectionProps = {
   wrapperRef: React.RefObject<HTMLDivElement | null>;
   isInteractive: boolean;
+  isMobilePinned: boolean;
   progress: number;
   title: string;
   videoRef: React.RefObject<HTMLVideoElement | null>;
@@ -27,6 +28,7 @@ type ProposedProvedSectionProps = {
 export function ProposedProvedSection({
   wrapperRef,
   isInteractive,
+  isMobilePinned,
   progress,
   title,
   videoRef,
@@ -46,7 +48,7 @@ export function ProposedProvedSection({
   }, []);
 
   return (
-    <div className="bishop-proposed-proved-wrapper" ref={wrapperRef}>
+    <div className={`bishop-proposed-proved-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
       <div className="bishop-proposed-proved-content">
         <div
           className="bishop-proposed-fade-panel"

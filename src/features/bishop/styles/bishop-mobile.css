@@ -249,11 +249,45 @@
   }
 
   .bishop-page-interactive .bishop-discover-header.sticky {
-    position: sticky;
-    top: 0;
+    position: relative;
+    top: auto;
     left: auto;
     right: auto;
     margin: 0 auto;
+    padding: 0;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .bishop-page-interactive .bishop-discover-header.sticky .bishop-discover-header-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    min-height: 76px;
+    padding: 8px 64px 20px 56px;
+    background-color: #ffffff;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-my-role-stack-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-challenge-vision-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-context-research-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-persona-learned-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-problem-success-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-proposed-proved-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #ffffff;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
@@ -294,6 +328,10 @@
   .bishop-discover-nav-subtitle {
     align-self: center;
     font-size: clamp(10px, 3vw, 12px);
+  }
+
+  .bishop-discover-header.sticky .bishop-discover-nav-subtitle {
+    display: none;
   }
 
   .bishop-discover-header-nav-item.previous .bishop-discover-nav-title,
