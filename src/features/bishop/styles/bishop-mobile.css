@@ -252,7 +252,8 @@
     overflow: hidden;
   }
 
-  .bishop-page-interactive .bishop-discover-header.sticky {
+  .bishop-page-interactive .bishop-discover-header.sticky,
+  .bishop-page-normal .bishop-discover.bishop-normal-mobile-header-pinned .bishop-discover-header.sticky {
     position: relative;
     top: auto;
     left: auto;
@@ -263,7 +264,8 @@
     box-shadow: none;
   }
 
-  .bishop-page-interactive .bishop-discover-header.sticky .bishop-discover-header-nav {
+  .bishop-page-interactive .bishop-discover-header.sticky .bishop-discover-header-nav,
+  .bishop-page-normal .bishop-discover.bishop-normal-mobile-header-pinned .bishop-discover-header.sticky .bishop-discover-header-nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -637,8 +639,8 @@
     margin-left: -220px;
   }
 
-  .bishop-page-normal .bishop-discover-header.sticky {
-    padding: 16px 72px 16px 64px;
+  .bishop-page-normal .bishop-discover.bishop-normal-mobile-header-pinned .bishop-discover-header.sticky .bishop-discover-header-nav {
+    padding: 8px 64px 20px 56px;
   }
 }
 

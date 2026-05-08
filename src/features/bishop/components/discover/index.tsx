@@ -42,6 +42,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   const isPersonaLearnedMobilePinned = useMobilePinnedSection(personaLearnedRef, isInteractive);
   const isProblemSuccessMobilePinned = useMobilePinnedSection(problemSuccessRef, isInteractive);
   const isProposedProvedMobilePinned = useMobilePinnedSection(proposedProvedRef, isInteractive);
+  const isNormalHeaderMobilePinned = useMobilePinnedSection(sectionRef, !isInteractive);
   const { isHeaderSticky, showCentered } = useStickySection(
     sectionRef,
     headerRef,
@@ -83,7 +84,10 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   }, [isInteractive]);
 
   return (
-    <section className="bishop-discover" ref={sectionRef}>
+    <section
+      className={`bishop-discover ${isNormalHeaderMobilePinned ? "bishop-normal-mobile-header-pinned" : ""}`}
+      ref={sectionRef}
+    >
       <DiscoverHeader
         headerRef={headerRef}
         isHeaderSticky={isInteractive ? isHeaderSticky : true}
