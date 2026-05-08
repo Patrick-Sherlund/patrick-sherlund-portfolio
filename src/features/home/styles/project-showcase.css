@@ -527,6 +527,10 @@
     font-size: 18px;
   }
 
+  .project-category-controls-sticky .project-category-tab {
+    width: 100%;
+  }
+
   .project-container {
     padding: 60px 40px;
     gap: 48px;
