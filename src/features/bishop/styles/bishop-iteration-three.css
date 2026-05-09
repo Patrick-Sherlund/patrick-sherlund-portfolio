@@ -1,0 +1,110 @@
+.bishop-iteration-three-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 142px 32px 36px;
+}
+
+.bishop-iteration-three-content {
+  width: min(100%, 1060px);
+  min-height: calc(100vh - 178px);
+  display: grid;
+  grid-template-rows: auto minmax(56px, 0.22fr) auto 42px minmax(0, 1fr);
+}
+
+.bishop-iteration-three-header {
+  justify-self: start;
+}
+
+.bishop-iteration-three-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.12;
+  color: #111111;
+  letter-spacing: 0;
+  margin: 0 0 4px;
+}
+
+.bishop-iteration-three-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.32;
+  color: #3f3f46;
+  margin: 0;
+}
+
+.bishop-iteration-three-headline {
+  grid-row: 3;
+  justify-self: center;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(30px, 3.05vw, 38px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.bishop-iteration-three-headline strong {
+  font-weight: 700;
+}
+
+.bishop-iteration-three-media {
+  grid-row: 5;
+  width: 100%;
+  display: block;
+  align-self: start;
+}
+
+.bishop-iteration-three-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .bishop-iteration-three-section {
+    padding: 132px 24px 44px;
+  }
+
+  .bishop-iteration-three-content {
+    min-height: calc(100vh - 176px);
+    grid-template-rows: auto minmax(48px, 0.2fr) auto 36px minmax(0, 1fr);
+  }
+
+  .bishop-iteration-three-headline {
+    font-size: clamp(28px, 4.1vw, 36px);
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-iteration-three-section {
+    min-height: 100vh;
+    align-items: center;
+    padding: 72px 18px;
+  }
+
+  .bishop-iteration-three-content {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bishop-iteration-three-title {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  .bishop-iteration-three-subtitle {
+    font-size: 17px;
+  }
+
+  .bishop-iteration-three-headline {
+    font-size: clamp(28px, 7.7vw, 34px);
+    margin: 92px 0 54px;
+  }
+}

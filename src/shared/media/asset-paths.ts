@@ -79,4 +79,11 @@ export const bishopAssets = {
   ],
   trackerV1: "/assets/images/bishop/v1_tracker.mp4",
   trackerV4: "/assets/images/bishop/v4_tracker.mp4",
+  clientVideo: "/assets/images/bishop/client_video.mp4",
+  iterationThreeDesktop: "/assets/images/bishop/desktop_iteration_3.png",
+  iterationThreeMobile: "/assets/images/bishop/mobile_iteration_3.png",
+  aiDetections: "/assets/images/bishop/ai_detections.mp4",
+  manageVideosDesktop: "/assets/images/bishop/desktop_manage_video.png",
+  manageVideosMobile: "/assets/images/bishop/mobile_manage_video.png",
+  mapDemo: "/assets/images/bishop/map_demo.mp4",
 };

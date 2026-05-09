@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useCrossfadeScroll } from "../../hooks/useCrossfadeScroll";
+import { AiDetectionsSection } from "./AiDetectionsSection";
 import { AnnotateSegmentationsSection } from "./AnnotateSegmentationsSection";
+import { AssociateDetectionsSection } from "./AssociateDetectionsSection";
+import { ClientVideoSection } from "./ClientVideoSection";
 import { IterationOneSection } from "./IterationOneSection";
+import { IterationThreeSection } from "./IterationThreeSection";
 import { IterationTwoSection } from "./IterationTwoSection";
+import { ManageVideosSection } from "./ManageVideosSection";
 import { TrackDetectionsSection } from "./TrackDetectionsSection";
 import { TrainModelSection } from "./TrainModelSection";
 
@@ -35,6 +40,13 @@ type DesignDecisionsSectionProps = {
   inferenceImages: string[];
   trackerV1: string;
   trackerV4: string;
+  clientVideo: string;
+  iterationThreeDesktopImage: string;
+  iterationThreeMobileImage: string;
+  aiDetectionsVideo: string;
+  manageVideosDesktopImage: string;
+  manageVideosMobileImage: string;
+  mapDemoVideo: string;
 };
 
 function clamp(value: number) {
@@ -109,11 +121,24 @@ export function DesignDecisionsSection({
   inferenceImages,
   trackerV1,
   trackerV4,
+  clientVideo,
+  iterationThreeDesktopImage,
+  iterationThreeMobileImage,
+  aiDetectionsVideo,
+  manageVideosDesktopImage,
+  manageVideosMobileImage,
+  mapDemoVideo,
 }: DesignDecisionsSectionProps) {
   const developStageRef = useRef<HTMLDivElement>(null);
   const trainIterationRef = useRef<HTMLDivElement>(null);
+  const trackerClientRef = useRef<HTMLDivElement>(null);
+  const iterationAiRef = useRef<HTMLDivElement>(null);
+  const manageMapRef = useRef<HTMLDivElement>(null);
   const stageProgress = useStickyStageProgress(developStageRef, isInteractive);
   const { progress: trainIterationProgress } = useCrossfadeScroll(trainIterationRef, isInteractive);
+  const { progress: trackerClientProgress } = useCrossfadeScroll(trackerClientRef, isInteractive);
+  const { progress: iterationAiProgress } = useCrossfadeScroll(iterationAiRef, isInteractive);
+  const { progress: manageMapProgress } = useCrossfadeScroll(manageMapRef, isInteractive);
   const firstTransitionProgress = clamp(stageProgress / 0.28);
   const secondTransitionProgress = clamp((stageProgress - 0.58) / 0.28);
   const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
@@ -224,7 +249,113 @@ export function DesignDecisionsSection({
         </div>
       </div>
 
-      <TrackDetectionsSection v1Video={trackerV1} v4Video={trackerV4} />
+      <div
+        className={`bishop-tracker-client-wrapper ${isInteractive ? "" : "bishop-tracker-client-wrapper-normal"}`}
+        ref={trackerClientRef}
+      >
+        <div className="bishop-tracker-client-content">
+          <div
+            className="bishop-tracker-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: 1 - trackerClientProgress,
+                    pointerEvents: trackerClientProgress < 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <TrackDetectionsSection v1Video={trackerV1} v4Video={trackerV4} />
+          </div>
+          <div
+            className="bishop-client-video-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: trackerClientProgress,
+                    pointerEvents: trackerClientProgress > 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <ClientVideoSection video={clientVideo} />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`bishop-iteration-ai-wrapper ${isInteractive ? "" : "bishop-iteration-ai-wrapper-normal"}`}
+        ref={iterationAiRef}
+      >
+        <div className="bishop-iteration-ai-content">
+          <div
+            className="bishop-iteration-three-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: 1 - iterationAiProgress,
+                    pointerEvents: iterationAiProgress < 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <IterationThreeSection
+              desktopImage={iterationThreeDesktopImage}
+              mobileImage={iterationThreeMobileImage}
+            />
+          </div>
+          <div
+            className="bishop-ai-detections-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: iterationAiProgress,
+                    pointerEvents: iterationAiProgress > 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <AiDetectionsSection video={aiDetectionsVideo} />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`bishop-manage-map-wrapper ${isInteractive ? "" : "bishop-manage-map-wrapper-normal"}`}
+        ref={manageMapRef}
+      >
+        <div className="bishop-manage-map-content">
+          <div
+            className="bishop-manage-videos-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: 1 - manageMapProgress,
+                    pointerEvents: manageMapProgress < 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <ManageVideosSection
+              desktopImage={manageVideosDesktopImage}
+              mobileImage={manageVideosMobileImage}
+            />
+          </div>
+          <div
+            className="bishop-associate-detections-transition-panel"
+            style={
+              isInteractive
+                ? {
+                    opacity: manageMapProgress,
+                    pointerEvents: manageMapProgress > 0.5 ? "auto" : "none",
+                  }
+                : undefined
+            }
+          >
+            <AssociateDetectionsSection video={mapDemoVideo} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

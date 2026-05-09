@@ -198,6 +198,13 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         inferenceImages={bishopMediaAssets.inferenceFrames}
         trackerV1={bishopMediaAssets.trackerV1}
         trackerV4={bishopMediaAssets.trackerV4}
+        clientVideo={bishopMediaAssets.clientVideo}
+        iterationThreeDesktopImage={bishopMediaAssets.iterationThreeDesktop}
+        iterationThreeMobileImage={bishopMediaAssets.iterationThreeMobile}
+        aiDetectionsVideo={bishopMediaAssets.aiDetections}
+        manageVideosDesktopImage={bishopMediaAssets.manageVideosDesktop}
+        manageVideosMobileImage={bishopMediaAssets.manageVideosMobile}
+        mapDemoVideo={bishopMediaAssets.mapDemo}
       />
     </section>
   );

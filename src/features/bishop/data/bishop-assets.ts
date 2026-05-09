@@ -11,6 +11,9 @@ export const bishopMediaAssets = {
     "/assets/videos/bishop_demo_slowed.mp4",
     "/assets/images/bishop/annotate.mp4",
     "/assets/images/bishop/mobile_annotate.mp4",
+    "/assets/images/bishop/client_video.mp4",
+    "/assets/images/bishop/ai_detections.mp4",
+    "/assets/images/bishop/map_demo.mp4",
   ],
   researchCarousel: [
     {

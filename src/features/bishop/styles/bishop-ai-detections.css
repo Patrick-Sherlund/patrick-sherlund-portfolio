@@ -1,0 +1,109 @@
+.bishop-iteration-ai-wrapper {
+  width: 100%;
+  height: 300vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-iteration-ai-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.bishop-iteration-three-transition-panel,
+.bishop-ai-detections-transition-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.1s linear;
+}
+
+.bishop-iteration-ai-wrapper-normal {
+  height: auto;
+}
+
+.bishop-iteration-ai-wrapper-normal .bishop-iteration-ai-content {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.bishop-iteration-ai-wrapper-normal .bishop-iteration-three-transition-panel,
+.bishop-iteration-ai-wrapper-normal .bishop-ai-detections-transition-panel {
+  position: relative;
+  inset: auto;
+  height: auto;
+}
+
+.bishop-ai-detections-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 156px 32px 76px;
+}
+
+.bishop-ai-detections-content {
+  width: min(100%, 920px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-ai-detections-title {
+  align-self: stretch;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(28px, 2.75vw, 36px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #111111;
+  letter-spacing: 0;
+  margin: 0 0 54px;
+}
+
+.bishop-ai-detections-title strong {
+  font-weight: 700;
+}
+
+.bishop-ai-detections-video {
+  width: min(100%, 780px, calc((100vh - 298px) * 1.4111));
+  aspect-ratio: 1016 / 720;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: #050712;
+}
+
+@media (max-width: 900px) {
+  .bishop-ai-detections-section {
+    padding: 150px 24px 70px;
+  }
+
+  .bishop-ai-detections-title {
+    font-size: clamp(26px, 4.25vw, 34px);
+    margin-bottom: 42px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-ai-detections-section {
+    min-height: 100vh;
+    align-items: center;
+    padding: 72px 18px;
+  }
+
+  .bishop-ai-detections-title {
+    font-size: clamp(25px, 7vw, 31px);
+    margin-bottom: 32px;
+  }
+
+  .bishop-ai-detections-video {
+    width: calc(100vw - 36px);
+  }
+}
