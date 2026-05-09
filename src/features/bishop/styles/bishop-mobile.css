@@ -461,7 +461,10 @@
   }
 
   .bishop-persona-carousel-card {
-    max-height: 190px;
+    height: 190px;
+    width: auto;
+    aspect-ratio: 1307 / 799;
+    object-fit: contain;
     border-radius: 10px;
   }
 
@@ -801,6 +804,6 @@
   }
 
   .bishop-persona-carousel-card {
-    max-height: 168px;
+    height: 168px;
   }
 }

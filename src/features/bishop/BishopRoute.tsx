@@ -28,10 +28,25 @@ export function BishopRoute() {
       document.head.appendChild(link);
     });
 
+    bishopMediaAssets.personaCarousel.forEach((asset) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = asset.src;
+      document.head.appendChild(link);
+    });
+
     return () => {
       const preloadLinks = document.querySelectorAll('link[rel="preload"][as="video"]');
       preloadLinks.forEach((link) => {
         if (bishopMediaAssets.videos.some((url) => link.getAttribute("href") === url)) {
+          link.remove();
+        }
+      });
+
+      const imagePreloadLinks = document.querySelectorAll('link[rel="preload"][as="image"]');
+      imagePreloadLinks.forEach((link) => {
+        if (bishopMediaAssets.personaCarousel.some((asset) => link.getAttribute("href") === asset.src)) {
           link.remove();
         }
       });

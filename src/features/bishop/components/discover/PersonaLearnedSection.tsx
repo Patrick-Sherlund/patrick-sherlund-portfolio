@@ -69,6 +69,10 @@ export function PersonaLearnedSection({
                       src={persona.src}
                       alt={`Persona ${(index % personaAssets.length) + 1}`}
                       className={`bishop-persona-carousel-card ${isEven ? "offset-top" : "offset-bottom"}`}
+                      width={1307}
+                      height={799}
+                      loading="eager"
+                      decoding="async"
                     />
                   );
                 }
