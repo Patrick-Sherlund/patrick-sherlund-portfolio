@@ -184,6 +184,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         iterationSubtitle={bishopContent.iterationOne.subtitle}
         iterationHeadline={bishopContent.iterationOne.headline}
         papers={bishopMediaAssets.researchPapers}
+        magnifierImage={bishopMediaAssets.magnifyingGlass}
         annotateHeadline={bishopContent.iterationOne.annotateHeadline}
         annotateImage={bishopMediaAssets.annotateImage}
         annotateVideo={bishopMediaAssets.annotateVideo}
@@ -195,6 +196,8 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         iterationTwoSummary={bishopContent.iterationTwo.summary}
         iterationTwoHeadline={bishopContent.iterationTwo.headline}
         inferenceImages={bishopMediaAssets.inferenceFrames}
+        trackerV1={bishopMediaAssets.trackerV1}
+        trackerV4={bishopMediaAssets.trackerV4}
       />
     </section>
   );

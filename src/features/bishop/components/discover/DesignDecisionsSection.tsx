@@ -4,6 +4,7 @@ import { useCrossfadeScroll } from "../../hooks/useCrossfadeScroll";
 import { AnnotateSegmentationsSection } from "./AnnotateSegmentationsSection";
 import { IterationOneSection } from "./IterationOneSection";
 import { IterationTwoSection } from "./IterationTwoSection";
+import { TrackDetectionsSection } from "./TrackDetectionsSection";
 import { TrainModelSection } from "./TrainModelSection";
 
 type DesignDecisionGroup = {
@@ -20,6 +21,7 @@ type DesignDecisionsSectionProps = {
   iterationSubtitle: string;
   iterationHeadline: ReactNode;
   papers: string[];
+  magnifierImage: string;
   annotateHeadline: ReactNode;
   annotateImage: string;
   annotateVideo: string;
@@ -31,6 +33,8 @@ type DesignDecisionsSectionProps = {
   iterationTwoSummary: ReactNode;
   iterationTwoHeadline: ReactNode;
   inferenceImages: string[];
+  trackerV1: string;
+  trackerV4: string;
 };
 
 function clamp(value: number) {
@@ -91,6 +95,7 @@ export function DesignDecisionsSection({
   iterationSubtitle,
   iterationHeadline,
   papers,
+  magnifierImage,
   annotateHeadline,
   annotateImage,
   annotateVideo,
@@ -102,6 +107,8 @@ export function DesignDecisionsSection({
   iterationTwoSummary,
   iterationTwoHeadline,
   inferenceImages,
+  trackerV1,
+  trackerV4,
 }: DesignDecisionsSectionProps) {
   const developStageRef = useRef<HTMLDivElement>(null);
   const trainIterationRef = useRef<HTMLDivElement>(null);
@@ -112,6 +119,10 @@ export function DesignDecisionsSection({
   const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
   const gatherOpacity = isInteractive ? 1 - secondTransitionProgress : undefined;
   const annotateOpacity = isInteractive ? secondTransitionProgress : undefined;
+  const gatherPointerEvents =
+    isInteractive && gatherOpacity !== undefined && gatherOpacity > 0.08
+      ? "auto"
+      : "none";
 
   return (
     <div className="bishop-develop-iteration-wrapper" ref={sectionRef}>
@@ -149,7 +160,7 @@ export function DesignDecisionsSection({
             className="bishop-iteration-one-panel"
             style={
               isInteractive
-                ? { opacity: gatherOpacity, pointerEvents: stageProgress > 0.18 && stageProgress < 0.9 ? "auto" : "none" }
+                ? { opacity: gatherOpacity, pointerEvents: gatherPointerEvents }
                 : undefined
             }
           >
@@ -158,6 +169,8 @@ export function DesignDecisionsSection({
               subtitle={iterationSubtitle}
               headline={iterationHeadline}
               papers={papers}
+              magnifierImage={magnifierImage}
+              isPanelVisible={!isInteractive || (gatherOpacity !== undefined && gatherOpacity > 0.7)}
             />
           </div>
 
@@ -210,6 +223,8 @@ export function DesignDecisionsSection({
           </div>
         </div>
       </div>
+
+      <TrackDetectionsSection v1Video={trackerV1} v4Video={trackerV4} />
     </div>
   );
 }

@@ -1,0 +1,207 @@
+.bishop-track-detections-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 218px 32px 72px;
+}
+
+.bishop-track-detections-content {
+  width: min(100%, 1040px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-track-detections-title {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(24px, 2.3vw, 34px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0 0 54px;
+}
+
+.bishop-track-detections-title strong {
+  font-weight: 700;
+}
+
+.bishop-tracker-comparison {
+  --tracker-slider-position: 50%;
+  position: relative;
+  width: min(100%, 860px);
+  aspect-ratio: 16 / 10;
+  border: 4px solid #111111;
+  background-color: #111111;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.bishop-tracker-comparison:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 8px;
+}
+
+.bishop-tracker-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.bishop-tracker-video-base {
+  z-index: 1;
+}
+
+.bishop-tracker-video-after {
+  z-index: 2;
+  clip-path: polygon(var(--tracker-slider-position) 0, 100% 0, 100% 100%, var(--tracker-slider-position) 100%);
+}
+
+.bishop-tracker-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--tracker-slider-position);
+  z-index: 3;
+  width: 7px;
+  background: linear-gradient(
+    90deg,
+    #111111 0,
+    #111111 3px,
+    #ffffff 3px,
+    #ffffff 4px,
+    #111111 4px,
+    #111111 7px
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bishop-tracker-handle {
+  position: absolute;
+  left: var(--tracker-slider-position);
+  top: 50%;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 5px rgba(17, 17, 17, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bishop-tracker-handle span,
+.bishop-tracker-handle::before,
+.bishop-tracker-handle::after {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #8f8f8f;
+  content: "";
+  display: block;
+}
+
+.bishop-tracker-handle {
+  gap: 3px;
+}
+
+.bishop-tracker-label {
+  position: absolute;
+  top: -36px;
+  z-index: 5;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: #111111;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.bishop-tracker-label-left {
+  left: 23%;
+  transform: translateX(-50%);
+}
+
+.bishop-tracker-label-right {
+  left: 77%;
+  transform: translateX(-50%);
+}
+
+.bishop-track-detections-caption {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(24px, 2.25vw, 34px);
+  font-weight: 400;
+  line-height: 1.16;
+  color: #111111;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 16px 0 0;
+}
+
+@media (max-width: 900px) {
+  .bishop-track-detections-section {
+    padding: 176px 24px 70px;
+  }
+
+  .bishop-track-detections-title {
+    margin-bottom: 50px;
+  }
+
+  .bishop-tracker-comparison {
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-track-detections-section {
+    min-height: auto;
+    padding: 132px 18px 72px;
+  }
+
+  .bishop-track-detections-title {
+    font-size: clamp(26px, 7.6vw, 32px);
+    margin-bottom: 38px;
+  }
+
+  .bishop-tracker-comparison {
+    width: calc(100vw - 36px);
+    aspect-ratio: 16 / 10;
+    border-width: 2px;
+  }
+
+  .bishop-tracker-label {
+    top: -28px;
+    font-size: 19px;
+  }
+
+  .bishop-tracker-handle {
+    width: 30px;
+    height: 30px;
+    gap: 2px;
+  }
+
+  .bishop-tracker-handle span,
+  .bishop-tracker-handle::before,
+  .bishop-tracker-handle::after {
+    width: 3px;
+    height: 3px;
+  }
+
+  .bishop-track-detections-caption {
+    font-size: clamp(22px, 6.3vw, 28px);
+    margin-top: 14px;
+  }
+}

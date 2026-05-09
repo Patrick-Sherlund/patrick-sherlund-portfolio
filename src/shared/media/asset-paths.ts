@@ -62,6 +62,7 @@ export const bishopAssets = {
     "/assets/images/bishop/research_paper_6.png",
     "/assets/images/bishop/research_paper_7.png",
   ],
+  magnifyingGlass: "/assets/images/bishop/magnifying_glass.png",
   annotateImage: "/assets/images/bishop/annotate_image.png",
   annotateVideo: "/assets/images/bishop/annotate.mp4",
   annotateMobileImage: "/assets/images/bishop/mobile_annotate.png",
@@ -76,4 +77,6 @@ export const bishopAssets = {
     "/assets/images/bishop/inference_6.png",
     "/assets/images/bishop/inference_7.png",
   ],
+  trackerV1: "/assets/images/bishop/v1_tracker.mp4",
+  trackerV4: "/assets/images/bishop/v4_tracker.mp4",
 };

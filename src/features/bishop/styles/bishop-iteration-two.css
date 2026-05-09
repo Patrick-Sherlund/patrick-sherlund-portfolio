@@ -12,7 +12,7 @@
   width: min(100%, 1180px);
   min-height: calc(100vh - 210px);
   display: grid;
-  grid-template-rows: auto minmax(96px, 0.72fr) auto minmax(250px, 0.95fr);
+  grid-template-rows: auto minmax(56px, 0.45fr) auto minmax(292px, 1.08fr);
   align-items: center;
 }
 
@@ -68,7 +68,7 @@
   color: #111111;
   text-align: center;
   letter-spacing: 0;
-  margin: 36px 0 34px;
+  margin: 32px 0 28px;
 }
 
 .bishop-iteration-two-headline strong {
@@ -80,7 +80,7 @@
   align-self: start;
   justify-self: center;
   width: min(1120px, 100vw);
-  height: clamp(190px, 24vw, 280px);
+  height: clamp(220px, 27vw, 320px);
   overflow: visible;
 }
 
@@ -89,9 +89,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(150px, 20vw, 300px);
+  width: clamp(170px, 22vw, 330px);
   height: auto;
-  max-height: clamp(150px, 20vw, 300px);
+  max-height: clamp(170px, 22vw, 330px);
   object-fit: cover;
   transform-origin: center center;
   border-radius: 3px;
