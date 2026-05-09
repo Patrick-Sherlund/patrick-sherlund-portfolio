@@ -66,6 +66,15 @@
     padding: 64px 18px 56px;
   }
 
+  .bishop-train-iteration-content,
+  .bishop-tracker-client-content,
+  .bishop-iteration-ai-content,
+  .bishop-manage-map-content {
+    overflow-anchor: none;
+    height: 100svh;
+    min-height: 620px;
+  }
+
   .bishop-mrs-title,
   .bishop-cv-title,
   .bishop-context-title-text,
@@ -289,7 +298,11 @@
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-persona-learned-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-problem-success-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-proposed-proved-content,
-  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-iteration-content {
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-iteration-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-train-iteration-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-tracker-client-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-iteration-ai-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-manage-map-content {
     position: fixed;
     top: 0;
     left: 0;
@@ -372,6 +385,14 @@
     height: 400svh;
   }
 
+  .bishop-train-iteration-wrapper,
+  .bishop-tracker-client-wrapper,
+  .bishop-iteration-ai-wrapper,
+  .bishop-manage-map-wrapper {
+    overflow-anchor: none;
+    height: 300svh;
+  }
+
   .bishop-context-panel,
   .bishop-research-panel,
   .bishop-persona-panel,
@@ -385,6 +406,12 @@
   .bishop-annotate-transition-panel,
   .bishop-train-model-transition-panel,
   .bishop-iteration-two-transition-panel,
+  .bishop-tracker-transition-panel,
+  .bishop-client-video-transition-panel,
+  .bishop-iteration-three-transition-panel,
+  .bishop-ai-detections-transition-panel,
+  .bishop-manage-videos-transition-panel,
+  .bishop-associate-detections-transition-panel,
   .bishop-annotate-segmentations-panel {
     max-width: 100%;
     padding-left: 18px;

@@ -79,6 +79,14 @@
   }
 
   .bishop-manage-videos-media {
-    width: calc(100vw - 36px);
+    width: min(100%, calc(100vw - 36px));
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bishop-manage-videos-image {
+    width: 100%;
+    max-width: 100%;
   }
 }

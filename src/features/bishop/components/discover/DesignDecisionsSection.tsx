@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useCrossfadeScroll } from "../../hooks/useCrossfadeScroll";
+import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
 import { AiDetectionsSection } from "./AiDetectionsSection";
 import { AnnotateSegmentationsSection } from "./AnnotateSegmentationsSection";
 import { AssociateDetectionsSection } from "./AssociateDetectionsSection";
@@ -139,6 +140,11 @@ export function DesignDecisionsSection({
   const { progress: trackerClientProgress } = useCrossfadeScroll(trackerClientRef, isInteractive);
   const { progress: iterationAiProgress } = useCrossfadeScroll(iterationAiRef, isInteractive);
   const { progress: manageMapProgress } = useCrossfadeScroll(manageMapRef, isInteractive);
+  const isDevelopStageMobilePinned = useMobilePinnedSection(developStageRef, isInteractive);
+  const isTrainIterationMobilePinned = useMobilePinnedSection(trainIterationRef, isInteractive);
+  const isTrackerClientMobilePinned = useMobilePinnedSection(trackerClientRef, isInteractive);
+  const isIterationAiMobilePinned = useMobilePinnedSection(iterationAiRef, isInteractive);
+  const isManageMapMobilePinned = useMobilePinnedSection(manageMapRef, isInteractive);
   const firstTransitionProgress = clamp(stageProgress / 0.28);
   const secondTransitionProgress = clamp((stageProgress - 0.58) / 0.28);
   const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
@@ -151,7 +157,10 @@ export function DesignDecisionsSection({
 
   return (
     <div className="bishop-develop-iteration-wrapper" ref={sectionRef}>
-      <div className="bishop-develop-sticky-stage" ref={developStageRef}>
+      <div
+        className={`bishop-develop-sticky-stage ${isDevelopStageMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
+        ref={developStageRef}
+      >
         <div className="bishop-develop-iteration-content">
           <div
             className="bishop-design-decisions-panel"
@@ -218,7 +227,10 @@ export function DesignDecisionsSection({
         </div>
       </div>
 
-      <div className="bishop-train-iteration-wrapper" ref={trainIterationRef}>
+      <div
+        className={`bishop-train-iteration-wrapper ${isTrainIterationMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
+        ref={trainIterationRef}
+      >
         <div className="bishop-train-iteration-content">
           <div
             className="bishop-train-model-transition-panel"
@@ -250,7 +262,7 @@ export function DesignDecisionsSection({
       </div>
 
       <div
-        className={`bishop-tracker-client-wrapper ${isInteractive ? "" : "bishop-tracker-client-wrapper-normal"}`}
+        className={`bishop-tracker-client-wrapper ${isInteractive ? "" : "bishop-tracker-client-wrapper-normal"} ${isTrackerClientMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={trackerClientRef}
       >
         <div className="bishop-tracker-client-content">
@@ -284,7 +296,7 @@ export function DesignDecisionsSection({
       </div>
 
       <div
-        className={`bishop-iteration-ai-wrapper ${isInteractive ? "" : "bishop-iteration-ai-wrapper-normal"}`}
+        className={`bishop-iteration-ai-wrapper ${isInteractive ? "" : "bishop-iteration-ai-wrapper-normal"} ${isIterationAiMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={iterationAiRef}
       >
         <div className="bishop-iteration-ai-content">
@@ -321,7 +333,7 @@ export function DesignDecisionsSection({
       </div>
 
       <div
-        className={`bishop-manage-map-wrapper ${isInteractive ? "" : "bishop-manage-map-wrapper-normal"}`}
+        className={`bishop-manage-map-wrapper ${isInteractive ? "" : "bishop-manage-map-wrapper-normal"} ${isManageMapMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={manageMapRef}
       >
         <div className="bishop-manage-map-content">
