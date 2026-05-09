@@ -67,4 +67,13 @@ export const bishopAssets = {
   annotateMobileImage: "/assets/images/bishop/mobile_annotate.png",
   annotateMobileVideo: "/assets/images/bishop/mobile_annotate.mp4",
   trainModel: "/assets/images/bishop/ml_train.png",
+  inferenceFrames: [
+    "/assets/images/bishop/inference_1.png",
+    "/assets/images/bishop/inference_2.png",
+    "/assets/images/bishop/inference_3.png",
+    "/assets/images/bishop/inference_4.png",
+    "/assets/images/bishop/inference_5.png",
+    "/assets/images/bishop/inference_6.png",
+    "/assets/images/bishop/inference_7.png",
+  ],
 };

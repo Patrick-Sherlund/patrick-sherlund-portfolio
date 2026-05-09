@@ -38,11 +38,11 @@
   height: auto;
 }
 
-.bishop-page-normal .bishop-annotate-train-wrapper {
+.bishop-page-normal .bishop-train-iteration-wrapper {
   height: auto;
 }
 
-.bishop-page-normal .bishop-annotate-train-content {
+.bishop-page-normal .bishop-train-iteration-content {
   position: relative;
   top: auto;
   height: auto;
@@ -50,7 +50,8 @@
 }
 
 .bishop-page-normal .bishop-annotate-transition-panel,
-.bishop-page-normal .bishop-train-model-transition-panel {
+.bishop-page-normal .bishop-train-model-transition-panel,
+.bishop-page-normal .bishop-iteration-two-transition-panel {
   position: relative;
   inset: auto;
   height: auto;
@@ -81,6 +82,9 @@
 .bishop-page-normal .bishop-proved-panel,
 .bishop-page-normal .bishop-design-decisions-panel,
 .bishop-page-normal .bishop-iteration-one-panel,
+.bishop-page-normal .bishop-annotate-transition-panel,
+.bishop-page-normal .bishop-train-model-transition-panel,
+.bishop-page-normal .bishop-iteration-two-transition-panel,
 .bishop-page-normal .bishop-annotate-segmentations-panel {
   position: relative;
   min-height: 100vh;
@@ -109,6 +113,9 @@
 .bishop-page-normal .bishop-proved-panel > *,
 .bishop-page-normal .bishop-design-decisions-panel > *,
 .bishop-page-normal .bishop-iteration-one-panel > *,
+.bishop-page-normal .bishop-annotate-transition-panel > *,
+.bishop-page-normal .bishop-train-model-transition-panel > *,
+.bishop-page-normal .bishop-iteration-two-transition-panel > *,
 .bishop-page-normal .bishop-annotate-segmentations-panel > * {
   max-width: 1400px;
 }
@@ -254,6 +261,9 @@
   .bishop-page-normal .bishop-proved-panel,
   .bishop-page-normal .bishop-design-decisions-panel,
   .bishop-page-normal .bishop-iteration-one-panel,
+  .bishop-page-normal .bishop-annotate-transition-panel,
+  .bishop-page-normal .bishop-train-model-transition-panel,
+  .bishop-page-normal .bishop-iteration-two-transition-panel,
   .bishop-page-normal .bishop-annotate-segmentations-panel {
     padding: 80px 24px;
   }

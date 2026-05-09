@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useCrossfadeScroll } from "../../hooks/useCrossfadeScroll";
 import { AnnotateSegmentationsSection } from "./AnnotateSegmentationsSection";
 import { IterationOneSection } from "./IterationOneSection";
+import { IterationTwoSection } from "./IterationTwoSection";
 import { TrainModelSection } from "./TrainModelSection";
 
 type DesignDecisionGroup = {
@@ -13,8 +14,6 @@ type DesignDecisionGroup = {
 type DesignDecisionsSectionProps = {
   sectionRef: React.RefObject<HTMLDivElement | null>;
   isInteractive: boolean;
-  isMobilePinned: boolean;
-  progress: number;
   title: string;
   groups: DesignDecisionGroup[];
   iterationTitle: string;
@@ -27,13 +26,65 @@ type DesignDecisionsSectionProps = {
   annotateMobileImage: string;
   annotateMobileVideo: string;
   trainModelImage: string;
+  iterationTwoTitle: string;
+  iterationTwoSubtitle: string;
+  iterationTwoSummary: ReactNode;
+  iterationTwoHeadline: ReactNode;
+  inferenceImages: string[];
 };
+
+function clamp(value: number) {
+  return Math.min(Math.max(value, 0), 1);
+}
+
+function useStickyStageProgress(ref: React.RefObject<HTMLElement | null>, enabled: boolean) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!enabled) {
+      setProgress(0);
+      return;
+    }
+
+    const handleScroll = () => {
+      const element = ref.current;
+      if (!element) {
+        return;
+      }
+
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const scrollableDistance = Math.max(rect.height - viewportHeight, viewportHeight);
+
+      if (rect.top > 0) {
+        setProgress(0);
+        return;
+      }
+
+      if (rect.bottom <= viewportHeight) {
+        setProgress(1);
+        return;
+      }
+
+      setProgress(clamp(Math.abs(rect.top) / scrollableDistance));
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [enabled, ref]);
+
+  return progress;
+}
 
 export function DesignDecisionsSection({
   sectionRef,
   isInteractive,
-  isMobilePinned,
-  progress,
   title,
   groups,
   iterationTitle,
@@ -46,19 +97,29 @@ export function DesignDecisionsSection({
   annotateMobileImage,
   annotateMobileVideo,
   trainModelImage,
+  iterationTwoTitle,
+  iterationTwoSubtitle,
+  iterationTwoSummary,
+  iterationTwoHeadline,
+  inferenceImages,
 }: DesignDecisionsSectionProps) {
-  const annotateTrainRef = useRef<HTMLDivElement>(null);
-  const designProgress = Math.min(progress * 2, 1);
-  const gatherOpacity = isInteractive ? designProgress : undefined;
-  const { progress: annotateTrainProgress } = useCrossfadeScroll(annotateTrainRef, isInteractive);
+  const developStageRef = useRef<HTMLDivElement>(null);
+  const trainIterationRef = useRef<HTMLDivElement>(null);
+  const stageProgress = useStickyStageProgress(developStageRef, isInteractive);
+  const { progress: trainIterationProgress } = useCrossfadeScroll(trainIterationRef, isInteractive);
+  const firstTransitionProgress = clamp(stageProgress / 0.28);
+  const secondTransitionProgress = clamp((stageProgress - 0.58) / 0.28);
+  const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
+  const gatherOpacity = isInteractive ? 1 - secondTransitionProgress : undefined;
+  const annotateOpacity = isInteractive ? secondTransitionProgress : undefined;
 
   return (
-    <div className={`bishop-develop-iteration-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
-      <div className="bishop-develop-sticky-stage">
+    <div className="bishop-develop-iteration-wrapper" ref={sectionRef}>
+      <div className="bishop-develop-sticky-stage" ref={developStageRef}>
         <div className="bishop-develop-iteration-content">
           <div
             className="bishop-design-decisions-panel"
-            style={isInteractive ? { opacity: 1 - designProgress } : undefined}
+            style={isInteractive ? { opacity: designOpacity } : undefined}
           >
             <section className="bishop-design-decisions-section">
               <div className="bishop-design-decisions-content">
@@ -88,7 +149,7 @@ export function DesignDecisionsSection({
             className="bishop-iteration-one-panel"
             style={
               isInteractive
-                ? { opacity: gatherOpacity, pointerEvents: progress > 0.25 ? "auto" : "none" }
+                ? { opacity: gatherOpacity, pointerEvents: stageProgress > 0.18 && stageProgress < 0.9 ? "auto" : "none" }
                 : undefined
             }
           >
@@ -99,14 +160,14 @@ export function DesignDecisionsSection({
               papers={papers}
             />
           </div>
-        </div>
-      </div>
 
-      <div className="bishop-annotate-train-wrapper" ref={annotateTrainRef}>
-        <div className="bishop-annotate-train-content">
           <div
             className="bishop-annotate-transition-panel"
-            style={isInteractive ? { opacity: 1 - annotateTrainProgress } : undefined}
+            style={
+              isInteractive
+                ? { opacity: annotateOpacity, pointerEvents: stageProgress > 0.72 ? "auto" : "none" }
+                : undefined
+            }
           >
             <AnnotateSegmentationsSection
               headline={annotateHeadline}
@@ -116,16 +177,36 @@ export function DesignDecisionsSection({
               mobileVideo={annotateMobileVideo}
             />
           </div>
+        </div>
+      </div>
 
+      <div className="bishop-train-iteration-wrapper" ref={trainIterationRef}>
+        <div className="bishop-train-iteration-content">
           <div
             className="bishop-train-model-transition-panel"
             style={
               isInteractive
-                ? { opacity: annotateTrainProgress, pointerEvents: annotateTrainProgress > 0.5 ? "auto" : "none" }
+                ? { opacity: 1 - trainIterationProgress, pointerEvents: trainIterationProgress < 0.5 ? "auto" : "none" }
                 : undefined
             }
           >
             <TrainModelSection image={trainModelImage} />
+          </div>
+          <div
+            className="bishop-iteration-two-transition-panel"
+            style={
+              isInteractive
+                ? { opacity: trainIterationProgress, pointerEvents: trainIterationProgress > 0.5 ? "auto" : "none" }
+                : undefined
+            }
+          >
+            <IterationTwoSection
+              title={iterationTwoTitle}
+              subtitle={iterationTwoSubtitle}
+              summary={iterationTwoSummary}
+              headline={iterationTwoHeadline}
+              images={inferenceImages}
+            />
           </div>
         </div>
       </div>

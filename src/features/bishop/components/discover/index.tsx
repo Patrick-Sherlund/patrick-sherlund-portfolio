@@ -41,12 +41,10 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
     useCrossfadeScroll(personaLearnedRef, isInteractive);
   const { progress: problemSuccessProgress } = useCrossfadeScroll(problemSuccessRef, isInteractive);
   const { progress: proposedProvedProgress } = useCrossfadeScroll(proposedProvedRef, isInteractive);
-  const { progress: developIterationProgress } = useCrossfadeScroll(developStartRef, isInteractive);
   const isContextResearchMobilePinned = useMobilePinnedSection(contextResearchRef, isInteractive);
   const isPersonaLearnedMobilePinned = useMobilePinnedSection(personaLearnedRef, isInteractive);
   const isProblemSuccessMobilePinned = useMobilePinnedSection(problemSuccessRef, isInteractive);
   const isProposedProvedMobilePinned = useMobilePinnedSection(proposedProvedRef, isInteractive);
-  const isDevelopIterationMobilePinned = useMobilePinnedSection(developStartRef, isInteractive);
   const isNormalHeaderMobilePinned = useMobilePinnedSection(sectionRef, !isInteractive);
   const { isHeaderSticky, showCentered } = useStickySection(
     sectionRef,
@@ -180,8 +178,6 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
       <DesignDecisionsSection
         sectionRef={developStartRef}
         isInteractive={isInteractive}
-        isMobilePinned={isDevelopIterationMobilePinned}
-        progress={developIterationProgress}
         title={bishopContent.designDecisions.title}
         groups={bishopContent.designDecisions.groups}
         iterationTitle={bishopContent.iterationOne.title}
@@ -194,6 +190,11 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         annotateMobileImage={bishopMediaAssets.annotateMobileImage}
         annotateMobileVideo={bishopMediaAssets.annotateMobileVideo}
         trainModelImage={bishopMediaAssets.trainModel}
+        iterationTwoTitle={bishopContent.iterationTwo.title}
+        iterationTwoSubtitle={bishopContent.iterationTwo.subtitle}
+        iterationTwoSummary={bishopContent.iterationTwo.summary}
+        iterationTwoHeadline={bishopContent.iterationTwo.headline}
+        inferenceImages={bishopMediaAssets.inferenceFrames}
       />
     </section>
   );

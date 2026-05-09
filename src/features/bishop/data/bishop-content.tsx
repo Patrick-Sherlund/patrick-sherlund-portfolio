@@ -5,11 +5,11 @@ export const bishopContent = {
     timeline: "6 months to MVP",
     team: [
       {
-        role: "Software Engineer",
+        role: "Lead Software Engineer",
         name: "Patrick Sherlund",
       },
       {
-        role: "Product Designer",
+        role: "Lead Product Designer",
         name: "Shelby Reilly :)",
       },
     ],
@@ -224,6 +224,22 @@ export const bishopContent = {
     annotateHeadline: (
       <>
         <strong>Annotate</strong> segmentations within the images
+      </>
+    ),
+  },
+  iterationTwo: {
+    title: "Iteration 2",
+    subtitle: "Week 4 - Detect, Track & Visualize",
+    summary: (
+      <>
+        The design needed to prioritize <strong>scalability</strong>, <strong>efficiency</strong>, and clear{" "}
+        <strong>separation of concerns</strong>, so that video ingest, inference, and visualization could
+        scale independently as usage increased.
+      </>
+    ),
+    headline: (
+      <>
+        <strong>Inference</strong> video frames with the <strong>trained model</strong>
       </>
     ),
   },

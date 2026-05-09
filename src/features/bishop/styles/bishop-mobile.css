@@ -301,8 +301,7 @@
     will-change: transform;
   }
 
-  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-sticky-stage > .bishop-develop-iteration-content,
-  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-annotate-train-wrapper > .bishop-annotate-train-content {
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-sticky-stage > .bishop-develop-iteration-content {
     position: fixed;
     top: 0;
     left: 0;
@@ -370,7 +369,7 @@
 
   .bishop-develop-sticky-stage {
     overflow-anchor: none;
-    height: 300svh;
+    height: 400svh;
   }
 
   .bishop-context-panel,
@@ -383,6 +382,9 @@
   .bishop-proved-panel,
   .bishop-design-decisions-panel,
   .bishop-iteration-one-panel,
+  .bishop-annotate-transition-panel,
+  .bishop-train-model-transition-panel,
+  .bishop-iteration-two-transition-panel,
   .bishop-annotate-segmentations-panel {
     max-width: 100%;
     padding-left: 18px;
@@ -668,6 +670,9 @@
   .bishop-page-normal .bishop-proved-panel,
   .bishop-page-normal .bishop-design-decisions-panel,
   .bishop-page-normal .bishop-iteration-one-panel,
+  .bishop-page-normal .bishop-annotate-transition-panel,
+  .bishop-page-normal .bishop-train-model-transition-panel,
+  .bishop-page-normal .bishop-iteration-two-transition-panel,
   .bishop-page-normal .bishop-annotate-segmentations-panel {
     min-height: 100svh;
     padding: 72px 18px;
