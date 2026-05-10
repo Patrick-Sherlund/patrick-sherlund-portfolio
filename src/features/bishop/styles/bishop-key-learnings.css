@@ -146,6 +146,10 @@
     overflow-anchor: none;
   }
 
+  .bishop-deliver-key-content {
+    height: 100svh;
+  }
+
   .bishop-key-learnings-section {
     min-height: 100svh;
     padding: 116px 24px 58px;

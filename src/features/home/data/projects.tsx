@@ -169,7 +169,7 @@ export const projects: ProjectSummary[] = [
     sectionId: "crusader-section",
     number: "05",
     role: "Senior Software Engineer",
-    yearRange: "2024 - 2026",
+    yearRange: "2024 - 2025",
     title: "CRUSADER",
     subtitle: "Radar Control & Tracking",
     description:
