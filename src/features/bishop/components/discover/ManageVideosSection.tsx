@@ -11,7 +11,7 @@ export function ManageVideosSection({
     <section className="bishop-manage-videos-section">
       <div className="bishop-manage-videos-content">
         <h2 className="bishop-manage-videos-title">
-          <strong>Manage</strong> your video library
+          <strong>Manage</strong> client video library
         </h2>
 
         <picture className="bishop-manage-videos-media">

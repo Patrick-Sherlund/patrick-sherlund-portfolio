@@ -98,13 +98,15 @@
 }
 
 .bishop-discover-header-nav-item.previous {
-  left: 14%;
+  left: clamp(196px, 21vw, 296px);
+  width: min(220px, calc(50vw - 236px));
   opacity: 0.48;
   pointer-events: auto;
 }
 
 .bishop-discover-header-nav-item.next {
-  left: 86%;
+  left: calc(100% - clamp(196px, 21vw, 296px));
+  width: min(220px, calc(50vw - 236px));
   opacity: 0.48;
   pointer-events: auto;
 }
@@ -140,11 +142,20 @@
 .bishop-discover-header-nav-item.previous .bishop-discover-nav-title,
 .bishop-discover-header-nav-item.next .bishop-discover-nav-title {
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bishop-discover-header-nav-item.previous .bishop-discover-nav-subtitle,
 .bishop-discover-header-nav-item.next .bishop-discover-nav-subtitle {
   display: none;
+}
+
+@media (max-width: 980px) {
+  .bishop-discover-header-nav-item.previous,
+  .bishop-discover-header-nav-item.next {
+    width: 160px;
+  }
 }
 
 /* Context Research Section */

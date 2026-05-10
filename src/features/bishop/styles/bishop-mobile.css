@@ -481,6 +481,10 @@
     transform: translateY(-34px);
   }
 
+  .bishop-persona-learned-wrapper .bishop-learned-main-panel {
+    transform: translateY(32px);
+  }
+
   .bishop-persona-section-title {
     margin-top: 0;
     margin-bottom: 28px;
@@ -599,13 +603,13 @@
   }
 
   .bishop-proposed-content {
-    gap: 28px;
-    transform: translateY(18px) !important;
+    gap: 18px;
+    transform: translateY(44px) !important;
   }
 
   .bishop-proposed-layout {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 12px;
     transform: none !important;
   }
 
@@ -618,7 +622,7 @@
   .bishop-process-step {
     flex-direction: row;
     align-items: flex-start;
-    gap: 14px;
+    gap: 10px;
   }
 
   .bishop-step-icon-wrapper {
@@ -627,31 +631,31 @@
   }
 
   .bishop-step-icon {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .bishop-step-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 
   .bishop-step-connector {
     width: 2px;
-    height: 34px;
+    height: 24px;
     margin: 0;
   }
 
   .bishop-step-label {
-    padding-top: 8px;
-    font-size: 13px;
+    padding-top: 5px;
+    font-size: 12px;
     line-height: 1.25;
     text-align: left;
   }
 
   .bishop-process-video-container {
     width: calc(100vw - 36px);
-    max-width: 440px;
+    max-width: 340px;
     max-height: none;
   }
 
