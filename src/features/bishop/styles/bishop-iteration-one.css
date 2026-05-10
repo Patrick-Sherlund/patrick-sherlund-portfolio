@@ -390,13 +390,14 @@
 @media (max-width: 640px) {
   .bishop-iteration-one-section {
     height: 100%;
-    padding: 118px 18px 72px;
+    padding: clamp(92px, 12svh, 118px) 18px 56px;
   }
 
   .bishop-iteration-one-content {
     min-height: 0;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(170px, 0.9fr) auto minmax(230px, 1fr);
   }
 
   .bishop-iteration-one-title {
@@ -408,7 +409,8 @@
   }
 
   .bishop-iteration-one-headline-wrap {
-    margin: 96px 0 50px;
+    align-self: end;
+    margin: 0 0 clamp(24px, 4svh, 38px);
   }
 
   .bishop-iteration-one-headline {
@@ -417,6 +419,7 @@
   }
 
   .bishop-research-paper-carousel {
+    align-self: start;
     height: clamp(220px, 72vw, 320px);
   }
 
