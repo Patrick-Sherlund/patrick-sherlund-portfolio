@@ -40,6 +40,8 @@ export const bishopContent = {
     defineSubtitle: "Frame the MVP",
     developTitle: "03 | Develop",
     developSubtitle: "Iterate & build",
+    deliverTitle: "04 | Deliver",
+    deliverSubtitle: "Ship MVP & validate",
   },
   contextResearch: {
     contextTitle: "Why this started",

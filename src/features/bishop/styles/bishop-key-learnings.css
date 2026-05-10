@@ -1,0 +1,182 @@
+.bishop-deliver-key-wrapper {
+  width: 100%;
+  height: 300vh;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.bishop-deliver-key-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.bishop-deliver-transition-panel,
+.bishop-key-learnings-transition-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.1s linear;
+}
+
+.bishop-deliver-key-wrapper-normal {
+  height: auto;
+}
+
+.bishop-deliver-key-wrapper-normal .bishop-deliver-key-content {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.bishop-deliver-key-wrapper-normal .bishop-deliver-transition-panel,
+.bishop-deliver-key-wrapper-normal .bishop-key-learnings-transition-panel {
+  position: relative;
+  inset: auto;
+  height: auto;
+}
+
+.bishop-key-learnings-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 126px 32px 72px;
+}
+
+.bishop-key-learnings-content {
+  width: min(100%, 980px);
+  min-height: calc(100vh - 198px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bishop-key-learnings-title {
+  margin: 0 0 78px;
+  color: #111111;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(28px, 2.45vw, 34px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.bishop-key-learnings-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 84px);
+  align-items: start;
+}
+
+.bishop-key-learning-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #111111;
+  text-align: center;
+}
+
+.bishop-key-learning-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 12px;
+  color: #111936;
+}
+
+.bishop-key-learning-card h3 {
+  margin: 0 0 10px;
+  color: #4b5563;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+}
+
+.bishop-key-learning-card p {
+  margin: 0;
+  max-width: 250px;
+  color: #111111;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+.bishop-key-learning-card strong {
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .bishop-key-learnings-section {
+    padding: 118px 24px 64px;
+  }
+
+  .bishop-key-learnings-content {
+    min-height: calc(100vh - 182px);
+  }
+
+  .bishop-key-learnings-title {
+    margin-bottom: 58px;
+  }
+
+  .bishop-key-learnings-grid {
+    gap: 28px;
+  }
+
+  .bishop-key-learning-card h3 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-deliver-key-wrapper {
+    height: 300svh;
+    overflow-anchor: none;
+  }
+
+  .bishop-key-learnings-section {
+    min-height: 100svh;
+    padding: 116px 24px 58px;
+  }
+
+  .bishop-key-learnings-content {
+    min-height: calc(100svh - 174px);
+  }
+
+  .bishop-key-learnings-title {
+    margin-bottom: 46px;
+    font-size: clamp(26px, 8vw, 32px);
+  }
+
+  .bishop-key-learnings-grid {
+    max-width: 320px;
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .bishop-key-learning-icon {
+    margin-bottom: 10px;
+  }
+
+  .bishop-key-learning-card h3 {
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+
+  .bishop-key-learning-card p {
+    max-width: 260px;
+    font-size: 12px;
+  }
+}

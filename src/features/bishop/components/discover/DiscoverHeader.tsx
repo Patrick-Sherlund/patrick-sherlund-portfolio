@@ -1,17 +1,21 @@
 import { memo } from "react";
 
+export type DiscoverSectionId = "discover" | "define" | "develop" | "deliver";
+
 type DiscoverHeaderProps = {
   headerRef: React.RefObject<HTMLDivElement | null>;
   isHeaderSticky: boolean;
   showCentered: boolean;
-  currentSection: "discover" | "define" | "develop";
-  onSectionSelect: (section: "discover" | "define" | "develop") => void;
+  currentSection: DiscoverSectionId;
+  onSectionSelect: (section: DiscoverSectionId) => void;
   discoverTitle: string;
   discoverSubtitle: string;
   defineTitle: string;
   defineSubtitle: string;
   developTitle: string;
   developSubtitle: string;
+  deliverTitle: string;
+  deliverSubtitle: string;
 };
 
 const headerSections = [
@@ -30,6 +34,11 @@ const headerSections = [
     titleKey: "developTitle",
     subtitleKey: "developSubtitle",
   },
+  {
+    id: "deliver",
+    titleKey: "deliverTitle",
+    subtitleKey: "deliverSubtitle",
+  },
 ] as const;
 
 export const DiscoverHeader = memo(function DiscoverHeader({
@@ -44,6 +53,8 @@ export const DiscoverHeader = memo(function DiscoverHeader({
   defineSubtitle,
   developTitle,
   developSubtitle,
+  deliverTitle,
+  deliverSubtitle,
 }: DiscoverHeaderProps) {
   const labels = {
     discoverTitle,
@@ -52,6 +63,8 @@ export const DiscoverHeader = memo(function DiscoverHeader({
     defineSubtitle,
     developTitle,
     developSubtitle,
+    deliverTitle,
+    deliverSubtitle,
   };
   const currentIndex = headerSections.findIndex((section) => section.id === currentSection);
 

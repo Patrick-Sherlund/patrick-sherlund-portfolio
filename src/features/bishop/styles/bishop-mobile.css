@@ -152,73 +152,73 @@
   }
 
   .bishop-bubble-image:nth-of-type(3) {
-    top: 8% !important;
-    left: 2% !important;
-    width: 38vw !important;
-    height: 25vw !important;
+    top: 9% !important;
+    left: 5% !important;
+    width: 40vw !important;
+    height: 26vw !important;
   }
 
   .bishop-bubble-image:nth-of-type(4) {
-    top: 7% !important;
+    top: 9% !important;
     left: 55% !important;
-    width: 39vw !important;
-    height: 25vw !important;
+    width: 40vw !important;
+    height: 26vw !important;
   }
 
   .bishop-bubble-image:nth-of-type(5) {
-    top: 68% !important;
-    left: 4% !important;
-    width: 38vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 3% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-bubble-image:nth-of-type(6) {
-    top: 72% !important;
-    left: 55% !important;
-    width: 39vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 35% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-bubble-image:nth-of-type(7) {
-    top: 78% !important;
-    left: 30% !important;
-    width: 40vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 67% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-vision-panel .bishop-bubble-image:nth-of-type(1) {
-    top: 8% !important;
-    left: 2% !important;
-    width: 38vw !important;
-    height: 25vw !important;
+    top: 9% !important;
+    left: 5% !important;
+    width: 40vw !important;
+    height: 26vw !important;
   }
 
   .bishop-vision-panel .bishop-bubble-image:nth-of-type(2) {
-    top: 7% !important;
+    top: 9% !important;
     left: 55% !important;
-    width: 39vw !important;
-    height: 25vw !important;
+    width: 40vw !important;
+    height: 26vw !important;
   }
 
   .bishop-vision-panel .bishop-bubble-image:nth-of-type(3) {
-    top: 68% !important;
-    left: 4% !important;
-    width: 38vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 3% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-vision-panel .bishop-bubble-image:nth-of-type(4) {
-    top: 72% !important;
-    left: 55% !important;
-    width: 39vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 35% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-vision-panel .bishop-bubble-image:nth-of-type(5) {
-    top: 78% !important;
-    left: 30% !important;
-    width: 40vw !important;
-    height: 25vw !important;
+    top: 73% !important;
+    left: 67% !important;
+    width: 30vw !important;
+    height: 20vw !important;
   }
 
   .bishop-users-saw {
@@ -604,30 +604,38 @@
 
   .bishop-proposed-content {
     gap: 18px;
-    transform: translateY(44px) !important;
+    transform: translateY(18px) !important;
   }
 
   .bishop-proposed-layout {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 26px;
     transform: none !important;
   }
 
   .bishop-process-tracker {
-    flex-direction: column;
+    width: min(100%, 340px);
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     gap: 0;
     padding: 0;
+    overflow: visible;
   }
 
   .bishop-process-step {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
+    min-width: 0;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
   }
 
   .bishop-step-icon-wrapper {
-    flex-direction: column;
-    width: auto;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .bishop-step-icon {
@@ -641,21 +649,39 @@
   }
 
   .bishop-step-connector {
-    width: 2px;
-    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 16px);
+    width: calc(100% - 4px);
+    height: 2px;
     margin: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .bishop-step-connector::before {
+    width: calc(var(--progress, 0) * 100%);
+    height: 100%;
   }
 
   .bishop-step-label {
-    padding-top: 5px;
-    font-size: 12px;
-    line-height: 1.25;
-    text-align: left;
+    width: min-content;
+    min-width: 58px;
+    padding-top: 0;
+    font-size: 10.5px;
+    line-height: 1.18;
+    text-align: center;
+    overflow-wrap: normal;
+    text-wrap: balance;
+  }
+
+  .bishop-process-step.active .bishop-step-label {
+    transform: translateY(2px);
   }
 
   .bishop-process-video-container {
-    width: calc(100vw - 36px);
-    max-width: 340px;
+    width: calc(100vw - 24px);
+    max-width: 380px;
     max-height: none;
   }
 

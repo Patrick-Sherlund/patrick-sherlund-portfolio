@@ -31,6 +31,8 @@ export const deviceAssets = {
 export const bishopAssets = {
   logo: "/assets/images/bishop/bishop-logo.png",
   sparkle: "/assets/images/bishop/vision-sparkle.png",
+  sparkleLeft: "/assets/images/bishop/sparkle-left.png",
+  sparkleRight: "/assets/images/bishop/sparkle-right.png",
   bubbles: [
     "/assets/images/bishop/vision-bubble-1.png",
     "/assets/images/bishop/vision-bubble-2.png",

@@ -375,10 +375,10 @@
 @media (max-width: 767px) {
   .bishop-research-magnifier {
     --magnifier-circle-left: 3px;
-    --magnifier-circle-top: 4px;
+    --magnifier-circle-top: 0px;
     --magnifier-circle-size: 45px;
     --magnifier-circle-center-x: 25.5px;
-    --magnifier-circle-center-y: 26.5px;
+    --magnifier-circle-center-y: 22.5px;
     width: 72px;
     height: 82px;
     cursor: grab;
