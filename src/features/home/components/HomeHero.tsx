@@ -140,11 +140,11 @@ export function HomeHero() {
       </div>
 
       <motion.div
-        key="peace-patrick-animation"
+        key={`peace-patrick-animation-${isMobile ? 'mobile' : 'desktop'}`}
         className="peace-patrick-container"
-        initial={isMobile ? { right: '-100%' } : { top: '-100%' }}
+        initial={isMobile ? { right: '-160px' } : { top: '-100%' }}
         animate={isMobile 
-          ? { right: ['-100%', '-5%', '-100%'] }
+          ? { right: ['-160px', '-53px', '-160px'] }
           : { top: ['-100%', '-20%', '-100%'] }
         }
         transition={{
@@ -153,7 +153,7 @@ export function HomeHero() {
         }}
       >
         <img 
-          src={homeAssets.peacePatrick}
+          src={isMobile ? homeAssets.peacePatrickMobile : homeAssets.peacePatrick}
           alt="" 
           className="peace-patrick-image"
         />

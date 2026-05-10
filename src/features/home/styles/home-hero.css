@@ -334,14 +334,13 @@
   .peace-patrick-container {
     left: auto;
     right: auto;
-    top: 38%;
+    top: 164px;
     margin-left: 0;
     transform: translateY(-50%);
   }
 
   .peace-patrick-image {
-    width: 120px;
-    transform: rotate(90deg);
+    width: 132px;
   }
 }
 
@@ -397,7 +396,7 @@
   }
 
   .peace-patrick-container {
-    top: 40%;
+    top: 160px;
   }
 }
 
@@ -454,7 +453,7 @@
   }
 
   .peace-patrick-container {
-    top: 40%;
+    top: 156px;
   }
 }
 
