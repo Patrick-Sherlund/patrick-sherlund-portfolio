@@ -525,7 +525,7 @@
 
 @media (max-width: 768px) {
   .project-page-section {
-    padding: 0;
+    padding: 20px 0;
   }
 
   .project-category-controls-sticky {
@@ -592,6 +592,10 @@
 }
 
 @media (max-width: 576px) {
+  .project-page-section {
+    padding: 24px 0;
+  }
+
   .project-category-controls {
     column-gap: 24px;
   }
