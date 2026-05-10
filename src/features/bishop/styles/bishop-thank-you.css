@@ -3,24 +3,30 @@
   min-height: 100vh;
   background-color: #ffffff;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 126px 32px 72px;
+  padding: 150px 32px 82px;
 }
 
 .bishop-thank-you-content {
-  width: min(100%, 720px);
-  min-height: calc(100vh - 198px);
+  width: min(100%, 980px);
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: #111111;
   text-align: center;
 }
 
-.bishop-thank-you-content h2 {
-  margin: 0 0 34px;
+.bishop-thank-you-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-thank-you-copy h2 {
+  margin: 0 0 26px;
   font-family: "Roboto", sans-serif;
   font-size: clamp(28px, 2.6vw, 36px);
   font-weight: 700;
@@ -28,8 +34,8 @@
   letter-spacing: 0;
 }
 
-.bishop-thank-you-content p {
-  margin: 0 0 30px;
+.bishop-thank-you-copy p {
+  margin: 0 0 22px;
   max-width: 620px;
   color: #374151;
   font-family: "Roboto", sans-serif;
@@ -39,48 +45,264 @@
   letter-spacing: 0;
 }
 
-.bishop-thank-you-content p:nth-of-type(2) {
+.bishop-thank-you-copy p:nth-of-type(2) {
   max-width: 560px;
 }
 
-.bishop-thank-you-content p:nth-of-type(3) {
+.bishop-thank-you-copy p:nth-of-type(3) {
   max-width: 520px;
   color: #4b5563;
 }
 
-.bishop-thank-you-content p:last-child {
+.bishop-thank-you-copy p:last-child {
   margin-bottom: 0;
+}
+
+.bishop-next-case-study {
+  width: min(100%, 760px);
+  margin-top: 46px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(260px, 1fr);
+  gap: 32px;
+  align-items: center;
+  text-align: left;
+}
+
+.bishop-next-case-study-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+  filter: drop-shadow(0 16px 28px rgba(15, 23, 42, 0.14));
+}
+
+.bishop-next-display-screen {
+  position: absolute;
+  top: 3.5%;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  border-radius: 3px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bishop-next-display-screen video {
+  width: 95%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 3px;
+  display: block;
+}
+
+.bishop-next-display-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.bishop-next-case-study-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bishop-next-case-study-text > span {
+  margin-bottom: 10px;
+  color: #6b7280;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bishop-next-case-study-text h3 {
+  margin: 0 0 12px;
+  color: #111111;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.bishop-next-case-study-text h3 small {
+  margin-right: 10px;
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+.bishop-next-case-study-text p {
+  margin: 0 0 14px;
+  color: #374151;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: 0;
+}
+
+.bishop-next-case-study-meta {
+  width: 100%;
+  margin: 0 0 14px;
+  display: grid;
+  gap: 8px;
+  color: #111111;
+  font-family: "Roboto", sans-serif;
+}
+
+.bishop-next-case-study-meta div {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.bishop-next-case-study-meta dt {
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bishop-next-case-study-meta dd {
+  margin: 0;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.bishop-next-case-study-link {
+  margin-top: 2px;
+  min-width: 156px;
+  height: 44px;
+  border: 2px solid #111111;
+  color: #111111;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.bishop-next-case-study-link:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.bishop-next-case-study-arrow {
+  font-size: 18px;
+  line-height: 1;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
   .bishop-thank-you-section {
-    padding: 118px 24px 64px;
+    padding: 140px 24px 64px;
   }
 
-  .bishop-thank-you-content {
-    min-height: calc(100vh - 182px);
+  .bishop-next-case-study {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 440px;
+    text-align: center;
+  }
+
+  .bishop-next-case-study-text {
+    align-items: center;
   }
 }
 
 @media (max-width: 640px) {
   .bishop-thank-you-section {
     min-height: 100svh;
-    padding: 116px 28px 58px;
+    padding: 110px 24px 58px;
   }
 
-  .bishop-thank-you-content {
-    min-height: calc(100svh - 174px);
+  .bishop-thank-you-copy h2 {
+    margin-bottom: 18px;
+    font-size: 24px;
   }
 
-  .bishop-thank-you-content h2 {
-    margin-bottom: 28px;
-    font-size: 28px;
-  }
-
-  .bishop-thank-you-content p {
-    margin-bottom: 26px;
+  .bishop-thank-you-copy p {
+    margin-bottom: 18px;
     max-width: 330px;
-    font-size: 15.5px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.42;
+  }
+
+  .bishop-next-case-study {
+    width: min(100%, 340px);
+    margin-top: 30px;
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .bishop-next-case-study-text > span {
+    margin-bottom: 6px;
+    font-size: 11px;
+  }
+
+  .bishop-next-case-study-text h3 {
+    margin-bottom: 8px;
+    font-size: 22px;
+  }
+
+  .bishop-next-case-study-text p {
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    line-height: 1.36;
+  }
+
+  .bishop-next-case-study-meta {
+    width: min(100%, 300px);
+    margin-bottom: 10px;
+    gap: 6px;
+  }
+
+  .bishop-next-case-study-meta div {
+    grid-template-columns: 76px 1fr;
+    gap: 14px;
+  }
+
+  .bishop-next-case-study-meta dt {
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .bishop-next-case-study-meta dd {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .bishop-next-case-study-text p {
+    max-width: 310px;
+  }
+
+  .bishop-next-case-study-link {
+    height: 40px;
+    min-width: 144px;
   }
 }
