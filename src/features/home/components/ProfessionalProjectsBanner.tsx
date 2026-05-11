@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useTheme } from '@/features/theme/ThemeProvider';
@@ -23,13 +23,8 @@ export function ProfessionalProjectsBanner({
   onCategoryChange,
 }: ProfessionalProjectsBannerProps) {
   const { theme } = useTheme();
-  const stickyControlsRef = useRef<HTMLDivElement | null>(null);
   const [contentFadeProgress, setContentFadeProgress] = useState(0);
   const [stickyFadeProgress, setStickyFadeProgress] = useState(0);
-  const [dimmedStickyTabs, setDimmedStickyTabs] = useState<Record<ProjectCategory, boolean>>({
-    "software-engineering": false,
-    "product-design": false,
-  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,31 +36,6 @@ export function ProfessionalProjectsBanner({
       const newStickyFadeProgress = Math.min(1, Math.max(0, (scrolled - contentFadeDistance) / stickyFadeDistance));
       setContentFadeProgress(newContentFadeProgress);
       setStickyFadeProgress(newStickyFadeProgress);
-
-      const stickyTabs = Array.from(
-        stickyControlsRef.current?.querySelectorAll<HTMLButtonElement>('.project-category-tab') ?? []
-      );
-      const overlapTargets = Array.from(
-        document.querySelectorAll<HTMLElement>(
-          '.project-number, .project-laptop-container, .laptop-screen, .laptop-frame, .video-container, .video-container video, .device-container, .project-subtitle, .project-description, .project-tech-stack, .project-button'
-        )
-      );
-      const targetRects = overlapTargets.map((target) => target.getBoundingClientRect());
-      const nextDimmedStickyTabs = projectCategories.reduce<Record<ProjectCategory, boolean>>((dimmedTabs, category) => {
-        const tab = stickyTabs.find((stickyTab) => stickyTab.dataset.category === category.id);
-        const tabRect = tab?.getBoundingClientRect();
-        dimmedTabs[category.id] = Boolean(tabRect && targetRects.some((targetRect) => (
-          tabRect.left < targetRect.right &&
-          tabRect.right > targetRect.left &&
-          tabRect.top < targetRect.bottom &&
-          tabRect.bottom > targetRect.top
-        )));
-        return dimmedTabs;
-      }, {
-        "software-engineering": false,
-        "product-design": false,
-      });
-      setDimmedStickyTabs(nextDimmedStickyTabs);
     };
 
     handleScroll();
@@ -95,7 +65,7 @@ export function ProfessionalProjectsBanner({
         aria-pressed={activeCategory === category.id}
         tabIndex={isSticky ? (stickyInteractive ? undefined : -1) : (contentInteractive ? undefined : -1)}
         data-category={category.id}
-        className={`project-category-tab${activeCategory === category.id ? " active" : ""}${isSticky && dimmedStickyTabs[category.id] ? " project-category-tab-dimmed" : ""}`}
+        className={`project-category-tab${activeCategory === category.id ? " active" : ""}`}
         onClick={() => onCategoryChange(category.id)}
       >
         {category.label}
@@ -115,7 +85,6 @@ export function ProfessionalProjectsBanner({
       gap: '24px'
     }}>
       <div
-        ref={stickyControlsRef}
         className="project-category-controls project-category-controls-sticky"
         aria-label="Project category"
         aria-hidden={!stickyInteractive}

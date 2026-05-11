@@ -23,15 +23,20 @@
 
 .project-category-controls-sticky {
   position: fixed;
-  top: 24px;
+  top: 0;
   left: 0;
   z-index: 900;
   width: 100%;
+  background-color: #E7F4FF;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-items: center;
-  padding: 2px 0 4px;
+  padding: 26px 0 0;
   transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+}
+
+.dark .project-category-controls-sticky {
+  background-color: #041825;
 }
 
 .project-category-tab {
@@ -100,12 +105,8 @@
   opacity: 0.72;
 }
 
-.project-category-tab.project-category-tab-dimmed {
-  opacity: 0.52;
-}
-
-.project-category-tab.active:not(.project-category-tab-dimmed):hover,
-.project-category-tab.active:not(.project-category-tab-dimmed):focus-visible {
+.project-category-tab.active:hover,
+.project-category-tab.active:focus-visible {
   opacity: 1;
 }
 
@@ -529,8 +530,7 @@
   }
 
   .project-category-controls-sticky {
-    top: max(20px, env(safe-area-inset-top));
-    padding: 2px 0 4px;
+    padding: calc(max(20px, env(safe-area-inset-top)) + 2px) 0 0;
   }
 
   .project-category-controls-sticky .project-category-tab {
