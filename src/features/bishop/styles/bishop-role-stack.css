@@ -1,7 +1,7 @@
 .bishop-my-role-stack-wrapper {
   width: 100%;
   /* Height: 200vh for crossfade + 400px for extra sticky time at the end */
-  height: calc(200vh + 400px);
+  height: calc(200vh + 400px + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #FFFFFF;
 }

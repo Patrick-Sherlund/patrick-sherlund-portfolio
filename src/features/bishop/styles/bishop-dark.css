@@ -126,6 +126,7 @@
 .bishop-iteration-three-title,
 .bishop-iteration-three-subtitle,
 .bishop-iteration-three-headline,
+.bishop-annotate-headline,
 .bishop-annotate-title,
 .bishop-train-model-headline,
 .bishop-track-detections-title,
@@ -322,6 +323,7 @@
 .dark .bishop-iteration-two-headline,
 .dark .bishop-iteration-three-title,
 .dark .bishop-iteration-three-headline,
+.dark .bishop-annotate-headline,
 .dark .bishop-annotate-title,
 .dark .bishop-train-model-headline,
 .dark .bishop-track-detections-title,
@@ -346,6 +348,15 @@
 
 .dark .bishop-learned-icon path {
   stroke: #7ebaff;
+}
+
+.dark .bishop-annotate-background {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+.dark .bishop-annotate-video-card {
+  background: #061f30;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.42);
 }
 
 .dark .bishop-team-divider {

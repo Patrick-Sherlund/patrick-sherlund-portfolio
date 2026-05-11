@@ -1,7 +1,7 @@
 .bishop-challenge-vision-wrapper {
   width: 100%;
   /* Extended height: 1vh for Challenge→Vision + 3.5vh for 7 bubbles (0.5vh each) */
-  height: 500vh;
+  height: calc(500vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #FFFFFF;
 }

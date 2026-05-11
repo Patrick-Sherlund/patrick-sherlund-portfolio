@@ -50,7 +50,7 @@
   }
 
   .bishop-my-role-stack-wrapper {
-    height: calc(180svh + 220px);
+    height: calc(180svh + 220px + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-my-role-stack-content,
@@ -143,7 +143,7 @@
   }
 
   .bishop-challenge-vision-wrapper {
-    height: 500svh;
+    height: calc(500svh + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-bubble-image {
@@ -393,12 +393,12 @@
   .bishop-problem-success-wrapper,
   .bishop-proposed-proved-wrapper {
     overflow-anchor: none;
-    height: 300svh;
+    height: calc(300svh + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-develop-sticky-stage {
     overflow-anchor: none;
-    height: 400svh;
+    height: calc(400svh + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-train-iteration-wrapper,
@@ -406,7 +406,7 @@
   .bishop-iteration-ai-wrapper,
   .bishop-manage-map-wrapper {
     overflow-anchor: none;
-    height: 300svh;
+    height: calc(300svh + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-context-panel,

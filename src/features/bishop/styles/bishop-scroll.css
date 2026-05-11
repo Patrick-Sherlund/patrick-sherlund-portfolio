@@ -1,0 +1,9 @@
+.bishop-page {
+  --bishop-crossfade-settle-distance: 640px;
+}
+
+@media (max-width: 640px) {
+  .bishop-page {
+    --bishop-crossfade-settle-distance: 520px;
+  }
+}

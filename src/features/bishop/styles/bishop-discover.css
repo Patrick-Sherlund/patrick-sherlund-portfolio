@@ -168,7 +168,7 @@
 /* Context Research Section */
 .bishop-context-research-wrapper {
   width: 100%;
-  height: 400vh;
+  height: calc(400vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
 }
@@ -373,7 +373,7 @@
 /* Persona Mapping Section */
 .bishop-persona-learned-wrapper {
   width: 100%;
-  height: 400vh;
+  height: calc(400vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
   overflow-x: clip;
@@ -817,7 +817,7 @@
 /* What We Learned Section */
 .bishop-learned-wrapper {
   width: 100%;
-  height: 300vh;
+  height: calc(300vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
 }
@@ -1094,7 +1094,7 @@
 
 .bishop-problem-success-wrapper {
   width: 100%;
-  height: 400vh;
+  height: calc(400vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
 }
@@ -1259,7 +1259,7 @@
 
 .bishop-proposed-proved-wrapper {
   width: 100%;
-  height: 400vh;
+  height: calc(400vh + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
 }

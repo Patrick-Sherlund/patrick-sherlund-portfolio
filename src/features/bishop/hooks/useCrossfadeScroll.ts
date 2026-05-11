@@ -22,8 +22,9 @@ export function useCrossfadeScroll(ref: RefObject<HTMLElement | null>, enabled =
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const hold = Math.min(450, viewportHeight * 0.45);
+      const settleHold = Math.min(640, viewportHeight * 0.65);
       const transitionDistance = viewportHeight;
-      const total = hold + transitionDistance;
+      const total = hold + transitionDistance + settleHold;
 
       if (rect.top <= 0 && rect.top > -total) {
         const scrollDistance = Math.abs(rect.top);
