@@ -269,6 +269,14 @@
     padding-bottom: 0;
   }
 
+  .bishop-page-normal .bishop-discover:not(.bishop-normal-mobile-header-pinned) .bishop-discover-header.sticky {
+    min-height: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
   .bishop-page-interactive .bishop-discover-header.sticky,
   .bishop-page-normal .bishop-discover.bishop-normal-mobile-header-pinned .bishop-discover-header.sticky {
     position: relative;
