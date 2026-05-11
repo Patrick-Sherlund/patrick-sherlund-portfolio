@@ -1,0 +1,165 @@
+.bishop-team-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px;
+}
+
+.bishop-team-section-content {
+  width: min(100%, 1100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bishop-team-section-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #111111;
+  text-align: center;
+  letter-spacing: -1.5px;
+  margin: 0 0 80px;
+}
+
+.bishop-team-member-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(64px, 10vw, 140px);
+  justify-items: center;
+  align-items: start;
+}
+
+.bishop-team-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bishop-team-member-image {
+  width: clamp(190px, 20vw, 280px);
+  height: clamp(190px, 20vw, 280px);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 28px;
+}
+
+.bishop-team-member-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111111;
+  margin: 0 0 8px;
+}
+
+.bishop-team-member-role {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #6b7280;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .bishop-team-section {
+    padding: 84px 24px;
+  }
+
+  .bishop-team-section-title {
+    font-size: 36px;
+    margin-bottom: 48px;
+    letter-spacing: 0;
+  }
+
+  .bishop-team-member-grid {
+    gap: 32px;
+  }
+
+  .bishop-team-member-image {
+    width: clamp(138px, 28vw, 190px);
+    height: clamp(138px, 28vw, 190px);
+    margin-bottom: 18px;
+  }
+
+  .bishop-team-member-name {
+    font-size: 21px;
+  }
+
+  .bishop-team-member-role {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-team-section {
+    min-height: 100svh;
+    padding: 72px 18px 56px;
+  }
+
+  .bishop-team-section-title {
+    font-size: 38px;
+    line-height: 1.1;
+    margin-bottom: 44px;
+  }
+
+  .bishop-team-member-grid {
+    grid-template-columns: 1fr;
+    gap: 46px;
+  }
+
+  .bishop-team-member-image {
+    width: clamp(178px, 50vw, 220px);
+    height: clamp(178px, 50vw, 220px);
+    margin-bottom: 20px;
+  }
+
+  .bishop-team-member-name {
+    font-size: 23px;
+    line-height: 1.2;
+    margin-bottom: 7px;
+  }
+
+  .bishop-team-member-role {
+    max-width: 240px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 390px) {
+  .bishop-team-section {
+    padding: 68px 16px 52px;
+  }
+
+  .bishop-team-section-title {
+    font-size: 34px;
+    margin-bottom: 38px;
+  }
+
+  .bishop-team-member-grid {
+    gap: 40px;
+  }
+
+  .bishop-team-member-image {
+    width: clamp(160px, 48vw, 188px);
+    height: clamp(160px, 48vw, 188px);
+    margin-bottom: 18px;
+  }
+
+  .bishop-team-member-name {
+    font-size: 21px;
+  }
+
+  .bishop-team-member-role {
+    font-size: 15px;
+  }
+}

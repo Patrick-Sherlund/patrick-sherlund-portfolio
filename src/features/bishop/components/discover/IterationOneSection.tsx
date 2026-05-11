@@ -9,6 +9,7 @@ type IterationOneSectionProps = {
   headline: ReactNode;
   papers: string[];
   magnifierImage: string;
+  magnifierImageDark: string;
   isPanelVisible: boolean;
 };
 
@@ -55,6 +56,7 @@ export function IterationOneSection({
   headline,
   papers,
   magnifierImage,
+  magnifierImageDark,
   isPanelVisible,
 }: IterationOneSectionProps) {
   const stageRef = useRef<HTMLDivElement>(null);
@@ -455,7 +457,14 @@ export function IterationOneSection({
         <img
           src={magnifierImage}
           alt=""
-          className="bishop-research-magnifier-image"
+          className="bishop-research-magnifier-image bishop-research-magnifier-image-light"
+          draggable={false}
+          aria-hidden="true"
+        />
+        <img
+          src={magnifierImageDark}
+          alt=""
+          className="bishop-research-magnifier-image bishop-research-magnifier-image-dark"
           draggable={false}
           aria-hidden="true"
         />

@@ -28,6 +28,7 @@ type DesignDecisionsSectionProps = {
   iterationHeadline: ReactNode;
   papers: string[];
   magnifierImage: string;
+  magnifierImageDark: string;
   annotateHeadline: ReactNode;
   annotateImage: string;
   annotateVideo: string;
@@ -109,6 +110,7 @@ export function DesignDecisionsSection({
   iterationHeadline,
   papers,
   magnifierImage,
+  magnifierImageDark,
   annotateHeadline,
   annotateImage,
   annotateVideo,
@@ -204,6 +206,7 @@ export function DesignDecisionsSection({
               headline={iterationHeadline}
               papers={papers}
               magnifierImage={magnifierImage}
+              magnifierImageDark={magnifierImageDark}
               isPanelVisible={!isInteractive || (gatherOpacity !== undefined && gatherOpacity > 0.7)}
             />
           </div>

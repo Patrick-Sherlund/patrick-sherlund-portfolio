@@ -1,0 +1,467 @@
+.bishop-page {
+  transition-property: background-color, background, color, border-color, box-shadow, filter;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.bishop-hero-section,
+.bishop-team-section,
+.bishop-my-role-stack-wrapper,
+.bishop-challenge-vision-wrapper,
+.bishop-users-saw,
+.bishop-discover,
+.bishop-discover-header,
+.bishop-context-research-wrapper,
+.bishop-persona-learned-wrapper,
+.bishop-persona-section,
+.bishop-learned-wrapper,
+.bishop-reality-section,
+.bishop-define-problem-statement,
+.bishop-problem-success-wrapper,
+.bishop-proposed-proved-wrapper,
+.bishop-proposed-process,
+.bishop-develop-iteration-wrapper,
+.bishop-develop-sticky-stage,
+.bishop-train-iteration-wrapper,
+.bishop-train-iteration-content,
+.bishop-design-decisions-section,
+.bishop-concepts-section,
+.bishop-iteration-one-section,
+.bishop-iteration-two-section,
+.bishop-iteration-three-section,
+.bishop-annotate-section,
+.bishop-train-model-section,
+.bishop-track-detections-section,
+.bishop-tracker-client-wrapper,
+.bishop-tracker-client-content,
+.bishop-client-video-section,
+.bishop-iteration-ai-wrapper,
+.bishop-iteration-ai-content,
+.bishop-ai-detections-section,
+.bishop-manage-videos-section,
+.bishop-manage-map-wrapper,
+.bishop-manage-map-content,
+.bishop-associate-detections-section,
+.bishop-deliver-section,
+.bishop-deliver-key-wrapper,
+.bishop-deliver-key-content,
+.bishop-key-learnings-section,
+.bishop-thank-you-section,
+.bishop-stat-card-inner,
+.bishop-design-decision-card,
+.bishop-research-paper,
+.bishop-research-magnifier-lens,
+.bishop-tracker-comparison,
+.bishop-tracker-divider,
+.bishop-next-case-study {
+  transition-property: background-color, background, color, border-color, box-shadow, filter;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.bishop-number,
+.bishop-description,
+.bishop-timeline,
+.bishop-team-role,
+.bishop-team-name,
+.bishop-team-divider,
+.bishop-scroll-text,
+.bishop-scroll-icon,
+.bishop-team-section-title,
+.bishop-team-member-name,
+.bishop-team-member-role,
+.bishop-mrs-title,
+.bishop-mrs-text,
+.bishop-stack-category,
+.bishop-stack-name,
+.bishop-cv-title,
+.bishop-cv-text,
+.bishop-users-saw-title,
+.bishop-stat-value,
+.bishop-stat-label,
+.bishop-discover-title,
+.bishop-discover-subtitle,
+.bishop-discover-nav-subtitle,
+.bishop-context-title-text,
+.bishop-context-text,
+.bishop-research-title,
+.bishop-persona-section-title,
+.bishop-persona-name,
+.bishop-persona-quote-text,
+.bishop-persona-quote-attribution,
+.bishop-persona-info-title,
+.bishop-persona-info-subtitle,
+.bishop-persona-list li,
+.bishop-persona-list li::before,
+.bishop-learned-fade-title,
+.bishop-learned-title,
+.bishop-learned-card-title,
+.bishop-learned-card-text,
+.bishop-reality-title,
+.bishop-reality-text,
+.bishop-problem-title,
+.bishop-problem-text,
+.bishop-success-main-title,
+.bishop-metric-icon,
+.bishop-metric-label,
+.bishop-metric-value,
+.bishop-metric-description,
+.bishop-proposed-title,
+.bishop-proposed-fade-title,
+.bishop-proved-main-title,
+.bishop-proved-card-top,
+.bishop-proved-arrow,
+.bishop-proved-card-bottom,
+.bishop-design-decisions-title,
+.bishop-design-decision-label,
+.bishop-design-decision-card p,
+.bishop-concepts-title,
+.bishop-iteration-one-title,
+.bishop-iteration-one-subtitle,
+.bishop-iteration-one-headline,
+.bishop-iteration-two-title,
+.bishop-iteration-two-subtitle,
+.bishop-iteration-two-summary,
+.bishop-iteration-two-headline,
+.bishop-iteration-three-title,
+.bishop-iteration-three-subtitle,
+.bishop-iteration-three-headline,
+.bishop-annotate-title,
+.bishop-train-model-headline,
+.bishop-track-detections-title,
+.bishop-track-detections-caption,
+.bishop-client-video-title,
+.bishop-ai-detections-title,
+.bishop-manage-videos-title,
+.bishop-associate-detections-title,
+.bishop-deliver-headline,
+.bishop-deliver-title,
+.bishop-key-learnings-title,
+.bishop-key-learning-card h3,
+.bishop-key-learning-card p,
+.bishop-key-learning-icon,
+.bishop-thank-you-content,
+.bishop-thank-you-copy h2,
+.bishop-thank-you-copy p,
+.bishop-next-case-study-text > span,
+.bishop-next-case-study-text h3,
+.bishop-next-case-study-text p,
+.bishop-next-case-study-meta,
+.bishop-next-case-study-meta dt,
+.bishop-next-case-study-meta dd {
+  transition-property: color, background-color, background, border-color, box-shadow, filter;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.bishop-logo-dark {
+  display: none;
+}
+
+.dark .bishop-page {
+  background-color: #041825;
+  color: #ffffff;
+}
+
+.dark .bishop-logo-light {
+  display: none;
+}
+
+.dark .bishop-logo-dark {
+  display: block;
+}
+
+.dark .back-to-projects {
+  color: #ffffff;
+  background-color: rgba(4, 24, 37, 0.72);
+}
+
+.dark .back-to-projects:hover {
+  background-color: rgba(4, 24, 37, 0.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+}
+
+.dark .bishop-hero-section,
+.dark .bishop-team-section,
+.dark .bishop-my-role-stack-wrapper,
+.dark .bishop-challenge-vision-wrapper,
+.dark .bishop-users-saw,
+.dark .bishop-discover,
+.dark .bishop-discover-header,
+.dark .bishop-context-research-wrapper,
+.dark .bishop-persona-learned-wrapper,
+.dark .bishop-persona-section,
+.dark .bishop-learned-wrapper,
+.dark .bishop-reality-section,
+.dark .bishop-define-problem-statement,
+.dark .bishop-problem-success-wrapper,
+.dark .bishop-proposed-proved-wrapper,
+.dark .bishop-proposed-process,
+.dark .bishop-develop-iteration-wrapper,
+.dark .bishop-develop-sticky-stage,
+.dark .bishop-train-iteration-wrapper,
+.dark .bishop-train-iteration-content,
+.dark .bishop-design-decisions-section,
+.dark .bishop-concepts-section,
+.dark .bishop-iteration-one-section,
+.dark .bishop-iteration-two-section,
+.dark .bishop-iteration-three-section,
+.dark .bishop-annotate-section,
+.dark .bishop-train-model-section,
+.dark .bishop-track-detections-section,
+.dark .bishop-tracker-client-wrapper,
+.dark .bishop-tracker-client-content,
+.dark .bishop-client-video-section,
+.dark .bishop-iteration-ai-wrapper,
+.dark .bishop-iteration-ai-content,
+.dark .bishop-ai-detections-section,
+.dark .bishop-manage-videos-section,
+.dark .bishop-manage-map-wrapper,
+.dark .bishop-manage-map-content,
+.dark .bishop-associate-detections-section,
+.dark .bishop-deliver-section,
+.dark .bishop-deliver-key-wrapper,
+.dark .bishop-deliver-key-content,
+.dark .bishop-key-learnings-section,
+.dark .bishop-thank-you-section {
+  background-color: #041825;
+}
+
+.dark .bishop-deliver-section {
+  background: #041825;
+}
+
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-my-role-stack-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-challenge-vision-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-context-research-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-persona-learned-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-problem-success-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-proposed-proved-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-iteration-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-deliver-key-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-train-iteration-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-tracker-client-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-iteration-ai-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-manage-map-content,
+.dark .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-develop-sticky-stage > .bishop-develop-iteration-content,
+.dark .bishop-page-interactive .bishop-discover-header.sticky .bishop-discover-header-nav,
+.dark .bishop-page-normal .bishop-discover.bishop-normal-mobile-header-pinned .bishop-discover-header.sticky .bishop-discover-header-nav {
+  background-color: #041825;
+}
+
+.dark .bishop-number,
+.dark .bishop-description,
+.dark .bishop-timeline,
+.dark .bishop-team-role,
+.dark .bishop-scroll-text,
+.dark .bishop-scroll-icon,
+.dark .bishop-team-member-role,
+.dark .bishop-discover-subtitle,
+.dark .bishop-discover-nav-subtitle,
+.dark .bishop-iteration-one-subtitle,
+.dark .bishop-iteration-two-subtitle,
+.dark .bishop-iteration-three-subtitle,
+.dark .bishop-learned-card-title,
+.dark .bishop-metric-label,
+.dark .bishop-metric-description,
+.dark .bishop-proved-card-top,
+.dark .bishop-proved-arrow,
+.dark .bishop-design-decision-card p,
+.dark .bishop-thank-you-copy p,
+.dark .bishop-thank-you-copy p:nth-of-type(3),
+.dark .bishop-next-case-study-text > span,
+.dark .bishop-next-case-study-text p,
+.dark .bishop-next-case-study-meta dt {
+  color: #afc2d0;
+}
+
+.dark .bishop-team-name,
+.dark .bishop-team-section-title,
+.dark .bishop-team-member-name,
+.dark .bishop-mrs-title,
+.dark .bishop-mrs-text,
+.dark .bishop-stack-category,
+.dark .bishop-stack-name,
+.dark .bishop-cv-title,
+.dark .bishop-cv-text,
+.dark .bishop-users-saw-title,
+.dark .bishop-stat-value,
+.dark .bishop-stat-label,
+.dark .bishop-discover-title,
+.dark .bishop-discover-header-nav-item,
+.dark .bishop-context-title-text,
+.dark .bishop-context-text,
+.dark .bishop-research-title,
+.dark .bishop-persona-section-title,
+.dark .bishop-persona-name,
+.dark .bishop-persona-quote-text,
+.dark .bishop-persona-info-title,
+.dark .bishop-persona-list li,
+.dark .bishop-persona-list li::before,
+.dark .bishop-learned-fade-title,
+.dark .bishop-learned-title,
+.dark .bishop-learned-card-text,
+.dark .bishop-reality-title,
+.dark .bishop-reality-text,
+.dark .bishop-problem-title,
+.dark .bishop-problem-text,
+.dark .bishop-success-main-title,
+.dark .bishop-metric-icon,
+.dark .bishop-metric-value,
+.dark .bishop-proposed-title,
+.dark .bishop-proposed-fade-title,
+.dark .bishop-proved-main-title,
+.dark .bishop-proved-card-bottom,
+.dark .bishop-design-decisions-title,
+.dark .bishop-design-decision-label,
+.dark .bishop-concepts-title,
+.dark .bishop-iteration-one-title,
+.dark .bishop-iteration-one-headline,
+.dark .bishop-iteration-two-title,
+.dark .bishop-iteration-two-summary,
+.dark .bishop-iteration-two-headline,
+.dark .bishop-iteration-three-title,
+.dark .bishop-iteration-three-headline,
+.dark .bishop-annotate-title,
+.dark .bishop-train-model-headline,
+.dark .bishop-track-detections-title,
+.dark .bishop-track-detections-caption,
+.dark .bishop-client-video-title,
+.dark .bishop-ai-detections-title,
+.dark .bishop-manage-videos-title,
+.dark .bishop-associate-detections-title,
+.dark .bishop-deliver-headline,
+.dark .bishop-deliver-title,
+.dark .bishop-key-learnings-title,
+.dark .bishop-key-learning-card h3,
+.dark .bishop-key-learning-card p,
+.dark .bishop-thank-you-content,
+.dark .bishop-thank-you-copy h2,
+.dark .bishop-next-case-study-text h3,
+.dark .bishop-next-case-study-meta,
+.dark .bishop-next-case-study-meta dd,
+.dark .bishop-next-case-study-link {
+  color: #ffffff;
+}
+
+.dark .bishop-learned-icon path {
+  stroke: #7ebaff;
+}
+
+.dark .bishop-team-divider {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.dark .bishop-discover-header.sticky {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
+}
+
+.dark .bishop-stat-card-inner,
+.dark .bishop-metric-card,
+.dark .bishop-design-decision-card,
+.dark .bishop-proved-card {
+  background-color: #061f30;
+  border-color: rgba(175, 194, 208, 0.18);
+}
+
+.dark .bishop-design-decision-card.rainbow,
+.dark .bishop-proved-card {
+  background-image:
+    linear-gradient(#061f30, #061f30),
+    linear-gradient(135deg, #3CCAF4 0%, #578DF3 25%, #7C52BE 50%, #F93C95 75%, #FC6E5D 88%, #FFAC49 100%);
+}
+
+.dark .bishop-metric-card:hover,
+.dark .bishop-proved-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+.dark .bishop-step-icon {
+  background-color: #08273b;
+  border-color: #224c66;
+  color: #afc2d0;
+}
+
+.dark .bishop-process-step.active .bishop-step-icon {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #041825;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.16);
+}
+
+.dark .bishop-process-step.active .bishop-step-label {
+  color: #ffffff;
+}
+
+.dark .bishop-step-label,
+.dark .bishop-persona-quote-attribution,
+.dark .bishop-persona-info-subtitle {
+  color: #afc2d0;
+}
+
+.dark .bishop-step-connector {
+  background-color: #224c66;
+}
+
+.dark .bishop-research-paper,
+.dark .bishop-research-magnifier-lens {
+  background-color: #061f30;
+  border-color: rgba(175, 194, 208, 0.34);
+}
+
+.dark .bishop-research-magnifier {
+  outline-color: #ffffff;
+}
+
+.dark .bishop-research-magnifier-image-light {
+  display: none;
+}
+
+.dark .bishop-research-magnifier-image-dark {
+  display: block;
+}
+
+.dark .bishop-research-magnifier-handle,
+.dark .bishop-tracker-handle {
+  background-color: #ffffff;
+}
+
+.dark .bishop-persona-quote {
+  border-left-color: #ffffff;
+}
+
+.dark .bishop-track-detections-caption {
+  color: #afc2d0;
+}
+
+.dark .bishop-tracker-comparison {
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
+.dark .bishop-tracker-divider {
+  background: linear-gradient(
+    90deg,
+    transparent calc(var(--tracker-slider-position) - 3.5px),
+    #ffffff calc(var(--tracker-slider-position) - 3.5px),
+    #ffffff calc(var(--tracker-slider-position) - 0.5px),
+    #041825 calc(var(--tracker-slider-position) - 0.5px),
+    #041825 calc(var(--tracker-slider-position) + 0.5px),
+    #ffffff calc(var(--tracker-slider-position) + 0.5px),
+    #ffffff calc(var(--tracker-slider-position) + 3.5px),
+    transparent calc(var(--tracker-slider-position) + 3.5px)
+  );
+}
+
+.dark .bishop-next-case-study {
+  border-top-color: #224c66;
+}
+
+.dark .bishop-next-case-study-link {
+  border-color: #ffffff;
+}
+
+.dark .bishop-next-case-study-link:hover {
+  background-color: #ffffff;
+  color: #041825;
+}

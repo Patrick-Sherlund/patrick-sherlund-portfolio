@@ -38,7 +38,8 @@ export function BishopHero() {
           <div className="bishop-number">01</div>
           
           <div className="bishop-logo-container">
-            <img src={bishopMediaAssets.logo} alt="Bishop" className="bishop-logo" />
+            <img src={bishopMediaAssets.logo} alt="Bishop" className="bishop-logo bishop-logo-light" />
+            <img src={bishopMediaAssets.logoDark} alt="Bishop" className="bishop-logo bishop-logo-dark" />
           </div>
           
           <p className="bishop-description">{bishopContent.hero.description}</p>

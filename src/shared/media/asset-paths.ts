@@ -31,6 +31,11 @@ export const deviceAssets = {
 
 export const bishopAssets = {
   logo: "/assets/images/bishop/bishop-logo.png",
+  logoDark: "/assets/images/bishop/bishop-logo-dark.png",
+  team: {
+    patrick: "/assets/images/bishop/Paddy.png",
+    shelby: "/assets/images/bishop/Shelbs.png",
+  },
   sparkle: "/assets/images/bishop/vision-sparkle.png",
   sparkleLeft: "/assets/images/bishop/sparkle-left.png",
   sparkleRight: "/assets/images/bishop/sparkle-right.png",
@@ -66,6 +71,7 @@ export const bishopAssets = {
     "/assets/images/bishop/research_paper_7.png",
   ],
   magnifyingGlass: "/assets/images/bishop/magnifying_glass.png",
+  magnifyingGlassDark: "/assets/images/bishop/magnifying_glass-dark.png",
   annotateImage: "/assets/images/bishop/annotate_image.png",
   annotateVideo: "/assets/images/bishop/annotate.mp4",
   annotateMobileImage: "/assets/images/bishop/mobile_annotate.png",

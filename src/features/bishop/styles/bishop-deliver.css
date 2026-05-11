@@ -136,14 +136,27 @@
   }
 
   .bishop-deliver-headline {
-    width: 100%;
+    position: relative;
+    width: fit-content;
+    max-width: calc(100vw - 36px);
     gap: 6px;
     margin-bottom: 28px;
     font-size: 23px;
+    padding: 0 22px;
   }
 
   .bishop-deliver-sparkle {
+    position: absolute;
+    top: 0.12em;
     width: 16px;
     height: 16px;
+  }
+
+  .bishop-deliver-sparkle:first-child {
+    left: 0;
+  }
+
+  .bishop-deliver-sparkle:last-child {
+    right: 0;
   }
 }

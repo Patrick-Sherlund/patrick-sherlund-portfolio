@@ -8,6 +8,7 @@ import { BishopChallengeVision } from "./components/BishopChallengeVision";
 import { BishopDiscover } from "./components/discover";
 import { BishopHero } from "./components/BishopHero";
 import { BishopRoleStack } from "./components/BishopRoleStack";
+import { BishopTeam } from "./components/BishopTeam";
 import { BishopUsersSaw } from "./components/BishopUsersSaw";
 
 type BishopViewMode = "interactive" | "normal";
@@ -66,6 +67,7 @@ export function BishopRoute() {
     <div className={`bishop-page bishop-page-${viewMode} min-h-screen bg-[#e7f4ff]`}>
       <BackLink />
       <BishopHero />
+      <BishopTeam />
       <BishopRoleStack isInteractive={isInteractive} />
       <BishopChallengeVision isInteractive={isInteractive} />
       <BishopUsersSaw />

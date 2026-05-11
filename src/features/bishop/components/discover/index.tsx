@@ -229,6 +229,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           iterationHeadline={bishopContent.iterationOne.headline}
           papers={bishopMediaAssets.researchPapers}
           magnifierImage={bishopMediaAssets.magnifyingGlass}
+          magnifierImageDark={bishopMediaAssets.magnifyingGlassDark}
           annotateHeadline={bishopContent.iterationOne.annotateHeadline}
           annotateImage={bishopMediaAssets.annotateImage}
           annotateVideo={bishopMediaAssets.annotateVideo}

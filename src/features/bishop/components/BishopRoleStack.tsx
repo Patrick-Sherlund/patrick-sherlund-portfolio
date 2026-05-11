@@ -46,7 +46,7 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
   }, [isInteractive]);
 
   return (
-    <div className={`bishop-my-role-stack-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} id="bishop-case-study-start" ref={containerRef}>
+    <div className={`bishop-my-role-stack-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
       <div className="bishop-my-role-stack-content">
         <div 
           className="bishop-my-role-panel"

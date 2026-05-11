@@ -141,6 +141,10 @@
   transform-origin: var(--magnifier-circle-center-x) var(--magnifier-circle-center-y);
 }
 
+.bishop-research-magnifier-image-dark {
+  display: none;
+}
+
 .bishop-research-magnifier.wiggle .bishop-research-magnifier-image {
   animation: bishopMagnifierWiggle 1.25s ease-in-out 1 both;
 }
