@@ -22,7 +22,7 @@ export function DeliverSection({
           <h3 className="bishop-deliver-headline">
             <img src={sparkleLeft} alt="" className="bishop-deliver-sparkle" />
             <span>
-              The <strong>Minimal</strong>, but <strong>viable</strong> product
+              The <strong>Minimal</strong>, but <strong>Viable</strong> <strong>Product</strong>
             </span>
             <img src={sparkleRight} alt="" className="bishop-deliver-sparkle" />
           </h3>

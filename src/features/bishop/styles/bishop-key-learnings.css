@@ -51,7 +51,7 @@
 }
 
 .bishop-key-learnings-content {
-  width: min(100%, 980px);
+  width: min(100%, 1180px);
   min-height: calc(100vh - 198px);
   display: flex;
   flex-direction: column;
@@ -60,10 +60,10 @@
 }
 
 .bishop-key-learnings-title {
-  margin: 0 0 78px;
+  margin: 0 0 96px;
   color: #111111;
   font-family: "Roboto", sans-serif;
-  font-size: clamp(28px, 2.45vw, 34px);
+  font-size: clamp(42px, 3.6vw, 58px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0;
@@ -74,7 +74,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(32px, 6vw, 84px);
+  gap: clamp(48px, 7vw, 112px);
   align-items: start;
 }
 
@@ -87,17 +87,17 @@
 }
 
 .bishop-key-learning-icon {
-  width: 20px;
-  height: 20px;
-  margin-bottom: 12px;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 22px;
   color: #111936;
 }
 
 .bishop-key-learning-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 18px;
   color: #4b5563;
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: 0.02em;
@@ -105,12 +105,12 @@
 
 .bishop-key-learning-card p {
   margin: 0;
-  max-width: 250px;
+  max-width: 320px;
   color: #111111;
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 1.28;
+  line-height: 1.4;
   letter-spacing: 0;
 }
 

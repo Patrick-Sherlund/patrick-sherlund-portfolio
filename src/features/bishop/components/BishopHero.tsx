@@ -35,7 +35,7 @@ export function BishopHero() {
     <section className="bishop-hero-section">
       <div className="bishop-hero-container">
         <div className="bishop-hero-left">
-          <div className="bishop-number">02</div>
+          <div className="bishop-number">01</div>
           
           <div className="bishop-logo-container">
             <img src={bishopMediaAssets.logo} alt="Bishop" className="bishop-logo" />

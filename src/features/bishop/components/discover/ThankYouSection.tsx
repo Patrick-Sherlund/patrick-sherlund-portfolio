@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { deviceAssets } from "@/shared/media/asset-paths";
+import { DeviceFrame } from "@/shared/components/DeviceFrame";
+import { VideoOverlay } from "@/shared/components/VideoOverlay";
 
 export function ThankYouSection() {
   return (
@@ -21,20 +22,15 @@ export function ThankYouSection() {
         </div>
 
         <div className="bishop-next-case-study">
-          <Link href="/projects/crusader" className="bishop-next-case-study-media" aria-label="View CRUSADER case study">
-            <div className="bishop-next-display-screen">
-              <video src="/assets/videos/crusader.mp4" autoPlay loop muted playsInline />
-            </div>
-            <img
-              src={deviceAssets.devices.appleDisplay}
-              alt="CRUSADER radar control preview"
-              className="bishop-next-display-frame"
-            />
+          <Link href="/projects/aerot" className="bishop-next-case-study-media bishop-next-case-study-media-laptop" aria-label="View AEROT case study">
+            <DeviceFrame device="laptop" title="AEROT">
+              <VideoOverlay src="/assets/videos/aerot.mp4" className="video-container" />
+            </DeviceFrame>
           </Link>
           <div className="bishop-next-case-study-text">
             <span>Next case study</span>
             <h3>
-              <small>05</small> CRUSADER
+              <small>01</small> AEROT
             </h3>
             <dl className="bishop-next-case-study-meta">
               <div>
@@ -47,13 +43,13 @@ export function ThankYouSection() {
               </div>
               <div>
                 <dt>Stack</dt>
-                <dd>TypeScript, React, C++, Drogon</dd>
+                <dd>Full-stack, C++, Typescript, React</dd>
               </div>
             </dl>
             <p>
-              Radar control and predictive tracking for Navico and Furuno hardware.
+              Friendly force EM training for the United States Marine Corps.
             </p>
-            <Link href="/projects/crusader" className="bishop-next-case-study-link">
+            <Link href="/projects/aerot" className="bishop-next-case-study-link">
               <span>View details</span>
               <span className="bishop-next-case-study-arrow" aria-hidden="true">&gt;</span>
             </Link>

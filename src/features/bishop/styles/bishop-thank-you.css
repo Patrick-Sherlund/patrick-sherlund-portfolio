@@ -5,7 +5,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 150px 32px 82px;
+  padding: 192px 32px 82px;
 }
 
 .bishop-thank-you-content {
@@ -36,7 +36,7 @@
 
 .bishop-thank-you-copy p {
   margin: 0 0 22px;
-  max-width: 620px;
+  max-width: 820px;
   color: #374151;
   font-family: "Roboto", sans-serif;
   font-size: clamp(17px, 1.35vw, 19px);
@@ -46,11 +46,11 @@
 }
 
 .bishop-thank-you-copy p:nth-of-type(2) {
-  max-width: 560px;
+  max-width: 760px;
 }
 
 .bishop-thank-you-copy p:nth-of-type(3) {
-  max-width: 520px;
+  max-width: 700px;
   color: #4b5563;
 }
 
@@ -79,35 +79,51 @@
   filter: drop-shadow(0 16px 28px rgba(15, 23, 42, 0.14));
 }
 
-.bishop-next-display-screen {
-  position: absolute;
-  top: 3.5%;
-  left: 0;
+.bishop-next-case-study-media-laptop {
+  transform: translateY(78px);
+}
+
+.bishop-next-case-study-media-laptop .project-laptop-container {
+  position: relative;
   width: 100%;
-  height: 70%;
+  max-width: 600px;
+}
+
+.bishop-next-case-study-media-laptop .laptop-screen {
+  position: absolute;
+  top: 5.8%;
+  left: 14.2%;
+  width: 71.6%;
+  height: 75.5%;
   overflow: hidden;
   border-radius: 3px;
-  z-index: 3;
+  z-index: 1;
+}
+
+.bishop-next-case-study-media-laptop .laptop-frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bishop-next-case-study-media-laptop .video-container {
+  margin-top: -17%;
+  margin-left: -2.7%;
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.bishop-next-display-screen video {
-  width: 95%;
-  height: 100%;
+.bishop-next-case-study-media-laptop .video-container video {
+  width: 92%;
+  height: 60%;
   object-fit: fill;
   border-radius: 3px;
   display: block;
-}
-
-.bishop-next-display-frame {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none;
 }
 
 .bishop-next-case-study-text {
@@ -232,6 +248,10 @@
 
   .bishop-next-case-study-text {
     align-items: center;
+  }
+
+  .bishop-next-case-study-media-laptop {
+    transform: none;
   }
 }
 

@@ -50,7 +50,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "BISHOP",
     subtitle: "SAR Video Intelligence",
     route: "/bishop",
-    number: "02",
+    number: "01",
     description:
       "Transforms hours of mission footage into actionable intelligence in minutes using edge-optimized computer vision for Search and Rescue.",
     seoDescription:
