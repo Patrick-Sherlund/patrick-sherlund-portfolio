@@ -72,19 +72,21 @@ function useStickyStageProgress(ref: React.RefObject<HTMLElement | null>, enable
 
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const scrollableDistance = Math.max(rect.height - viewportHeight, viewportHeight);
+      const entryHold = Math.min(450, viewportHeight * 0.45);
+      const scrollableDistance = Math.max(rect.height - viewportHeight - entryHold, viewportHeight);
 
       if (rect.top > 0) {
         setProgress(0);
         return;
       }
 
-      if (rect.bottom <= viewportHeight) {
+      if (rect.bottom <= viewportHeight || Math.abs(rect.top) >= scrollableDistance + entryHold) {
         setProgress(1);
         return;
       }
 
-      setProgress(clamp(Math.abs(rect.top) / scrollableDistance));
+      const adjustedScrollDistance = Math.max(0, Math.abs(rect.top) - entryHold);
+      setProgress(clamp(adjustedScrollDistance / scrollableDistance));
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

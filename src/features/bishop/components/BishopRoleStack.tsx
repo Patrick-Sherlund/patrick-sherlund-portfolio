@@ -24,17 +24,17 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
 
       const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const scrollBuffer = 400;
+      const entryHold = Math.min(450, viewportHeight * 0.45);
+      const transitionDistance = viewportHeight;
       
-      if (rect.top <= 0 && rect.top > -viewportHeight) {
+      if (rect.top <= 0 && rect.top > -(entryHold + transitionDistance)) {
         const scrollDistance = Math.abs(rect.top);
-        const adjustedScrollDistance = Math.max(0, scrollDistance - scrollBuffer);
-        const fadeDistance = viewportHeight - scrollBuffer;
-        const newProgress = Math.min(Math.max(adjustedScrollDistance / fadeDistance, 0), 1);
+        const adjustedScrollDistance = Math.max(0, scrollDistance - entryHold);
+        const newProgress = Math.min(Math.max(adjustedScrollDistance / transitionDistance, 0), 1);
         setMyRoleStackProgress(newProgress);
       } else if (rect.top > 0) {
         setMyRoleStackProgress(0);
-      } else if (rect.top <= -viewportHeight) {
+      } else if (rect.top <= -(entryHold + transitionDistance)) {
         setMyRoleStackProgress(1);
       }
     };

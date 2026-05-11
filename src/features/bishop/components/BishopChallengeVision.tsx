@@ -39,18 +39,21 @@ export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionPr
 
       const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      const entryHold = Math.min(450, viewportHeight * 0.45);
+      const transitionDistance = viewportHeight;
 
-      if (rect.top <= 0 && rect.top > -viewportHeight) {
+      if (rect.top <= 0 && rect.top > -(entryHold + transitionDistance)) {
         const scrollDistance = Math.abs(rect.top);
-        const newProgress = Math.min(Math.max(scrollDistance / viewportHeight, 0), 1);
+        const adjustedScrollDistance = Math.max(0, scrollDistance - entryHold);
+        const newProgress = Math.min(Math.max(adjustedScrollDistance / transitionDistance, 0), 1);
         setChallengeVisionProgress(newProgress);
         setBubbleProgress([0, 0, 0, 0, 0]);
       } else if (rect.top > 0) {
         setChallengeVisionProgress(0);
         setBubbleProgress([0, 0, 0, 0, 0]);
-      } else if (rect.top <= -viewportHeight) {
+      } else if (rect.top <= -(entryHold + transitionDistance)) {
         setChallengeVisionProgress(1);
-        const bubbleScrollStart = viewportHeight;
+        const bubbleScrollStart = entryHold + transitionDistance;
         const scrollPerBubble = viewportHeight * 0.5;
         const totalBubbleScroll = scrollPerBubble * 5;
         const bubbleScrollDistance = Math.abs(rect.top) - bubbleScrollStart;
