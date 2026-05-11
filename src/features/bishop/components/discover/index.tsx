@@ -37,6 +37,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   const processVideoRef = useRef<HTMLVideoElement>(null);
   const carouselVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [currentSection, setCurrentSection] = useState<DiscoverSectionId>("discover");
+  const [isNormalHeaderPinned, setIsNormalHeaderPinned] = useState(false);
   const currentSectionRef = useRef<DiscoverSectionId>("discover");
 
   const { progress: contextResearchProgress, isPastHalf: carouselVisible } =
@@ -78,6 +79,34 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
   }, []);
 
   useEffect(() => {
+    if (isInteractive) {
+      setIsNormalHeaderPinned(false);
+      return;
+    }
+
+    const handleNormalHeaderPosition = () => {
+      const sectionElement = sectionRef.current;
+      const headerElement = headerRef.current;
+      if (!sectionElement || !headerElement) {
+        return;
+      }
+
+      const sectionRect = sectionElement.getBoundingClientRect();
+      const headerHeight = headerElement.offsetHeight || 76;
+      setIsNormalHeaderPinned(sectionRect.top <= 0 && sectionRect.bottom > headerHeight);
+    };
+
+    window.addEventListener("scroll", handleNormalHeaderPosition, { passive: true });
+    window.addEventListener("resize", handleNormalHeaderPosition);
+    handleNormalHeaderPosition();
+
+    return () => {
+      window.removeEventListener("scroll", handleNormalHeaderPosition);
+      window.removeEventListener("resize", handleNormalHeaderPosition);
+    };
+  }, [isInteractive]);
+
+  useEffect(() => {
     const handleDefineScroll = () => {
       const defineElement = defineStartRef.current;
       const developElement = developStartRef.current;
@@ -117,7 +146,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
       >
         <DiscoverHeader
           headerRef={headerRef}
-          isHeaderSticky={isInteractive ? isHeaderSticky : true}
+          isHeaderSticky={isInteractive ? isHeaderSticky : isNormalHeaderPinned}
           showCentered={isInteractive ? showCentered : false}
           currentSection={currentSection}
           onSectionSelect={selectCaseStudySection}
