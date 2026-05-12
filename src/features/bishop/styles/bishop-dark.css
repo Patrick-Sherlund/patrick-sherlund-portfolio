@@ -454,6 +454,10 @@
   background-color: #ffffff;
 }
 
+.dark .bishop-tracker-label {
+  color: #ffffff;
+}
+
 .dark .bishop-tracker-divider {
   background: linear-gradient(
     90deg,

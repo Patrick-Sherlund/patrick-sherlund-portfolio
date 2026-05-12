@@ -1,4 +1,4 @@
-import { Clock, Cpu, FileText, TrendingUp, Zap } from "lucide-react";
+import { CircleAlert, Clock, Cpu, TrendingUp, Zap } from "lucide-react";
 import { useRef } from "react";
 import { useInViewOnce } from "../../hooks/useInViewOnce";
 
@@ -59,7 +59,7 @@ export function ProblemSuccessSection({
           <div className="bishop-problem-content">
             <div className="bishop-problem-header">
               <div className="bishop-problem-icon">
-                <FileText size={28} />
+                <CircleAlert size={28} />
               </div>
               <h2 className="bishop-problem-title">{problemTitle}</h2>
             </div>

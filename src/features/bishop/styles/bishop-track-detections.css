@@ -66,6 +66,7 @@
 .bishop-tracker-video-after {
   z-index: 2;
   clip-path: polygon(var(--tracker-slider-position) 0, 100% 0, 100% 100%, var(--tracker-slider-position) 100%);
+  will-change: clip-path;
 }
 
 .bishop-tracker-divider {
@@ -85,6 +86,7 @@
     transparent calc(var(--tracker-slider-position) + 3.5px)
   );
   pointer-events: none;
+  will-change: background;
 }
 
 .bishop-tracker-handle {
@@ -102,6 +104,7 @@
   justify-content: center;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  will-change: left;
 }
 
 .bishop-tracker-handle span,

@@ -401,7 +401,7 @@
     min-height: 0;
     height: 100%;
     display: grid;
-    grid-template-rows: auto minmax(170px, 0.9fr) auto minmax(230px, 1fr);
+    grid-template-rows: auto minmax(112px, 0.52fr) auto minmax(282px, 1.32fr);
   }
 
   .bishop-iteration-one-title {
@@ -424,7 +424,8 @@
 
   .bishop-research-paper-carousel {
     align-self: start;
-    height: clamp(220px, 72vw, 320px);
+    height: clamp(282px, 82vw, 360px);
+    margin-top: clamp(-46px, -7svh, -28px);
   }
 
   .bishop-research-paper {

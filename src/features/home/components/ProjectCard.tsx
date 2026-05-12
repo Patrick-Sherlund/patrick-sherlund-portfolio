@@ -22,6 +22,20 @@ export function ProjectCard({
   device = 'laptop',
   useDeviceFrame = true,
 }: ProjectCardProps) {
+  const projectTitle = buttonLink ? (
+    buttonLink.startsWith('/') ? (
+      <Link href={buttonLink} className="project-title-link">
+        {title}
+      </Link>
+    ) : (
+      <a href={buttonLink} target="_blank" rel="noopener noreferrer" className="project-title-link">
+        {title}
+      </a>
+    )
+  ) : (
+    title
+  );
+
   const mediaContent = useDeviceFrame ? (
     <DeviceFrame device={device} title={title}>
       {media}
@@ -40,7 +54,7 @@ export function ProjectCard({
             <div className="project-number">
               <span>{number}</span>
               <div className="project-heading-text">
-                <strong>{title}</strong>
+                <strong>{projectTitle}</strong>
                 {(role || yearRange) && (
                   <span className="project-heading-meta">
                     {role && <span className="project-heading-role">{role}</span>}

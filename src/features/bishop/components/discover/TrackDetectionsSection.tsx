@@ -16,6 +16,8 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
   const containerRef = useRef<HTMLDivElement>(null);
   const v1Ref = useRef<HTMLVideoElement>(null);
   const v4Ref = useRef<HTMLVideoElement>(null);
+  const isDraggingRef = useRef(false);
+  const sliderPositionRef = useRef(50);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -52,7 +54,22 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
     };
   }, []);
 
-  const updateSliderPosition = (clientX: number) => {
+  const setSliderValue = (nextPosition: number, syncState: boolean) => {
+    const nextValue = clampValue(nextPosition, 0, 100);
+    const container = containerRef.current;
+
+    sliderPositionRef.current = nextValue;
+    container?.style.setProperty("--tracker-slider-position", `${nextValue}%`);
+
+    if (syncState) {
+      setSliderPosition(nextValue);
+      return;
+    }
+
+    container?.setAttribute("aria-valuenow", `${Math.round(nextValue)}`);
+  };
+
+  const updateSliderPosition = (clientX: number, syncState = false) => {
     const container = containerRef.current;
 
     if (!container) {
@@ -61,7 +78,7 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
 
     const rect = container.getBoundingClientRect();
     const nextPosition = ((clientX - rect.left) / rect.width) * 100;
-    setSliderPosition(clampValue(nextPosition, 0, 100));
+    setSliderValue(nextPosition, syncState);
   };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
@@ -73,12 +90,13 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
 
     event.preventDefault();
     container.setPointerCapture(event.pointerId);
+    isDraggingRef.current = true;
     setIsDragging(true);
-    updateSliderPosition(event.clientX);
+    updateSliderPosition(event.clientX, true);
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) {
+    if (!isDraggingRef.current) {
       return;
     }
 
@@ -93,6 +111,8 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
       container.releasePointerCapture(event.pointerId);
     }
 
+    isDraggingRef.current = false;
+    setSliderValue(sliderPositionRef.current, true);
     setIsDragging(false);
   };
 
@@ -104,21 +124,22 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
     event.preventDefault();
     const step = event.shiftKey ? 10 : 5;
 
-    setSliderPosition((currentPosition) => {
-      if (event.key === "Home") {
-        return 0;
-      }
+    const currentPosition = sliderPositionRef.current;
+    let nextPosition = currentPosition;
 
-      if (event.key === "End") {
-        return 100;
-      }
-
-      return clampValue(
+    if (event.key === "Home") {
+      nextPosition = 0;
+    } else if (event.key === "End") {
+      nextPosition = 100;
+    } else {
+      nextPosition = clampValue(
         event.key === "ArrowLeft" ? currentPosition - step : currentPosition + step,
         0,
         100
       );
-    });
+    }
+
+    setSliderValue(nextPosition, true);
   };
 
   const sliderStyle: SliderStyle = {
@@ -142,7 +163,7 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
           onPointerCancel={handlePointerEnd}
           onKeyDown={handleKeyDown}
           role="slider"
-          aria-label="Compare V2 and V4 tracking videos"
+          aria-label="Compare V1 and V4 tracking videos"
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(sliderPosition)}

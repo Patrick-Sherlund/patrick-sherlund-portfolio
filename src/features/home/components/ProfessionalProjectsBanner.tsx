@@ -30,7 +30,7 @@ export function ProfessionalProjectsBanner({
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
-      const contentFadeDistance = windowHeight * 0.4;
+      const contentFadeDistance = windowHeight * 0.75;
       const stickyFadeDistance = windowHeight * 0.18;
       const newContentFadeProgress = Math.min(1, Math.max(0, scrolled / contentFadeDistance));
       const newStickyFadeProgress = Math.min(1, Math.max(0, (scrolled - contentFadeDistance) / stickyFadeDistance));

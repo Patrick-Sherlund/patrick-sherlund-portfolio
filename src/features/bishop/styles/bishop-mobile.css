@@ -434,6 +434,10 @@
     padding-right: 18px;
   }
 
+  .bishop-research-panel {
+    transform: translateY(-34px);
+  }
+
   .bishop-carousel-container {
     height: 44%;
     padding: 26px 0;
@@ -494,7 +498,7 @@
 
   .bishop-persona-panel {
     justify-content: center;
-    transform: translateY(-34px);
+    transform: translateY(8px);
   }
 
   .bishop-persona-learned-wrapper .bishop-learned-main-panel {
