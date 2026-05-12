@@ -241,7 +241,7 @@
 
   .bishop-next-case-study {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 12px;
     max-width: 440px;
     text-align: center;
   }
@@ -252,6 +252,10 @@
 
   .bishop-next-case-study-media-laptop {
     transform: none;
+  }
+
+  .bishop-next-case-study-media {
+    line-height: 0;
   }
 }
 
@@ -277,7 +281,11 @@
     width: min(100%, 340px);
     margin-top: 30px;
     padding-top: 20px;
-    gap: 10px;
+    gap: 0;
+  }
+
+  .bishop-next-case-study-media-laptop {
+    margin-bottom: -24px;
   }
 
   .bishop-next-case-study-text > span {

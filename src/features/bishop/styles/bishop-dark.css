@@ -350,6 +350,10 @@
   stroke: #7ebaff;
 }
 
+.dark .bishop-key-learning-icon {
+  color: #7ebaff;
+}
+
 .dark .bishop-annotate-background {
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
 }

@@ -543,7 +543,11 @@
 
   .project-container {
     padding: 44px 40px;
-    gap: 28px;
+    gap: 12px;
+  }
+
+  .project-media-link {
+    line-height: 0;
   }
 
   .project-number {
@@ -606,7 +610,7 @@
 
   .project-container {
     padding: 28px 24px;
-    gap: 22px;
+    gap: 6px;
   }
 
   .project-number {
