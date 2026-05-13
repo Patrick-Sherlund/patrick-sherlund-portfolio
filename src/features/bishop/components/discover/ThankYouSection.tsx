@@ -1,10 +1,19 @@
 import Link from "next/link";
+import { useRef } from "react";
 import { DeviceFrame } from "@/shared/components/DeviceFrame";
 import { VideoOverlay } from "@/shared/components/VideoOverlay";
+import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
 
-export function ThankYouSection() {
+type ThankYouSectionProps = {
+  isInteractive: boolean;
+};
+
+export function ThankYouSection({ isInteractive }: ThankYouSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
+
   return (
-    <section className="bishop-thank-you-section">
+    <section className={`bishop-thank-you-section ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
       <div className="bishop-thank-you-content">
         <div className="bishop-thank-you-copy">
           <h2>Thank you</h2>

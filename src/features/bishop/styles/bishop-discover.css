@@ -925,8 +925,7 @@
 /* The Reality Today Section */
 .bishop-reality-section {
   width: 100%;
-  /* Height: 100vh for initial view + 800px for sticky scroll */
-  height: calc(100vh + 800px);
+  height: calc(100vh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
   position: relative;
   background-color: #ffffff;
 }

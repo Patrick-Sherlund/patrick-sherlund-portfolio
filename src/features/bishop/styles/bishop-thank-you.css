@@ -1,20 +1,22 @@
 .bishop-thank-you-section {
   width: 100%;
-  min-height: 100vh;
+  height: calc(100vh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
   background-color: #ffffff;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 192px 32px 82px;
+  position: relative;
 }
 
 .bishop-thank-you-content {
+  position: sticky;
+  top: 0;
   width: min(100%, 980px);
   min-height: 0;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding: 192px 32px 82px;
+  flex-direction: column;
+  margin: 0 auto;
   color: #111111;
   text-align: center;
 }
@@ -261,7 +263,11 @@
 
 @media (max-width: 640px) {
   .bishop-thank-you-section {
-    min-height: 100svh;
+    height: calc(100svh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+  }
+
+  .bishop-thank-you-content {
+    height: 100svh;
     padding: 110px 24px 58px;
   }
 

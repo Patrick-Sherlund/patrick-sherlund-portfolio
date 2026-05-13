@@ -1,10 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useMobilePinnedSection } from '../hooks/useMobilePinnedSection';
 
-export function BishopUsersSaw() {
+type BishopUsersSawProps = {
+  isInteractive: boolean;
+};
+
+export function BishopUsersSaw({ isInteractive }: BishopUsersSawProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,7 +36,7 @@ export function BishopUsersSaw() {
   }, []);
 
   return (
-    <section className="bishop-users-saw" ref={sectionRef}>
+    <section className={`bishop-users-saw ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
       <div className="bishop-users-saw-container">
         <h2 className={`bishop-users-saw-title ${isVisible ? 'bubble-in' : ''}`}>
           Our users saw...

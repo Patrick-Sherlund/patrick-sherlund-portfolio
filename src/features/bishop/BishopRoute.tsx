@@ -70,7 +70,7 @@ export function BishopRoute() {
       <BishopTeam />
       <BishopRoleStack isInteractive={isInteractive} />
       <BishopChallengeVision isInteractive={isInteractive} />
-      <BishopUsersSaw />
+      <BishopUsersSaw isInteractive={isInteractive} />
       <BishopDiscover isInteractive={isInteractive} />
     </div>
   );

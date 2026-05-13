@@ -150,7 +150,7 @@ export function DesignDecisionsSection({
   const isIterationAiMobilePinned = useMobilePinnedSection(iterationAiRef, isInteractive);
   const isManageMapMobilePinned = useMobilePinnedSection(manageMapRef, isInteractive);
   const firstTransitionProgress = clamp(stageProgress / 0.28);
-  const secondTransitionProgress = clamp((stageProgress - 0.58) / 0.28);
+  const secondTransitionProgress = clamp((stageProgress - 0.36) / 0.28);
   const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
   const gatherOpacity = isInteractive ? 1 - secondTransitionProgress : undefined;
   const annotateOpacity = isInteractive ? secondTransitionProgress : undefined;
@@ -217,7 +217,7 @@ export function DesignDecisionsSection({
             className="bishop-annotate-transition-panel"
             style={
               isInteractive
-                ? { opacity: annotateOpacity, pointerEvents: stageProgress > 0.72 ? "auto" : "none" }
+                ? { opacity: annotateOpacity, pointerEvents: stageProgress > 0.5 ? "auto" : "none" }
                 : undefined
             }
           >

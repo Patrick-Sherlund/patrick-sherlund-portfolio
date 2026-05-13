@@ -186,6 +186,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         />
 
         <RealitySection
+          isInteractive={isInteractive}
           title={bishopContent.reality.title}
           text={bishopContent.reality.text}
         />
@@ -217,7 +218,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           provedCards={bishopContent.proved.cards}
         />
 
-        <ConceptsSection images={bishopMediaAssets.concepts} />
+        <ConceptsSection isInteractive={isInteractive} images={bishopMediaAssets.concepts} />
 
         <DesignDecisionsSection
           sectionRef={developStartRef}
@@ -290,7 +291,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           </div>
         </div>
 
-        <ThankYouSection />
+        <ThankYouSection isInteractive={isInteractive} />
       </section>
     </>
   );

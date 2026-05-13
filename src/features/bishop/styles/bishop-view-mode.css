@@ -6,7 +6,9 @@
 .bishop-page-normal .bishop-reality-section,
 .bishop-page-normal .bishop-problem-success-wrapper,
 .bishop-page-normal .bishop-proposed-proved-wrapper,
-.bishop-page-normal .bishop-develop-iteration-wrapper {
+.bishop-page-normal .bishop-develop-iteration-wrapper,
+.bishop-page-normal .bishop-concepts-section,
+.bishop-page-normal .bishop-thank-you-section {
   height: auto;
   min-height: 0;
 }
@@ -204,6 +206,22 @@
   position: relative;
   top: auto;
   min-height: 100vh;
+}
+
+.bishop-page-normal .bishop-concepts-content {
+  position: relative;
+  top: auto;
+  height: auto;
+  min-height: 100vh;
+  padding: 124px 0 24px;
+}
+
+.bishop-page-normal .bishop-thank-you-content {
+  position: relative;
+  top: auto;
+  height: auto;
+  min-height: 100vh;
+  padding: 192px 32px 82px;
 }
 
 .bishop-page-normal .normal-bubble-visible:not(.bishop-bubble-image) {

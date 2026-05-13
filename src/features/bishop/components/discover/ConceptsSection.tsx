@@ -1,12 +1,18 @@
+import { useRef } from "react";
+import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
+
 type ConceptsSectionProps = {
+  isInteractive: boolean;
   images: string[];
 };
 
-export function ConceptsSection({ images }: ConceptsSectionProps) {
+export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
   const carouselGroups = [images, images, images];
 
   return (
-    <section className="bishop-concepts-section">
+    <section className={`bishop-concepts-section ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
       <div className="bishop-concepts-content">
         <h2 className="bishop-concepts-title">Concepts, ideations, iterations</h2>
         <div className="bishop-concepts-carousel" aria-label="Bishop concept iterations carousel">

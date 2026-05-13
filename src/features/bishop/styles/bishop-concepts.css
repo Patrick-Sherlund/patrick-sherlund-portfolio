@@ -1,19 +1,20 @@
 .bishop-concepts-section {
   width: 100%;
-  min-height: 100vh;
+  height: calc(100vh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
   background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 124px 0 54px;
-  overflow: hidden;
+  position: relative;
 }
 
 .bishop-concepts-content {
+  position: sticky;
+  top: 0;
   width: 100%;
+  height: 100vh;
+  padding: 124px 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .bishop-concepts-title {
@@ -115,12 +116,12 @@
 }
 
 @media (max-width: 940px) {
-  .bishop-concepts-section {
-    padding-top: 104px;
-  }
-
   .bishop-concepts-title {
     margin-bottom: 56px;
+  }
+
+  .bishop-concepts-content {
+    padding-top: 104px;
   }
 
   .bishop-concepts-carousel {
@@ -131,8 +132,12 @@
 
 @media (max-width: 640px) {
   .bishop-concepts-section {
-    min-height: auto;
-    padding: 72px 0;
+    height: calc(100svh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+  }
+
+  .bishop-concepts-content {
+    height: 100svh;
+    padding: 72px 0 28px;
   }
 
   .bishop-concepts-title {

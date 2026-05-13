@@ -222,15 +222,15 @@
   }
 
   .bishop-users-saw {
-    height: auto;
-    min-height: 100svh;
+    height: calc(100svh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+    min-height: 0;
   }
 
   .bishop-users-saw-container {
-    position: relative;
-    top: auto;
-    min-height: 100svh;
-    height: auto;
+    position: sticky;
+    top: 0;
+    min-height: 0;
+    height: 100svh;
     padding: 72px 18px;
     gap: 28px;
   }
@@ -318,7 +318,11 @@
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-train-iteration-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-tracker-client-content,
   .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-iteration-ai-content,
-  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-manage-map-content {
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-manage-map-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-users-saw-container,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-reality-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-concepts-content,
+  .bishop-page-interactive .bishop-mobile-pinned-section > .bishop-thank-you-content {
     position: fixed;
     top: 0;
     left: 0;
@@ -534,16 +538,16 @@
   }
 
   .bishop-reality-section {
-    height: auto;
-    min-height: 100svh;
+    height: calc(100svh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+    min-height: 0;
     padding: 0;
   }
 
   .bishop-reality-content {
-    position: relative;
-    top: auto;
-    min-height: 100svh;
-    height: auto;
+    position: sticky;
+    top: 0;
+    min-height: 0;
+    height: 100svh;
     padding: 72px 18px;
     gap: 28px;
   }
@@ -731,7 +735,9 @@
   .bishop-page-normal .bishop-reality-section,
   .bishop-page-normal .bishop-problem-success-wrapper,
   .bishop-page-normal .bishop-proposed-proved-wrapper,
-  .bishop-page-normal .bishop-develop-iteration-wrapper {
+  .bishop-page-normal .bishop-develop-iteration-wrapper,
+  .bishop-page-normal .bishop-concepts-section,
+  .bishop-page-normal .bishop-thank-you-section {
     height: auto;
     min-height: 0;
   }
