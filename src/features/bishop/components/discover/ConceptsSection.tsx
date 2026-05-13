@@ -24,6 +24,24 @@ export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps)
   const carouselGroups = [images, images, images];
   const isMobileCarouselPointer = () => window.matchMedia("(max-width: 640px)").matches;
 
+  const normalizeCarouselOffset = (offset: number) => {
+    const track = carouselTrackRef.current;
+    const firstCollage = track?.querySelector<HTMLElement>(".bishop-concepts-collage");
+
+    if (!track || !firstCollage) {
+      return offset;
+    }
+
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || "0");
+    const loopDistance = firstCollage.offsetWidth + gap;
+
+    if (!loopDistance) {
+      return offset;
+    }
+
+    return ((offset % loopDistance) + loopDistance) % loopDistance;
+  };
+
   const setCarouselOffset = (offset: number) => {
     const track = carouselTrackRef.current;
 
@@ -31,7 +49,10 @@ export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps)
       return;
     }
 
-    track.style.setProperty("--bishop-concepts-carousel-swipe-offset", `${offset}px`);
+    const normalizedOffset = normalizeCarouselOffset(offset);
+
+    dragStateRef.current.offset = normalizedOffset;
+    track.style.setProperty("--bishop-concepts-carousel-swipe-offset", `${normalizedOffset}px`);
   };
 
   const handleCarouselPointerDown = (event: PointerEvent<HTMLDivElement>) => {

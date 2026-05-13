@@ -413,6 +413,10 @@
     height: calc(300svh + var(--bishop-crossfade-settle-distance));
   }
 
+  .bishop-train-iteration-wrapper {
+    height: calc(430svh + var(--bishop-crossfade-settle-distance));
+  }
+
   .bishop-context-panel,
   .bishop-research-panel,
   .bishop-persona-panel,

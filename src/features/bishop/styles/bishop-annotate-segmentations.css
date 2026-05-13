@@ -203,7 +203,7 @@
 }
 
 .bishop-train-model-log {
-  width: 100%;
+  width: max-content;
   margin: 0;
   padding: 8px 10px 12px;
   color: #111827;
@@ -213,6 +213,8 @@
   line-height: 1.26;
   letter-spacing: 0;
   white-space: pre;
+  transform: scaleX(var(--bishop-train-log-scale-x, 1));
+  transform-origin: left top;
 }
 
 .bishop-train-model-log-measure {
@@ -221,6 +223,7 @@
   visibility: hidden;
   pointer-events: none;
   font-size: 10px;
+  transform: none;
 }
 
 .bishop-train-model-cursor {
@@ -254,18 +257,18 @@
 @media (max-width: 640px) {
   .bishop-train-model-section {
     min-height: 100svh;
-    padding: 104px 18px 56px;
+    padding: 92px 14px 48px;
   }
 
   .bishop-train-model-headline {
-    font-size: clamp(24px, 7.2vw, 32px);
-    margin-bottom: 28px;
+    font-size: clamp(25px, 7.4vw, 34px);
+    margin-bottom: 22px;
   }
 
   .bishop-train-model-notebook {
     width: 100%;
-    height: min(500px, calc(100svh - 230px));
-    min-height: 330px;
+    height: min(470px, calc(100svh - 260px));
+    min-height: 300px;
     grid-template-columns: 36px minmax(0, 1fr);
   }
 
@@ -282,7 +285,7 @@
 
 @media (max-width: 390px) {
   .bishop-train-model-notebook {
-    min-height: 350px;
+    min-height: 310px;
     grid-template-columns: 30px minmax(0, 1fr);
   }
 }

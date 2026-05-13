@@ -54,6 +54,7 @@ export function TrainModelSection() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [logFontSize, setLogFontSize] = useState(8);
+  const [logScaleX, setLogScaleX] = useState(1);
   const notebookRef = useRef<HTMLDivElement>(null);
   const logViewportRef = useRef<HTMLDivElement>(null);
   const measuringLogRef = useRef<HTMLPreElement>(null);
@@ -122,11 +123,13 @@ export function TrainModelSection() {
         return;
       }
 
-      const widthScale = (viewportRect.width - 20) / measuredWidth;
       const heightScale = (viewportRect.height - 16) / measuredHeight;
-      const nextFontSize = Math.max(4, Math.min(13, baseFontSize * Math.min(widthScale, heightScale)));
+      const nextFontSize = Math.max(4, Math.min(13, baseFontSize * heightScale));
+      const scaledWidth = measuredWidth * (nextFontSize / baseFontSize);
+      const nextScaleX = Math.max(0.32, Math.min(1, (viewportRect.width - 20) / scaledWidth));
 
       setLogFontSize(Number(nextFontSize.toFixed(2)));
+      setLogScaleX(Number(nextScaleX.toFixed(3)));
     };
 
     const resizeObserver = new ResizeObserver(calculateFontSize);
@@ -183,7 +186,12 @@ export function TrainModelSection() {
           <div
             className="bishop-train-model-log-viewport"
             ref={logViewportRef}
-            style={{ "--bishop-train-log-font-size": `${logFontSize}px` } as CSSProperties}
+            style={
+              {
+                "--bishop-train-log-font-size": `${logFontSize}px`,
+                "--bishop-train-log-scale-x": logScaleX,
+              } as CSSProperties
+            }
           >
             <pre className="bishop-train-model-log bishop-train-model-log-measure" ref={measuringLogRef} aria-hidden="true">{trainingLog}</pre>
             <pre className="bishop-train-model-log">{visibleLog}<span className="bishop-train-model-cursor" aria-hidden="true" /></pre>
