@@ -290,7 +290,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           </div>
         </div>
 
-        <ThankYouSection isInteractive={isInteractive} />
+        <ThankYouSection />
       </section>
     </>
   );

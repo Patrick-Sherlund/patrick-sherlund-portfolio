@@ -1,16 +1,14 @@
 .bishop-thank-you-section {
   width: 100%;
-  height: calc(100vh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+  min-height: 100vh;
   background-color: #ffffff;
   position: relative;
 }
 
 .bishop-thank-you-content {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: min(100%, 980px);
-  min-height: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -263,11 +261,11 @@
 
 @media (max-width: 640px) {
   .bishop-thank-you-section {
-    height: calc(100svh + var(--bishop-crossfade-entry-distance) + var(--bishop-crossfade-settle-distance));
+    min-height: 100svh;
   }
 
   .bishop-thank-you-content {
-    height: 100svh;
+    min-height: 100svh;
     padding: 110px 24px 58px;
   }
 
