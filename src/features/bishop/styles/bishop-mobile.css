@@ -477,6 +477,8 @@
     max-width: none;
     margin-left: calc(-50vw + 50%);
     overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
   }
 
   .bishop-persona-carousel-track {

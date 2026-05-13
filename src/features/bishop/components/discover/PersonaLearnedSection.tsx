@@ -1,5 +1,5 @@
 import svgPaths from "@/lib/svg-r3w32ldrgh";
-import { useRef } from "react";
+import { useRef, type PointerEvent } from "react";
 import { useInViewOnce } from "../../hooks/useInViewOnce";
 import { LearnedCardIcon } from "./icons";
 
@@ -38,6 +38,18 @@ export function PersonaLearnedSection({
 }: PersonaLearnedSectionProps) {
   const personaPanelRef = useRef<HTMLDivElement>(null);
   const learnedPanelRef = useRef<HTMLDivElement>(null);
+  const personaCarouselTrackRef = useRef<HTMLDivElement>(null);
+  const personaDragStateRef = useRef({
+    isDragging: false,
+    pointerId: -1,
+    startX: 0,
+    startY: 0,
+    offset: 0,
+    startOffset: 0,
+    lastX: 0,
+    lastTime: 0,
+    velocity: 0,
+  });
   const normalPersonaVisible = useInViewOnce(personaPanelRef, !isInteractive);
   const normalLearnedVisible = useInViewOnce(learnedPanelRef, !isInteractive);
   const repeatedPersonaAssets = [
@@ -48,6 +60,77 @@ export function PersonaLearnedSection({
     ...personaAssets,
     ...personaAssets,
   ];
+  const isMobileCarouselPointer = () => window.matchMedia("(max-width: 640px)").matches;
+
+  const setPersonaCarouselOffset = (offset: number) => {
+    const track = personaCarouselTrackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    track.style.setProperty("--bishop-persona-carousel-swipe-offset", `${offset}px`);
+  };
+
+  const handlePersonaPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isMobileCarouselPointer() || event.pointerType === "mouse") {
+      return;
+    }
+
+    personaDragStateRef.current = {
+      ...personaDragStateRef.current,
+      isDragging: true,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startOffset: personaDragStateRef.current.offset,
+      lastX: event.clientX,
+      lastTime: performance.now(),
+      velocity: 0,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePersonaPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const dragState = personaDragStateRef.current;
+
+    if (!dragState.isDragging || dragState.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - dragState.startX;
+    const deltaY = event.clientY - dragState.startY;
+
+    if (Math.abs(deltaY) > Math.abs(deltaX) * 1.2) {
+      return;
+    }
+
+    const nextOffset = dragState.startOffset + deltaX;
+    const now = performance.now();
+    const elapsed = Math.max(1, now - dragState.lastTime);
+
+    dragState.velocity = (event.clientX - dragState.lastX) / elapsed;
+    dragState.lastX = event.clientX;
+    dragState.lastTime = now;
+    dragState.offset = nextOffset;
+    setPersonaCarouselOffset(nextOffset);
+  };
+
+  const endPersonaPointerDrag = (event: PointerEvent<HTMLDivElement>) => {
+    const dragState = personaDragStateRef.current;
+
+    if (!dragState.isDragging || dragState.pointerId !== event.pointerId) {
+      return;
+    }
+
+    dragState.isDragging = false;
+    dragState.offset += dragState.velocity * 220;
+    setPersonaCarouselOffset(dragState.offset);
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
 
   return (
     <div className={`bishop-persona-learned-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
@@ -58,8 +141,14 @@ export function PersonaLearnedSection({
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <h2 className="bishop-persona-section-title">{personaTitle}</h2>
-          <div className={`bishop-persona-carousel-wrapper ${!isInteractive && normalPersonaVisible ? "normal-bubble-visible" : ""}`}>
-            <div className="bishop-persona-carousel-track">
+          <div
+            className={`bishop-persona-carousel-wrapper ${!isInteractive && normalPersonaVisible ? "normal-bubble-visible" : ""}`}
+            onPointerDown={handlePersonaPointerDown}
+            onPointerMove={handlePersonaPointerMove}
+            onPointerUp={endPersonaPointerDrag}
+            onPointerCancel={endPersonaPointerDrag}
+          >
+            <div className="bishop-persona-carousel-track" ref={personaCarouselTrackRef}>
               {repeatedPersonaAssets.map(
                 (persona, index) => {
                   const isEven = index % 2 === 0;

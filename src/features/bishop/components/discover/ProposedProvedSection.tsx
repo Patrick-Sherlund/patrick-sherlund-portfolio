@@ -100,13 +100,19 @@ export function ProposedProvedSection({
         >
           <h2 className="bishop-proved-main-title">{provedTitle}</h2>
           <div className={`bishop-proved-cards ${!isInteractive && normalProvedVisible ? "normal-bubble-visible" : ""}`}>
-            {provedCards.map((card) => (
-              <div className="bishop-proved-card" key={card.top}>
-                <div className="bishop-proved-card-top">{card.top}</div>
-                <div className="bishop-proved-arrow">↓</div>
-                <div className="bishop-proved-card-bottom">{card.bottom}</div>
-              </div>
-            ))}
+            {provedCards.map((card, index) => {
+              const isCardVisible = isInteractive
+                ? progress >= 0.58 + index * 0.1
+                : normalProvedVisible;
+
+              return (
+                <div className={`bishop-proved-card ${isCardVisible ? "bubble-in" : ""}`} key={card.top}>
+                  <div className="bishop-proved-card-top">{card.top}</div>
+                  <div className="bishop-proved-arrow">↓</div>
+                  <div className="bishop-proved-card-bottom">{card.bottom}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

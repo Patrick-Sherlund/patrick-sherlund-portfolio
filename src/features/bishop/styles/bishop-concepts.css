@@ -37,6 +37,7 @@
 }
 
 .bishop-concepts-carousel-track {
+  --bishop-concepts-carousel-swipe-offset: 0px;
   display: flex;
   gap: var(--concepts-collage-gap);
   width: max-content;
@@ -107,11 +108,11 @@
 
 @keyframes bishopConceptsCarousel {
   from {
-    transform: translateX(0);
+    transform: translateX(var(--bishop-concepts-carousel-swipe-offset, 0px));
   }
 
   to {
-    transform: translateX(calc((var(--concepts-collage-width) + var(--concepts-collage-gap)) * -1));
+    transform: translateX(calc((var(--concepts-collage-width) + var(--concepts-collage-gap)) * -1 + var(--bishop-concepts-carousel-swipe-offset, 0px)));
   }
 }
 
@@ -149,6 +150,8 @@
   .bishop-concepts-carousel {
     --concepts-collage-width: 720px;
     --concepts-collage-gap: 16px;
+    touch-action: pan-y;
+    user-select: none;
   }
 
   .bishop-concepts-carousel-track {
