@@ -168,8 +168,8 @@
   top: var(--zoom-stage-top, 0);
   width: var(--zoom-stage-width, 0);
   height: var(--zoom-stage-height, 0);
-  transform: scale(2.6);
-  transform-origin: var(--zoom-origin-x, 0) var(--zoom-origin-y, 0);
+  transform: scale(var(--zoom-scale, 2.6));
+  transform-origin: 0 0;
   pointer-events: none;
 }
 
@@ -425,7 +425,7 @@
   .bishop-research-paper-carousel {
     align-self: start;
     height: clamp(282px, 82vw, 360px);
-    margin-top: clamp(-46px, -7svh, -28px);
+    margin-top: clamp(-24px, -3.5svh, -14px);
   }
 
   .bishop-research-paper {

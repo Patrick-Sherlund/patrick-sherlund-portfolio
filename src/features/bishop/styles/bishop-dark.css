@@ -459,17 +459,7 @@
 }
 
 .dark .bishop-tracker-divider {
-  background: linear-gradient(
-    90deg,
-    transparent calc(var(--tracker-slider-position) - 3.5px),
-    #ffffff calc(var(--tracker-slider-position) - 3.5px),
-    #ffffff calc(var(--tracker-slider-position) - 0.5px),
-    #041825 calc(var(--tracker-slider-position) - 0.5px),
-    #041825 calc(var(--tracker-slider-position) + 0.5px),
-    #ffffff calc(var(--tracker-slider-position) + 0.5px),
-    #ffffff calc(var(--tracker-slider-position) + 3.5px),
-    transparent calc(var(--tracker-slider-position) + 3.5px)
-  );
+  background: linear-gradient(90deg, #ffffff 0 3px, #041825 3px 4px, #ffffff 4px 7px);
 }
 
 .dark .bishop-next-case-study {

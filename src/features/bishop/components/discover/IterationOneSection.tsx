@@ -35,6 +35,7 @@ type MagnifierLayout = {
 type MagnifierStyle = CSSProperties & Record<`--${string}`, string>;
 
 const clampValue = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const magnifierZoomScale = 2.6;
 
 const circleIntersectsRect = (circleX: number, circleY: number, radius: number, rect: DOMRect) => {
   const closestX = clampValue(circleX, rect.left, rect.right);
@@ -93,7 +94,7 @@ export function IterationOneSection({
     const circleOffsetY = readPixelValue(styles, "--magnifier-circle-top", 0);
     const circleSize = readPixelValue(styles, "--magnifier-circle-size", 70);
     const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
-    const initialGap = isMobileViewport ? 6 : 24;
+    const initialGap = isMobileViewport ? 40 : 24;
     const initialX = headlineAnchorRect.right - stageRect.left + initialGap;
     const initialY = isMobileViewport
       ? headlineAnchorRect.top - stageRect.top
@@ -386,14 +387,13 @@ export function IterationOneSection({
         "--magnifier-ready": "1",
         "--zoom-stage-width": `${layout.stageWidth}px`,
         "--zoom-stage-height": `${layout.stageHeight}px`,
-        "--zoom-stage-left": `${-(lensPosition.x + layout.circleLeft)}px`,
-        "--zoom-stage-top": `${-(lensPosition.y + layout.circleTop)}px`,
+        "--zoom-stage-left": `${layout.circleSize / 2 - (lensPosition.x + layout.originX) * magnifierZoomScale}px`,
+        "--zoom-stage-top": `${layout.circleSize / 2 - (lensPosition.y + layout.originY) * magnifierZoomScale}px`,
+        "--zoom-scale": `${magnifierZoomScale}`,
         "--zoom-carousel-left": `${layout.carouselLeft}px`,
         "--zoom-carousel-top": `${layout.carouselTop}px`,
         "--zoom-carousel-width": `${layout.carouselWidth}px`,
         "--zoom-carousel-height": `${layout.carouselHeight}px`,
-        "--zoom-origin-x": `${lensPosition.x + layout.originX}px`,
-        "--zoom-origin-y": `${lensPosition.y + layout.originY}px`,
       }
     : undefined;
 

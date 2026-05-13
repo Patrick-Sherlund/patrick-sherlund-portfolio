@@ -71,22 +71,21 @@
 
 .bishop-tracker-divider {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: var(--tracker-slider-position);
   z-index: 3;
-  border-radius: var(--tracker-video-radius);
-  background: linear-gradient(
-    90deg,
-    transparent calc(var(--tracker-slider-position) - 3.5px),
-    #111111 calc(var(--tracker-slider-position) - 3.5px),
-    #111111 calc(var(--tracker-slider-position) - 0.5px),
-    #ffffff calc(var(--tracker-slider-position) - 0.5px),
-    #ffffff calc(var(--tracker-slider-position) + 0.5px),
-    #111111 calc(var(--tracker-slider-position) + 0.5px),
-    #111111 calc(var(--tracker-slider-position) + 3.5px),
-    transparent calc(var(--tracker-slider-position) + 3.5px)
-  );
+  width: 7px;
+  background: linear-gradient(90deg, #111111 0 3px, #ffffff 3px 4px, #111111 4px 7px);
+  transform: translate3d(-50%, 0, 0);
   pointer-events: none;
-  will-change: background;
+  will-change: left;
+}
+
+.bishop-tracker-comparison.dragging .bishop-tracker-divider {
+  left: 0;
+  transform: translate3d(calc(var(--tracker-slider-x, 0px) - 3.5px), 0, 0);
+  will-change: transform;
 }
 
 .bishop-tracker-handle {
@@ -105,6 +104,12 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   will-change: left;
+}
+
+.bishop-tracker-comparison.dragging .bishop-tracker-handle {
+  left: 0;
+  transform: translate3d(calc(var(--tracker-slider-x, 0px) - 50%), -50%, 0);
+  will-change: transform;
 }
 
 .bishop-tracker-handle span,

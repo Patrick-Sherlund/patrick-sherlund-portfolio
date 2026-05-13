@@ -60,6 +60,10 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
 
     sliderPositionRef.current = nextValue;
     container?.style.setProperty("--tracker-slider-position", `${nextValue}%`);
+    if (container) {
+      const sliderX = (container.getBoundingClientRect().width * nextValue) / 100;
+      container.style.setProperty("--tracker-slider-x", `${sliderX}px`);
+    }
 
     if (syncState) {
       setSliderPosition(nextValue);
