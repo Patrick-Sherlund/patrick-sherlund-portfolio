@@ -240,9 +240,11 @@
   overflow: visible; /* Allow content to overflow */
   z-index: 1;
   padding: 40px 0; /* Extra padding to prevent clipping */
+  pointer-events: all;
 }
 
 .bishop-carousel-track {
+  --bishop-carousel-swipe-offset: 0px;
   position: absolute;
   display: flex;
   gap: 40px;
@@ -253,10 +255,10 @@
 /* Pause animation when hovering over any carousel item */
 @keyframes scrollCarousel {
   0% {
-    transform: translateX(0);
+    transform: translateX(var(--bishop-carousel-swipe-offset, 0px));
   }
   100% {
-    transform: translateX(-50%); /* Updated for 4 videos (100% / 2 duplicates = 50%) */
+    transform: translateX(calc(-50% + var(--bishop-carousel-swipe-offset, 0px)));
   }
 }
 
@@ -634,6 +636,8 @@
   .bishop-carousel-container {
     height: 60%; /* Increased height */
     padding: 60px 0; /* More padding for scaled items */
+    touch-action: pan-y;
+    user-select: none;
   }
 
   .carousel-img-1,

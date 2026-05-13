@@ -34,7 +34,6 @@ type DesignDecisionsSectionProps = {
   annotateVideo: string;
   annotateMobileImage: string;
   annotateMobileVideo: string;
-  trainModelImage: string;
   iterationTwoTitle: string;
   iterationTwoSubtitle: string;
   iterationTwoSummary: ReactNode;
@@ -118,7 +117,6 @@ export function DesignDecisionsSection({
   annotateVideo,
   annotateMobileImage,
   annotateMobileVideo,
-  trainModelImage,
   iterationTwoTitle,
   iterationTwoSubtitle,
   iterationTwoSummary,
@@ -245,7 +243,7 @@ export function DesignDecisionsSection({
                 : undefined
             }
           >
-            <TrainModelSection image={trainModelImage} />
+            <TrainModelSection />
           </div>
           <div
             className="bishop-iteration-two-transition-panel"

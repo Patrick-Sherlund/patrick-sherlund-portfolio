@@ -236,7 +236,6 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           annotateVideo={bishopMediaAssets.annotateVideo}
           annotateMobileImage={bishopMediaAssets.annotateMobileImage}
           annotateMobileVideo={bishopMediaAssets.annotateMobileVideo}
-          trainModelImage={bishopMediaAssets.trainModel}
           iterationTwoTitle={bishopContent.iterationTwo.title}
           iterationTwoSubtitle={bishopContent.iterationTwo.subtitle}
           iterationTwoSummary={bishopContent.iterationTwo.summary}

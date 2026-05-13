@@ -59,6 +59,15 @@
   transition-timing-function: ease-in-out;
 }
 
+.bishop-train-model-notebook,
+.bishop-train-model-prompt,
+.bishop-train-model-log-viewport,
+.bishop-train-model-log {
+  transition-property: background-color, background, color, border-color, box-shadow, filter;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
 .bishop-number,
 .bishop-description,
 .bishop-timeline,
@@ -365,6 +374,33 @@
 .dark .bishop-annotate-video-card {
   background: #061f30;
   box-shadow: 0 22px 56px rgba(0, 0, 0, 0.42);
+}
+
+.dark .bishop-train-model-notebook {
+  border-color: rgba(175, 194, 208, 0.26);
+  background-color: #03131f;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.42);
+}
+
+.dark .bishop-train-model-notebook:focus-visible {
+  border-color: #7ebaff;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.42), 0 0 0 3px rgba(126, 186, 255, 0.2);
+}
+
+.dark .bishop-train-model-log-viewport {
+  background-color: #03131f;
+}
+
+.dark .bishop-train-model-prompt {
+  color: #7ebaff;
+}
+
+.dark .bishop-train-model-log {
+  color: #edf7ff;
+}
+
+.dark .bishop-train-model-cursor {
+  background-color: #edf7ff;
 }
 
 .dark .bishop-team-divider {
