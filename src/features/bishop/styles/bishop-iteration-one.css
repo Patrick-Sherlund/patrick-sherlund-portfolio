@@ -85,6 +85,7 @@
   left: 50%;
   width: clamp(132px, 21vw, 292px);
   height: auto;
+  aspect-ratio: 970 / 1255;
   transform-origin: center center;
   border: 1px solid #bfc3c8;
   background-color: #ffffff;
@@ -401,7 +402,7 @@
     min-height: 0;
     height: 100%;
     display: grid;
-    grid-template-rows: auto minmax(112px, 0.52fr) auto minmax(282px, 1.32fr);
+    grid-template-rows: auto minmax(72px, 0.36fr) auto minmax(238px, 0.9fr);
   }
 
   .bishop-iteration-one-title {
@@ -424,12 +425,82 @@
 
   .bishop-research-paper-carousel {
     align-self: start;
-    height: clamp(282px, 82vw, 360px);
-    margin-top: clamp(-24px, -3.5svh, -14px);
+    justify-self: center;
+    width: min(100%, 430px);
+    height: clamp(238px, 64vw, 286px);
+    margin: 0 auto;
   }
 
   .bishop-research-paper {
-    width: clamp(146px, 52vw, 232px);
+    width: clamp(132px, 44vw, 190px);
+  }
+
+  @keyframes bishopResearchPaperOrbit {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) translateX(clamp(145px, 38vw, 188px)) scale(0.46);
+      z-index: 0;
+    }
+
+    6% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(132px, 34vw, 168px)) scale(0.54);
+      z-index: 1;
+    }
+
+    20% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(90px, 23vw, 116px)) scale(0.68);
+      z-index: 2;
+    }
+
+    34% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(46px, 12vw, 62px)) scale(0.82);
+      z-index: 4;
+    }
+
+    49% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(1vw) scale(0.99);
+      z-index: 6;
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(0) scale(1);
+      z-index: 7;
+    }
+
+    51% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(-1vw) scale(0.99);
+      z-index: 6;
+    }
+
+    66% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(-62px, -12vw, -46px)) scale(0.82);
+      z-index: 4;
+    }
+
+    80% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(-116px, -23vw, -90px)) scale(0.68);
+      z-index: 2;
+    }
+
+    94% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(clamp(-168px, -34vw, -132px)) scale(0.54);
+      z-index: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) translateX(clamp(-188px, -38vw, -145px)) scale(0.46);
+      z-index: 0;
+    }
   }
 }
 
