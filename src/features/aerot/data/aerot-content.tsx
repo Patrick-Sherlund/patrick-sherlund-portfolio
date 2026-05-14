@@ -57,11 +57,11 @@ export const aerotContent = {
       },
       {
         role: "Software Engineer",
-        name: "Evan Stewart",
+        name: "Jeremy Huynh",
       },
       {
         role: "Software Engineer",
-        name: "Jeremy Huynh",
+        name: "Evan Stewart",
       },
       {
         role: "Product Manager",
@@ -73,11 +73,12 @@ export const aerotContent = {
     title: "My role",
     text: (
       <>
-        I led AeroT from thesis concept to field-tested MVP, owning the product and engineering
-        direction across the RF sensing device, transport layer, Command View, terrain-aware
-        modeling, ATAK plugin, and field validation while turning an open-ended research idea into a
-        usable training system that helped instructors give Marines fast, visual feedback on whether
-        their transmissions could be detected.
+        I led AeroT from thesis concept to field-tested MVP, shaping the product and engineering
+        direction across the RF sensing device, instructor map interface, low-bandwidth radio
+        messaging, terrain-based signal modeling, ATAK field integration, and live validation. Our
+        work turned an open-ended research idea into a usable training system that helped instructors
+        show Marines, in near real time, whether their transmissions could be detected by simulated
+        adversarial receivers.
       </>
     ),
     stackTitle: "The Stack",

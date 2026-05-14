@@ -186,39 +186,81 @@
   object-position: center;
 }
 
+.aerot-team-section {
+  min-height: auto;
+  padding: 104px 40px 112px;
+}
+
 .aerot-team-section-content {
   width: min(100%, 1180px);
+  align-items: stretch;
+}
+
+.aerot-team-heading {
+  max-width: 780px;
+  margin: 0 0 58px;
+}
+
+.aerot-team-heading .bishop-team-section-title {
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.aerot-team-heading p {
+  margin: 0;
+  color: #5f6f67;
+  font-family: "Roboto", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .aerot-team-layout {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(280px, 0.78fr) minmax(360px, 1.22fr);
-  gap: clamp(52px, 8vw, 120px);
-  align-items: center;
+  grid-template-columns: minmax(280px, 0.76fr) minmax(420px, 1.24fr);
+  gap: clamp(56px, 7vw, 108px);
+  align-items: start;
 }
 
-.aerot-team-lead-card {
+.aerot-team-lead {
   justify-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 390px;
 }
 
-.aerot-team-lead-card .bishop-team-member-image {
-  width: clamp(240px, 25vw, 340px);
-  height: clamp(240px, 25vw, 340px);
+.aerot-team-lead .bishop-team-member-image {
+  width: clamp(260px, 25vw, 340px);
+  height: clamp(260px, 25vw, 340px);
+  margin-bottom: 28px;
+}
+
+.aerot-team-lead-note {
+  max-width: 330px;
+  margin: 12px 0 0;
+  color: #6b7280;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
 .aerot-team-credits {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 30px;
   align-items: stretch;
+  padding-top: 10px;
 }
 
 .aerot-team-credits-photo {
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 260px;
+  max-height: 280px;
   border-radius: 8px;
   object-fit: cover;
   object-position: center;
@@ -228,22 +270,24 @@
 .aerot-team-credit-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .aerot-team-credit-group h3 {
   margin: 0;
   color: #214f3d;
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .aerot-team-contributor-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 28px;
+  gap: 20px 36px;
 }
 
 .aerot-team-credit {
@@ -255,7 +299,7 @@
 .aerot-team-credit span {
   color: #111111;
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -270,7 +314,14 @@
 }
 
 .aerot-role-text {
-  max-width: 980px;
+  width: min(100%, 1080px);
+  max-width: 1080px;
+}
+
+.aerot-page .bishop-my-role-panel {
+  max-width: none;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .aerot-stack-grid {
@@ -1071,6 +1122,8 @@
 }
 
 .dark .aerot-description,
+.dark .aerot-team-heading p,
+.dark .aerot-team-lead-note,
 .dark .aerot-section-lead,
 .dark .aerot-insight-card p,
 .dark .aerot-architecture-card p,
@@ -1206,16 +1259,17 @@
 
   .aerot-team-layout {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 48px;
     justify-items: center;
   }
 
-  .aerot-team-lead-card {
+  .aerot-team-lead {
     justify-self: center;
   }
 
   .aerot-team-credits {
     max-width: 680px;
+    padding-top: 0;
   }
 
   .aerot-insight-grid,
@@ -1291,6 +1345,34 @@
     font-size: 18px;
   }
 
+  .aerot-team-section {
+    padding: 86px 24px 96px;
+  }
+
+  .aerot-team-heading {
+    margin-bottom: 46px;
+  }
+
+  .aerot-team-heading .bishop-team-section-title {
+    text-align: center;
+  }
+
+  .aerot-team-heading p {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .aerot-page .bishop-my-role-panel {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .aerot-team-lead .bishop-team-member-image {
+    width: clamp(210px, 42vw, 280px);
+    height: clamp(210px, 42vw, 280px);
+    margin-bottom: 22px;
+  }
+
   .aerot-visual-placeholder {
     width: 320px;
     min-height: 220px;
@@ -1363,6 +1445,12 @@
 
   .aerot-team-contributor-grid {
     grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .aerot-page .bishop-my-role-panel {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .aerot-hero-team-group {

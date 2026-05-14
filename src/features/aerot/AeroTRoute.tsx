@@ -138,13 +138,17 @@ function AeroTTeam() {
   return (
     <section className="bishop-team-section aerot-team-section" id="aerot-case-study-start">
       <div className="bishop-team-section-content aerot-team-section-content">
-        <h2 className="bishop-team-section-title">The Team</h2>
+        <div className="aerot-team-heading">
+          <h2 className="bishop-team-section-title">The Team Behind AeroT</h2>
+          <p>AeroT came together through close collaboration between engineering, product, stakeholder leadership, and field validation.</p>
+        </div>
         <div className="aerot-team-layout">
-          <article className="bishop-team-member-card aerot-team-lead-card">
+          <div className="aerot-team-lead">
             <img src={bishopMediaAssets.team.patrick} alt="Patrick Sherlund" className="bishop-team-member-image" />
             <h3 className="bishop-team-member-name">Patrick Sherlund</h3>
             <p className="bishop-team-member-role">Senior Software Engineer / Project Lead</p>
-          </article>
+            <p className="aerot-team-lead-note">Led the product, engineering, RF workflow, and field validation across AeroT.</p>
+          </div>
           <div className="aerot-team-credits">
             <img src={aerotContent.images.wholeTeam.src} alt={aerotContent.images.wholeTeam.alt} className="aerot-team-credits-photo" />
             <div className="aerot-team-credit-group">
