@@ -5,13 +5,14 @@ out/
 .npm-cache/
 .turbo/
 
+__reference
 AGENTS.md
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-
+story.md
 coverage/
 dist/
 
