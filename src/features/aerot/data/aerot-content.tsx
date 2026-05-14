@@ -84,34 +84,40 @@ export const aerotContent = {
     stackTitle: "The Stack",
     stack: [
       {
-        category: "Device",
-        name: "C++, Raspberry Pi, SoapySDR, RTL-SDR, LimeSDR",
+        category: "Device Manager",
+        name: "C++, Python, Raspberry Pi, SoapySDR, RTL-SDR, LimeSDR",
         icon: "cpu",
+        icons: ["cplusplus", "raspberrypi", "python"],
+      },
+      {
+        category: "Command View",
+        name: "React, TypeScript, MapLibre, Drogon, PostgreSQL",
+        icon: "map",
+        icons: ["react", "typescript", "postgresql"],
+      },
+      {
+        category: "ATAK Client",
+        name: "Java, ATAK 5.1, MobileService, Room",
+        icon: "tablet",
+        icons: ["openjdk", "android", "tak_logo.png"],
       },
       {
         category: "Transport",
-        name: "Python, Digi XBee, protobuf, WebSocket, MQTT",
+        name: "Digi XBee, protobuf, WebSocket, MQTT",
         icon: "radio",
-      },
-      {
-        category: "Command",
-        name: "React, TypeScript, MapLibre, Drogon, PostgreSQL",
-        icon: "map",
-      },
-      {
-        category: "Field",
-        name: "Java, ATAK 5.1, MobileService, Room, OkHttp",
-        icon: "tablet",
+        icons: ["mqtt"],
       },
       {
         category: "Modeling",
-        name: "Longley-Rice ITM, DTED terrain, OpenCV heatmaps",
+        name: "Longley-Rice ITM, DTED terrain, OpenCV",
         icon: "activity",
+        icons: ["opencv"],
       },
       {
         category: "Workflow",
-        name: "Agile discovery, field testing, hardware iteration",
+        name: "Agile",
         icon: "git",
+        icons: ["github", "git"],
       },
     ],
   },
@@ -119,9 +125,10 @@ export const aerotContent = {
     challengeTitle: "The Challenge",
     challengeText: (
       <>
-        Instructors teaching <strong>electromagnetic discipline</strong> could not give students
-        actionable feedback fast enough. Feedback could take <strong>up to 48 hours</strong>, so the
-        consequence of a transmission arrived after the training moment had already passed.
+        Marine instructors teaching <strong>electromagnetic discipline</strong> during live training
+        could not show students the consequence of a transmission while the lesson was still fresh.
+        Feedback often took <strong>up to 48 hours</strong>, so students had already moved on before
+        they understood whether their radio activity would have been detected by an adversary.
       </>
     ),
     visionTitle: "The Vision",

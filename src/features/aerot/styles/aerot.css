@@ -332,10 +332,20 @@
   color: #15382b;
 }
 
+.aerot-stack-logo {
+  display: block;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
 .aerot-vision-title {
   color: #214f3d;
   background: none;
   -webkit-text-fill-color: currentColor;
+}
+
+.aerot-page .bishop-cv-text {
+  max-width: 980px;
 }
 
 .aerot-signal-bubble {
@@ -1138,6 +1148,11 @@
 .dark .aerot-page .bishop-key-learning-card p,
 .dark .aerot-team-credit p {
   color: #c7d8cf;
+}
+
+.dark .aerot-stack-logo {
+  filter: invert(1);
+  opacity: 0.9;
 }
 
 .dark .aerot-signal-bubble,

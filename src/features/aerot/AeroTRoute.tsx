@@ -208,6 +208,22 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
   const isMobilePinned = useMobilePinnedSection(containerRef, isInteractive);
   const leftStack = aerotContent.role.stack.slice(0, 3);
   const rightStack = aerotContent.role.stack.slice(3);
+  const stackIconLabels: Record<string, string> = {
+    android: "Android",
+    cplusplus: "C++",
+    git: "Git",
+    github: "GitHub",
+    maplibre: "MapLibre",
+    mqtt: "MQTT",
+    opencv: "OpenCV",
+    openjdk: "OpenJDK",
+    postgresql: "PostgreSQL",
+    python: "Python",
+    raspberrypi: "Raspberry Pi",
+    react: "React",
+    "tak_logo.png": "TAK",
+    typescript: "TypeScript",
+  };
 
   useEffect(() => {
     if (!isInteractive) {
@@ -253,7 +269,14 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
           <div className="bishop-stack-category">{item.category}</div>
           <div className="bishop-stack-tech">
             <div className="bishop-stack-icons">
-              <AeroTIcon name={item.icon} className="bishop-stack-icon aerot-stack-icon" />
+              {item.icons.map((icon) => (
+                <img
+                  src={`/assets/images/aerot/stack-icons/${icon.includes(".") ? icon : `${icon}.svg`}`}
+                  alt={stackIconLabels[icon]}
+                  className="bishop-stack-icon aerot-stack-icon aerot-stack-logo"
+                  key={icon}
+                />
+              ))}
             </div>
             <span className="bishop-stack-name">{item.name}</span>
           </div>
