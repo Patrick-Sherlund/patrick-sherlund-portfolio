@@ -30,19 +30,19 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "From ideation to MVP, AeroT is the friendly force EM training tool for the United States Marine Corps.",
     seoDescription:
-      "AEROT is a signal training application led by Patrick Sherlund from ideation through MVP for Marine Corps electromagnetic training workflows.",
-    techStack: "Full-stack, C++, Typescript, React",
+      "AeroT is a COTS-based RF training system led by Patrick Sherlund from thesis concept through MVP, combining field devices, Command View, ATAK, and Longley-Rice terrain analysis for real-time electromagnetic discipline feedback.",
+    techStack: "C++, Python, TypeScript, React, Java, ATAK, MapLibre",
     device: "laptop",
     seoPriority: 1,
-    keywords: ["AEROT", "signal training tool", "Marine Corps", "C++", "TypeScript", "React"],
+    keywords: ["AeroT", "RF training", "Marine Corps", "ATAK", "Longley-Rice", "C++", "TypeScript", "React"],
     problem:
-      "Training teams needed a practical way to simulate and evaluate electromagnetic workflows without relying on disconnected tools or manual coordination.",
+      "Marine training instructors needed a way to turn live RF activity into actionable electromagnetic discipline feedback while the training event was still happening.",
     role:
-      "Patrick Sherlund drove the product from early concept through MVP delivery, shaping the workflow, frontend experience, and supporting full-stack implementation.",
+      "Patrick Sherlund led the product and engineering effort from discovery through MVP delivery, spanning embedded device software, RF analysis workflow, Command View, ATAK integration, and field validation.",
     outcome:
-      "The result was a focused training tool built for military operators who needed clearer instruction loops, faster scenario setup, and more realistic practice conditions.",
+      "The final validation connected ten AeroT devices across roughly ten miles of 29 Palms terrain and delivered instructor feedback within about five seconds of signal capture.",
     applicationSummary:
-      "This project shows product ownership, full-stack execution, and defense-oriented application delivery.",
+      "This project shows product ownership across hardware, RF, geospatial analysis, distributed systems, and field-ready defense software.",
   },
   {
     id: "bishop",

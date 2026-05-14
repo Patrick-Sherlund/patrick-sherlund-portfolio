@@ -14,7 +14,9 @@ type ProjectPageProps = {
 };
 
 export function generateStaticParams() {
-  return featuredProjects.map((project) => ({ slug: project.slug }));
+  return featuredProjects
+    .filter((project) => project.slug !== "aerot")
+    .map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -23,7 +25,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project || project.slug === "bishop") {
+  if (!project || project.slug === "bishop" || project.slug === "aerot") {
     return {};
   }
 
@@ -40,7 +42,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project || project.slug === "bishop") {
+  if (!project || project.slug === "bishop" || project.slug === "aerot") {
     notFound();
   }
 

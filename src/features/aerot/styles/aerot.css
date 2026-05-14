@@ -1,0 +1,1664 @@
+.aerot-page {
+  background-color: #f4f8f2;
+  color: #111111;
+}
+
+.aerot-page .bishop-hero-section,
+.aerot-page .bishop-team-section,
+.aerot-page .bishop-my-role-stack-wrapper,
+.aerot-page .bishop-challenge-vision-wrapper,
+.aerot-page .bishop-users-saw,
+.aerot-page .bishop-discover,
+.aerot-page .bishop-discover-header,
+.aerot-page .bishop-context-research-wrapper,
+.aerot-page .bishop-problem-success-wrapper,
+.aerot-page .bishop-proposed-proved-wrapper,
+.aerot-page .bishop-proposed-process,
+.aerot-page .bishop-deliver-key-wrapper,
+.aerot-page .bishop-deliver-key-content,
+.aerot-page .bishop-key-learnings-section,
+.aerot-page .bishop-thank-you-section,
+.aerot-interactive-section,
+.aerot-interactive-section-content,
+.aerot-insights-section,
+.aerot-architecture-section,
+.aerot-decisions-section,
+.aerot-iterations-section,
+.aerot-lifecycle-section,
+.aerot-delivery-section {
+  background-color: #f4f8f2;
+}
+
+.aerot-page .bishop-mrs-title,
+.aerot-page .bishop-cv-title,
+.aerot-page .bishop-users-saw-title,
+.aerot-page .bishop-discover-title,
+.aerot-page .bishop-context-title-text,
+.aerot-page .bishop-research-title,
+.aerot-page .bishop-problem-title,
+.aerot-page .bishop-success-main-title,
+.aerot-page .bishop-proposed-title,
+.aerot-page .bishop-proved-main-title,
+.aerot-page .bishop-key-learnings-title,
+.aerot-page .bishop-team-section-title,
+.aerot-section-title {
+  letter-spacing: 0;
+}
+
+.aerot-hero-section {
+  background:
+    linear-gradient(180deg, rgba(223, 239, 223, 0.92), rgba(244, 248, 242, 1) 68%),
+    #f4f8f2;
+}
+
+.aerot-hero-container {
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 72px;
+}
+
+.aerot-wordmark-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aerot-wordmark {
+  margin: 0;
+  color: #101412;
+  font-family: "Roboto", sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.aerot-subtitle {
+  margin: 0;
+  max-width: 520px;
+  color: #2f5d4a;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.aerot-description {
+  max-width: 560px;
+  color: #26342d;
+}
+
+.aerot-hero-team-info {
+  flex-wrap: wrap;
+  max-width: 640px;
+}
+
+.aerot-hero-team-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.aerot-hero-right {
+  padding-right: 0;
+}
+
+.aerot-hero-device {
+  position: relative;
+  width: min(780px, 52vw);
+  filter: drop-shadow(0 28px 44px rgba(14, 33, 24, 0.22));
+  transform: translateY(190px);
+}
+
+.aerot-hero-device .project-laptop-container {
+  position: relative;
+  width: 100%;
+  max-width: none;
+}
+
+.aerot-hero-device .laptop-screen {
+  position: absolute;
+  top: 5.8%;
+  left: 14.2%;
+  width: 71.6%;
+  height: 75.5%;
+  overflow: hidden;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.aerot-hero-device .laptop-frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aerot-hero-device .video-container {
+  margin-top: -17%;
+  margin-left: -2.7%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aerot-hero-device .video-container video {
+  width: 92%;
+  height: 60%;
+  object-fit: fill;
+  border-radius: 3px;
+  display: block;
+}
+
+.aerot-scroll-indicator {
+  border: 0;
+  background: transparent;
+}
+
+.aerot-team-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #173629, #2f6f56);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.aerot-team-placeholder span {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.aerot-team-placeholder small {
+  max-width: 120px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.aerot-team-photo {
+  object-fit: cover;
+  object-position: center;
+}
+
+.aerot-team-section-content {
+  width: min(100%, 1180px);
+}
+
+.aerot-team-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(360px, 1.22fr);
+  gap: clamp(52px, 8vw, 120px);
+  align-items: center;
+}
+
+.aerot-team-lead-card {
+  justify-self: start;
+}
+
+.aerot-team-lead-card .bishop-team-member-image {
+  width: clamp(240px, 25vw, 340px);
+  height: clamp(240px, 25vw, 340px);
+}
+
+.aerot-team-credits {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.aerot-team-credits-photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 260px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.aerot-team-credit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aerot-team-credit-group h3 {
+  margin: 0;
+  color: #214f3d;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.aerot-team-contributor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+}
+
+.aerot-team-credit {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.aerot-team-credit span {
+  color: #111111;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.aerot-team-credit p {
+  margin: 0;
+  color: #6b7280;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.aerot-role-text {
+  max-width: 980px;
+}
+
+.aerot-stack-grid {
+  max-width: 1120px;
+}
+
+.aerot-stack-icon {
+  color: #15382b;
+}
+
+.aerot-vision-title {
+  color: #214f3d;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.aerot-signal-bubble {
+  width: 238px;
+  min-height: 92px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(21, 56, 43, 0.14);
+  color: #132a21;
+}
+
+.aerot-signal-bubble svg {
+  flex: 0 0 auto;
+  color: #2f6f56;
+}
+
+.aerot-signal-bubble span {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.aerot-users-saw-stats {
+  max-width: 1240px;
+}
+
+.aerot-users-saw .bishop-stat-card {
+  min-width: 260px;
+  max-width: 360px;
+}
+
+.aerot-users-saw .bishop-stat-value {
+  font-size: 42px;
+  line-height: 1.08;
+  white-space: normal;
+}
+
+.aerot-users-saw .bishop-stat-label {
+  color: #26342d;
+}
+
+.aerot-context-wrapper {
+  overflow-x: clip;
+}
+
+.aerot-research-panel {
+  max-width: 1200px;
+}
+
+.aerot-visual-rail {
+  position: absolute;
+  left: 0;
+  bottom: 8%;
+  z-index: 2;
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  padding: 34px 0;
+  pointer-events: auto;
+  animation: aerotRailScroll 34s linear infinite;
+}
+
+.aerot-visual-rail:hover {
+  animation-play-state: paused;
+}
+
+.aerot-visual-placeholder {
+  width: 420px;
+  min-height: 228px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(47, 111, 86, 0.18), rgba(226, 169, 67, 0.14)),
+    #ffffff;
+  border: 1px solid rgba(21, 56, 43, 0.14);
+  box-shadow: 0 14px 34px rgba(14, 33, 24, 0.12);
+}
+
+.aerot-visual-placeholder:nth-child(even) {
+  transform: translateY(34px);
+}
+
+.aerot-visual-placeholder span,
+.aerot-card-eyebrow,
+.aerot-card-visual-note span,
+.aerot-iteration-card span,
+.aerot-lifecycle-visual span,
+.aerot-delivery-visual span {
+  color: #2f6f56;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.aerot-visual-placeholder p,
+.aerot-card-visual-note p,
+.aerot-lifecycle-visual p,
+.aerot-delivery-visual p,
+.aerot-process-placeholder p {
+  margin: 0;
+  color: #26342d;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@keyframes aerotRailScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.aerot-page {
+  --aerot-sticky-header-space: 136px;
+  --aerot-sticky-bottom-space: 40px;
+}
+
+.aerot-interactive-section {
+  width: 100%;
+  position: relative;
+}
+
+.bishop-page-interactive .aerot-interactive-section {
+  height: calc(150vh + var(--bishop-crossfade-settle-distance));
+  overflow: clip;
+}
+
+.bishop-page-interactive .aerot-decisions-scroll-section {
+  height: calc(330vh + var(--bishop-crossfade-settle-distance));
+}
+
+.bishop-page-interactive .aerot-iterations-scroll-section {
+  height: calc(400vh + var(--bishop-crossfade-settle-distance));
+}
+
+.bishop-page-interactive .aerot-interactive-section-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--aerot-sticky-header-space) 32px var(--aerot-sticky-bottom-space);
+  overflow: hidden;
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-section-inner {
+  max-height: calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-section-heading {
+  margin-bottom: clamp(18px, 3vh, 32px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-section-title {
+  font-size: clamp(30px, 5vh, 46px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-section-lead {
+  max-width: 860px;
+  font-size: clamp(15px, 2.05vh, 20px);
+  line-height: 1.42;
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-insight-grid,
+.bishop-page-interactive .aerot-interactive-section .aerot-architecture-grid,
+.bishop-page-interactive .aerot-interactive-section .aerot-decision-card-grid {
+  gap: clamp(12px, 2.2vh, 20px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
+.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
+.bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
+.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+  min-height: 0;
+  padding: clamp(14px, 2.6vh, 26px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3,
+.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card h3,
+.bishop-page-interactive .aerot-interactive-section .aerot-decision-group h3,
+.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card h3 {
+  font-size: clamp(18px, 2.6vh, 24px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-insight-card p,
+.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card p,
+.bishop-page-interactive .aerot-interactive-section .aerot-decision-card p,
+.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card p,
+.bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-list li {
+  font-size: clamp(13px, 1.82vh, 16px);
+  line-height: 1.36;
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note,
+.bishop-page-interactive .aerot-interactive-section .aerot-card-photo {
+  min-height: clamp(84px, 16vh, 148px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note {
+  padding: clamp(12px, 2vh, 18px);
+}
+
+.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note p,
+.bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-visual p {
+  font-size: clamp(12px, 1.6vh, 14px);
+  line-height: 1.35;
+}
+
+.aerot-section-inner {
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  padding: 132px 32px;
+}
+
+.aerot-section-heading {
+  max-width: 920px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.aerot-section-title {
+  margin: 0;
+  color: #101412;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.aerot-section-heading .aerot-section-title {
+  margin-bottom: 24px;
+}
+
+.aerot-section-lead {
+  margin: 0 auto;
+  max-width: 920px;
+  color: #26342d;
+  font-size: 22px;
+  line-height: 1.55;
+}
+
+.aerot-insights-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.aerot-insight-grid,
+.aerot-architecture-grid,
+.aerot-decision-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.aerot-insight-card,
+.aerot-architecture-card,
+.aerot-decision-card,
+.aerot-iteration-card {
+  background: #ffffff;
+  border: 1px solid rgba(21, 56, 43, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(14, 33, 24, 0.08);
+}
+
+.aerot-insight-card {
+  min-height: 248px;
+  padding: 34px;
+}
+
+.aerot-insight-card h3,
+.aerot-architecture-card h3,
+.aerot-decision-group h3,
+.aerot-iteration-card h3 {
+  margin: 0;
+  color: #101412;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.aerot-insight-card h3 {
+  margin-bottom: 18px;
+}
+
+.aerot-insight-card p,
+.aerot-architecture-card p,
+.aerot-decision-card p,
+.aerot-iteration-card p,
+.aerot-lifecycle-list li {
+  margin: 0;
+  color: #26342d;
+  font-size: 17px;
+  line-height: 1.52;
+}
+
+.aerot-architecture-section,
+.aerot-decisions-section,
+.aerot-iterations-section,
+.aerot-lifecycle-section {
+  min-height: 100vh;
+}
+
+.aerot-architecture-card {
+  min-height: 480px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aerot-card-visual-note {
+  min-height: 168px;
+  margin-top: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  border: 1px dashed rgba(47, 111, 86, 0.45);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(47, 111, 86, 0.1), rgba(73, 128, 157, 0.08)),
+    #f9fbf8;
+}
+
+.aerot-photo-card {
+  min-height: 168px;
+  margin-top: auto;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #0d1411;
+  border: 1px solid rgba(21, 56, 43, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.aerot-photo-card img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.aerot-decision-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.aerot-decision-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aerot-decision-card {
+  min-height: 168px;
+  padding: 26px;
+}
+
+.bishop-page-interactive .aerot-decision-stage {
+  position: relative;
+  min-height: min(430px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 78px));
+  margin-top: clamp(20px, 3vh, 34px);
+}
+
+.bishop-page-interactive .aerot-decision-stage-group {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.bishop-page-interactive .aerot-decision-stage-group.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bishop-page-interactive .aerot-decision-stage .aerot-decision-card-grid {
+  flex: 1;
+  align-items: stretch;
+}
+
+.bishop-page-interactive .aerot-decision-stage .aerot-decision-card {
+  display: flex;
+  align-items: center;
+}
+
+.aerot-process-proved-wrapper .bishop-proposed-content {
+  gap: 64px;
+  transform: none;
+}
+
+.aerot-process-proved-wrapper .bishop-proposed-layout {
+  transform: none;
+}
+
+.aerot-proposed-process {
+  padding: 120px 56px;
+}
+
+.aerot-proposed-layout {
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.aerot-process-visual {
+  position: relative;
+  min-height: 460px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0d1411;
+  box-shadow: 0 22px 44px rgba(14, 33, 24, 0.18);
+}
+
+.aerot-process-video {
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  display: block;
+  object-fit: cover;
+  opacity: 0.76;
+}
+
+.aerot-process-placeholder {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(21, 56, 43, 0.16);
+}
+
+.aerot-process-placeholder span {
+  display: block;
+  margin-bottom: 8px;
+  color: #2f6f56;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aerot-page .bishop-process-step.active .bishop-step-icon,
+.aerot-page .bishop-process-step.completed .bishop-step-icon {
+  background-color: #2f6f56;
+  border-color: #2f6f56;
+}
+
+.aerot-page .bishop-step-connector::before,
+.aerot-page .bishop-step-connector.filled {
+  background-color: #2f6f56;
+}
+
+.aerot-page .bishop-process-step.completed .bishop-step-label {
+  color: #2f6f56;
+}
+
+.aerot-iterations-inner {
+  width: min(100%, 1320px);
+}
+
+.aerot-iteration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.aerot-iteration-card {
+  min-height: 520px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.aerot-iteration-card > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.aerot-iteration-card > span,
+.aerot-iteration-card div > span {
+  color: #2f6f56;
+}
+
+.aerot-iteration-card .aerot-card-visual-note {
+  min-height: 210px;
+}
+
+.aerot-iteration-photo {
+  min-height: 210px;
+}
+
+.bishop-page-interactive .aerot-iteration-stage {
+  position: relative;
+  display: block;
+  min-height: min(440px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 168px));
+}
+
+.bishop-page-interactive .aerot-iteration-stage-card {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.bishop-page-interactive .aerot-iteration-stage-card.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bishop-page-interactive .aerot-iteration-stage-card .aerot-card-visual-note,
+.bishop-page-interactive .aerot-iteration-stage-card .aerot-card-photo {
+  min-height: clamp(110px, 19vh, 180px);
+}
+
+.aerot-lifecycle-inner {
+  width: min(100%, 1160px);
+}
+
+.aerot-lifecycle-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+  gap: 48px;
+  align-items: stretch;
+}
+
+.aerot-lifecycle-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  counter-reset: aerot-lifecycle;
+}
+
+.aerot-lifecycle-list li {
+  position: relative;
+  padding: 22px 22px 22px 74px;
+  background: #ffffff;
+  border: 1px solid rgba(21, 56, 43, 0.12);
+  border-radius: 16px;
+  counter-increment: aerot-lifecycle;
+}
+
+.aerot-lifecycle-list li::before {
+  content: counter(aerot-lifecycle, decimal-leading-zero);
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  color: #2f6f56;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.aerot-lifecycle-visual,
+.aerot-delivery-visual {
+  min-height: 100%;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(47, 111, 86, 0.14), rgba(226, 169, 67, 0.16)),
+    #ffffff;
+  border: 1px dashed rgba(47, 111, 86, 0.46);
+  box-shadow: 0 12px 30px rgba(14, 33, 24, 0.08);
+}
+
+.bishop-page-interactive .aerot-lifecycle-layout {
+  gap: clamp(16px, 3vh, 32px);
+}
+
+.bishop-page-interactive .aerot-lifecycle-list {
+  gap: clamp(8px, 1.4vh, 14px);
+}
+
+.bishop-page-interactive .aerot-lifecycle-list li {
+  padding: clamp(12px, 1.8vh, 18px) clamp(14px, 2vh, 20px) clamp(12px, 1.8vh, 18px) clamp(54px, 5vw, 66px);
+}
+
+.bishop-page-interactive .aerot-lifecycle-list li::before {
+  top: clamp(12px, 1.8vh, 18px);
+  left: clamp(16px, 2vw, 22px);
+}
+
+.bishop-page-interactive .aerot-lifecycle-visual {
+  min-height: 0;
+}
+
+.aerot-delivery-learning-wrapper {
+  height: calc(300vh + var(--bishop-crossfade-settle-distance));
+}
+
+.aerot-delivery-inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aerot-delivery-visual {
+  width: min(100%, 940px);
+  min-height: 360px;
+  margin: 0 auto;
+}
+
+.aerot-delivery-photo {
+  width: min(100%, 940px);
+  min-height: 360px;
+  margin: 0 auto;
+}
+
+.aerot-key-learnings-section .bishop-key-learning-icon {
+  color: #2f6f56;
+}
+
+.aerot-reflection-content {
+  width: min(100%, 1040px);
+}
+
+.aerot-next-case-study-media {
+  transform: translateY(28px);
+}
+
+.aerot-next-ipad-container {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+}
+
+.aerot-next-ipad-screen {
+  position: absolute;
+  top: 3.8%;
+  left: 3.8%;
+  width: 92.4%;
+  height: 92.4%;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1;
+  background: #111111;
+}
+
+.aerot-next-ipad-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bishop-page-interactive .aerot-reflection-section .aerot-reflection-content {
+  width: min(100%, 940px);
+  min-height: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy h2 {
+  margin-bottom: 14px;
+  font-size: clamp(24px, 3.5vh, 34px);
+}
+
+.bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy p {
+  margin-bottom: 12px;
+  max-width: 800px;
+  font-size: clamp(13px, 1.9vh, 17px);
+  line-height: 1.42;
+}
+
+.bishop-page-interactive .aerot-reflection-section .bishop-next-case-study {
+  width: min(100%, 760px);
+  margin-top: clamp(14px, 2.5vh, 28px);
+  padding-top: clamp(12px, 2vh, 22px);
+  grid-template-columns: minmax(160px, 0.55fr) minmax(260px, 1fr);
+  gap: clamp(16px, 3vw, 30px);
+}
+
+.bishop-page-interactive .aerot-reflection-section .aerot-next-case-study-media {
+  transform: none;
+}
+
+.bishop-page-interactive .aerot-reflection-section .aerot-next-ipad-container {
+  width: min(100%, 280px);
+}
+
+.dark .aerot-page {
+  background-color: #07130f;
+  color: #ffffff;
+}
+
+.dark .aerot-page .bishop-hero-section,
+.dark .aerot-page .bishop-team-section,
+.dark .aerot-page .bishop-my-role-stack-wrapper,
+.dark .aerot-page .bishop-challenge-vision-wrapper,
+.dark .aerot-page .bishop-users-saw,
+.dark .aerot-page .bishop-discover,
+.dark .aerot-page .bishop-discover-header,
+.dark .aerot-page .bishop-context-research-wrapper,
+.dark .aerot-page .bishop-problem-success-wrapper,
+.dark .aerot-page .bishop-proposed-proved-wrapper,
+.dark .aerot-page .bishop-proposed-process,
+.dark .aerot-page .bishop-deliver-key-wrapper,
+.dark .aerot-page .bishop-deliver-key-content,
+.dark .aerot-page .bishop-key-learnings-section,
+.dark .aerot-page .bishop-thank-you-section,
+.dark .aerot-interactive-section,
+.dark .aerot-interactive-section-content,
+.dark .aerot-insights-section,
+.dark .aerot-architecture-section,
+.dark .aerot-decisions-section,
+.dark .aerot-iterations-section,
+.dark .aerot-lifecycle-section,
+.dark .aerot-delivery-section {
+  background-color: #07130f;
+}
+
+.dark .aerot-hero-section {
+  background:
+    linear-gradient(180deg, rgba(18, 45, 34, 0.88), rgba(7, 19, 15, 1) 68%),
+    #07130f;
+}
+
+.dark .aerot-wordmark,
+.dark .aerot-page .bishop-mrs-title,
+.dark .aerot-page .bishop-cv-title,
+.dark .aerot-page .bishop-users-saw-title,
+.dark .aerot-page .bishop-context-title-text,
+.dark .aerot-page .bishop-research-title,
+.dark .aerot-page .bishop-success-main-title,
+.dark .aerot-page .bishop-proposed-title,
+.dark .aerot-page .bishop-proved-main-title,
+.dark .aerot-section-title,
+.dark .aerot-insight-card h3,
+.dark .aerot-architecture-card h3,
+.dark .aerot-decision-group h3,
+.dark .aerot-iteration-card h3,
+.dark .aerot-page .bishop-step-label,
+.dark .aerot-page .bishop-key-learnings-title,
+.dark .aerot-page .bishop-key-learning-card h3,
+.dark .aerot-team-credit span {
+  color: #ffffff;
+}
+
+.dark .aerot-subtitle,
+.dark .aerot-stack-icon,
+.dark .aerot-signal-bubble svg,
+.dark .aerot-card-eyebrow,
+.dark .aerot-card-visual-note span,
+.dark .aerot-iteration-card div > span,
+.dark .aerot-lifecycle-visual span,
+.dark .aerot-delivery-visual span,
+.dark .aerot-process-placeholder span,
+.dark .aerot-team-credit-group h3 {
+  color: #7ed6aa;
+}
+
+.dark .aerot-description,
+.dark .aerot-section-lead,
+.dark .aerot-insight-card p,
+.dark .aerot-architecture-card p,
+.dark .aerot-decision-card p,
+.dark .aerot-iteration-card p,
+.dark .aerot-lifecycle-list li,
+.dark .aerot-visual-placeholder p,
+.dark .aerot-card-visual-note p,
+.dark .aerot-lifecycle-visual p,
+.dark .aerot-delivery-visual p,
+.dark .aerot-process-placeholder p,
+.dark .aerot-page .bishop-key-learning-card p,
+.dark .aerot-team-credit p {
+  color: #c7d8cf;
+}
+
+.dark .aerot-signal-bubble,
+.dark .aerot-visual-placeholder,
+.dark .aerot-insight-card,
+.dark .aerot-architecture-card,
+.dark .aerot-decision-card,
+.dark .aerot-iteration-card,
+.dark .aerot-lifecycle-list li {
+  background-color: #0e2118;
+  border-color: rgba(126, 214, 170, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.dark .aerot-card-visual-note,
+.dark .aerot-lifecycle-visual,
+.dark .aerot-delivery-visual {
+  background:
+    linear-gradient(135deg, rgba(126, 214, 170, 0.1), rgba(226, 169, 67, 0.1)),
+    #0e2118;
+  border-color: rgba(126, 214, 170, 0.34);
+}
+
+.dark .aerot-process-placeholder {
+  background: rgba(14, 33, 24, 0.94);
+  border-color: rgba(126, 214, 170, 0.24);
+}
+
+.dark .aerot-page .bishop-process-step.active .bishop-step-icon,
+.dark .aerot-page .bishop-process-step.completed .bishop-step-icon,
+.dark .aerot-page .bishop-step-connector::before,
+.dark .aerot-page .bishop-step-connector.filled {
+  background-color: #7ed6aa;
+  border-color: #7ed6aa;
+}
+
+.dark .aerot-page .bishop-process-step.active .bishop-step-icon,
+.dark .aerot-page .bishop-process-step.completed .bishop-step-icon {
+  color: #07130f;
+}
+
+.dark .aerot-page .bishop-process-step.completed .bishop-step-label {
+  color: #7ed6aa;
+}
+
+.bishop-page-normal .aerot-context-wrapper,
+.bishop-page-normal .aerot-process-proved-wrapper,
+.bishop-page-normal .aerot-delivery-learning-wrapper {
+  height: auto;
+  min-height: 0;
+}
+
+.bishop-page-normal .aerot-context-wrapper .bishop-context-research-content,
+.bishop-page-normal .aerot-process-proved-wrapper .bishop-proposed-proved-content,
+.bishop-page-normal .aerot-delivery-learning-wrapper .bishop-deliver-key-content {
+  position: relative;
+  top: auto;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+.bishop-page-normal .aerot-context-wrapper .bishop-context-panel,
+.bishop-page-normal .aerot-context-wrapper .bishop-research-panel,
+.bishop-page-normal .aerot-process-proved-wrapper .bishop-proposed-fade-panel,
+.bishop-page-normal .aerot-process-proved-wrapper .bishop-proved-panel,
+.bishop-page-normal .aerot-delivery-learning-wrapper .bishop-deliver-transition-panel,
+.bishop-page-normal .aerot-delivery-learning-wrapper .bishop-key-learnings-transition-panel {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bishop-page-normal .aerot-context-wrapper .bishop-context-research-content {
+  display: block;
+  padding: 0;
+}
+
+.bishop-page-normal .aerot-context-wrapper .bishop-context-panel,
+.bishop-page-normal .aerot-context-wrapper .bishop-research-panel {
+  justify-content: center;
+  padding: 96px 32px;
+  margin: 0 auto;
+}
+
+.bishop-page-normal .aerot-visual-rail {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin-top: 48px;
+}
+
+@media (max-width: 1200px) {
+  .aerot-hero-container {
+    gap: 48px;
+  }
+
+  .aerot-hero-device {
+    width: min(700px, 54vw);
+  }
+
+  .aerot-section-title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .aerot-hero-container {
+    grid-template-columns: 1fr;
+  }
+
+  .aerot-hero-device {
+    width: min(720px, 92vw);
+    transform: translateY(70px);
+  }
+
+  .aerot-team-layout {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    justify-items: center;
+  }
+
+  .aerot-team-lead-card {
+    justify-self: center;
+  }
+
+  .aerot-team-credits {
+    max-width: 680px;
+  }
+
+  .aerot-insight-grid,
+  .aerot-architecture-grid,
+  .aerot-decision-card-grid,
+  .aerot-iteration-grid,
+  .aerot-lifecycle-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .aerot-proposed-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .aerot-process-visual,
+  .aerot-process-video {
+    min-height: 380px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-inner {
+    max-height: calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
+  }
+
+  .bishop-page-interactive .aerot-decision-stage {
+    min-height: min(500px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 70px));
+  }
+
+  .bishop-page-interactive .aerot-iteration-stage {
+    min-height: min(500px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 146px));
+  }
+}
+
+@media (max-width: 768px) {
+  .aerot-wordmark {
+    font-size: 54px;
+  }
+
+  .aerot-subtitle {
+    font-size: 17px;
+  }
+
+  .aerot-hero-team-info {
+    justify-content: center;
+  }
+
+  .aerot-signal-bubble {
+    width: 190px;
+    min-height: 78px;
+    padding: 14px;
+  }
+
+  .aerot-signal-bubble span {
+    font-size: 13px;
+  }
+
+  .aerot-users-saw .bishop-stat-value {
+    font-size: 34px;
+  }
+
+  .aerot-section-inner {
+    padding: 92px 24px;
+  }
+
+  .aerot-section-heading {
+    margin-bottom: 42px;
+  }
+
+  .aerot-section-title {
+    font-size: 34px;
+  }
+
+  .aerot-section-lead {
+    font-size: 18px;
+  }
+
+  .aerot-visual-placeholder {
+    width: 320px;
+    min-height: 220px;
+  }
+
+  .aerot-insight-card,
+  .aerot-architecture-card,
+  .aerot-decision-card,
+  .aerot-iteration-card {
+    padding: 22px;
+  }
+
+  .aerot-architecture-card,
+  .aerot-iteration-card {
+    min-height: 0;
+  }
+
+  .aerot-card-photo,
+  .aerot-iteration-photo {
+    min-height: 180px;
+  }
+
+  .aerot-team-contributor-grid {
+    gap: 16px 22px;
+  }
+
+  .aerot-proposed-process {
+    padding: 92px 24px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-title {
+    font-size: clamp(24px, 4.5vh, 34px);
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-lead {
+    font-size: clamp(13px, 2vh, 17px);
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .aerot-page {
+    --aerot-sticky-header-space: 108px;
+    --aerot-sticky-bottom-space: 18px;
+  }
+
+  .aerot-wordmark {
+    font-size: 46px;
+  }
+
+  .aerot-hero-device {
+    width: min(600px, 104vw);
+    transform: translateY(36px);
+  }
+
+  .aerot-team-credits-photo {
+    max-height: 220px;
+  }
+
+  .aerot-team-contributor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aerot-hero-team-group {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .aerot-hero-team-group .bishop-team-divider {
+    display: none;
+  }
+
+  .aerot-signal-bubble {
+    width: 152px;
+    min-height: 72px;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .aerot-signal-bubble svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .aerot-signal-bubble span {
+    font-size: 11px;
+  }
+
+  .aerot-context-wrapper .bishop-context-title-text {
+    font-size: 30px;
+  }
+
+  .aerot-context-wrapper .bishop-context-text {
+    font-size: 19px;
+  }
+
+  .aerot-visual-placeholder {
+    width: 280px;
+    min-height: 210px;
+  }
+
+  .aerot-process-visual,
+  .aerot-process-video {
+    min-height: 320px;
+  }
+
+  .aerot-process-placeholder {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 14px;
+  }
+
+  .aerot-lifecycle-list li {
+    padding: 20px 18px 20px 62px;
+  }
+
+  .aerot-lifecycle-list li::before {
+    left: 18px;
+  }
+
+  .aerot-next-case-study-media {
+    transform: none;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section {
+    height: calc(145svh + var(--bishop-crossfade-settle-distance));
+  }
+
+  .bishop-page-interactive .aerot-decisions-scroll-section {
+    height: calc(320svh + var(--bishop-crossfade-settle-distance));
+  }
+
+  .bishop-page-interactive .aerot-iterations-scroll-section {
+    height: calc(390svh + var(--bishop-crossfade-settle-distance));
+  }
+
+  .bishop-page-interactive .aerot-interactive-section-content {
+    height: 100svh;
+    padding: var(--aerot-sticky-header-space) 18px var(--aerot-sticky-bottom-space);
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-inner {
+    max-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-heading {
+    margin-bottom: 12px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-heading .aerot-section-title {
+    margin-bottom: 10px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-title {
+    font-size: clamp(22px, 4.2vh, 30px);
+    line-height: 1.08;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-section-lead {
+    font-size: clamp(11px, 1.75vh, 14px);
+    line-height: 1.32;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-grid,
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-grid,
+  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card-grid {
+    gap: 8px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
+  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3,
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card h3,
+  .bishop-page-interactive .aerot-interactive-section .aerot-decision-group h3,
+  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card h3 {
+    font-size: clamp(14px, 2.45vh, 18px);
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3 {
+    margin-bottom: 6px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card p,
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card p,
+  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card p,
+  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card p,
+  .bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-list li {
+    font-size: clamp(10px, 1.55vh, 12px);
+    line-height: 1.25;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card {
+    gap: 5px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note {
+    min-height: 0;
+    padding: 8px;
+    gap: 4px;
+    border-radius: 10px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-card-photo {
+    min-height: 78px;
+    border-radius: 10px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note span,
+  .bishop-page-interactive .aerot-lifecycle-visual span,
+  .bishop-page-interactive .aerot-delivery-visual span {
+    font-size: 9px;
+  }
+
+  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note p,
+  .bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-visual p {
+    font-size: 9.5px;
+    line-height: 1.22;
+  }
+
+  .bishop-page-interactive .aerot-decision-stage {
+    min-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 42px);
+    margin-top: 12px;
+  }
+
+  .bishop-page-interactive .aerot-decision-stage-group {
+    gap: 8px;
+  }
+
+  .bishop-page-interactive .aerot-decision-stage .aerot-decision-card-grid {
+    gap: 8px;
+  }
+
+  .bishop-page-interactive .aerot-iteration-stage {
+    min-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 112px);
+  }
+
+  .bishop-page-interactive .aerot-iteration-stage-card {
+    gap: 10px;
+  }
+
+  .bishop-page-interactive .aerot-iteration-stage-card > div:first-child {
+    gap: 6px;
+  }
+
+  .bishop-page-interactive .aerot-iteration-stage-card .aerot-card-visual-note,
+  .bishop-page-interactive .aerot-iteration-stage-card .aerot-card-photo {
+    min-height: 92px;
+  }
+
+  .bishop-page-interactive .aerot-lifecycle-layout {
+    gap: 10px;
+  }
+
+  .bishop-page-interactive .aerot-lifecycle-list {
+    gap: 6px;
+  }
+
+  .bishop-page-interactive .aerot-lifecycle-list li {
+    padding: 8px 9px 8px 42px;
+    border-radius: 10px;
+  }
+
+  .bishop-page-interactive .aerot-lifecycle-list li::before {
+    top: 8px;
+    left: 12px;
+    font-size: 10px;
+  }
+
+  .bishop-page-interactive .aerot-lifecycle-visual {
+    min-height: 78px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .aerot-reflection-content {
+    width: 100%;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy h2 {
+    margin-bottom: 8px;
+    font-size: clamp(20px, 3.7vh, 26px);
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy p {
+    margin-bottom: 7px;
+    max-width: 100%;
+    font-size: clamp(10.5px, 1.58vh, 12.5px);
+    line-height: 1.26;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    text-align: left;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text {
+    align-items: flex-start;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .aerot-next-ipad-container {
+    width: 92px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text > span {
+    margin-bottom: 4px;
+    font-size: 9px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text h3 {
+    margin-bottom: 5px;
+    font-size: 17px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta {
+    width: 100%;
+    margin-bottom: 6px;
+    gap: 3px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta div {
+    grid-template-columns: 48px 1fr;
+    gap: 8px;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta dt {
+    font-size: 8px;
+    text-align: right;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta dd {
+    font-size: 9.5px;
+    text-align: left;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text p {
+    margin-bottom: 7px;
+    max-width: none;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-link {
+    min-width: 110px;
+    height: 32px;
+    gap: 8px;
+    padding: 0 10px;
+    font-size: 9px;
+  }
+}

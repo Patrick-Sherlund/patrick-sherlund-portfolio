@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Eye, Plus, Send, Upload } from "lucide-react";
+import { Activity, Cpu, Eye, GitBranch, Map, Plus, Radio, Send, Settings, Tablet, Upload, Wifi } from "lucide-react";
 
 type Step = {
   id: number;
@@ -15,16 +15,48 @@ type ProcessStepperProps = {
 };
 
 function getStepIcon(icon: string) {
+  if (icon === "activity") {
+    return <Activity size={24} />;
+  }
+
+  if (icon === "cpu") {
+    return <Cpu size={24} />;
+  }
+
   if (icon === "plus") {
     return <Plus size={24} />;
+  }
+
+  if (icon === "git") {
+    return <GitBranch size={24} />;
+  }
+
+  if (icon === "map") {
+    return <Map size={24} />;
   }
 
   if (icon === "upload") {
     return <Upload size={24} />;
   }
 
+  if (icon === "radio") {
+    return <Radio size={24} />;
+  }
+
   if (icon === "eye") {
     return <Eye size={24} />;
+  }
+
+  if (icon === "settings") {
+    return <Settings size={24} />;
+  }
+
+  if (icon === "tablet") {
+    return <Tablet size={24} />;
+  }
+
+  if (icon === "wifi") {
+    return <Wifi size={24} />;
   }
 
   return <Send size={24} />;
