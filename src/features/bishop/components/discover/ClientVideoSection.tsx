@@ -1,3 +1,5 @@
+import { HydratedVideo } from "@/shared/components/HydratedVideo";
+
 type ClientVideoSectionProps = {
   video: string;
 };
@@ -11,7 +13,7 @@ export function ClientVideoSection({ video }: ClientVideoSectionProps) {
         </h2>
 
         <div className="bishop-client-video-frame">
-          <video
+          <HydratedVideo
             className="bishop-client-video"
             src={video}
             autoPlay

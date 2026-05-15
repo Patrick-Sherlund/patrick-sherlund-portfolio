@@ -1,3 +1,5 @@
+import { HydratedVideo } from "@/shared/components/HydratedVideo";
+
 type AiDetectionsSectionProps = {
   video: string;
 };
@@ -10,7 +12,7 @@ export function AiDetectionsSection({ video }: AiDetectionsSectionProps) {
           <strong>View</strong> AI detections in the video, synced to the timeline
         </h2>
 
-        <video
+        <HydratedVideo
           className="bishop-ai-detections-video"
           src={video}
           autoPlay

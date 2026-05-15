@@ -125,10 +125,11 @@ export const aerotContent = {
     challengeTitle: "The Challenge",
     challengeText: (
       <>
-        Marine instructors teaching <strong>electromagnetic discipline</strong> during live training
-        could not show students the consequence of a transmission while the lesson was still fresh.
-        Feedback often took <strong>up to 48 hours</strong>, so students had already moved on before
-        they understood whether their radio activity would have been detected by an adversary.
+        Marine instructors teaching electromagnetic discipline during live training had{" "}
+        <strong>no way to show students the tactical consequence of a transmission</strong> while
+        the lesson was <strong>still fresh</strong>. Feedback often took{" "}
+        <strong>up to 48 hours</strong>, so students had already moved on before they understood
+        whether their radio activity would have been <strong>detected by an adversary</strong>.
       </>
     ),
     visionTitle: "The Vision",

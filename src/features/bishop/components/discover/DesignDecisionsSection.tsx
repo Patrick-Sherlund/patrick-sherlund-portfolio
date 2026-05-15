@@ -14,8 +14,9 @@ import { TrackDetectionsSection } from "./TrackDetectionsSection";
 import { TrainModelSection } from "./TrainModelSection";
 
 type DesignDecisionGroup = {
-  label: ReactNode;
-  cards: ReactNode[];
+  number: string;
+  title: string;
+  description: string;
 };
 
 type DesignDecisionsSectionProps = {
@@ -150,7 +151,7 @@ export function DesignDecisionsSection({
   const firstTransitionProgress = clamp(stageProgress / 0.28);
   const secondTransitionProgress = clamp((stageProgress - 0.36) / 0.28);
   const designOpacity = isInteractive ? 1 - firstTransitionProgress : undefined;
-  const gatherOpacity = isInteractive ? 1 - secondTransitionProgress : undefined;
+  const gatherOpacity = isInteractive ? Math.min(firstTransitionProgress, 1 - secondTransitionProgress) : undefined;
   const annotateOpacity = isInteractive ? secondTransitionProgress : undefined;
   const gatherPointerEvents =
     isInteractive && gatherOpacity !== undefined && gatherOpacity > 0.08
@@ -163,6 +164,12 @@ export function DesignDecisionsSection({
         className={`bishop-develop-sticky-stage ${isDevelopStageMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={developStageRef}
       >
+        {isInteractive && (
+          <>
+            <div data-case-study-nav-target data-case-study-nav-marker data-case-study-nav-progress="0.28" data-case-study-nav-active-start="0.16" data-case-study-nav-active-end="0.5" data-case-study-nav-progress-container=".bishop-develop-sticky-stage" />
+            <div data-case-study-nav-target data-case-study-nav-marker data-case-study-nav-progress="0.64" data-case-study-nav-progress-container=".bishop-develop-sticky-stage" />
+          </>
+        )}
         <div className="bishop-develop-iteration-content">
           <div
             className="bishop-design-decisions-panel"
@@ -174,17 +181,11 @@ export function DesignDecisionsSection({
                 <div className="bishop-design-decisions-groups">
                   {groups.map((group, groupIndex) => (
                     <section className="bishop-design-decision-group" key={groupIndex}>
-                      <h3 className="bishop-design-decision-label">{group.label}</h3>
-                      <div className="bishop-design-decision-cards">
-                        {group.cards.map((card, index) => (
-                          <div
-                            className={`bishop-design-decision-card ${index === 0 ? "rainbow" : ""}`}
-                            key={`${groupIndex}-${index}`}
-                          >
-                            <p>{card}</p>
-                          </div>
-                        ))}
+                      <div className="bishop-design-decision-heading">
+                        <span className="bishop-design-decision-kicker">{group.number}</span>
+                        <h3 className="bishop-design-decision-label">{group.title}</h3>
                       </div>
+                      <p className="bishop-design-decision-description">{group.description}</p>
                     </section>
                   ))}
                 </div>
@@ -231,9 +232,13 @@ export function DesignDecisionsSection({
       </div>
 
       <div
+        data-case-study-nav-target
         className={`bishop-train-iteration-wrapper ${isTrainIterationMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={trainIterationRef}
       >
+        {isInteractive && (
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        )}
         <div className="bishop-train-iteration-content">
           <div
             className="bishop-train-model-transition-panel"
@@ -265,9 +270,13 @@ export function DesignDecisionsSection({
       </div>
 
       <div
+        data-case-study-nav-target
         className={`bishop-tracker-client-wrapper ${isInteractive ? "" : "bishop-tracker-client-wrapper-normal"} ${isTrackerClientMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={trackerClientRef}
       >
+        {isInteractive && (
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        )}
         <div className="bishop-tracker-client-content">
           <div
             className="bishop-tracker-transition-panel"
@@ -280,7 +289,7 @@ export function DesignDecisionsSection({
                 : undefined
             }
           >
-            <TrackDetectionsSection v1Video={trackerV1} v4Video={trackerV4} />
+            <TrackDetectionsSection v1Video={trackerV1} v4Video={trackerV4} isActive={!isInteractive || trackerClientProgress < 0.5} />
           </div>
           <div
             className="bishop-client-video-transition-panel"
@@ -299,9 +308,13 @@ export function DesignDecisionsSection({
       </div>
 
       <div
+        data-case-study-nav-target
         className={`bishop-iteration-ai-wrapper ${isInteractive ? "" : "bishop-iteration-ai-wrapper-normal"} ${isIterationAiMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={iterationAiRef}
       >
+        {isInteractive && (
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        )}
         <div className="bishop-iteration-ai-content">
           <div
             className="bishop-iteration-three-transition-panel"
@@ -336,9 +349,13 @@ export function DesignDecisionsSection({
       </div>
 
       <div
+        data-case-study-nav-target
         className={`bishop-manage-map-wrapper ${isInteractive ? "" : "bishop-manage-map-wrapper-normal"} ${isManageMapMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
         ref={manageMapRef}
       >
+        {isInteractive && (
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        )}
         <div className="bishop-manage-map-content">
           <div
             className="bishop-manage-videos-transition-panel"

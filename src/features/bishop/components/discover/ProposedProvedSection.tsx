@@ -49,9 +49,13 @@ export function ProposedProvedSection({
 
   return (
     <div className={`bishop-proposed-proved-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-proposed-proved-content">
         <div
           className="bishop-proposed-fade-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <div className="bishop-proposed-process">
@@ -92,6 +96,7 @@ export function ProposedProvedSection({
         <div
           ref={provedPanelRef}
           className="bishop-proved-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={
             isInteractive
               ? { opacity: progress, pointerEvents: progress > 0.5 ? "auto" : "none" }

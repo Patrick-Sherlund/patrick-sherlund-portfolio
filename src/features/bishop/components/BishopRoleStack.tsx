@@ -47,9 +47,16 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
 
   return (
     <div className={`bishop-my-role-stack-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
+      {isInteractive && (
+        <>
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        </>
+      )}
       <div className="bishop-my-role-stack-content">
         <div 
           className="bishop-my-role-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - myRoleStackProgress } : undefined}
         >
           <h2 className="bishop-mrs-title">My role</h2>
@@ -60,6 +67,7 @@ export function BishopRoleStack({ isInteractive }: BishopRoleStackProps) {
 
         <div 
           className="bishop-stack-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: myRoleStackProgress } : undefined}
         >
           <h2 className="bishop-mrs-title">The Stack</h2>

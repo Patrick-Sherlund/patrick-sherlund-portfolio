@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
+import { HydratedVideo } from "@/shared/components/HydratedVideo";
 
 type TrackDetectionsSectionProps = {
   v1Video: string;
   v4Video: string;
+  isActive?: boolean;
 };
 
 type SliderStyle = CSSProperties & Record<`--${string}`, string>;
 
 const clampValue = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
-export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSectionProps) {
+export function TrackDetectionsSection({ v1Video, v4Video, isActive = true }: TrackDetectionsSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const v1Ref = useRef<HTMLVideoElement>(null);
   const v4Ref = useRef<HTMLVideoElement>(null);
@@ -120,24 +123,23 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
     setIsDragging(false);
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+  const moveSliderWithKey = (key: string, shiftKey: boolean) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key)) {
       return;
     }
 
-    event.preventDefault();
-    const step = event.shiftKey ? 10 : 5;
+    const step = shiftKey ? 10 : 5;
 
     const currentPosition = sliderPositionRef.current;
     let nextPosition = currentPosition;
 
-    if (event.key === "Home") {
+    if (key === "Home") {
       nextPosition = 0;
-    } else if (event.key === "End") {
+    } else if (key === "End") {
       nextPosition = 100;
     } else {
       nextPosition = clampValue(
-        event.key === "ArrowLeft" ? currentPosition - step : currentPosition + step,
+        key === "ArrowLeft" ? currentPosition - step : currentPosition + step,
         0,
         100
       );
@@ -146,12 +148,52 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
     setSliderValue(nextPosition, true);
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+      return;
+    }
+
+    event.preventDefault();
+    moveSliderWithKey(event.key, event.shiftKey);
+  };
+
+  useEffect(() => {
+    if (!isActive) {
+      return;
+    }
+
+    const handleWindowKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.defaultPrevented || !["ArrowLeft", "ArrowRight"].includes(event.key)) {
+        return;
+      }
+
+      const section = sectionRef.current;
+      if (!section) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportMidpoint = window.innerHeight / 2;
+      const isCentered = rect.top <= viewportMidpoint && rect.bottom >= viewportMidpoint;
+
+      if (!isCentered) {
+        return;
+      }
+
+      event.preventDefault();
+      moveSliderWithKey(event.key, event.shiftKey);
+    };
+
+    window.addEventListener("keydown", handleWindowKeyDown);
+    return () => window.removeEventListener("keydown", handleWindowKeyDown);
+  }, [isActive]);
+
   const sliderStyle: SliderStyle = {
     "--tracker-slider-position": `${sliderPosition}%`,
   };
 
   return (
-    <section className="bishop-track-detections-section">
+    <section className="bishop-track-detections-section" ref={sectionRef}>
       <div className="bishop-track-detections-content">
         <h2 className="bishop-track-detections-title">
           <strong>Track multiple detections</strong> over time
@@ -175,7 +217,7 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
         >
           <div className="bishop-tracker-label bishop-tracker-label-left">V1</div>
           <div className="bishop-tracker-label bishop-tracker-label-right">V4 🪄</div>
-          <video
+          <HydratedVideo
             ref={v1Ref}
             className="bishop-tracker-video bishop-tracker-video-base"
             src={v1Video}
@@ -185,7 +227,7 @@ export function TrackDetectionsSection({ v1Video, v4Video }: TrackDetectionsSect
             playsInline
             preload="metadata"
           />
-          <video
+          <HydratedVideo
             ref={v4Ref}
             className="bishop-tracker-video bishop-tracker-video-after"
             src={v4Video}

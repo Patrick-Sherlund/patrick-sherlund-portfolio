@@ -144,6 +144,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
         className={`bishop-discover ${isNormalHeaderMobilePinned ? "bishop-normal-mobile-header-pinned" : ""}`}
         ref={sectionRef}
       >
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 1, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
         <DiscoverHeader
           headerRef={headerRef}
           isHeaderSticky={isInteractive ? isHeaderSticky : isNormalHeaderPinned}
@@ -173,92 +174,109 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           carouselVideoRefs={carouselVideoRefs}
         />
 
-        <PersonaLearnedSection
-          sectionRef={personaLearnedRef}
-          isInteractive={isInteractive}
-          isMobilePinned={isPersonaLearnedMobilePinned}
-          progress={personaLearnedProgress}
-          learnedContentVisible={learnedContentVisible}
-          personaTitle={bishopContent.personaLearned.personaTitle}
-          learnedTitle={bishopContent.personaLearned.learnedTitle}
-          personaAssets={bishopMediaAssets.personaCarousel}
-          learnedCards={bishopContent.personaLearned.learnedCards}
-        />
+        <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+          <PersonaLearnedSection
+            sectionRef={personaLearnedRef}
+            isInteractive={isInteractive}
+            isMobilePinned={isPersonaLearnedMobilePinned}
+            progress={personaLearnedProgress}
+            learnedContentVisible={learnedContentVisible}
+            personaTitle={bishopContent.personaLearned.personaTitle}
+            learnedTitle={bishopContent.personaLearned.learnedTitle}
+            personaAssets={bishopMediaAssets.personaCarousel}
+            learnedCards={bishopContent.personaLearned.learnedCards}
+          />
+        </div>
 
-        <RealitySection
-          isInteractive={isInteractive}
-          title={bishopContent.reality.title}
-          text={bishopContent.reality.text}
-        />
+        <div data-case-study-nav-target data-case-study-nav-align="center">
+          <RealitySection
+            isInteractive={isInteractive}
+            title={bishopContent.reality.title}
+            text={bishopContent.reality.text}
+          />
+        </div>
 
-        <ProblemSuccessSection
-          wrapperRef={problemSuccessRef}
-          defineStartRef={defineStartRef}
-          isInteractive={isInteractive}
-          isMobilePinned={isProblemSuccessMobilePinned}
-          progress={problemSuccessProgress}
-          problemTitle={bishopContent.problem.title}
-          problemText={bishopContent.problem.text}
-          successTitle="What Success Looks Like"
-          metrics={successMetrics}
-        />
+        <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+          <ProblemSuccessSection
+            wrapperRef={problemSuccessRef}
+            defineStartRef={defineStartRef}
+            isInteractive={isInteractive}
+            isMobilePinned={isProblemSuccessMobilePinned}
+            progress={problemSuccessProgress}
+            problemTitle={bishopContent.problem.title}
+            problemText={bishopContent.problem.text}
+            successTitle="What Success Looks Like"
+            metrics={successMetrics}
+          />
+        </div>
 
-        <ProposedProvedSection
-          wrapperRef={proposedProvedRef}
-          isInteractive={isInteractive}
-          isMobilePinned={isProposedProvedMobilePinned}
-          progress={proposedProvedProgress}
-          title={bishopContent.proposed.title}
-          videoRef={processVideoRef}
-          processSteps={processSteps}
-          activeStep={activeStep}
-          stepProgress={stepProgress}
-          onStepClick={selectStep}
-          provedTitle={bishopContent.proved.title}
-          provedCards={bishopContent.proved.cards}
-        />
+        <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+          <ProposedProvedSection
+            wrapperRef={proposedProvedRef}
+            isInteractive={isInteractive}
+            isMobilePinned={isProposedProvedMobilePinned}
+            progress={proposedProvedProgress}
+            title={bishopContent.proposed.title}
+            videoRef={processVideoRef}
+            processSteps={processSteps}
+            activeStep={activeStep}
+            stepProgress={stepProgress}
+            onStepClick={selectStep}
+            provedTitle={bishopContent.proved.title}
+            provedCards={bishopContent.proved.cards}
+          />
+        </div>
 
-        <ConceptsSection isInteractive={isInteractive} images={bishopMediaAssets.concepts} />
+        <div data-case-study-nav-target data-case-study-nav-align="center">
+          <ConceptsSection isInteractive={isInteractive} images={bishopMediaAssets.concepts} />
+        </div>
 
-        <DesignDecisionsSection
-          sectionRef={developStartRef}
-          isInteractive={isInteractive}
-          title={bishopContent.designDecisions.title}
-          groups={bishopContent.designDecisions.groups}
-          iterationTitle={bishopContent.iterationOne.title}
-          iterationSubtitle={bishopContent.iterationOne.subtitle}
-          iterationHeadline={bishopContent.iterationOne.headline}
-          papers={bishopMediaAssets.researchPapers}
-          magnifierImage={bishopMediaAssets.magnifyingGlass}
-          magnifierImageDark={bishopMediaAssets.magnifyingGlassDark}
-          annotateHeadline={bishopContent.iterationOne.annotateHeadline}
-          annotateImage={bishopMediaAssets.annotateImage}
-          annotateVideo={bishopMediaAssets.annotateVideo}
-          annotateMobileImage={bishopMediaAssets.annotateMobileImage}
-          annotateMobileVideo={bishopMediaAssets.annotateMobileVideo}
-          iterationTwoTitle={bishopContent.iterationTwo.title}
-          iterationTwoSubtitle={bishopContent.iterationTwo.subtitle}
-          iterationTwoSummary={bishopContent.iterationTwo.summary}
-          iterationTwoHeadline={bishopContent.iterationTwo.headline}
-          inferenceImages={bishopMediaAssets.inferenceFrames}
-          trackerV1={bishopMediaAssets.trackerV1}
-          trackerV4={bishopMediaAssets.trackerV4}
-          clientVideo={bishopMediaAssets.clientVideo}
-          iterationThreeDesktopImage={bishopMediaAssets.iterationThreeDesktop}
-          iterationThreeMobileImage={bishopMediaAssets.iterationThreeMobile}
-          aiDetectionsVideo={bishopMediaAssets.aiDetections}
-          manageVideosDesktopImage={bishopMediaAssets.manageVideosDesktop}
-          manageVideosMobileImage={bishopMediaAssets.manageVideosMobile}
-          mapDemoVideo={bishopMediaAssets.mapDemo}
-        />
+        <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" })}>
+          <DesignDecisionsSection
+            sectionRef={developStartRef}
+            isInteractive={isInteractive}
+            title={bishopContent.designDecisions.title}
+            groups={bishopContent.designDecisions.groups}
+            iterationTitle={bishopContent.iterationOne.title}
+            iterationSubtitle={bishopContent.iterationOne.subtitle}
+            iterationHeadline={bishopContent.iterationOne.headline}
+            papers={bishopMediaAssets.researchPapers}
+            magnifierImage={bishopMediaAssets.magnifyingGlass}
+            magnifierImageDark={bishopMediaAssets.magnifyingGlassDark}
+            annotateHeadline={bishopContent.iterationOne.annotateHeadline}
+            annotateImage={bishopMediaAssets.annotateImage}
+            annotateVideo={bishopMediaAssets.annotateVideo}
+            annotateMobileImage={bishopMediaAssets.annotateMobileImage}
+            annotateMobileVideo={bishopMediaAssets.annotateMobileVideo}
+            iterationTwoTitle={bishopContent.iterationTwo.title}
+            iterationTwoSubtitle={bishopContent.iterationTwo.subtitle}
+            iterationTwoSummary={bishopContent.iterationTwo.summary}
+            iterationTwoHeadline={bishopContent.iterationTwo.headline}
+            inferenceImages={bishopMediaAssets.inferenceFrames}
+            trackerV1={bishopMediaAssets.trackerV1}
+            trackerV4={bishopMediaAssets.trackerV4}
+            clientVideo={bishopMediaAssets.clientVideo}
+            iterationThreeDesktopImage={bishopMediaAssets.iterationThreeDesktop}
+            iterationThreeMobileImage={bishopMediaAssets.iterationThreeMobile}
+            aiDetectionsVideo={bishopMediaAssets.aiDetections}
+            manageVideosDesktopImage={bishopMediaAssets.manageVideosDesktop}
+            manageVideosMobileImage={bishopMediaAssets.manageVideosMobile}
+            mapDemoVideo={bishopMediaAssets.mapDemo}
+          />
+        </div>
 
         <div
+          {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}
           className={`bishop-deliver-key-wrapper ${isInteractive ? "" : "bishop-deliver-key-wrapper-normal"} ${isDeliverKeyMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
           ref={deliverStartRef}
         >
+          {isInteractive && (
+            <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          )}
           <div className="bishop-deliver-key-content">
             <div
               className="bishop-deliver-transition-panel"
+              {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
               style={
                 isInteractive
                   ? {
@@ -276,6 +294,7 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
             </div>
             <div
               className="bishop-key-learnings-transition-panel"
+              {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
               style={
                 isInteractive
                   ? {
@@ -290,7 +309,9 @@ export function BishopDiscover({ isInteractive }: BishopDiscoverProps) {
           </div>
         </div>
 
-        <ThankYouSection />
+        <div data-case-study-nav-target data-case-study-nav-align="center">
+          <ThankYouSection />
+        </div>
       </section>
     </>
   );

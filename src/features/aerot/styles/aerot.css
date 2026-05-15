@@ -314,12 +314,12 @@
 }
 
 .aerot-role-text {
-  width: min(100%, 1080px);
-  max-width: 1080px;
+  width: 100%;
+  max-width: 1240px;
 }
 
 .aerot-page .bishop-my-role-panel {
-  max-width: none;
+  max-width: min(1400px, calc(100vw - 80px));
   padding-left: 40px;
   padding-right: 40px;
 }

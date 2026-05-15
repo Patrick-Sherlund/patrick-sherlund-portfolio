@@ -105,9 +105,16 @@ export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionPr
 
   return (
     <div className={`bishop-challenge-vision-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
+      {isInteractive && (
+        <>
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 350vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        </>
+      )}
       <div className="bishop-challenge-vision-content">
         <div
           className="bishop-challenge-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - challengeVisionProgress } : undefined}
         >
           <h2 className="bishop-cv-title">The Challenge</h2>
@@ -119,6 +126,7 @@ export function BishopChallengeVision({ isInteractive }: BishopChallengeVisionPr
         <div
           ref={visionPanelRef}
           className="bishop-vision-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: challengeVisionProgress } : undefined}
         >
           <h2 className="bishop-cv-title bishop-vision-title">

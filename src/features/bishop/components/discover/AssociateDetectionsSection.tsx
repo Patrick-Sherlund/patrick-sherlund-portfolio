@@ -1,3 +1,5 @@
+import { HydratedVideo } from "@/shared/components/HydratedVideo";
+
 type AssociateDetectionsSectionProps = {
   video: string;
 };
@@ -10,7 +12,7 @@ export function AssociateDetectionsSection({ video }: AssociateDetectionsSection
           <strong>Associate</strong> detections with the SAR mission map
         </h2>
 
-        <video
+        <HydratedVideo
           className="bishop-associate-detections-video"
           src={video}
           autoPlay

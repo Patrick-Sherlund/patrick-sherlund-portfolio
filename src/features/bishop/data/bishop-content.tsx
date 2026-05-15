@@ -131,87 +131,22 @@ export const bishopContent = {
     ],
   },
   designDecisions: {
-    title: "Design Decisions",
+    title: "Design Principles",
     groups: [
       {
-        label: (
-          <>
-            01 | <strong>Performance</strong>
-          </>
-        ),
-        cards: [
-          <>
-            There&apos;s tons of data,
-            <br />
-            it <strong>must be fast</strong>
-          </>,
-          <>
-            <strong>We need elastic scaling</strong>
-            <br />
-            with increasing workload
-          </>,
-          <>
-            <strong>Deterministic</strong>
-            <br />
-            performance with
-            <br />
-            <strong>reliable</strong>, repeatable
-            <br />
-            outcomes
-          </>,
-        ],
+        number: "01",
+        title: "Performance",
+        description: "Process large RF captures fast enough to support field use.",
       },
       {
-        label: (
-          <>
-            02 | <strong>Seamless Integration</strong>
-          </>
-        ),
-        cards: [
-          <>
-            <strong>Interoperates</strong> with
-            <br />
-            existing <strong>infrastructure</strong>
-          </>,
-          <>
-            <strong>Aligns</strong> technology
-            <br />
-            with existing user
-            <br />
-            <strong>workflows</strong>
-          </>,
-          <>
-            <strong>Mirrors</strong> the existing
-            <br />
-            <strong>ecosystem</strong> and
-            <br />
-            interfaces
-          </>,
-        ],
+        number: "02",
+        title: "Seamless Integration",
+        description: "Fit into existing tactical workflows instead of asking users to adopt new ones.",
       },
       {
-        label: (
-          <>
-            03 | <strong>User Experience</strong>
-          </>
-        ),
-        cards: [
-          <>
-            <strong>Understands</strong> quickly
-            <br />
-            and acts immediately
-          </>,
-          <>
-            <strong>Low friction</strong> use with
-            <br />
-            minimal <strong>training</strong>
-          </>,
-          <>
-            <strong>Adopts</strong> quickly
-            <br />
-            across <strong>teams</strong>
-          </>,
-        ],
+        number: "03",
+        title: "User Experience",
+        description: "Make detectability understandable in seconds, with minimal training.",
       },
     ],
   },

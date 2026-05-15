@@ -51,9 +51,13 @@ export function ProblemSuccessSection({
 
   return (
     <div className={`bishop-problem-success-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-problem-success-content" ref={defineStartRef}>
         <div
           className="bishop-problem-fade-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <div className="bishop-problem-content">
@@ -71,6 +75,7 @@ export function ProblemSuccessSection({
         <div
           ref={successPanelRef}
           className="bishop-success-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress } : undefined}
         >
           <h2 className="bishop-success-main-title">{successTitle}</h2>

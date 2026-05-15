@@ -134,10 +134,14 @@ export function PersonaLearnedSection({
 
   return (
     <div className={`bishop-persona-learned-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-persona-learned-content">
         <div
           ref={personaPanelRef}
           className="bishop-persona-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <h2 className="bishop-persona-section-title">{personaTitle}</h2>
@@ -173,6 +177,7 @@ export function PersonaLearnedSection({
         <div
           ref={learnedPanelRef}
           className="bishop-learned-main-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress } : undefined}
         >
           <h2 className="bishop-learned-title">{learnedTitle}</h2>

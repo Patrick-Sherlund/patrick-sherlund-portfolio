@@ -1,4 +1,5 @@
 import { useRef, type PointerEvent } from "react";
+import { HydratedVideo } from "@/shared/components/HydratedVideo";
 import { useInViewOnce } from "../../hooks/useInViewOnce";
 
 type CarouselAsset = {
@@ -130,7 +131,7 @@ export function ContextResearchSection({
         {[...carouselImages, ...carouselImages, ...carouselImages].map((asset, index) => (
           <div key={index} className={`bishop-carousel-image ${asset.className}`}>
             {asset.isVideo ? (
-              <video
+              <HydratedVideo
                 ref={(element) => {
                   if (element) {
                     carouselVideoRefs.current[index] = element;
@@ -153,9 +154,13 @@ export function ContextResearchSection({
 
   return (
     <div className={`bishop-context-research-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-context-research-content">
         <div
           className="bishop-context-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <h3 className="bishop-context-title-text">{title}</h3>
@@ -165,6 +170,7 @@ export function ContextResearchSection({
         <div
           ref={researchPanelRef}
           className="bishop-research-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress } : undefined}
         >
           <h2 className="bishop-research-title">{researchTitle}</h2>

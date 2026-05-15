@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { HydratedVideo } from "./HydratedVideo";
 
 type VideoOverlayProps = {
   src: string;
@@ -17,16 +18,15 @@ export function VideoOverlay({
 }: VideoOverlayProps) {
   return (
     <div className={className} style={wrapperStyle}>
-      <video
+      <HydratedVideo
+        src={src}
         autoPlay
         loop
         muted
         playsInline
         className={videoClassName}
         style={videoStyle}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      />
     </div>
   );
 }

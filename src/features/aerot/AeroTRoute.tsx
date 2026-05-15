@@ -8,6 +8,7 @@ import { useAccessibility } from "@/features/accessibility";
 import { BackLink } from "@/shared/components/BackLink";
 import { DeviceFrame } from "@/shared/components/DeviceFrame";
 import { VideoOverlay } from "@/shared/components/VideoOverlay";
+import { useSectionArrowNavigation } from "@/shared/hooks/useSectionArrowNavigation";
 import { deviceAssets } from "@/shared/media/asset-paths";
 import { bishopMediaAssets } from "@/features/bishop/data/bishop-assets";
 import { DiscoverHeader, type DiscoverSectionId } from "@/features/bishop/components/discover/DiscoverHeader";
@@ -287,12 +288,26 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
 
   return (
     <div className={`bishop-my-role-stack-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
+      {isInteractive && (
+        <>
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        </>
+      )}
       <div className="bishop-my-role-stack-content">
-        <div className="bishop-my-role-panel" style={isInteractive ? { opacity: 1 - progress } : undefined}>
+        <div
+          className="bishop-my-role-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: 1 - progress } : undefined}
+        >
           <h2 className="bishop-mrs-title">{aerotContent.role.title}</h2>
           <p className="bishop-mrs-text aerot-role-text">{aerotContent.role.text}</p>
         </div>
-        <div className="bishop-stack-panel" style={isInteractive ? { opacity: progress } : undefined}>
+        <div
+          className="bishop-stack-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: progress } : undefined}
+        >
           <h2 className="bishop-mrs-title">{aerotContent.role.stackTitle}</h2>
           <div className="bishop-stack-grid aerot-stack-grid">
             {renderStackColumn(leftStack)}
@@ -395,12 +410,27 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
 
   return (
     <div className={`bishop-challenge-vision-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
+      {isInteractive && (
+        <>
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 330vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+        </>
+      )}
       <div className="bishop-challenge-vision-content">
-        <div className="bishop-challenge-panel" style={isInteractive ? { opacity: 1 - progress } : undefined}>
+        <div
+          className="bishop-challenge-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: 1 - progress } : undefined}
+        >
           <h2 className="bishop-cv-title">{aerotContent.challengeVision.challengeTitle}</h2>
           <p className="bishop-cv-text">{aerotContent.challengeVision.challengeText}</p>
         </div>
-        <div ref={visionPanelRef} className="bishop-vision-panel" style={isInteractive ? { opacity: progress } : undefined}>
+        <div
+          ref={visionPanelRef}
+          className="bishop-vision-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: progress } : undefined}
+        >
           <h2 className="bishop-cv-title bishop-vision-title aerot-vision-title">{aerotContent.challengeVision.visionTitle}</h2>
           <p className="bishop-cv-text">{aerotContent.challengeVision.visionText}</p>
           {!isInteractive && renderBubbles()}
@@ -511,12 +541,24 @@ function AeroTContextSection({
 
   return (
     <div className={`bishop-context-research-wrapper aerot-context-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-context-research-content">
-        <div className="bishop-context-panel" style={isInteractive ? { opacity: 1 - progress } : undefined}>
+        <div
+          className="bishop-context-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: 1 - progress } : undefined}
+        >
           <h3 className="bishop-context-title-text">{aerotContent.context.title}</h3>
           <p className="bishop-context-text">{aerotContent.context.text}</p>
         </div>
-        <div ref={researchPanelRef} className="bishop-research-panel aerot-research-panel" style={isInteractive ? { opacity: progress } : undefined}>
+        <div
+          ref={researchPanelRef}
+          className="bishop-research-panel aerot-research-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: progress } : undefined}
+        >
           <h2 className="bishop-research-title">{aerotContent.context.researchTitle}</h2>
           {(!isInteractive && normalRailVisible) && <AeroTVisualRail items={aerotContent.context.imageDirections} />}
         </div>
@@ -676,8 +718,15 @@ function AeroTProcessProvedSection({
 
   return (
     <div className={`bishop-proposed-proved-wrapper aerot-process-proved-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-proposed-proved-content">
-        <div className="bishop-proposed-fade-panel" style={isInteractive ? { opacity: 1 - progress } : undefined}>
+        <div
+          className="bishop-proposed-fade-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          style={isInteractive ? { opacity: 1 - progress } : undefined}
+        >
           <div className="bishop-proposed-process aerot-proposed-process">
             <div className="bishop-proposed-content">
               <h2 className="bishop-proposed-title">{aerotContent.process.title}</h2>
@@ -702,6 +751,7 @@ function AeroTProcessProvedSection({
         <div
           ref={provedPanelRef}
           className="bishop-proved-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress, pointerEvents: progress > 0.5 ? "auto" : "none" } : undefined}
         >
           <h2 className="bishop-proved-main-title">{aerotContent.proved.title}</h2>
@@ -841,9 +891,13 @@ function AeroTDeliveryLearningSection({
 }) {
   return (
     <div className={`bishop-deliver-key-wrapper aerot-delivery-learning-wrapper ${isInteractive ? "" : "bishop-deliver-key-wrapper-normal"} ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
       <div className="bishop-deliver-key-content aerot-delivery-learning-content">
         <div
           className="bishop-deliver-transition-panel aerot-delivery-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress, pointerEvents: progress < 0.5 ? "auto" : "none" } : undefined}
         >
           <section className="aerot-delivery-section">
@@ -858,6 +912,7 @@ function AeroTDeliveryLearningSection({
         </div>
         <div
           className="bishop-key-learnings-transition-panel aerot-learning-panel"
+          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress, pointerEvents: progress > 0.5 ? "auto" : "none" } : undefined}
         >
           <section className="bishop-key-learnings-section aerot-key-learnings-section">
@@ -1069,6 +1124,7 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
 
   return (
     <section className={`bishop-discover aerot-discover ${isNormalHeaderMobilePinned ? "bishop-normal-mobile-header-pinned" : ""}`} ref={sectionRef}>
+      <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 1, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
       <DiscoverHeader
         headerRef={headerRef}
         isHeaderSticky={isInteractive ? isHeaderSticky : isNormalHeaderPinned}
@@ -1091,55 +1147,73 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
         progress={contextProgress}
         railVisible={railVisible}
       />
-      <AeroTDiscoveryInsights
-        isMobilePinned={isInsightsMobilePinned}
-        sectionRef={insightsRef}
-      />
-      <ProblemSuccessSection
-        wrapperRef={problemSuccessRef}
-        defineStartRef={defineStartRef}
-        isInteractive={isInteractive}
-        isMobilePinned={isProblemSuccessMobilePinned}
-        progress={problemSuccessProgress}
-        problemTitle={aerotContent.problem.title}
-        problemText={aerotContent.problem.text}
-        successTitle="What Success Needed To Look Like"
-        metrics={aerotContent.successMetrics}
-      />
-      <AeroTArchitectureSection
-        isMobilePinned={isArchitectureMobilePinned}
-        sectionRef={architectureRef}
-      />
-      <AeroTDecisionSection
-        isInteractive={isInteractive}
-        isMobilePinned={isDecisionsMobilePinned}
-        sectionRef={decisionsRef}
-      />
-      <AeroTProcessProvedSection
-        wrapperRef={processRef}
-        isInteractive={isInteractive}
-        isMobilePinned={isProcessMobilePinned}
-        progress={processProgress}
-      />
-      <AeroTIterationsSection
-        isInteractive={isInteractive}
-        isMobilePinned={isIterationsMobilePinned}
-        sectionRef={iterationsRef}
-      />
-      <AeroTLifecycleSection
-        isMobilePinned={isLifecycleMobilePinned}
-        sectionRef={lifecycleRef}
-      />
-      <AeroTDeliveryLearningSection
-        wrapperRef={deliveryRef}
-        isInteractive={isInteractive}
-        isMobilePinned={isDeliveryMobilePinned}
-        progress={deliveryProgress}
-      />
-      <AeroTReflectionSection
-        isMobilePinned={isReflectionMobilePinned}
-        sectionRef={reflectionRef}
-      />
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTDiscoveryInsights
+          isMobilePinned={isInsightsMobilePinned}
+          sectionRef={insightsRef}
+        />
+      </div>
+      <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+        <ProblemSuccessSection
+          wrapperRef={problemSuccessRef}
+          defineStartRef={defineStartRef}
+          isInteractive={isInteractive}
+          isMobilePinned={isProblemSuccessMobilePinned}
+          progress={problemSuccessProgress}
+          problemTitle={aerotContent.problem.title}
+          problemText={aerotContent.problem.text}
+          successTitle="What Success Needed To Look Like"
+          metrics={aerotContent.successMetrics}
+        />
+      </div>
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTArchitectureSection
+          isMobilePinned={isArchitectureMobilePinned}
+          sectionRef={architectureRef}
+        />
+      </div>
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTDecisionSection
+          isInteractive={isInteractive}
+          isMobilePinned={isDecisionsMobilePinned}
+          sectionRef={decisionsRef}
+        />
+      </div>
+      <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+        <AeroTProcessProvedSection
+          wrapperRef={processRef}
+          isInteractive={isInteractive}
+          isMobilePinned={isProcessMobilePinned}
+          progress={processProgress}
+        />
+      </div>
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTIterationsSection
+          isInteractive={isInteractive}
+          isMobilePinned={isIterationsMobilePinned}
+          sectionRef={iterationsRef}
+        />
+      </div>
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTLifecycleSection
+          isMobilePinned={isLifecycleMobilePinned}
+          sectionRef={lifecycleRef}
+        />
+      </div>
+      <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+        <AeroTDeliveryLearningSection
+          wrapperRef={deliveryRef}
+          isInteractive={isInteractive}
+          isMobilePinned={isDeliveryMobilePinned}
+          progress={deliveryProgress}
+        />
+      </div>
+      <div data-case-study-nav-target data-case-study-nav-align="center">
+        <AeroTReflectionSection
+          isMobilePinned={isReflectionMobilePinned}
+          sectionRef={reflectionRef}
+        />
+      </div>
     </section>
   );
 }
@@ -1148,6 +1222,11 @@ export function AeroTRoute() {
   const [viewMode, setViewMode] = useState<AeroTViewMode>("interactive");
   const { setInteractiveScrollingControl } = useAccessibility();
   const isInteractive = viewMode === "interactive";
+
+  useSectionArrowNavigation({
+    rootSelector: "[data-case-study-root='aerot']",
+    targetSelector: "[data-case-study-nav-target]",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -1181,13 +1260,13 @@ export function AeroTRoute() {
   }, [isInteractive, setInteractiveScrollingControl]);
 
   return (
-    <div className={`bishop-page bishop-page-${viewMode} aerot-page min-h-screen`}>
+    <div className={`bishop-page bishop-page-${viewMode} aerot-page min-h-screen`} data-case-study-root="aerot">
       <BackLink />
-      <AeroTHero />
-      <AeroTTeam />
-      <AeroTRoleStack isInteractive={isInteractive} />
-      <AeroTChallengeVision isInteractive={isInteractive} />
-      <AeroTOutcomes isInteractive={isInteractive} />
+      <div data-case-study-nav-target data-case-study-nav-align="center"><AeroTHero /></div>
+      <div data-case-study-nav-target data-case-study-nav-align="center"><AeroTTeam /></div>
+      <div data-case-study-section><AeroTRoleStack isInteractive={isInteractive} /></div>
+      <div data-case-study-section><AeroTChallengeVision isInteractive={isInteractive} /></div>
+      <div data-case-study-nav-target data-case-study-nav-align="center"><AeroTOutcomes isInteractive={isInteractive} /></div>
       <AeroTDiscover isInteractive={isInteractive} />
     </div>
   );

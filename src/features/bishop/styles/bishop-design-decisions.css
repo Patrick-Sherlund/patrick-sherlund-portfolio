@@ -72,11 +72,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 142px 24px 42px;
+  padding: 146px 72px 84px;
 }
 
 .bishop-design-decisions-content {
-  width: min(100%, 650px);
+  width: min(100%, 1080px);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -88,75 +88,60 @@
   font-weight: 700;
   line-height: 1.15;
   color: #111111;
-  text-align: center;
+  text-align: left;
   letter-spacing: 0;
-  margin: 0 0 58px;
+  margin: 0 0 48px;
 }
 
 .bishop-design-decisions-groups {
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 54px;
+  border-top: 1px solid rgba(17, 17, 17, 0.16);
 }
 
 .bishop-design-decision-group {
   display: flex;
   flex-direction: column;
   gap: 22px;
+  min-width: 0;
+  padding: 32px 0 0;
+}
+
+.bishop-design-decision-kicker {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #6b7280;
+  letter-spacing: 0.12em;
+  display: block;
+  margin: 0 0 10px;
+}
+
+.bishop-design-decision-heading {
+  display: block;
 }
 
 .bishop-design-decision-label {
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-size: clamp(20px, 1.45vw, 26px);
+  font-weight: 700;
+  line-height: 1.15;
   color: #111111;
   margin: 0;
+  padding: 0;
+  border-bottom: 0;
 }
 
-.bishop-design-decision-label strong,
-.bishop-design-decision-label b {
-  font-weight: 700;
-}
-
-.bishop-design-decision-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
-}
-
-.bishop-design-decision-card {
-  min-height: 126px;
-  border: 1px solid #d7dce3;
-  border-radius: 10px;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  text-align: center;
-}
-
-.bishop-design-decision-card.rainbow {
-  border: 1px solid transparent;
-  background-image:
-    linear-gradient(white, white),
-    linear-gradient(135deg, #3CCAF4 0%, #578DF3 25%, #7C52BE 50%, #F93C95 75%, #FC6E5D 88%, #FFAC49 100%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}
-
-.bishop-design-decision-card p {
+.bishop-design-decision-description {
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: clamp(18px, 1.15vw, 21px);
   font-weight: 400;
-  line-height: 1.22;
+  line-height: 1.35;
   color: #4b5563;
   margin: 0;
-}
-
-.bishop-design-decision-card strong {
-  font-weight: 700;
+  max-width: 310px;
 }
 
 @media (max-width: 768px) {
@@ -171,11 +156,37 @@
 
   .bishop-design-decisions-title {
     font-size: 28px;
+    text-align: center;
     margin-bottom: 40px;
   }
 
-  .bishop-design-decision-cards {
-    gap: 18px;
+  .bishop-design-decisions-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bishop-design-decision-group {
+    gap: 14px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.16);
+  }
+
+  .bishop-design-decision-kicker {
+    font-size: 12px;
+    margin-bottom: 9px;
+  }
+
+  .bishop-design-decision-label {
+    font-weight: 700;
+    font-size: clamp(21px, 5.2vw, 26px);
+    line-height: 1.12;
+  }
+
+  .bishop-design-decision-description {
+    font-size: 16px;
+    line-height: 1.34;
+    max-width: none;
   }
 }
 
@@ -191,30 +202,18 @@
   }
 
   .bishop-design-decisions-groups {
-    gap: 18px;
+    gap: 0;
   }
 
   .bishop-design-decision-group {
-    gap: 10px;
+    gap: 12px;
   }
 
   .bishop-design-decision-label {
-    font-size: 12px;
+    font-size: clamp(20px, 6vw, 24px);
   }
 
-  .bishop-design-decision-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  .bishop-design-decision-card {
-    min-height: 82px;
-    border-radius: 8px;
-    padding: 8px 6px;
-  }
-
-  .bishop-design-decision-card p {
-    font-size: clamp(9px, 2.65vw, 11px);
-    line-height: 1.16;
+  .bishop-design-decision-description {
+    font-size: 15px;
   }
 }

@@ -48,7 +48,6 @@
 .bishop-key-learnings-section,
 .bishop-thank-you-section,
 .bishop-stat-card-inner,
-.bishop-design-decision-card,
 .bishop-research-paper,
 .bishop-research-magnifier-lens,
 .bishop-tracker-comparison,
@@ -122,8 +121,9 @@
 .bishop-proved-arrow,
 .bishop-proved-card-bottom,
 .bishop-design-decisions-title,
+.bishop-design-decision-kicker,
 .bishop-design-decision-label,
-.bishop-design-decision-card p,
+.bishop-design-decision-description,
 .bishop-concepts-title,
 .bishop-iteration-one-title,
 .bishop-iteration-one-subtitle,
@@ -280,7 +280,8 @@
 .dark .bishop-metric-description,
 .dark .bishop-proved-card-top,
 .dark .bishop-proved-arrow,
-.dark .bishop-design-decision-card p,
+.dark .bishop-design-decision-kicker,
+.dark .bishop-design-decision-description,
 .dark .bishop-thank-you-copy p,
 .dark .bishop-thank-you-copy p:nth-of-type(3),
 .dark .bishop-next-case-study-text > span,
@@ -359,6 +360,15 @@
   color: #ffffff;
 }
 
+.dark .bishop-design-decision-label {
+  border-bottom-color: rgba(175, 194, 208, 0.22);
+}
+
+.dark .bishop-design-decisions-groups,
+.dark .bishop-design-decision-group {
+  border-color: rgba(175, 194, 208, 0.18);
+}
+
 .dark .bishop-learned-icon path {
   stroke: #7ebaff;
 }
@@ -413,13 +423,11 @@
 
 .dark .bishop-stat-card-inner,
 .dark .bishop-metric-card,
-.dark .bishop-design-decision-card,
 .dark .bishop-proved-card {
   background-color: #061f30;
   border-color: rgba(175, 194, 208, 0.18);
 }
 
-.dark .bishop-design-decision-card.rainbow,
 .dark .bishop-proved-card {
   background-image:
     linear-gradient(#061f30, #061f30),

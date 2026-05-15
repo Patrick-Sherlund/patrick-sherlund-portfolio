@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAccessibility } from "@/features/accessibility";
 import { BackLink } from "@/shared/components/BackLink";
+import { useSectionArrowNavigation } from "@/shared/hooks/useSectionArrowNavigation";
 import { bishopMediaAssets } from "./data/bishop-assets";
 import { BishopChallengeVision } from "./components/BishopChallengeVision";
 import { BishopDiscover } from "./components/discover";
@@ -17,6 +18,11 @@ export function BishopRoute() {
   const [viewMode, setViewMode] = useState<BishopViewMode>("interactive");
   const { setInteractiveScrollingControl } = useAccessibility();
   const isInteractive = viewMode === "interactive";
+
+  useSectionArrowNavigation({
+    rootSelector: "[data-case-study-root='bishop']",
+    targetSelector: "[data-case-study-nav-target]",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,13 +70,13 @@ export function BishopRoute() {
   }, [isInteractive, setInteractiveScrollingControl]);
 
   return (
-    <div className={`bishop-page bishop-page-${viewMode} min-h-screen bg-[#e7f4ff]`}>
+    <div className={`bishop-page bishop-page-${viewMode} min-h-screen bg-[#e7f4ff]`} data-case-study-root="bishop">
       <BackLink />
-      <BishopHero />
-      <BishopTeam />
-      <BishopRoleStack isInteractive={isInteractive} />
-      <BishopChallengeVision isInteractive={isInteractive} />
-      <BishopUsersSaw isInteractive={isInteractive} />
+      <div data-case-study-nav-target data-case-study-nav-align="center"><BishopHero /></div>
+      <div data-case-study-nav-target data-case-study-nav-align="center"><BishopTeam /></div>
+      <div data-case-study-section><BishopRoleStack isInteractive={isInteractive} /></div>
+      <div data-case-study-section><BishopChallengeVision isInteractive={isInteractive} /></div>
+      <div data-case-study-nav-target data-case-study-nav-align="center"><BishopUsersSaw isInteractive={isInteractive} /></div>
       <BishopDiscover isInteractive={isInteractive} />
     </div>
   );
