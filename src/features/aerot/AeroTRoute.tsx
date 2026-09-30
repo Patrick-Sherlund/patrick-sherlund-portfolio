@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode, type RefObjec
 import { useAccessibility } from "@/features/accessibility";
 import { BackLink } from "@/shared/components/BackLink";
 import { DeviceFrame } from "@/shared/components/DeviceFrame";
+import { ProjectNavigationHint } from "@/shared/components/ProjectNavigationHint";
 import { VideoOverlay } from "@/shared/components/VideoOverlay";
 import { useSectionArrowNavigation } from "@/shared/hooks/useSectionArrowNavigation";
 import { deviceAssets } from "@/shared/media/asset-paths";
@@ -88,7 +89,6 @@ function AeroTHero() {
     <section className="bishop-hero-section aerot-hero-section">
       <div className="bishop-hero-container aerot-hero-container">
         <div className="bishop-hero-left aerot-hero-left">
-          <div className="bishop-number">{aerotContent.hero.number}</div>
           <div className="aerot-wordmark-group">
             <h1 className="aerot-wordmark">{aerotContent.hero.title}</h1>
             <p className="aerot-subtitle">{aerotContent.hero.subtitle}</p>
@@ -123,13 +123,15 @@ function AeroTHero() {
         onClick={handleScrollToStart}
         style={{ opacity: scrollOpacity, transition: "opacity 0.1s linear" }}
       >
-        <span className="bishop-scroll-text">See case study below</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown size={32} color="#6b7280" strokeWidth={2} />
-        </motion.div>
+        <ProjectNavigationHint>
+          <span className="bishop-scroll-text">See case study below</span>
+          <motion.span
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={32} color="#6b7280" strokeWidth={2} />
+          </motion.span>
+        </ProjectNavigationHint>
       </button>
     </section>
   );
@@ -538,16 +540,46 @@ function AeroTContextSection({
 }) {
   const researchPanelRef = useRef<HTMLDivElement>(null);
   const normalRailVisible = useInViewOnce(researchPanelRef, !isInteractive);
+  const [insightsProgress, setInsightsProgress] = useState(0);
+
+  useEffect(() => {
+    if (!isInteractive) {
+      setInsightsProgress(0);
+      return;
+    }
+
+    const handleScroll = () => {
+      const element = sectionRef.current;
+      if (!element) {
+        return;
+      }
+
+      const viewportHeight = window.innerHeight;
+      const entryHold = Math.min(450, viewportHeight * 0.45);
+      const readingHold = Math.min(640, viewportHeight * 0.65);
+      const transitionStart = entryHold + viewportHeight + readingHold;
+      const scrollDistance = -element.getBoundingClientRect().top;
+      setInsightsProgress(Math.min(Math.max((scrollDistance - transitionStart) / viewportHeight, 0), 1));
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isInteractive, sectionRef]);
 
   return (
     <div className={`bishop-context-research-wrapper aerot-context-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
-      {isInteractive && (
-        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
-      )}
       <div className="bishop-context-research-content">
         <div
           className="bishop-context-panel"
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          aria-hidden={isInteractive && progress >= 0.5}
+          inert={isInteractive && progress >= 0.5}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
           <h3 className="bishop-context-title-text">{aerotContent.context.title}</h3>
@@ -557,53 +589,65 @@ function AeroTContextSection({
           ref={researchPanelRef}
           className="bishop-research-panel aerot-research-panel"
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
-          style={isInteractive ? { opacity: progress } : undefined}
+          aria-hidden={isInteractive && (progress < 0.5 || insightsProgress >= 0.5)}
+          inert={isInteractive && (progress < 0.5 || insightsProgress >= 0.5)}
+          style={isInteractive ? { opacity: progress * (1 - insightsProgress) } : undefined}
         >
           <h2 className="bishop-research-title">{aerotContent.context.researchTitle}</h2>
           {(!isInteractive && normalRailVisible) && <AeroTVisualRail items={aerotContent.context.imageDirections} />}
         </div>
-        {isInteractive && railVisible && <AeroTVisualRail items={aerotContent.context.imageDirections} />}
+        {isInteractive && railVisible && (
+          <div className="aerot-research-rail-phase" aria-hidden={insightsProgress >= 0.5} inert={insightsProgress >= 0.5} style={{ opacity: 1 - insightsProgress }}>
+            <AeroTVisualRail items={aerotContent.context.imageDirections} />
+          </div>
+        )}
+        <div
+          className="aerot-sequence-panel aerot-discovery-panel"
+          role="region"
+          aria-labelledby="aerot-discovery-title"
+          aria-hidden={isInteractive && insightsProgress < 0.5}
+          inert={isInteractive && insightsProgress < 0.5}
+          tabIndex={isInteractive && insightsProgress >= 0.5 ? 0 : undefined}
+          {...(!isInteractive ? { "data-case-study-nav-target": "true" } : {})}
+          style={isInteractive ? { opacity: insightsProgress, pointerEvents: insightsProgress >= 0.5 ? "auto" : "none" } : undefined}
+        >
+          <AeroTDiscoveryInsights />
+        </div>
       </div>
+      {isInteractive && (
+        <>
+          <div data-case-study-nav-target data-case-study-nav-marker className="aerot-sequence-nav-marker" style={{ top: "calc(var(--aerot-stage-entry) + 100vh + 2px)" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker className="aerot-sequence-nav-marker" style={{ top: "calc(var(--aerot-stage-entry) + 200vh + var(--aerot-stage-hold) + 2px)" }} />
+        </>
+      )}
     </div>
   );
 }
 
-function AeroTDiscoveryInsights({
-  isMobilePinned,
-  sectionRef,
-}: {
-  isMobilePinned: boolean;
-  sectionRef: RefObject<HTMLElement | null>;
-}) {
+function AeroTDiscoveryInsights() {
   return (
-    <AeroTStickySection className="aerot-insights-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
-      <div className="aerot-section-inner">
-        <h2 className="aerot-section-title">{aerotContent.discoveryInsights.title}</h2>
-        <div className="aerot-insight-grid">
-          {aerotContent.discoveryInsights.cards.map((card) => (
-            <article className="aerot-insight-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-            </article>
-          ))}
+    <section className="bishop-design-decisions-section aerot-insights-section">
+      <div className="bishop-design-decisions-content">
+        <h2 className="bishop-design-decisions-title" id="aerot-discovery-title">{aerotContent.discoveryInsights.title}</h2>
+        <div className="bishop-design-decisions-groups aerot-discovery-copy">
+          <p className="bishop-design-decision-description aerot-discovery-finding">
+            {aerotContent.discoveryInsights.finding}
+          </p>
+          <p className="bishop-design-decision-description">
+            {aerotContent.discoveryInsights.implication}
+          </p>
         </div>
       </div>
-    </AeroTStickySection>
+    </section>
   );
 }
 
-function AeroTArchitectureSection({
-  isMobilePinned,
-  sectionRef,
-}: {
-  isMobilePinned: boolean;
-  sectionRef: RefObject<HTMLElement | null>;
-}) {
+function AeroTArchitectureSection() {
   return (
-    <AeroTStickySection className="aerot-architecture-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
+    <section className="aerot-architecture-section">
       <div className="aerot-section-inner">
         <div className="aerot-section-heading">
-          <h2 className="aerot-section-title">{aerotContent.architecture.title}</h2>
+          <h2 className="aerot-section-title" id="aerot-architecture-title">{aerotContent.architecture.title}</h2>
           <p className="aerot-section-lead">{aerotContent.architecture.text}</p>
         </div>
         <div className="aerot-architecture-grid">
@@ -624,74 +668,70 @@ function AeroTArchitectureSection({
           ))}
         </div>
       </div>
-    </AeroTStickySection>
+    </section>
   );
 }
 
-function AeroTDecisionSection({
-  isInteractive,
-  isMobilePinned,
-  sectionRef,
-}: {
-  isInteractive: boolean;
-  isMobilePinned: boolean;
-  sectionRef: RefObject<HTMLElement | null>;
-}) {
-  const [activeGroupIndex, setActiveGroupIndex] = useState(0);
-
-  useEffect(() => {
-    if (!isInteractive) {
-      setActiveGroupIndex(0);
-      return;
-    }
-
-    const handleScroll = () => {
-      const sectionElement = sectionRef.current;
-      if (!sectionElement) {
-        return;
-      }
-
-      const rect = sectionElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const entryHold = Math.min(260, viewportHeight * 0.28);
-      const phaseDistance = viewportHeight * 0.82;
-      const scrollDistance = Math.max(Math.abs(rect.top) - entryHold, 0);
-      const nextIndex = Math.min(
-        Math.max(Math.floor(scrollDistance / phaseDistance), 0),
-        aerotContent.decisions.groups.length - 1
-      );
-      setActiveGroupIndex(nextIndex);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isInteractive, sectionRef]);
-
+function AeroTDecisionSection() {
   return (
-    <AeroTStickySection className="aerot-decisions-section aerot-decisions-scroll-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
-      <div className="aerot-section-inner">
-        <h2 className="aerot-section-title">{aerotContent.decisions.title}</h2>
-        <div className="aerot-decision-groups aerot-decision-stage">
-          {aerotContent.decisions.groups.map((group, groupIndex) => (
-            <section
-              className={`aerot-decision-group aerot-decision-stage-group ${groupIndex === activeGroupIndex ? "active" : ""}`}
-              key={group.label}
-            >
-              <h3>{group.label}</h3>
-              <div className="aerot-decision-card-grid">
-                {group.cards.map((card) => (
-                  <article className="aerot-decision-card" key={card}>
-                    <p>{card}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
+    <section className="bishop-design-decisions-section aerot-decisions-section">
+      <div className="bishop-design-decisions-content">
+        <h2 className="bishop-design-decisions-title" id="aerot-decisions-title">{aerotContent.decisions.title}</h2>
+        <div className="bishop-design-decisions-groups aerot-decision-list">
+          {aerotContent.decisions.items.map((decision) => (
+            <article className="bishop-design-decision-group" key={decision.title}>
+              <h3 className="bishop-design-decision-label">{decision.title}</h3>
+              <p className="bishop-design-decision-description">{decision.text}</p>
+            </article>
           ))}
         </div>
       </div>
-    </AeroTStickySection>
+    </section>
+  );
+}
+
+function AeroTArchitectureDecisionsSection({
+  sectionRef,
+  isInteractive,
+}: {
+  sectionRef: RefObject<HTMLDivElement | null>;
+  isInteractive: boolean;
+}) {
+  const { progress } = useCrossfadeScroll(sectionRef, isInteractive);
+  const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
+
+  return (
+    <div className={`aerot-architecture-decisions-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
+      <div className="aerot-sequence-content">
+        <div
+          className="aerot-sequence-panel aerot-architecture-panel"
+          role="region"
+          aria-labelledby="aerot-architecture-title"
+          aria-hidden={isInteractive && progress >= 0.5}
+          inert={isInteractive && progress >= 0.5}
+          tabIndex={isInteractive && progress < 0.5 ? 0 : undefined}
+          {...(!isInteractive ? { "data-case-study-nav-target": "true" } : {})}
+          style={isInteractive ? { opacity: 1 - progress, pointerEvents: progress < 0.5 ? "auto" : "none" } : undefined}
+        >
+          <AeroTArchitectureSection />
+        </div>
+        <div
+          className="aerot-sequence-panel aerot-decisions-panel"
+          role="region"
+          aria-labelledby="aerot-decisions-title"
+          aria-hidden={isInteractive && progress < 0.5}
+          inert={isInteractive && progress < 0.5}
+          tabIndex={isInteractive && progress >= 0.5 ? 0 : undefined}
+          {...(!isInteractive ? { "data-case-study-nav-target": "true" } : {})}
+          style={isInteractive ? { opacity: progress, pointerEvents: progress >= 0.5 ? "auto" : "none" } : undefined}
+        >
+          <AeroTDecisionSection />
+        </div>
+      </div>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker className="aerot-sequence-nav-marker" style={{ top: "calc(var(--aerot-stage-entry) + 100vh + 2px)" }} />
+      )}
+    </div>
   );
 }
 
@@ -707,9 +747,7 @@ function AeroTProcessProvedSection({
   progress: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const provedPanelRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
-  const normalProvedVisible = useInViewOnce(provedPanelRef, !isInteractive);
   const { activeStep, stepProgress, selectStep } = useVideoStepProgress(videoRef, aerotContent.process.steps);
 
   useEffect(() => {
@@ -739,34 +777,29 @@ function AeroTProcessProvedSection({
                 />
                 <div className="aerot-process-visual">
                   <video ref={videoRef} className="aerot-process-video" src={isMounted ? "/assets/videos/aerot.mp4" : undefined} autoPlay loop muted playsInline />
-                  <div className="aerot-process-placeholder">
-                    <span>Screen recording placeholder</span>
-                    <p>{aerotContent.process.videoDirection}</p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div
-          ref={provedPanelRef}
-          className="bishop-proved-panel"
+          className="bishop-proved-panel aerot-proved-panel"
+          role="region"
+          aria-labelledby="aerot-proved-title"
+          tabIndex={isInteractive && progress > 0.5 ? 0 : -1}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress, pointerEvents: progress > 0.5 ? "auto" : "none" } : undefined}
         >
-          <h2 className="bishop-proved-main-title">{aerotContent.proved.title}</h2>
-          <div className={`bishop-proved-cards ${!isInteractive && normalProvedVisible ? "normal-bubble-visible" : ""}`}>
-            {aerotContent.proved.cards.map((card, index) => {
-              const isCardVisible = isInteractive ? progress >= 0.58 + index * 0.1 : normalProvedVisible;
-
-              return (
-                <div className={`bishop-proved-card ${isCardVisible ? "bubble-in" : ""}`} key={card.top}>
-                  <div className="bishop-proved-card-top">{card.top}</div>
-                  <div className="bishop-proved-arrow">↓</div>
-                  <div className="bishop-proved-card-bottom">{card.bottom}</div>
-                </div>
-              );
-            })}
+          <h2 className="bishop-proved-main-title" id="aerot-proved-title">{aerotContent.proved.title}</h2>
+          <div className="aerot-proved-copy">
+            <div className="aerot-proved-block">
+              <h3>What we believed</h3>
+              <p>{aerotContent.proved.hypothesis}</p>
+            </div>
+            <div className="aerot-proved-block">
+              <h3>The result</h3>
+              <p>{aerotContent.proved.evidence}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -801,80 +834,59 @@ function AeroTIterationsSection({
       const viewportHeight = window.innerHeight;
       const entryHold = Math.min(260, viewportHeight * 0.28);
       const phaseDistance = viewportHeight * 0.78;
-      const scrollDistance = Math.max(Math.abs(rect.top) - entryHold, 0);
+      const scrollDistance = Math.max(-rect.top - entryHold, 0);
       const nextIndex = Math.min(
-        Math.max(Math.floor(scrollDistance / phaseDistance), 0),
-        aerotContent.iterations.cards.length - 1
+        Math.floor(scrollDistance / phaseDistance),
+        aerotContent.iterations.length - 1
       );
       setActiveIterationIndex(nextIndex);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isInteractive, sectionRef]);
 
   return (
-    <AeroTStickySection className="aerot-iterations-section aerot-iterations-scroll-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
-      <div className="aerot-section-inner aerot-iterations-inner">
-        <div className="aerot-section-heading">
-          <h2 className="aerot-section-title">{aerotContent.iterations.title}</h2>
-          <p className="aerot-section-lead">{aerotContent.iterations.intro}</p>
-        </div>
-        <div className="aerot-iteration-grid aerot-iteration-stage">
-          {aerotContent.iterations.cards.map((card, cardIndex) => (
+    <section
+      className={`aerot-interactive-section aerot-iterations-section aerot-iterations-scroll-section ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`}
+      ref={sectionRef}
+    >
+      <div className="aerot-interactive-section-content">
+        <div className="aerot-iterations-stage">
+          {aerotContent.iterations.map((iteration, index) => (
             <article
-              className={`aerot-iteration-card aerot-iteration-stage-card ${cardIndex === activeIterationIndex ? "active" : ""}`}
-              key={card.title}
+              className={`bishop-iteration-one-section aerot-iteration-panel ${index === activeIterationIndex ? "active" : ""}`}
+              aria-hidden={isInteractive && index !== activeIterationIndex ? true : undefined}
+              {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+              key={iteration.title}
             >
-              <div>
-                <span>{card.title}</span>
-                <h3>{card.subtitle}</h3>
-                <p>{card.text}</p>
+              <div className="bishop-iteration-one-content aerot-iteration-content">
+                <header className="bishop-iteration-one-header">
+                  <h2 className="bishop-iteration-one-title">{iteration.title}</h2>
+                  <p className="bishop-iteration-one-subtitle">{iteration.subtitle}</p>
+                </header>
+                <p className="bishop-iteration-one-headline aerot-iteration-body">{iteration.text}</p>
               </div>
-              {card.imageKey ? (
-                <AeroTPhotoCard imageKey={card.imageKey} className="aerot-card-photo aerot-iteration-photo" />
-              ) : (
-                <div className="aerot-card-visual-note">
-                  <span>Carousel placeholder</span>
-                  <p>{card.visual}</p>
-                </div>
-              )}
             </article>
           ))}
         </div>
       </div>
-    </AeroTStickySection>
-  );
-}
-
-function AeroTLifecycleSection({
-  isMobilePinned,
-  sectionRef,
-}: {
-  isMobilePinned: boolean;
-  sectionRef: RefObject<HTMLElement | null>;
-}) {
-  return (
-    <AeroTStickySection className="aerot-lifecycle-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
-      <div className="aerot-section-inner aerot-lifecycle-inner">
-        <div className="aerot-section-heading">
-          <h2 className="aerot-section-title">{aerotContent.lifecycle.title}</h2>
-        </div>
-        <div className="aerot-lifecycle-layout">
-          <ol className="aerot-lifecycle-list">
-            {aerotContent.lifecycle.steps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-          <div className="aerot-lifecycle-visual">
-            <span>Diagram placeholder</span>
-            <p>{aerotContent.lifecycle.visual}</p>
-          </div>
-        </div>
-      </div>
-    </AeroTStickySection>
+      {isInteractive && aerotContent.iterations.map((iteration, index) => (
+        <div
+          data-case-study-nav-target
+          data-case-study-nav-marker
+          className="aerot-iteration-nav-marker"
+          style={{ top: index === 0 ? 0 : `calc(min(260px, 28vh) + ${index * 78}vh + 2px)` }}
+          key={iteration.title}
+        />
+      ))}
+    </section>
   );
 }
 
@@ -891,19 +903,21 @@ function AeroTDeliveryLearningSection({
 }) {
   return (
     <div className={`bishop-deliver-key-wrapper aerot-delivery-learning-wrapper ${isInteractive ? "" : "bishop-deliver-key-wrapper-normal"} ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={wrapperRef}>
-      {isInteractive && (
-        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
-      )}
       <div className="bishop-deliver-key-content aerot-delivery-learning-content">
         <div
           className="bishop-deliver-transition-panel aerot-delivery-panel"
-          {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
+          {...(!isInteractive ? { "data-case-study-nav-target": "true" } : {})}
+          role="region"
+          aria-labelledby="aerot-delivery-title"
+          aria-hidden={isInteractive && progress >= 0.5}
+          inert={isInteractive && progress >= 0.5}
+          tabIndex={isInteractive && progress < 0.5 ? 0 : undefined}
           style={isInteractive ? { opacity: 1 - progress, pointerEvents: progress < 0.5 ? "auto" : "none" } : undefined}
         >
           <section className="aerot-delivery-section">
             <div className="aerot-section-inner aerot-delivery-inner">
               <div className="aerot-section-heading">
-                <h2 className="aerot-section-title">{aerotContent.delivery.title}</h2>
+                <h2 className="aerot-section-title" id="aerot-delivery-title">{aerotContent.delivery.title}</h2>
                 <p className="aerot-section-lead">{aerotContent.delivery.text}</p>
               </div>
               <AeroTPhotoCard imageKey={aerotContent.delivery.imageKey} className="aerot-delivery-photo" />
@@ -931,22 +945,32 @@ function AeroTDeliveryLearningSection({
           </section>
         </div>
       </div>
+      {isInteractive && (
+        <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 100vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+      )}
     </div>
   );
 }
 
 function AeroTReflectionSection({
+  isInteractive,
   isMobilePinned,
   sectionRef,
 }: {
+  isInteractive: boolean;
   isMobilePinned: boolean;
   sectionRef: RefObject<HTMLElement | null>;
 }) {
   return (
     <AeroTStickySection className="bishop-thank-you-section aerot-reflection-section" isMobilePinned={isMobilePinned} sectionRef={sectionRef}>
-      <div className="bishop-thank-you-content aerot-reflection-content">
+      <div
+        className="bishop-thank-you-content aerot-reflection-content"
+        role="region"
+        aria-labelledby="aerot-reflection-title"
+        tabIndex={isInteractive ? 0 : undefined}
+      >
         <div className="bishop-thank-you-copy">
-          <h2>{aerotContent.reflection.title}</h2>
+          <h2 id="aerot-reflection-title">{aerotContent.reflection.title}</h2>
           {aerotContent.reflection.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
@@ -1013,14 +1037,11 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const contextRef = useRef<HTMLDivElement>(null);
-  const insightsRef = useRef<HTMLElement>(null);
   const defineStartRef = useRef<HTMLDivElement>(null);
   const problemSuccessRef = useRef<HTMLDivElement>(null);
-  const architectureRef = useRef<HTMLElement>(null);
-  const decisionsRef = useRef<HTMLElement>(null);
+  const architectureRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
   const iterationsRef = useRef<HTMLElement>(null);
-  const lifecycleRef = useRef<HTMLElement>(null);
   const deliveryRef = useRef<HTMLDivElement>(null);
   const reflectionRef = useRef<HTMLElement>(null);
   const [currentSection, setCurrentSection] = useState<DiscoverSectionId>("discover");
@@ -1031,13 +1052,9 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
   const { progress: processProgress } = useCrossfadeScroll(processRef, isInteractive);
   const { progress: deliveryProgress } = useCrossfadeScroll(deliveryRef, isInteractive);
   const isContextMobilePinned = useMobilePinnedSection(contextRef, isInteractive);
-  const isInsightsMobilePinned = useMobilePinnedSection(insightsRef, isInteractive);
   const isProblemSuccessMobilePinned = useMobilePinnedSection(problemSuccessRef, isInteractive);
-  const isArchitectureMobilePinned = useMobilePinnedSection(architectureRef, isInteractive);
-  const isDecisionsMobilePinned = useMobilePinnedSection(decisionsRef, isInteractive);
   const isProcessMobilePinned = useMobilePinnedSection(processRef, isInteractive);
   const isIterationsMobilePinned = useMobilePinnedSection(iterationsRef, isInteractive);
-  const isLifecycleMobilePinned = useMobilePinnedSection(lifecycleRef, isInteractive);
   const isDeliveryMobilePinned = useMobilePinnedSection(deliveryRef, isInteractive);
   const isReflectionMobilePinned = useMobilePinnedSection(reflectionRef, isInteractive);
   const isNormalHeaderMobilePinned = useMobilePinnedSection(sectionRef, !isInteractive);
@@ -1147,12 +1164,6 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
         progress={contextProgress}
         railVisible={railVisible}
       />
-      <div data-case-study-nav-target data-case-study-nav-align="center">
-        <AeroTDiscoveryInsights
-          isMobilePinned={isInsightsMobilePinned}
-          sectionRef={insightsRef}
-        />
-      </div>
       <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
         <ProblemSuccessSection
           wrapperRef={problemSuccessRef}
@@ -1162,21 +1173,15 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
           progress={problemSuccessProgress}
           problemTitle={aerotContent.problem.title}
           problemText={aerotContent.problem.text}
+          showProblemIcon={false}
           successTitle="What Success Needed To Look Like"
           metrics={aerotContent.successMetrics}
         />
       </div>
-      <div data-case-study-nav-target data-case-study-nav-align="center">
-        <AeroTArchitectureSection
-          isMobilePinned={isArchitectureMobilePinned}
-          sectionRef={architectureRef}
-        />
-      </div>
-      <div data-case-study-nav-target data-case-study-nav-align="center">
-        <AeroTDecisionSection
+      <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
+        <AeroTArchitectureDecisionsSection
           isInteractive={isInteractive}
-          isMobilePinned={isDecisionsMobilePinned}
-          sectionRef={decisionsRef}
+          sectionRef={architectureRef}
         />
       </div>
       <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
@@ -1187,19 +1192,11 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
           progress={processProgress}
         />
       </div>
-      <div data-case-study-nav-target data-case-study-nav-align="center">
-        <AeroTIterationsSection
-          isInteractive={isInteractive}
-          isMobilePinned={isIterationsMobilePinned}
-          sectionRef={iterationsRef}
-        />
-      </div>
-      <div data-case-study-nav-target data-case-study-nav-align="center">
-        <AeroTLifecycleSection
-          isMobilePinned={isLifecycleMobilePinned}
-          sectionRef={lifecycleRef}
-        />
-      </div>
+      <AeroTIterationsSection
+        isInteractive={isInteractive}
+        isMobilePinned={isIterationsMobilePinned}
+        sectionRef={iterationsRef}
+      />
       <div {...(isInteractive ? { "data-case-study-nav-target": "true" } : {})}>
         <AeroTDeliveryLearningSection
           wrapperRef={deliveryRef}
@@ -1208,8 +1205,9 @@ function AeroTDiscover({ isInteractive }: { isInteractive: boolean }) {
           progress={deliveryProgress}
         />
       </div>
-      <div data-case-study-nav-target data-case-study-nav-align="center">
+      <div data-case-study-nav-target {...(isInteractive ? { "data-case-study-nav-align": "center" } : {})}>
         <AeroTReflectionSection
+          isInteractive={isInteractive}
           isMobilePinned={isReflectionMobilePinned}
           sectionRef={reflectionRef}
         />
@@ -1226,6 +1224,7 @@ export function AeroTRoute() {
   useSectionArrowNavigation({
     rootSelector: "[data-case-study-root='aerot']",
     targetSelector: "[data-case-study-nav-target]",
+    scrollableSelector: ".aerot-sequence-panel, .aerot-delivery-panel, .aerot-reflection-content",
   });
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 type UseSectionArrowNavigationOptions = {
   rootSelector: string;
   targetSelector: string;
+  scrollableSelector?: string;
 };
 
 function isInteractiveControlTarget(target: EventTarget | null) {
@@ -71,11 +72,21 @@ function getTargetBounds(target: Element, y: number, fallbackTolerance: number) 
   };
 }
 
-export function useSectionArrowNavigation({ rootSelector, targetSelector }: UseSectionArrowNavigationOptions) {
+export function useSectionArrowNavigation({ rootSelector, targetSelector, scrollableSelector }: UseSectionArrowNavigationOptions) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.key !== "ArrowDown" && event.key !== "ArrowUp") || event.defaultPrevented || isInteractiveControlTarget(event.target)) {
         return;
+      }
+
+      const scrollable = scrollableSelector && event.target instanceof HTMLElement
+        ? event.target.closest<HTMLElement>(scrollableSelector)
+        : null;
+      if (scrollable) {
+        const remainingScroll = scrollable.scrollHeight - scrollable.clientHeight - scrollable.scrollTop;
+        if (event.key === "ArrowDown" ? remainingScroll > 1 : scrollable.scrollTop > 1) {
+          return;
+        }
       }
 
       const root = document.querySelector(rootSelector);
@@ -128,5 +139,5 @@ export function useSectionArrowNavigation({ rootSelector, targetSelector }: UseS
 
     window.addEventListener("keydown", handleKeyDown, { capture: true });
     return () => window.removeEventListener("keydown", handleKeyDown, { capture: true });
-  }, [rootSelector, targetSelector]);
+  }, [rootSelector, targetSelector, scrollableSelector]);
 }

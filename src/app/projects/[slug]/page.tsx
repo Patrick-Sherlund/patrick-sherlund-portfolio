@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { featuredProjects, getProjectBySlug } from "@/content/portfolio";
+import { ProjectNavigationHint } from "@/shared/components/ProjectNavigationHint";
 import { StructuredData } from "@/shared/seo/StructuredData";
 import { createPageMetadata } from "@/shared/seo/metadata";
 import { createBreadcrumbJsonLd, createProjectJsonLd } from "@/shared/seo/jsonld";
@@ -118,6 +119,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </section>
         </div>
       </main>
+      <ProjectNavigationHint key={project.slug} />
     </>
   );
 }

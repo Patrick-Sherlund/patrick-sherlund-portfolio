@@ -193,35 +193,16 @@ export const aerotContent = {
     ],
   },
   discoveryInsights: {
-    title: "What discovery made clear",
-    cards: [
-      {
-        title: "Stay unclassified",
-        text: (
-          <>
-            The product needed to train broadly, not become a classified intelligence platform with
-            limited access.
-          </>
-        ),
-      },
-      {
-        title: "Bring the network",
-        text: (
-          <>
-            Training environments could not guarantee internet, cellular service, hardwired
-            networking, or stable power.
-          </>
-        ),
-      },
-      {
-        title: "Keep it instructor-simple",
-        text: (
-          <>
-            The interface had to work during live instruction, not as a lab workflow after the event.
-          </>
-        ),
-      },
-    ],
+    title: "What we learned from instructors",
+    finding: (
+      <>
+        From December through February, I led discovery with training units from 29 Palms. Those
+        conversations narrowed AeroT to one interaction: helping an instructor show a Marine{" "}
+        <strong>whether a simulated enemy receiver could detect their transmission.</strong>
+      </>
+    ),
+    implication:
+      "We used that interaction to scope the MVP. The tool needed to stay unclassified so instructors and students could use it, and work in training areas without reliable internet or power. That meant bringing our own network and power, with terrain data available offline.",
   },
   problem: {
     title: "What Was Holding Training Back",
@@ -297,8 +278,6 @@ export const aerotContent = {
   },
   process: {
     title: "The training loop we built toward",
-    videoDirection:
-      "Screen recording placeholder: Command View or ATAK flow from device configuration through signal event, heatmap, receiver links, and timeline inspection.",
     steps: [
       {
         id: 1,
@@ -332,99 +311,52 @@ export const aerotContent = {
   },
   proved: {
     title: "What we proved",
-    cards: [
-      {
-        top: "COTS RF hardware could become a field acquisition node",
-        bottom: "DeviceManager coordinated SDRs, GPS, health, storage, and transport",
-      },
-      {
-        top: "Raw signal detections could become training consequences",
-        bottom: "Longley-Rice terrain analysis produced heatmaps and receiver links",
-      },
-      {
-        top: "A low-bandwidth network could still support rich field feedback",
-        bottom: "Compact messages moved over XBee while MobileService served heavy ATAK artifacts locally",
-      },
-    ],
+    hypothesis:
+      "We believed off-the-shelf RF hardware could help instructors show students whether a simulated enemy receiver was likely to detect their transmission, while training was still happening.",
+    evidence: (
+      <>
+        At 29 Palms, we connected <strong>ten devices</strong> across <strong>roughly ten miles</strong>{" "}
+        and delivered feedback within <strong>about five seconds</strong> of capture. Instructors could
+        walk over to students and show them which simulated enemy receivers were likely to detect
+        their transmission.
+      </>
+    ),
   },
   decisions: {
-    title: "Key product and engineering decisions",
-    groups: [
+    title: "Engineering decisions",
+    items: [
       {
-        label: "01 | Feedback latency",
-        cards: [
-          "Optimize the MVP around shortening the training feedback loop, not around building a general RF analysis platform.",
-          "Keep the first useful slice visible to instructors: device location, signal event, terrain effect, receiver detectability.",
-          "Tie every analysis result back to the student action that created the training moment.",
-        ],
+        title: "Keeping heatmaps off the radio network",
+        text: "The radio network could carry compact signal events, but heatmaps would consume too much bandwidth. We moved the analysis onto the device with MobileService and served ATAK over its Wi-Fi hotspot. That kept radio messages small, while instructors connected locally for the detailed view.",
       },
       {
-        label: "02 | Field architecture",
-        cards: [
-          "Use C++ where SDR control, signal processing, and RF modeling needed predictable behavior.",
-          "Use Python where vendor hardware APIs and service composition made the fastest reliable path.",
-          "Split Command View and ATAK so command-node and field-instructor workflows could both work in disconnected conditions.",
-        ],
-      },
-      {
-        label: "03 | Honest modeling",
-        cards: [
-          "Make transmit power an explicit instructor input instead of pretending a passive receiver could infer the original transmitter power.",
-          "Run terrain-aware Longley-Rice analysis against DTED because training terrain, ridgelines, and distance mattered.",
-          "Move heavy ATAK heatmap artifacts onto the device hotspot instead of pushing them over low-bandwidth radio transport.",
-        ],
+        title: "Making transmit power an instructor input",
+        text: "A passive receiver couldn't reliably tell us the original transmitter's power without calibration beyond the MVP's scope. We made transmit power an instructor input. Instructors could model likely detection against the terrain, with results tied to the power they configured.",
       },
     ],
   },
-  iterations: {
-    title: "Four iteration cycles, one moving system",
-    intro:
-      "Each cycle forced hardware, software, RF behavior, and field UX to evolve together. A chassis change could affect thermal behavior. A power converter could look like a software bug. GPS could fail because the device was interfering with itself.",
-    cards: [
-      {
-        title: "Iteration 1",
-        subtitle: "Prove the device and Command View slice",
-        text: "Narrowband RTL-SDR collection, early LillyGo LoRa transport, baseline collection, GPS, telemetry, command configuration, and a first map-centered instructor UI.",
-        visual:
-          "Carousel placeholder: first 3D-printed chassis, ventilation holes, mounted fans, early wiring, RTL-SDR setup, and first Command View map screen.",
-      },
-      {
-        title: "Iteration 2",
-        subtitle: "Stabilize power and expand wideband",
-        text: "A better tested step-down converter reduced random USB failures, KL divergence improved detection behavior, LimeSDR Mini 2.0 added wideband collection, and the white case improved thermal handling.",
-        visual:
-          "Carousel placeholder: white storm trooper case, improved internal layout, power converter close-up, LimeSDR wideband setup, field bench photos.",
-      },
-      {
-        title: "Iteration 3",
-        subtitle: "Debug self-interference, GPS, and transport",
-        text: "Testing showed the device could deny its own GPS. We tested emissions, tried EM tape, externalized GPS, and moved transport toward Digi XBee.",
-        visual:
-          "Carousel placeholder: GPS antenna tests, frequency probe kit, EM tape experiment, XBee module wiring, outdoor transport validation.",
-        imageKey: "antennaMast",
-      },
-      {
-        title: "Iteration 4",
-        subtitle: "Harden MVP, add ATAK, validate in the field",
-        text: "The final phase added probability-based detection, MobileService, ATAK heatmaps and receiver links, Pelican-style hardware, and validation with ten devices across roughly ten miles.",
-        visual:
-          "Carousel placeholder: final Pelican-style case, ATAK screen in hand, Command View at command node, 29 Palms field deployment, ten-device setup.",
-      },
-    ],
-  },
-  lifecycle: {
-    title: "From RF energy to instructor feedback",
-    steps: [
-      "Operator configures frequencies, wideband ranges, and modeled transmit power.",
-      "DeviceManager assigns SDRs, samples IQ data, computes PSD, and checks the calibrated baseline.",
-      "The detector emits paired START and END signal captures after consecutive anomalous or normal observations.",
-      "LoRaDriver sends compact protobuf messages over Digi XBee.",
-      "Command View deconflicts events, runs terrain-aware analysis, and visualizes heatmaps plus receiver links.",
-      "MobileService can run the same analysis locally for ATAK clients over the AeroT hotspot.",
-    ],
-    visual:
-      "Diagram placeholder: signal event lifecycle from Command View configuration to DeviceManager, SDR capture, XBee transport, Longley-Rice analysis, Command View timeline, and ATAK heatmap.",
-  },
+  iterations: [
+    {
+      title: "Iteration 1",
+      subtitle: "Prove the device and Command View slice",
+      text: "Narrowband RTL-SDR collection, early LillyGo LoRa transport, baseline collection, GPS, telemetry, command configuration, and a first map-centered instructor UI.",
+    },
+    {
+      title: "Iteration 2",
+      subtitle: "Stabilize power and expand wideband",
+      text: "A better tested step-down converter reduced random USB failures, KL divergence improved detection behavior, LimeSDR Mini 2.0 added wideband collection, and the white case improved thermal handling.",
+    },
+    {
+      title: "Iteration 3",
+      subtitle: "Debug self-interference, GPS, and transport",
+      text: "Testing showed the device could deny its own GPS. We tested emissions, tried EM tape, externalized GPS, and moved transport toward Digi XBee.",
+    },
+    {
+      title: "Iteration 4",
+      subtitle: "Harden MVP, add ATAK, validate in the field",
+      text: "The final phase added probability-based detection, MobileService, ATAK heatmaps and receiver links, Pelican-style hardware, and validation with ten devices across roughly ten miles.",
+    },
+  ],
   delivery: {
     title: "Final system in the field",
     text: (

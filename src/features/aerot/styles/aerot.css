@@ -3,6 +3,39 @@
   color: #111111;
 }
 
+.aerot-page .bishop-discover-header-nav-item {
+  text-align: center;
+  align-items: center;
+}
+
+.aerot-page .bishop-mrs-text,
+.aerot-page .bishop-cv-text,
+.aerot-page .bishop-context-text {
+  line-height: 1.55;
+}
+
+.aerot-page .bishop-problem-text {
+  line-height: 1.75;
+}
+
+.aerot-page .bishop-team-member-role {
+  line-height: 1.4;
+}
+
+.aerot-page .bishop-stat-label,
+.aerot-page .bishop-metric-description,
+.aerot-page .bishop-key-learning-card p {
+  line-height: 1.35;
+}
+
+.aerot-page .bishop-iteration-one-subtitle {
+  line-height: 1.3;
+}
+
+.aerot-page .bishop-next-case-study-text p {
+  line-height: 1.38;
+}
+
 .aerot-page .bishop-hero-section,
 .aerot-page .bishop-team-section,
 .aerot-page .bishop-my-role-stack-wrapper,
@@ -20,11 +53,12 @@
 .aerot-page .bishop-thank-you-section,
 .aerot-interactive-section,
 .aerot-interactive-section-content,
+.aerot-architecture-decisions-wrapper,
+.aerot-sequence-content,
 .aerot-insights-section,
 .aerot-architecture-section,
 .aerot-decisions-section,
 .aerot-iterations-section,
-.aerot-lifecycle-section,
 .aerot-delivery-section {
   background-color: #f4f8f2;
 }
@@ -78,12 +112,13 @@
   color: #2f5d4a;
   font-size: 20px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .aerot-description {
   max-width: 560px;
   color: #26342d;
+  line-height: 1.45;
 }
 
 .aerot-hero-team-info {
@@ -212,7 +247,7 @@
   font-family: "Roboto", sans-serif;
   font-size: 19px;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .aerot-team-layout {
@@ -245,7 +280,7 @@
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .aerot-team-credits {
@@ -310,7 +345,7 @@
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .aerot-role-text {
@@ -437,10 +472,9 @@
 }
 
 .aerot-visual-placeholder span,
+.aerot-proved-block h3,
 .aerot-card-eyebrow,
 .aerot-card-visual-note span,
-.aerot-iteration-card span,
-.aerot-lifecycle-visual span,
 .aerot-delivery-visual span {
   color: #2f6f56;
   font-size: 12px;
@@ -451,13 +485,11 @@
 
 .aerot-visual-placeholder p,
 .aerot-card-visual-note p,
-.aerot-lifecycle-visual p,
-.aerot-delivery-visual p,
-.aerot-process-placeholder p {
+.aerot-delivery-visual p {
   margin: 0;
   color: #26342d;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 @keyframes aerotRailScroll {
@@ -472,6 +504,134 @@
 .aerot-page {
   --aerot-sticky-header-space: 136px;
   --aerot-sticky-bottom-space: 40px;
+  --aerot-stage-entry: min(450px, 45vh);
+  --aerot-stage-hold: min(640px, 65vh);
+}
+
+.aerot-architecture-decisions-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.aerot-sequence-nav-marker {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.bishop-page-interactive .aerot-context-wrapper {
+  height: calc(300vh + var(--aerot-stage-entry) + var(--aerot-stage-hold) + var(--aerot-stage-hold));
+}
+
+.bishop-page-interactive .aerot-context-wrapper .bishop-context-research-content,
+.bishop-page-interactive .aerot-context-wrapper.bishop-mobile-pinned-section > .bishop-context-research-content {
+  min-height: 0;
+  height: 100vh;
+  background-color: inherit;
+}
+
+.bishop-page-interactive .aerot-architecture-decisions-wrapper {
+  height: calc(200vh + var(--aerot-stage-entry) + var(--aerot-stage-hold));
+}
+
+.bishop-page-interactive .aerot-sequence-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: inherit;
+}
+
+.bishop-page-interactive .aerot-sequence-panel {
+  position: absolute;
+  inset: var(--aerot-sticky-header-space) 0 var(--aerot-sticky-bottom-space);
+  display: flex;
+  overflow-y: auto;
+  padding: 24px 72px;
+  transition: opacity 0.1s linear;
+}
+
+.aerot-sequence-panel:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -4px;
+}
+
+.bishop-page-interactive .aerot-sequence-panel > section {
+  flex: 0 0 100%;
+  height: fit-content;
+  min-height: 0;
+  margin-block: auto;
+  padding: 0;
+}
+
+.bishop-page-interactive .aerot-architecture-panel .aerot-section-inner {
+  padding: 0;
+}
+
+.bishop-page-interactive .aerot-architecture-panel .aerot-section-heading {
+  margin-bottom: clamp(18px, 3vh, 32px);
+}
+
+.bishop-page-interactive .aerot-architecture-panel .aerot-section-title {
+  font-size: clamp(30px, 5vh, 46px);
+}
+
+.bishop-page-interactive .aerot-architecture-panel .aerot-section-lead {
+  font-size: clamp(15px, 2.05vh, 20px);
+  line-height: 1.38;
+}
+
+.aerot-research-rail-phase {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .bishop-page-interactive .aerot-sequence-panel {
+    padding: 20px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-page-interactive .bishop-mobile-pinned-section > .aerot-sequence-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .bishop-page-interactive .aerot-sequence-panel {
+    padding: 12px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aerot-visual-rail {
+    animation: none;
+  }
+
+  .aerot-sequence-panel,
+  .aerot-context-wrapper .bishop-context-panel,
+  .aerot-context-wrapper .bishop-research-panel,
+  .aerot-research-rail-phase {
+    transition: none;
+  }
+
+  .bishop-page-interactive .aerot-sequence-panel[aria-hidden="true"],
+  .bishop-page-interactive .aerot-context-wrapper [aria-hidden="true"] {
+    opacity: 0 !important;
+  }
+
+  .bishop-page-interactive .aerot-sequence-panel[aria-hidden="false"],
+  .bishop-page-interactive .aerot-context-wrapper [aria-hidden="false"] {
+    opacity: 1 !important;
+  }
 }
 
 .aerot-interactive-section {
@@ -482,10 +642,6 @@
 .bishop-page-interactive .aerot-interactive-section {
   height: calc(150vh + var(--bishop-crossfade-settle-distance));
   overflow: clip;
-}
-
-.bishop-page-interactive .aerot-decisions-scroll-section {
-  height: calc(330vh + var(--bishop-crossfade-settle-distance));
 }
 
 .bishop-page-interactive .aerot-iterations-scroll-section {
@@ -523,52 +679,39 @@
 .bishop-page-interactive .aerot-interactive-section .aerot-section-lead {
   max-width: 860px;
   font-size: clamp(15px, 2.05vh, 20px);
-  line-height: 1.42;
+  line-height: 1.38;
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-insight-grid,
-.bishop-page-interactive .aerot-interactive-section .aerot-architecture-grid,
-.bishop-page-interactive .aerot-interactive-section .aerot-decision-card-grid {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-grid {
   gap: clamp(12px, 2.2vh, 20px);
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
-.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
-.bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
-.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card {
   min-height: 0;
   padding: clamp(14px, 2.6vh, 26px);
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3,
-.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card h3,
-.bishop-page-interactive .aerot-interactive-section .aerot-decision-group h3,
-.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card h3 {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card h3 {
   font-size: clamp(18px, 2.6vh, 24px);
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-insight-card p,
-.bishop-page-interactive .aerot-interactive-section .aerot-architecture-card p,
-.bishop-page-interactive .aerot-interactive-section .aerot-decision-card p,
-.bishop-page-interactive .aerot-interactive-section .aerot-iteration-card p,
-.bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-list li {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card p {
   font-size: clamp(13px, 1.82vh, 16px);
-  line-height: 1.36;
+  line-height: 1.32;
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note,
-.bishop-page-interactive .aerot-interactive-section .aerot-card-photo {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note,
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-photo {
   min-height: clamp(84px, 16vh, 148px);
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note {
   padding: clamp(12px, 2vh, 18px);
 }
 
-.bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note p,
-.bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-visual p {
+.bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note p {
   font-size: clamp(12px, 1.6vh, 14px);
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .aerot-section-inner {
@@ -600,42 +743,44 @@
   max-width: 920px;
   color: #26342d;
   font-size: 22px;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .aerot-insights-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+  height: auto;
+  min-height: 100svh;
 }
 
-.aerot-insight-grid,
-.aerot-architecture-grid,
-.aerot-decision-card-grid {
+.aerot-discovery-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 32px;
+}
+
+.aerot-discovery-copy .bishop-design-decision-description {
+  max-width: 860px;
+  line-height: 1.45;
+}
+
+.aerot-discovery-copy .aerot-discovery-finding {
+  font-size: clamp(20px, 1.5vw, 26px);
+}
+
+.aerot-architecture-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
-.aerot-insight-card,
-.aerot-architecture-card,
-.aerot-decision-card,
-.aerot-iteration-card {
+.aerot-architecture-card {
   background: #ffffff;
   border: 1px solid rgba(21, 56, 43, 0.12);
   border-radius: 18px;
   box-shadow: 0 12px 30px rgba(14, 33, 24, 0.08);
 }
 
-.aerot-insight-card {
-  min-height: 248px;
-  padding: 34px;
-}
-
-.aerot-insight-card h3,
-.aerot-architecture-card h3,
-.aerot-decision-group h3,
-.aerot-iteration-card h3 {
+.aerot-architecture-card h3 {
   margin: 0;
   color: #101412;
   font-size: 24px;
@@ -643,25 +788,16 @@
   line-height: 1.22;
 }
 
-.aerot-insight-card h3 {
-  margin-bottom: 18px;
-}
-
-.aerot-insight-card p,
-.aerot-architecture-card p,
-.aerot-decision-card p,
-.aerot-iteration-card p,
-.aerot-lifecycle-list li {
+.aerot-architecture-card p {
   margin: 0;
   color: #26342d;
   font-size: 17px;
-  line-height: 1.52;
+  line-height: 1.47;
 }
 
 .aerot-architecture-section,
 .aerot-decisions-section,
-.aerot-iterations-section,
-.aerot-lifecycle-section {
+.aerot-iterations-section {
   min-height: 100vh;
 }
 
@@ -707,51 +843,30 @@
   object-position: center;
 }
 
-.aerot-decision-groups {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+.aerot-decisions-section {
+  height: auto;
+  min-height: 100svh;
 }
 
-.aerot-decision-group {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.aerot-decisions-section .bishop-design-decisions-title {
+  margin-bottom: 36px;
+  font-size: clamp(28px, 3.4vw, 48px);
+  font-weight: 800;
+  line-height: 1.12;
 }
 
-.aerot-decision-card {
-  min-height: 168px;
-  padding: 26px;
+.aerot-decisions-section .bishop-design-decision-label {
+  font-size: clamp(20px, 1.45vw, 26px);
+  line-height: 1.25;
 }
 
-.bishop-page-interactive .aerot-decision-stage {
-  position: relative;
-  min-height: min(430px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 78px));
-  margin-top: clamp(20px, 3vh, 34px);
+.aerot-decision-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.bishop-page-interactive .aerot-decision-stage-group {
-  position: absolute;
-  inset: 0;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.28s ease;
-}
-
-.bishop-page-interactive .aerot-decision-stage-group.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.bishop-page-interactive .aerot-decision-stage .aerot-decision-card-grid {
-  flex: 1;
-  align-items: stretch;
-}
-
-.bishop-page-interactive .aerot-decision-stage .aerot-decision-card {
-  display: flex;
-  align-items: center;
+.aerot-decision-list .bishop-design-decision-description {
+  max-width: none;
+  line-height: 1.45;
 }
 
 .aerot-process-proved-wrapper .bishop-proposed-content {
@@ -789,24 +904,88 @@
   opacity: 0.76;
 }
 
-.aerot-process-placeholder {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 24px;
-  padding: 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(21, 56, 43, 0.16);
+.bishop-page-interactive .aerot-process-proved-wrapper .bishop-proposed-proved-content {
+  min-height: 0;
 }
 
-.aerot-process-placeholder span {
-  display: block;
-  margin-bottom: 8px;
-  color: #2f6f56;
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
+.bishop-page-interactive .aerot-process-proved-wrapper .bishop-proposed-fade-panel {
+  top: var(--aerot-sticky-header-space);
+  height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
+  overflow-y: auto;
+}
+
+.bishop-page-interactive .aerot-proposed-process {
+  height: 100%;
+  min-height: 0;
+  padding: 24px 56px 0;
+}
+
+.bishop-page-interactive .aerot-proposed-process .bishop-proposed-title {
+  margin: 0;
+}
+
+.bishop-page-interactive .aerot-proposed-process .bishop-proposed-content {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  gap: clamp(20px, 3vh, 32px);
+  transform: none !important;
+}
+
+.bishop-page-interactive .aerot-proposed-layout {
+  height: 100%;
+  min-height: 300px;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.bishop-page-interactive .aerot-process-visual {
+  height: 100%;
+  min-height: 0;
+}
+
+.bishop-page-interactive .aerot-process-video {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+
+@media (min-width: 1025px) {
+  .bishop-page-interactive .aerot-proposed-process .bishop-process-tracker {
+    padding: 0;
+  }
+
+  .bishop-page-interactive .aerot-proposed-process .bishop-step-connector {
+    height: clamp(24px, 5vh, 64px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .bishop-page-interactive .aerot-proposed-layout {
+    grid-template-rows: auto minmax(220px, 1fr);
+    gap: 20px;
+  }
+
+  .bishop-page-interactive .aerot-process-visual {
+    align-self: start;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 220px;
+    max-height: 100%;
+    aspect-ratio: 1108 / 720;
+  }
+}
+
+@media (max-width: 640px) {
+  .bishop-page-interactive .aerot-proposed-process {
+    padding: 12px 18px 0;
+  }
+
+  .bishop-page-interactive .aerot-process-visual {
+    min-height: 320px;
+  }
 }
 
 .aerot-page .bishop-process-step.active .bishop-step-icon,
@@ -824,108 +1003,110 @@
   color: #2f6f56;
 }
 
-.aerot-iterations-inner {
-  width: min(100%, 1320px);
+.bishop-page-interactive .aerot-proved-panel {
+  max-height: calc(100svh - 2 * var(--aerot-sticky-header-space));
+  overflow-y: auto;
 }
 
-.aerot-iteration-grid {
+.aerot-proved-panel:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.aerot-proved-panel > * {
+  flex-shrink: 0;
+}
+
+.aerot-proved-panel .bishop-proved-main-title {
+  margin-bottom: clamp(28px, 5vh, 56px);
+}
+
+.aerot-proved-copy {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 36px;
+  width: min(100%, 980px);
+  padding: 0 32px;
 }
 
-.aerot-iteration-card {
-  min-height: 520px;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.aerot-proved-block h3 {
+  margin: 0 0 12px;
+  text-transform: none;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.aerot-iteration-card > div:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.aerot-proved-block p {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(22px, 2.1vw, 28px);
+  line-height: 1.4;
+  text-wrap: pretty;
 }
 
-.aerot-iteration-card > span,
-.aerot-iteration-card div > span {
-  color: #2f6f56;
+.aerot-proved-block strong {
+  font-weight: 700;
 }
 
-.aerot-iteration-card .aerot-card-visual-note {
-  min-height: 210px;
+.aerot-iterations-stage {
+  width: 100%;
 }
 
-.aerot-iteration-photo {
-  min-height: 210px;
+.aerot-page .aerot-iteration-panel {
+  min-height: 100vh;
+  height: auto;
+  background-color: inherit;
+  overflow-y: auto;
 }
 
-.bishop-page-interactive .aerot-iteration-stage {
+.aerot-page .aerot-iteration-content {
+  height: auto;
+  min-height: 100%;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 48px;
+}
+
+.aerot-iteration-body {
+  align-self: center;
+  justify-self: center;
+  max-width: 1000px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.27;
+}
+
+.bishop-page-interactive .aerot-iterations-section > .aerot-interactive-section-content {
+  padding: 0;
+}
+
+.bishop-page-interactive .aerot-iterations-stage {
   position: relative;
-  display: block;
-  min-height: min(440px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 168px));
+  height: 100%;
 }
 
-.bishop-page-interactive .aerot-iteration-stage-card {
+.bishop-page-interactive .aerot-iteration-panel {
   position: absolute;
   inset: 0;
+  min-height: 0;
+  height: 100%;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s ease;
 }
 
-.bishop-page-interactive .aerot-iteration-stage-card.active {
+.bishop-page-interactive .aerot-iteration-panel.active {
+  visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }
 
-.bishop-page-interactive .aerot-iteration-stage-card .aerot-card-visual-note,
-.bishop-page-interactive .aerot-iteration-stage-card .aerot-card-photo {
-  min-height: clamp(110px, 19vh, 180px);
-}
-
-.aerot-lifecycle-inner {
-  width: min(100%, 1160px);
-}
-
-.aerot-lifecycle-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
-  gap: 48px;
-  align-items: stretch;
-}
-
-.aerot-lifecycle-list {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  list-style: none;
-  counter-reset: aerot-lifecycle;
-}
-
-.aerot-lifecycle-list li {
-  position: relative;
-  padding: 22px 22px 22px 74px;
-  background: #ffffff;
-  border: 1px solid rgba(21, 56, 43, 0.12);
-  border-radius: 16px;
-  counter-increment: aerot-lifecycle;
-}
-
-.aerot-lifecycle-list li::before {
-  content: counter(aerot-lifecycle, decimal-leading-zero);
+.aerot-iteration-nav-marker {
   position: absolute;
-  top: 22px;
-  left: 22px;
-  color: #2f6f56;
-  font-size: 14px;
-  font-weight: 900;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 }
 
-.aerot-lifecycle-visual,
 .aerot-delivery-visual {
   min-height: 100%;
   padding: 28px;
@@ -941,29 +1122,12 @@
   box-shadow: 0 12px 30px rgba(14, 33, 24, 0.08);
 }
 
-.bishop-page-interactive .aerot-lifecycle-layout {
-  gap: clamp(16px, 3vh, 32px);
-}
-
-.bishop-page-interactive .aerot-lifecycle-list {
-  gap: clamp(8px, 1.4vh, 14px);
-}
-
-.bishop-page-interactive .aerot-lifecycle-list li {
-  padding: clamp(12px, 1.8vh, 18px) clamp(14px, 2vh, 20px) clamp(12px, 1.8vh, 18px) clamp(54px, 5vw, 66px);
-}
-
-.bishop-page-interactive .aerot-lifecycle-list li::before {
-  top: clamp(12px, 1.8vh, 18px);
-  left: clamp(16px, 2vw, 22px);
-}
-
-.bishop-page-interactive .aerot-lifecycle-visual {
-  min-height: 0;
-}
-
 .aerot-delivery-learning-wrapper {
   height: calc(300vh + var(--bishop-crossfade-settle-distance));
+}
+
+.aerot-page.bishop-page-interactive .aerot-delivery-learning-wrapper.bishop-mobile-pinned-section > .bishop-deliver-key-content {
+  background-color: inherit;
 }
 
 .aerot-delivery-inner {
@@ -981,20 +1145,135 @@
 
 .aerot-delivery-photo {
   width: min(100%, 940px);
-  min-height: 360px;
+  min-height: 0;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.aerot-delivery-photo img {
+  width: auto;
+  height: auto;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.bishop-page-interactive .aerot-delivery-panel {
+  inset: var(--aerot-sticky-header-space) 0 var(--aerot-sticky-bottom-space);
+  height: auto;
+  overflow-y: auto;
+  background-color: inherit;
+}
+
+.aerot-delivery-panel:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -4px;
+}
+
+.bishop-page-interactive .aerot-delivery-section {
+  height: 100%;
+}
+
+.bishop-page-interactive .aerot-delivery-inner {
+  height: 100%;
+  min-height: 0;
+  padding: 12px clamp(18px, 4vw, 32px);
+  display: grid;
+  grid-template-rows: auto minmax(160px, 1fr);
+  gap: clamp(18px, 3vh, 32px);
+}
+
+.bishop-page-interactive .aerot-delivery-inner .aerot-section-heading {
+  margin: 0 auto;
+}
+
+.bishop-page-interactive .aerot-delivery-inner .aerot-section-title {
+  margin-bottom: 16px;
+  font-size: clamp(28px, 5vh, 48px);
+}
+
+.bishop-page-interactive .aerot-delivery-inner .aerot-section-lead {
+  font-size: clamp(16px, 2.3vh, 22px);
+}
+
+.bishop-page-interactive .aerot-delivery-photo {
+  height: 100%;
 }
 
 .aerot-key-learnings-section .bishop-key-learning-icon {
   color: #2f6f56;
 }
 
+.aerot-reflection-section {
+  padding: 0;
+}
+
 .aerot-reflection-content {
   width: min(100%, 1040px);
+  align-items: stretch;
+  text-align: left;
+}
+
+.aerot-reflection-content:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.aerot-reflection-content .bishop-thank-you-copy {
+  align-items: stretch;
+}
+
+.aerot-reflection-content .bishop-thank-you-copy h2 {
+  margin-bottom: 24px;
+  font-size: clamp(32px, 3.4vw, 48px);
+  font-weight: 800;
+}
+
+.aerot-reflection-content .bishop-thank-you-copy p {
+  max-width: none;
+  margin-bottom: 18px;
+  color: inherit;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.4;
+}
+
+.aerot-reflection-content .bishop-thank-you-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.aerot-reflection-content .bishop-next-case-study {
+  width: 100%;
+  max-width: none;
+  margin-top: clamp(48px, 6vh, 64px);
+  padding-top: 28px;
+  grid-template-columns: minmax(180px, 0.5fr) minmax(0, 1fr);
+  gap: 36px;
+  text-align: left;
+}
+
+.aerot-reflection-content .bishop-next-case-study-text {
+  align-items: flex-start;
+}
+
+.aerot-reflection-content .bishop-next-case-study-text p {
+  max-width: 560px;
+}
+
+.aerot-reflection-content .bishop-next-case-study-meta dt,
+.aerot-reflection-content .bishop-next-case-study-meta dd {
+  text-align: left;
 }
 
 .aerot-next-case-study-media {
-  transform: translateY(28px);
+  transform: none;
 }
 
 .aerot-next-ipad-container {
@@ -1026,38 +1305,15 @@
 }
 
 .bishop-page-interactive .aerot-reflection-section .aerot-reflection-content {
-  width: min(100%, 940px);
   min-height: 0;
-  padding: 0;
-  justify-content: center;
-}
-
-.bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy h2 {
-  margin-bottom: 14px;
-  font-size: clamp(24px, 3.5vh, 34px);
-}
-
-.bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy p {
-  margin-bottom: 12px;
-  max-width: 800px;
-  font-size: clamp(13px, 1.9vh, 17px);
-  line-height: 1.42;
-}
-
-.bishop-page-interactive .aerot-reflection-section .bishop-next-case-study {
-  width: min(100%, 760px);
-  margin-top: clamp(14px, 2.5vh, 28px);
-  padding-top: clamp(12px, 2vh, 22px);
-  grid-template-columns: minmax(160px, 0.55fr) minmax(260px, 1fr);
-  gap: clamp(16px, 3vw, 30px);
-}
-
-.bishop-page-interactive .aerot-reflection-section .aerot-next-case-study-media {
-  transform: none;
+  max-height: 100%;
+  display: block;
+  padding: 12px 24px;
+  overflow-y: auto;
 }
 
 .bishop-page-interactive .aerot-reflection-section .aerot-next-ipad-container {
-  width: min(100%, 280px);
+  width: min(100%, 240px);
 }
 
 .dark .aerot-page {
@@ -1082,11 +1338,12 @@
 .dark .aerot-page .bishop-thank-you-section,
 .dark .aerot-interactive-section,
 .dark .aerot-interactive-section-content,
+.dark .aerot-architecture-decisions-wrapper,
+.dark .aerot-sequence-content,
 .dark .aerot-insights-section,
 .dark .aerot-architecture-section,
 .dark .aerot-decisions-section,
 .dark .aerot-iterations-section,
-.dark .aerot-lifecycle-section,
 .dark .aerot-delivery-section {
   background-color: #07130f;
 }
@@ -1106,11 +1363,10 @@
 .dark .aerot-page .bishop-success-main-title,
 .dark .aerot-page .bishop-proposed-title,
 .dark .aerot-page .bishop-proved-main-title,
+.dark .aerot-proved-panel,
+.dark .aerot-proved-copy,
 .dark .aerot-section-title,
-.dark .aerot-insight-card h3,
 .dark .aerot-architecture-card h3,
-.dark .aerot-decision-group h3,
-.dark .aerot-iteration-card h3,
 .dark .aerot-page .bishop-step-label,
 .dark .aerot-page .bishop-key-learnings-title,
 .dark .aerot-page .bishop-key-learning-card h3,
@@ -1121,12 +1377,10 @@
 .dark .aerot-subtitle,
 .dark .aerot-stack-icon,
 .dark .aerot-signal-bubble svg,
+.dark .aerot-proved-block h3,
 .dark .aerot-card-eyebrow,
 .dark .aerot-card-visual-note span,
-.dark .aerot-iteration-card div > span,
-.dark .aerot-lifecycle-visual span,
 .dark .aerot-delivery-visual span,
-.dark .aerot-process-placeholder span,
 .dark .aerot-team-credit-group h3 {
   color: #7ed6aa;
 }
@@ -1135,16 +1389,10 @@
 .dark .aerot-team-heading p,
 .dark .aerot-team-lead-note,
 .dark .aerot-section-lead,
-.dark .aerot-insight-card p,
 .dark .aerot-architecture-card p,
-.dark .aerot-decision-card p,
-.dark .aerot-iteration-card p,
-.dark .aerot-lifecycle-list li,
 .dark .aerot-visual-placeholder p,
 .dark .aerot-card-visual-note p,
-.dark .aerot-lifecycle-visual p,
 .dark .aerot-delivery-visual p,
-.dark .aerot-process-placeholder p,
 .dark .aerot-page .bishop-key-learning-card p,
 .dark .aerot-team-credit p {
   color: #c7d8cf;
@@ -1157,28 +1405,18 @@
 
 .dark .aerot-signal-bubble,
 .dark .aerot-visual-placeholder,
-.dark .aerot-insight-card,
-.dark .aerot-architecture-card,
-.dark .aerot-decision-card,
-.dark .aerot-iteration-card,
-.dark .aerot-lifecycle-list li {
+.dark .aerot-architecture-card {
   background-color: #0e2118;
   border-color: rgba(126, 214, 170, 0.18);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
 }
 
 .dark .aerot-card-visual-note,
-.dark .aerot-lifecycle-visual,
 .dark .aerot-delivery-visual {
   background:
     linear-gradient(135deg, rgba(126, 214, 170, 0.1), rgba(226, 169, 67, 0.1)),
     #0e2118;
   border-color: rgba(126, 214, 170, 0.34);
-}
-
-.dark .aerot-process-placeholder {
-  background: rgba(14, 33, 24, 0.94);
-  border-color: rgba(126, 214, 170, 0.24);
 }
 
 .dark .aerot-page .bishop-process-step.active .bishop-step-icon,
@@ -1287,11 +1525,7 @@
     padding-top: 0;
   }
 
-  .aerot-insight-grid,
-  .aerot-architecture-grid,
-  .aerot-decision-card-grid,
-  .aerot-iteration-grid,
-  .aerot-lifecycle-layout {
+  .aerot-architecture-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1306,14 +1540,6 @@
 
   .bishop-page-interactive .aerot-interactive-section .aerot-section-inner {
     max-height: calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
-  }
-
-  .bishop-page-interactive .aerot-decision-stage {
-    min-height: min(500px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 70px));
-  }
-
-  .bishop-page-interactive .aerot-iteration-stage {
-    min-height: min(500px, calc(100vh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 146px));
   }
 }
 
@@ -1393,20 +1619,15 @@
     min-height: 220px;
   }
 
-  .aerot-insight-card,
-  .aerot-architecture-card,
-  .aerot-decision-card,
-  .aerot-iteration-card {
+  .aerot-architecture-card {
     padding: 22px;
   }
 
-  .aerot-architecture-card,
-  .aerot-iteration-card {
+  .aerot-architecture-card {
     min-height: 0;
   }
 
-  .aerot-card-photo,
-  .aerot-iteration-photo {
+  .aerot-card-photo {
     min-height: 180px;
   }
 
@@ -1431,10 +1652,7 @@
     font-size: clamp(13px, 2vh, 17px);
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card {
     padding: 14px;
   }
 }
@@ -1511,31 +1729,12 @@
     min-height: 320px;
   }
 
-  .aerot-process-placeholder {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    padding: 14px;
-  }
-
-  .aerot-lifecycle-list li {
-    padding: 20px 18px 20px 62px;
-  }
-
-  .aerot-lifecycle-list li::before {
-    left: 18px;
-  }
-
   .aerot-next-case-study-media {
     transform: none;
   }
 
   .bishop-page-interactive .aerot-interactive-section {
     height: calc(145svh + var(--bishop-crossfade-settle-distance));
-  }
-
-  .bishop-page-interactive .aerot-decisions-scroll-section {
-    height: calc(320svh + var(--bishop-crossfade-settle-distance));
   }
 
   .bishop-page-interactive .aerot-iterations-scroll-section {
@@ -1566,202 +1765,197 @@
 
   .bishop-page-interactive .aerot-interactive-section .aerot-section-lead {
     font-size: clamp(11px, 1.75vh, 14px);
-    line-height: 1.32;
+    line-height: 1.28;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-grid,
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-grid,
-  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card-grid {
+  .bishop-page-interactive .aerot-delivery-inner .aerot-section-title {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  .bishop-page-interactive .aerot-delivery-panel {
+    bottom: 68px;
+  }
+
+  .bishop-page-interactive .aerot-delivery-inner {
+    grid-template-rows: auto minmax(100px, 1fr);
+  }
+
+  .bishop-page-interactive .aerot-delivery-inner .aerot-section-lead {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-grid {
     gap: 8px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card,
-  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card {
     padding: 10px;
     border-radius: 12px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3,
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card h3,
-  .bishop-page-interactive .aerot-interactive-section .aerot-decision-group h3,
-  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card h3 {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card h3 {
     font-size: clamp(14px, 2.45vh, 18px);
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card h3 {
-    margin-bottom: 6px;
-  }
-
-  .bishop-page-interactive .aerot-interactive-section .aerot-insight-card p,
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card p,
-  .bishop-page-interactive .aerot-interactive-section .aerot-decision-card p,
-  .bishop-page-interactive .aerot-interactive-section .aerot-iteration-card p,
-  .bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-list li {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card p {
     font-size: clamp(10px, 1.55vh, 12px);
     line-height: 1.25;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-architecture-card {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-architecture-card {
     gap: 5px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note {
     min-height: 0;
     padding: 8px;
     gap: 4px;
     border-radius: 10px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-card-photo {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-photo {
     min-height: 78px;
     border-radius: 10px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note span,
-  .bishop-page-interactive .aerot-lifecycle-visual span,
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note span,
   .bishop-page-interactive .aerot-delivery-visual span {
     font-size: 9px;
   }
 
-  .bishop-page-interactive .aerot-interactive-section .aerot-card-visual-note p,
-  .bishop-page-interactive .aerot-interactive-section .aerot-lifecycle-visual p {
+  .bishop-page-interactive :is(.aerot-interactive-section, .aerot-architecture-panel) .aerot-card-visual-note p {
     font-size: 9.5px;
     line-height: 1.22;
   }
 
-  .bishop-page-interactive .aerot-decision-stage {
-    min-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 42px);
-    margin-top: 12px;
-  }
-
-  .bishop-page-interactive .aerot-decision-stage-group {
-    gap: 8px;
-  }
-
-  .bishop-page-interactive .aerot-decision-stage .aerot-decision-card-grid {
-    gap: 8px;
-  }
-
-  .bishop-page-interactive .aerot-iteration-stage {
-    min-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space) - 112px);
-  }
-
-  .bishop-page-interactive .aerot-iteration-stage-card {
-    gap: 10px;
-  }
-
-  .bishop-page-interactive .aerot-iteration-stage-card > div:first-child {
-    gap: 6px;
-  }
-
-  .bishop-page-interactive .aerot-iteration-stage-card .aerot-card-visual-note,
-  .bishop-page-interactive .aerot-iteration-stage-card .aerot-card-photo {
-    min-height: 92px;
-  }
-
-  .bishop-page-interactive .aerot-lifecycle-layout {
-    gap: 10px;
-  }
-
-  .bishop-page-interactive .aerot-lifecycle-list {
-    gap: 6px;
-  }
-
-  .bishop-page-interactive .aerot-lifecycle-list li {
-    padding: 8px 9px 8px 42px;
-    border-radius: 10px;
-  }
-
-  .bishop-page-interactive .aerot-lifecycle-list li::before {
-    top: 8px;
-    left: 12px;
-    font-size: 10px;
-  }
-
-  .bishop-page-interactive .aerot-lifecycle-visual {
-    min-height: 78px;
-    padding: 10px;
-    border-radius: 12px;
+  .bishop-page-interactive .aerot-reflection-section > .aerot-interactive-section-content {
+    padding-bottom: 68px;
   }
 
   .bishop-page-interactive .aerot-reflection-section .aerot-reflection-content {
-    width: 100%;
+    padding: 8px 0;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy h2 {
-    margin-bottom: 8px;
-    font-size: clamp(20px, 3.7vh, 26px);
+  .aerot-reflection-content .bishop-thank-you-copy h2 {
+    margin-bottom: 20px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-thank-you-copy p {
-    margin-bottom: 7px;
-    max-width: 100%;
-    font-size: clamp(10.5px, 1.58vh, 12.5px);
-    line-height: 1.26;
+  .aerot-reflection-content .bishop-thank-you-copy p {
+    font-size: 17px;
+    margin-bottom: 16px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study {
-    width: 100%;
-    margin-top: 10px;
-    padding-top: 10px;
+  .aerot-reflection-content .bishop-next-case-study {
+    margin-top: 44px;
+    padding-top: 24px;
     grid-template-columns: 92px minmax(0, 1fr);
-    gap: 12px;
+    gap: 20px;
     text-align: left;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text {
-    align-items: flex-start;
-  }
-
-  .bishop-page-interactive .aerot-reflection-section .aerot-next-ipad-container {
+  .aerot-reflection-content .aerot-next-ipad-container {
     width: 92px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text > span {
-    margin-bottom: 4px;
-    font-size: 9px;
+  .aerot-reflection-content .bishop-next-case-study-text > span {
+    font-size: 11px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text h3 {
-    margin-bottom: 5px;
-    font-size: 17px;
+  .aerot-reflection-content .bishop-next-case-study-text h3 {
+    font-size: 26px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta {
+  .aerot-reflection-content .bishop-next-case-study-meta {
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .aerot-reflection-content .bishop-next-case-study-meta div {
+    grid-template-columns: 1fr;
     gap: 3px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta div {
-    grid-template-columns: 48px 1fr;
-    gap: 8px;
-  }
-
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta dt {
-    font-size: 8px;
-    text-align: right;
-  }
-
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-meta dd {
-    font-size: 9.5px;
+  .aerot-reflection-content .bishop-next-case-study-meta dt,
+  .aerot-reflection-content .bishop-next-case-study-meta dd {
     text-align: left;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-text p {
-    margin-bottom: 7px;
-    max-width: none;
-    font-size: 10px;
-    line-height: 1.25;
+  .aerot-reflection-content .bishop-next-case-study-meta dd {
+    font-size: 13px;
   }
 
-  .bishop-page-interactive .aerot-reflection-section .bishop-next-case-study-link {
-    min-width: 110px;
-    height: 32px;
-    gap: 8px;
-    padding: 0 10px;
-    font-size: 9px;
+  .aerot-reflection-content .bishop-next-case-study-text p {
+    font-size: 14px;
+  }
+
+  .aerot-reflection-content .bishop-next-case-study-link {
+    min-height: 44px;
+    min-width: 0;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .aerot-page .bishop-mrs-text,
+  .aerot-page .bishop-cv-text,
+  .aerot-page .bishop-context-text,
+  .aerot-page .bishop-problem-text {
+    line-height: 1.43;
+  }
+
+  .aerot-description {
+    line-height: 1.4;
+  }
+
+  .aerot-page .bishop-team-member-role {
+    line-height: 1.3;
+  }
+
+  .bishop-page-normal .aerot-reflection-section .bishop-next-case-study-text p {
+    line-height: 1.32;
+  }
+
+  .aerot-proved-copy {
+    gap: 24px;
+    padding: 0 18px;
+  }
+
+  .aerot-proved-block h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+
+  .aerot-proved-block p {
+    font-size: clamp(17px, 4.2vw, 20px);
+  }
+
+  .aerot-page .aerot-iteration-panel {
+    min-height: 100svh;
+    padding-inline: 36px;
+  }
+
+  .aerot-page .aerot-iteration-content {
+    gap: 32px;
+  }
+
+  .aerot-page .aerot-iteration-body {
+    font-size: clamp(22px, 5.8vw, 26px);
+  }
+
+  .bishop-page-interactive .aerot-iteration-panel {
+    min-height: 0;
+  }
+}
+
+@media (max-height: 650px) {
+  .bishop-page-interactive .aerot-proved-panel {
+    top: var(--aerot-sticky-header-space);
+    max-height: calc(100svh - var(--aerot-sticky-header-space) - var(--aerot-sticky-bottom-space));
+    overflow-y: auto;
   }
 }

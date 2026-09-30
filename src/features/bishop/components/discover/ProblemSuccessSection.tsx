@@ -10,6 +10,7 @@ type ProblemSuccessSectionProps = {
   progress: number;
   problemTitle: string;
   problemText: React.ReactNode;
+  showProblemIcon?: boolean;
   successTitle: string;
   metrics: {
     label: string;
@@ -43,6 +44,7 @@ export function ProblemSuccessSection({
   progress,
   problemTitle,
   problemText,
+  showProblemIcon = true,
   successTitle,
   metrics,
 }: ProblemSuccessSectionProps) {
@@ -62,9 +64,11 @@ export function ProblemSuccessSection({
         >
           <div className="bishop-problem-content">
             <div className="bishop-problem-header">
-              <div className="bishop-problem-icon">
-                <CircleAlert size={28} />
-              </div>
+              {showProblemIcon && (
+                <div className="bishop-problem-icon">
+                  <CircleAlert size={28} />
+                </div>
+              )}
               <h2 className="bishop-problem-title">{problemTitle}</h2>
             </div>
 

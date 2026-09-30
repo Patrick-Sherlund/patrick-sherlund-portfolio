@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { VideoOverlay } from '@/shared/components/VideoOverlay';
+import { ProjectNavigationHint } from '@/shared/components/ProjectNavigationHint';
 import { bishopMediaAssets } from '../data/bishop-assets';
 import { bishopContent } from '../data/bishop-content';
 import { deviceAssets } from '@/shared/media/asset-paths';
@@ -35,7 +36,6 @@ export function BishopHero() {
     <section className="bishop-hero-section">
       <div className="bishop-hero-container">
         <div className="bishop-hero-left">
-          <div className="bishop-number">01</div>
           
           <div className="bishop-logo-container">
             <img src={bishopMediaAssets.logo} alt="Bishop" className="bishop-logo bishop-logo-light" />
@@ -91,25 +91,28 @@ export function BishopHero() {
         </div>
       </div>
       
-      <div 
+      <button
+        type="button"
         className="bishop-scroll-indicator" 
         onClick={handleScrollToStack} 
-        style={{ cursor: 'pointer', opacity: scrollOpacity, transition: 'opacity 0.1s linear' }}
+        style={{ border: 0, background: 'transparent', cursor: 'pointer', opacity: scrollOpacity, transition: 'opacity 0.1s linear' }}
       >
-        <span className="bishop-scroll-text">See case study below</span>
-        <motion.div
-          animate={{
-            y: [0, 8, 0]
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        >
-          <ChevronDown size={32} color="#6b7280" strokeWidth={2} />
-        </motion.div>
-      </div>
+        <ProjectNavigationHint>
+          <span className="bishop-scroll-text">See case study below</span>
+          <motion.span
+            animate={{
+              y: [0, 8, 0]
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }}
+          >
+            <ChevronDown size={32} color="#6b7280" strokeWidth={2} />
+          </motion.span>
+        </ProjectNavigationHint>
+      </button>
     </section>
   );
 }
