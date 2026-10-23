@@ -1,0 +1,75 @@
+{
+  "verified": "2026-10-14",
+  "icons": {
+    "cplusplus.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/cplusplus.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "python.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/python.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "raspberrypi.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/raspberrypi.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "react.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/react.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "typescript.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/typescript.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "postgresql.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/postgresql.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "android.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/android.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "mqtt.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/mqtt.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "opencv.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/opencv.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "maplibre.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/maplibre.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "sqlite.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/sqlite.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "aiohttp.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/aiohttp.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "eclipsemosquitto.svg": {
+      "source": "https://github.com/simple-icons/simple-icons/blob/4d29a35c954699b389a834aacc97dd6e7e74143c/icons/eclipsemosquitto.svg",
+      "license": "CC0-1.0",
+      "modified": false
+    },
+    "java.svg": {
+      "source": "https://github.com/devicons/devicon/blob/6a37858047b0e8d9c9c0e68f4a071fc410652e89/icons/java/java-plain.svg",
+      "license": "MIT",
+      "modified": false
+    }
+  }
+}
