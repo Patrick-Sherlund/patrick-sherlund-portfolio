@@ -16,7 +16,7 @@ export function ProjectShowcase({ activeCategory }: ProjectShowcaseProps) {
   return (
     <>
       {visibleProjects.map((project, index) => (
-        <div id={project.sectionId} key={project.id}>
+        <div id={project.sectionId} key={project.id} data-home-project>
           <ProjectCard {...project} number={String(index + 1).padStart(2, "0")} />
         </div>
       ))}

@@ -16,6 +16,14 @@ const deviceFrames: Record<ProjectDevice, string> = {
   "apple-display": deviceAssets.devices.appleDisplay,
 };
 
+const deviceDimensions: Record<ProjectDevice, { width: number; height: number }> = {
+  laptop: { width: 1071, height: 964 },
+  ipad: { width: 1140, height: 906 },
+  iphone: { width: 376, height: 737 },
+  mmc: { width: 957, height: 715 },
+  "apple-display": { width: 1024, height: 773 },
+};
+
 export function DeviceFrame({ device, title, children }: DeviceFrameProps) {
   const deviceFrame = deviceFrames[device];
 
@@ -23,7 +31,7 @@ export function DeviceFrame({ device, title, children }: DeviceFrameProps) {
     return (
       <div className="project-laptop-container">
         <div className="laptop-screen">{children}</div>
-        <img src={deviceFrame} alt="Laptop frame" className="laptop-frame" />
+        <img src={deviceFrame} {...deviceDimensions[device]} alt="Laptop frame" className="laptop-frame" />
       </div>
     );
   }
@@ -33,6 +41,7 @@ export function DeviceFrame({ device, title, children }: DeviceFrameProps) {
       <div className={`device-screen device-screen-${device}`}>{children}</div>
       <img
         src={deviceFrame}
+        {...deviceDimensions[device]}
         alt={`${title} frame`}
         className={`device-frame device-frame-${device}`}
       />

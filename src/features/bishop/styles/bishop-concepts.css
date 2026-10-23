@@ -45,6 +45,15 @@
   will-change: transform;
 }
 
+.bishop-concepts-carousel:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.bishop-concepts-carousel:focus-within .bishop-concepts-carousel-track {
+  animation-play-state: paused;
+}
+
 .bishop-concepts-collage {
   position: relative;
   flex: 0 0 var(--concepts-collage-width);
@@ -171,7 +180,33 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bishop-concepts-carousel-track {
-    animation-duration: 70s;
+  .bishop-concepts-carousel {
+    overflow-x: auto;
+    touch-action: pan-x pan-y;
   }
+
+  .bishop-concepts-carousel-track {
+    animation: none;
+    margin-inline: auto;
+    will-change: auto;
+  }
+
+  .bishop-concepts-collage[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+html.a11y-reduce-motion .bishop-concepts-carousel {
+  overflow-x: auto;
+  touch-action: pan-x pan-y;
+}
+
+html.a11y-reduce-motion .bishop-concepts-carousel-track {
+  animation: none;
+  margin-inline: auto;
+  will-change: auto;
+}
+
+html.a11y-reduce-motion .bishop-concepts-collage[aria-hidden="true"] {
+  display: none;
 }

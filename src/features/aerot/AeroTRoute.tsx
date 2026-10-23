@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Activity, ChevronDown, Cpu, GitBranch, Map, Radio, Settings, Tablet, Wifi, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { useAccessibility } from "@/features/accessibility";
 import { BackLink } from "@/shared/components/BackLink";
 import { DeviceFrame } from "@/shared/components/DeviceFrame";
@@ -21,6 +21,7 @@ import { useMobilePinnedSection } from "@/features/bishop/hooks/useMobilePinnedS
 import { useStickySection } from "@/features/bishop/hooks/useStickySection";
 import { useVideoStepProgress } from "@/features/bishop/hooks/useVideoStepProgress";
 import { aerotContent } from "./data/aerot-content";
+import { AeroTDiscoveryCarousel } from "./components/AeroTDiscoveryCarousel";
 
 type AeroTViewMode = "interactive" | "normal";
 
@@ -211,22 +212,6 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
   const isMobilePinned = useMobilePinnedSection(containerRef, isInteractive);
   const leftStack = aerotContent.role.stack.slice(0, 3);
   const rightStack = aerotContent.role.stack.slice(3);
-  const stackIconLabels: Record<string, string> = {
-    android: "Android",
-    cplusplus: "C++",
-    git: "Git",
-    github: "GitHub",
-    maplibre: "MapLibre",
-    mqtt: "MQTT",
-    opencv: "OpenCV",
-    openjdk: "OpenJDK",
-    postgresql: "PostgreSQL",
-    python: "Python",
-    raspberrypi: "Raspberry Pi",
-    react: "React",
-    "tak_logo.png": "TAK",
-    typescript: "TypeScript",
-  };
 
   useEffect(() => {
     if (!isInteractive) {
@@ -269,19 +254,27 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
     <div className="bishop-stack-column">
       {items.map((item) => (
         <div className="bishop-stack-item" key={item.category}>
-          <div className="bishop-stack-category">{item.category}</div>
+          <h3 className="bishop-stack-category">{item.category}</h3>
           <div className="bishop-stack-tech">
-            <div className="bishop-stack-icons">
-              {item.icons.map((icon) => (
-                <img
-                  src={`/assets/images/aerot/stack-icons/${icon.includes(".") ? icon : `${icon}.svg`}`}
-                  alt={stackIconLabels[icon]}
-                  className="bishop-stack-icon aerot-stack-icon aerot-stack-logo"
-                  key={icon}
-                />
+            <div className="bishop-stack-icons" aria-hidden="true">
+              {item.technologies.map((technology) => (
+                technology.icon && (
+                  <img
+                    src={`/assets/images/aerot/stack-icons/${technology.icon}.svg`}
+                    alt=""
+                    className="bishop-stack-icon aerot-stack-logo"
+                    width={34}
+                    height={34}
+                    loading="lazy"
+                    decoding="async"
+                    key={technology.name}
+                  />
+                )
               ))}
             </div>
-            <span className="bishop-stack-name">{item.name}</span>
+            <span className="bishop-stack-name">
+              {item.technologies.map((technology) => technology.name).join(", ")}
+            </span>
           </div>
         </div>
       ))}
@@ -298,19 +291,31 @@ function AeroTRoleStack({ isInteractive }: { isInteractive: boolean }) {
       )}
       <div className="bishop-my-role-stack-content">
         <div
-          className="bishop-my-role-panel"
+          className="bishop-my-role-panel aerot-role-panel"
+          role="region"
+          aria-labelledby="aerot-role-title"
+          aria-hidden={isInteractive && progress >= 0.5}
+          inert={isInteractive && progress >= 0.5}
+          tabIndex={isInteractive && progress < 0.5 ? 0 : undefined}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
-          style={isInteractive ? { opacity: 1 - progress } : undefined}
+          style={isInteractive ? { opacity: 1 - progress, pointerEvents: progress < 0.5 ? "auto" : "none" } : undefined}
         >
-          <h2 className="bishop-mrs-title">{aerotContent.role.title}</h2>
-          <p className="bishop-mrs-text aerot-role-text">{aerotContent.role.text}</p>
+          <h2 className="bishop-mrs-title" id="aerot-role-title">{aerotContent.role.title}</h2>
+          <div className="aerot-role-copy">
+            {aerotContent.role.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
         </div>
         <div
-          className="bishop-stack-panel"
+          className="bishop-stack-panel aerot-stack-panel"
+          role="region"
+          aria-labelledby="aerot-stack-title"
+          aria-hidden={isInteractive && progress < 0.5}
+          inert={isInteractive && progress < 0.5}
+          tabIndex={!isInteractive || progress >= 0.5 ? 0 : undefined}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
-          style={isInteractive ? { opacity: progress } : undefined}
+          style={isInteractive ? { opacity: progress, pointerEvents: progress >= 0.5 ? "auto" : "none" } : undefined}
         >
-          <h2 className="bishop-mrs-title">{aerotContent.role.stackTitle}</h2>
+          <h2 className="bishop-mrs-title" id="aerot-stack-title">{aerotContent.role.stackTitle}</h2>
           <div className="bishop-stack-grid aerot-stack-grid">
             {renderStackColumn(leftStack)}
             {renderStackColumn(rightStack)}
@@ -325,14 +330,14 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const visionPanelRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [bubbleProgress, setBubbleProgress] = useState(aerotContent.challengeVision.bubbles.map(() => 0));
+  const [bubbleProgress, setBubbleProgress] = useState(aerotContent.challengeVision.concepts.map(() => 0));
   const normalBubblesVisible = useInViewOnce(visionPanelRef, !isInteractive);
   const isMobilePinned = useMobilePinnedSection(containerRef, isInteractive);
 
   useEffect(() => {
     if (!isInteractive) {
       setProgress(0);
-      setBubbleProgress(aerotContent.challengeVision.bubbles.map(() => (normalBubblesVisible ? 1 : 0)));
+      setBubbleProgress(aerotContent.challengeVision.concepts.map(() => (normalBubblesVisible ? 1 : 0)));
       return;
     }
 
@@ -350,13 +355,13 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
         const scrollDistance = Math.abs(rect.top);
         const adjustedScrollDistance = Math.max(0, scrollDistance - entryHold);
         setProgress(Math.min(Math.max(adjustedScrollDistance / transitionDistance, 0), 1));
-        setBubbleProgress(aerotContent.challengeVision.bubbles.map(() => 0));
+        setBubbleProgress(aerotContent.challengeVision.concepts.map(() => 0));
         return;
       }
 
       if (rect.top > 0) {
         setProgress(0);
-        setBubbleProgress(aerotContent.challengeVision.bubbles.map(() => 0));
+        setBubbleProgress(aerotContent.challengeVision.concepts.map(() => 0));
         return;
       }
 
@@ -365,7 +370,7 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
       const scrollPerBubble = viewportHeight * 0.46;
       const bubbleScrollDistance = Math.abs(rect.top) - bubbleScrollStart;
       setBubbleProgress(
-        aerotContent.challengeVision.bubbles.map((_, index) => {
+        aerotContent.challengeVision.concepts.map((_, index) => {
           const bubbleStart = index * scrollPerBubble;
           const nextProgress = (bubbleScrollDistance - bubbleStart) / scrollPerBubble;
           return Math.min(Math.max(nextProgress, 0), 1);
@@ -373,71 +378,59 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
       );
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isInteractive, normalBubblesVisible]);
 
-  const bubblePositions = [
-    { top: "8%", left: "6%" },
-    { top: "5%", left: "39%" },
-    { top: "11%", left: "73%" },
-    { top: "70%", left: "9%" },
-    { top: "72%", left: "68%" },
-  ];
-
-  const renderBubbles = () =>
-    aerotContent.challengeVision.bubbles.map((bubble, index) => {
-      const bubbleState = bubbleProgress[index];
-      const position = bubblePositions[index];
-      const isTopRow = index < 3;
-
-      return (
-        <div
-          className={`bishop-bubble-image aerot-signal-bubble ${isTopRow ? "bishop-bubble-top" : "bishop-bubble-bottom"} ${!isInteractive && bubbleState > 0 ? "normal-bubble-visible" : ""}`}
-          key={bubble}
-          style={{
-            top: position.top,
-            left: position.left,
-            opacity: bubbleState,
-            transform: `scale(${0.5 + bubbleState * 0.5})`,
-          }}
-        >
-          <Radio aria-hidden="true" size={20} />
-          <span>{bubble}</span>
-        </div>
-      );
-    });
-
   return (
-    <div className={`bishop-challenge-vision-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
+    <div className={`bishop-challenge-vision-wrapper aerot-challenge-vision-wrapper ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={containerRef}>
       {isInteractive && (
         <>
           <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
-          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: "calc(min(450px, 45vh) + 330vh)", left: 0, width: 1, height: 1, pointerEvents: "none" }} />
+          <div data-case-study-nav-target data-case-study-nav-marker style={{ position: "absolute", top: `calc(min(450px, 45vh) + ${100 + aerotContent.challengeVision.concepts.length * 46}vh)`, left: 0, width: 1, height: 1, pointerEvents: "none" }} />
         </>
       )}
       <div className="bishop-challenge-vision-content">
         <div
-          className="bishop-challenge-panel"
+          className="bishop-challenge-panel aerot-challenge-panel"
+          role="region"
+          aria-labelledby="aerot-challenge-title"
+          aria-hidden={isInteractive && progress >= 0.5}
+          inert={isInteractive && progress >= 0.5}
+          tabIndex={!isInteractive || progress < 0.5 ? 0 : undefined}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: 1 - progress } : undefined}
         >
-          <h2 className="bishop-cv-title">{aerotContent.challengeVision.challengeTitle}</h2>
-          <p className="bishop-cv-text">{aerotContent.challengeVision.challengeText}</p>
+          <h2 className="bishop-cv-title" id="aerot-challenge-title">{aerotContent.challengeVision.challengeTitle}</h2>
+          <div className="aerot-challenge-copy">
+            {aerotContent.challengeVision.challengeParagraphs.map((paragraph, index) => (
+              <p className="bishop-cv-text" key={index}>{paragraph}</p>
+            ))}
+          </div>
         </div>
         <div
           ref={visionPanelRef}
-          className="bishop-vision-panel"
+          className="bishop-vision-panel aerot-vision-panel"
+          role="region"
+          aria-labelledby="aerot-vision-title"
+          aria-hidden={isInteractive && progress < 0.5}
+          inert={isInteractive && progress < 0.5}
+          tabIndex={!isInteractive || progress >= 0.5 ? 0 : undefined}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           style={isInteractive ? { opacity: progress } : undefined}
         >
-          <h2 className="bishop-cv-title bishop-vision-title aerot-vision-title">{aerotContent.challengeVision.visionTitle}</h2>
-          <p className="bishop-cv-text">{aerotContent.challengeVision.visionText}</p>
-          {!isInteractive && renderBubbles()}
+          <div className="aerot-vision-copy">
+            <h2 className="bishop-cv-title bishop-vision-title aerot-vision-title" id="aerot-vision-title">{aerotContent.challengeVision.visionTitle}</h2>
+            <p className="bishop-cv-text">{aerotContent.challengeVision.visionText}</p>
+          </div>
+          <AeroTConceptGallery isVisible={!isInteractive && normalBubblesVisible} progress={isInteractive ? bubbleProgress : undefined} />
         </div>
-        {isInteractive && renderBubbles()}
       </div>
     </div>
   );
@@ -445,60 +438,69 @@ function AeroTChallengeVision({ isInteractive }: { isInteractive: boolean }) {
 
 function AeroTOutcomes({ isInteractive }: { isInteractive: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const isVisible = useInViewOnce(viewportRef, true);
   const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    const sectionElement = sectionRef.current;
-    if (sectionElement) {
-      observer.observe(sectionElement);
-    }
-
-    return () => {
-      if (sectionElement) {
-        observer.unobserve(sectionElement);
-      }
-    };
-  }, []);
-
   return (
-    <section className={`bishop-users-saw aerot-users-saw ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef}>
-      <div className="bishop-users-saw-container">
-        <h2 className={`bishop-users-saw-title ${isVisible ? "bubble-in" : ""}`}>{aerotContent.outcomes.title}</h2>
-        <div className="bishop-users-saw-stats aerot-users-saw-stats">
-          {aerotContent.outcomes.stats.map((stat, index) => (
-            <div className={`bishop-stat-card ${isVisible ? "bubble-in" : ""}`} style={{ animationDelay: `${0.2 + index * 0.16}s` }} key={stat.value}>
-              <div className="bishop-stat-card-inner">
-                <div className="bishop-stat-value">{stat.value}</div>
-                <div className="bishop-stat-label">{stat.label}</div>
+    <section className={`bishop-users-saw aerot-users-saw ${isMobilePinned ? "bishop-mobile-pinned-section" : ""}`} ref={sectionRef} aria-labelledby="aerot-outcomes-title">
+      <div className="bishop-users-saw-container aerot-outcomes-viewport" ref={viewportRef} role="region" aria-labelledby="aerot-outcomes-title" tabIndex={0}>
+        <div className="aerot-outcomes-layout" data-visible={isVisible}>
+          <header className="aerot-outcomes-heading">
+            <h2 id="aerot-outcomes-title">{aerotContent.outcomes.title}</h2>
+          </header>
+          <figure className="aerot-outcomes-photo">
+            <img
+              src={aerotContent.outcomes.photo.src}
+              alt={aerotContent.outcomes.photo.alt}
+              width={aerotContent.outcomes.photo.width}
+              height={aerotContent.outcomes.photo.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <dl className="aerot-outcomes-comparison" aria-label="Time to instructor feedback">
+            {aerotContent.outcomes.comparison.map((stage) => (
+              <div className="aerot-outcomes-stage" data-stage={stage.id} key={stage.id}>
+                <dt>{stage.label}</dt>
+                <dd>
+                  <div className="aerot-outcomes-time">
+                    <span className="aerot-outcomes-value">{stage.value}</span>
+                    <span className="aerot-outcomes-unit">{stage.unit}</span>
+                  </div>
+                  <p>{stage.description}</p>
+                </dd>
               </div>
-            </div>
-          ))}
+            ))}
+          </dl>
         </div>
       </div>
     </section>
   );
 }
 
-function AeroTVisualRail({ items }: { items: string[] }) {
+function AeroTConceptGallery({ isVisible, progress }: { isVisible: boolean; progress?: number[] }) {
   return (
-    <div className="aerot-visual-rail" aria-label="AeroT image placeholders">
-      {[...items, ...items].map((item, index) => (
-        <article className={`aerot-visual-placeholder aerot-visual-placeholder-${(index % 4) + 1}`} key={`${item}-${index}`}>
-          <span>Image direction</span>
-          <p>{item}</p>
-        </article>
+    <div className="aerot-concept-gallery" data-visible={isVisible} role="group" aria-label="AeroT hardware concepts and prototypes">
+      {aerotContent.challengeVision.concepts.map((image, index) => (
+        <figure
+          className="aerot-concept-card"
+          style={{
+            gridArea: image.id,
+            animationDelay: `${index * 80}ms`,
+            "--aerot-concept-progress": progress?.[index] ?? 0,
+          } as CSSProperties}
+          key={image.id}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       ))}
     </div>
   );
@@ -588,19 +590,22 @@ function AeroTContextSection({
         <div
           ref={researchPanelRef}
           className="bishop-research-panel aerot-research-panel"
+          role="region"
+          aria-labelledby="aerot-research-title"
+          tabIndex={!isInteractive || (progress >= 0.5 && insightsProgress < 0.5) ? 0 : undefined}
           {...(!isInteractive ? { "data-case-study-nav-target": "true", "data-case-study-nav-align": "center" } : {})}
           aria-hidden={isInteractive && (progress < 0.5 || insightsProgress >= 0.5)}
           inert={isInteractive && (progress < 0.5 || insightsProgress >= 0.5)}
           style={isInteractive ? { opacity: progress * (1 - insightsProgress) } : undefined}
         >
-          <h2 className="bishop-research-title">{aerotContent.context.researchTitle}</h2>
-          {(!isInteractive && normalRailVisible) && <AeroTVisualRail items={aerotContent.context.imageDirections} />}
-        </div>
-        {isInteractive && railVisible && (
-          <div className="aerot-research-rail-phase" aria-hidden={insightsProgress >= 0.5} inert={insightsProgress >= 0.5} style={{ opacity: 1 - insightsProgress }}>
-            <AeroTVisualRail items={aerotContent.context.imageDirections} />
+          <div className="aerot-research-intro">
+            <div className="aerot-research-copy">
+              <h2 className="bishop-research-title" id="aerot-research-title">{aerotContent.context.researchTitle}</h2>
+              <p>{aerotContent.context.researchSummary}</p>
+            </div>
           </div>
-        )}
+          <AeroTDiscoveryCarousel isVisible={isInteractive ? railVisible && insightsProgress < 0.5 : normalRailVisible} />
+        </div>
         <div
           className="aerot-sequence-panel aerot-discovery-panel"
           role="region"
@@ -626,16 +631,26 @@ function AeroTContextSection({
 
 function AeroTDiscoveryInsights() {
   return (
-    <section className="bishop-design-decisions-section aerot-insights-section">
-      <div className="bishop-design-decisions-content">
-        <h2 className="bishop-design-decisions-title" id="aerot-discovery-title">{aerotContent.discoveryInsights.title}</h2>
-        <div className="bishop-design-decisions-groups aerot-discovery-copy">
-          <p className="bishop-design-decision-description aerot-discovery-finding">
-            {aerotContent.discoveryInsights.finding}
-          </p>
-          <p className="bishop-design-decision-description">
-            {aerotContent.discoveryInsights.implication}
-          </p>
+    <section className="aerot-insights-section" aria-labelledby="aerot-discovery-title">
+      <div className="aerot-insights-layout">
+        <h2 className="aerot-insights-title" id="aerot-discovery-title">{aerotContent.discoveryInsights.title}</h2>
+        <figure className="aerot-instructors-photo">
+          <img
+            src={aerotContent.discoveryInsights.image.src}
+            alt={aerotContent.discoveryInsights.image.alt}
+            width={aerotContent.discoveryInsights.image.width}
+            height={aerotContent.discoveryInsights.image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div className="aerot-discovery-copy">
+          {aerotContent.discoveryInsights.findings.map((finding) => (
+            <div className="aerot-discovery-finding" key={finding.title}>
+              <h3>{finding.title}</h3>
+              <p>{finding.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1224,7 +1239,7 @@ export function AeroTRoute() {
   useSectionArrowNavigation({
     rootSelector: "[data-case-study-root='aerot']",
     targetSelector: "[data-case-study-nav-target]",
-    scrollableSelector: ".aerot-sequence-panel, .aerot-delivery-panel, .aerot-reflection-content",
+    scrollableSelector: ".aerot-role-panel, .aerot-stack-panel, .aerot-challenge-panel, .aerot-vision-panel, .aerot-outcomes-viewport, .aerot-research-panel, .aerot-sequence-panel, .aerot-delivery-panel, .aerot-reflection-content",
   });
 
   useEffect(() => {
@@ -1265,7 +1280,7 @@ export function AeroTRoute() {
       <div data-case-study-nav-target data-case-study-nav-align="center"><AeroTTeam /></div>
       <div data-case-study-section><AeroTRoleStack isInteractive={isInteractive} /></div>
       <div data-case-study-section><AeroTChallengeVision isInteractive={isInteractive} /></div>
-      <div data-case-study-nav-target data-case-study-nav-align="center"><AeroTOutcomes isInteractive={isInteractive} /></div>
+      <div data-case-study-nav-target data-case-study-nav-align={isInteractive ? "center" : undefined}><AeroTOutcomes isInteractive={isInteractive} /></div>
       <AeroTDiscover isInteractive={isInteractive} />
     </div>
   );

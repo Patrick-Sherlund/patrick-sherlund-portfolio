@@ -254,6 +254,8 @@ export const projects: ProjectSummary[] = [
     media: (
       <img
         src="/assets/images/home/design/atak_design_system_hero.png"
+        width={1018}
+        height={861}
         alt="ATAK Design System"
         className="project-design-system-hero"
       />
@@ -277,6 +279,8 @@ export const projects: ProjectSummary[] = [
     media: (
       <img
         src="/assets/images/home/design/wintak_design_system_hero.png"
+        width={1018}
+        height={861}
         alt="WinTAK Design System"
         className="project-design-system-hero"
       />

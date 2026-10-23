@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useTheme } from '@/features/theme/ThemeProvider';
 import type { ProjectCategory } from '../data/projects';
+import { ProjectNavigationHint } from '@/shared/components/ProjectNavigationHint';
+import { getProjectScrollTop } from '../hooks/useProjectArrowNavigation';
 
 type ProfessionalProjectsBannerProps = {
   activeCategory: ProjectCategory;
   firstProjectSectionId: string;
   onCategoryChange: (category: ProjectCategory) => void;
+  onSeeProjects: () => void;
 };
 
 const projectCategories: { id: ProjectCategory; label: string }[] = [
@@ -21,17 +24,20 @@ export function ProfessionalProjectsBanner({
   activeCategory,
   firstProjectSectionId,
   onCategoryChange,
+  onSeeProjects,
 }: ProfessionalProjectsBannerProps) {
   const { theme } = useTheme();
+  const reduceMotion = useReducedMotion();
   const [contentFadeProgress, setContentFadeProgress] = useState(0);
   const [stickyFadeProgress, setStickyFadeProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const contentFadeDistance = windowHeight * 0.75;
-      const stickyFadeDistance = windowHeight * 0.18;
+      const firstProject = document.getElementById(firstProjectSectionId);
+      const projectScrollTop = firstProject ? getProjectScrollTop(firstProject) : window.innerHeight;
+      const contentFadeDistance = Math.max(1, projectScrollTop * 0.8);
+      const stickyFadeDistance = Math.max(1, projectScrollTop * 0.2);
       const newContentFadeProgress = Math.min(1, Math.max(0, scrolled / contentFadeDistance));
       const newStickyFadeProgress = Math.min(1, Math.max(0, (scrolled - contentFadeDistance) / stickyFadeDistance));
       setContentFadeProgress(newContentFadeProgress);
@@ -46,13 +52,6 @@ export function ProfessionalProjectsBanner({
       window.removeEventListener('resize', handleScroll);
     };
   }, [firstProjectSectionId]);
-
-  const scrollToProjects = () => {
-    const projectSection = document.getElementById(firstProjectSectionId);
-    if (projectSection) {
-      projectSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const contentOpacity = 1 - contentFadeProgress;
   const contentInteractive = contentOpacity > 0.05;
@@ -122,43 +121,41 @@ export function ProfessionalProjectsBanner({
           Professional Projects
         </h2>
 
-        <motion.div
-          onClick={scrollToProjects}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '16px',
-            cursor: 'pointer'
-          }}
-          whileHover={{ scale: 1.05 }}
+        <motion.button
+          type="button"
+          className="project-navigation-prompt"
+          data-project-navigation-prompt
+          onClick={onSeeProjects}
+          aria-label="See projects"
+          tabIndex={contentInteractive ? undefined : -1}
+          whileHover={reduceMotion ? undefined : { scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <span style={{
-            fontFamily: "'Google Sans', sans-serif",
-            fontSize: '12px',
-            fontWeight: '500',
-            color: theme === 'dark' ? '#FFFFFF' : '#1A1A1A',
-            letterSpacing: '1.5px',
-            textTransform: 'uppercase',
-            transition: 'none'
-          }}>
-            See Projects
-          </span>
+          <ProjectNavigationHint variant="home" startWhenVisible>
+            <span style={{
+              fontFamily: "'Google Sans', sans-serif",
+              fontSize: '12px',
+              fontWeight: '500',
+              color: theme === 'dark' ? '#FFFFFF' : '#1A1A1A',
+              letterSpacing: '1.5px',
+              textTransform: 'uppercase',
+              transition: 'none'
+            }}>
+              See Projects
+            </span>
           
-          <motion.div
-            animate={{
-              y: [0, 8, 0]
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          >
-            <ChevronDown size={32} color={theme === 'dark' ? '#FFFFFF' : '#1A1A1A'} strokeWidth={2} />
-          </motion.div>
-        </motion.div>
+            <motion.span
+              animate={reduceMotion ? { y: 0 } : { y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              <ChevronDown size={32} color={theme === 'dark' ? '#FFFFFF' : '#1A1A1A'} strokeWidth={2} />
+            </motion.span>
+          </ProjectNavigationHint>
+        </motion.button>
       </div>
     </div>
   );

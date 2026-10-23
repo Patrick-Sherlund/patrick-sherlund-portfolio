@@ -298,7 +298,7 @@
     box-sizing: border-box;
     min-height: 76px;
     padding: 8px 64px 20px 56px;
-    background-color: #ffffff;
+    background-color: inherit;
     overflow: hidden;
     z-index: 100;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);

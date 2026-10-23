@@ -7,6 +7,7 @@ import { ProfessionalProjectsBanner } from "./components/ProfessionalProjectsBan
 import { ProjectShowcase } from "./components/ProjectShowcase";
 import { projects } from "./data/projects";
 import type { ProjectCategory } from "./data/projects";
+import { useProjectArrowNavigation } from "./hooks/useProjectArrowNavigation";
 
 function getFirstProjectSectionId(category: ProjectCategory) {
   const categoryProjects = projects.filter((project) => project.category === category);
@@ -19,6 +20,7 @@ function getFirstProjectSectionId(category: ProjectCategory) {
 
 export function HomeRoute() {
   usePreloadImages();
+  const scrollToProject = useProjectArrowNavigation();
   const [activeProjectCategory, setActiveProjectCategory] =
     useState<ProjectCategory>("software-engineering");
   const [pendingCenteredSectionId, setPendingCenteredSectionId] = useState<string | null>(null);
@@ -32,18 +34,12 @@ export function HomeRoute() {
     }
 
     const animationFrame = window.requestAnimationFrame(() => {
-      const projectSection = document.getElementById(pendingCenteredSectionId);
-      if (projectSection) {
-        const projectRect = projectSection.getBoundingClientRect();
-        const targetScrollY =
-          window.scrollY + projectRect.top - ((window.innerHeight - projectRect.height) * 0.35);
-        window.scrollTo({ top: targetScrollY, behavior: "smooth" });
-      }
+      scrollToProject(pendingCenteredSectionId);
       setPendingCenteredSectionId(null);
     });
 
     return () => window.cancelAnimationFrame(animationFrame);
-  }, [activeProjectCategory, pendingCenteredSectionId]);
+  }, [activeProjectCategory, pendingCenteredSectionId, scrollToProject]);
 
   const handleProjectCategoryChange = (category: ProjectCategory) => {
     setActiveProjectCategory(category);
@@ -56,6 +52,7 @@ export function HomeRoute() {
       <ProfessionalProjectsBanner
         activeCategory={activeProjectCategory}
         firstProjectSectionId={firstProjectSectionId}
+        onSeeProjects={() => scrollToProject(firstProjectSectionId)}
         onCategoryChange={handleProjectCategoryChange}
       />
       <ProjectShowcase activeCategory={activeProjectCategory} />

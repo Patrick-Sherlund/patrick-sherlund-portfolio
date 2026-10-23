@@ -71,67 +71,79 @@ export const aerotContent = {
   },
   role: {
     title: "My role",
-    text: (
-      <>
-        I led AeroT from thesis concept to field-tested MVP, shaping the product and engineering
-        direction across the RF sensing device, instructor map interface, low-bandwidth radio
-        messaging, terrain-based signal modeling, ATAK field integration, and live validation. Our
-        work turned an open-ended research idea into a usable training system that helped instructors
-        show Marines, in near real time, whether their transmissions could be detected by simulated
-        adversarial receivers.
-      </>
-    ),
+    paragraphs: [
+      "I led AeroT from thesis concept to a field-tested MVP, shaping the product and engineering direction. My scope covered the RF sensing device, instructor interfaces, and the signal modeling and radio messaging that connected the system.",
+      "Our team built a system that let instructors show Marines, in near real time, which simulated enemy receivers were likely to detect their transmissions.",
+    ],
     stackTitle: "The Stack",
     stack: [
       {
         category: "Device Manager",
-        name: "C++, Python, Raspberry Pi, SoapySDR, RTL-SDR, LimeSDR",
-        icon: "cpu",
-        icons: ["cplusplus", "raspberrypi", "python"],
+        technologies: [
+          { name: "C++", icon: "cplusplus" },
+          { name: "Python", icon: "python" },
+          { name: "SQLite", icon: "sqlite" },
+        ],
       },
       {
         category: "Command View",
-        name: "React, TypeScript, MapLibre, Drogon, PostgreSQL",
-        icon: "map",
-        icons: ["react", "typescript", "postgresql"],
+        technologies: [
+          { name: "React", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "C++", icon: null },
+          { name: "PostgreSQL", icon: "postgresql" },
+        ],
       },
       {
-        category: "ATAK Client",
-        name: "Java, ATAK 5.1, MobileService, Room",
-        icon: "tablet",
-        icons: ["openjdk", "android", "tak_logo.png"],
+        category: "ATAK plugin",
+        technologies: [
+          { name: "Java", icon: "java" },
+          { name: "Android", icon: "android" },
+          { name: "ATAK 5.1", icon: null },
+        ],
       },
       {
-        category: "Transport",
-        name: "Digi XBee, protobuf, WebSocket, MQTT",
-        icon: "radio",
-        icons: ["mqtt"],
+        category: "Field hardware",
+        technologies: [
+          { name: "Raspberry Pi 5", icon: "raspberrypi" },
+          { name: "RTL-SDR", icon: null },
+          { name: "LimeSDR Mini 2.0", icon: null },
+          { name: "Digi XBee", icon: null },
+        ],
       },
       {
-        category: "Modeling",
-        name: "Longley-Rice ITM, DTED terrain, OpenCV",
-        icon: "activity",
-        icons: ["opencv"],
+        category: "Messaging",
+        technologies: [
+          { name: "protobuff", icon: null },
+          { name: "WebSocket", icon: null },
+          { name: "MQTT", icon: "mqtt" },
+          { name: "Mosquitto", icon: "eclipsemosquitto" },
+        ],
       },
       {
-        category: "Workflow",
-        name: "Agile",
-        icon: "git",
-        icons: ["github", "git"],
+        category: "RF modeling",
+        technologies: [
+          { name: "Longley-Rice ITM", icon: null },
+          { name: "DTED elevation data", icon: null },
+          { name: "OpenCV (heatmaps)", icon: "opencv" },
+        ],
       },
     ],
   },
   challengeVision: {
     challengeTitle: "The Challenge",
-    challengeText: (
+    challengeParagraphs: [
       <>
         Marine instructors teaching electromagnetic discipline during live training had{" "}
         <strong>no way to show students the tactical consequence of a transmission</strong> while
-        the lesson was <strong>still fresh</strong>. Feedback often took{" "}
+        the lesson was <strong>still fresh</strong>.
+      </>,
+      <>
+        Feedback often took{" "}
         <strong>up to 48 hours</strong>, so students had already moved on before they understood
         whether their radio activity would have been <strong>detected by an adversary</strong>.
-      </>
-    ),
+      </>,
+    ],
     visionTitle: "The Vision",
     visionText: (
       <>
@@ -140,34 +152,81 @@ export const aerotContent = {
         could have seen them before the training moved on.
       </>
     ),
-    bubbles: [
-      "Unclassified training system",
-      "COTS RF hardware",
-      "Self-contained network",
-      "Terrain-aware RF modeling",
-      "Command View plus ATAK",
+    concepts: [
+      {
+        id: "layout",
+        src: "/assets/images/aerot/vision/aerot-vision-component-layout.webp",
+        alt: "AeroT prototype components laid out on a workbench, including radio boards, antennas, GPS, a Raspberry Pi, and a battery mount",
+        width: 1200,
+        height: 1600,
+      },
+      {
+        id: "enclosure",
+        src: "/assets/images/aerot/vision/aerot-vision-printed-enclosure.webp",
+        alt: "Handheld AeroT enclosure prototype with a GPS antenna on top and radio connectors along the side",
+        width: 1200,
+        height: 1600,
+      },
+      {
+        id: "electronics",
+        src: "/assets/images/aerot/vision/aerot-vision-electronics-mounting.webp",
+        alt: "AeroT electronics mounted on a perforated panel, with a Raspberry Pi, radio boards, and GPS antenna",
+        width: 1600,
+        height: 1200,
+      },
+      {
+        id: "power",
+        src: "/assets/images/aerot/vision/aerot-vision-battery-powered-prototype.webp",
+        alt: "AeroT bench prototype powered by a tool battery, with cooling fan, wiring, and radio electronics exposed",
+        width: 1600,
+        height: 1200,
+      },
+      {
+        id: "assembly",
+        src: "/assets/images/aerot/vision/aerot-vision-portable-case-assembly.webp",
+        alt: "Portable AeroT hard-case assembly with an external battery and antenna on a workshop bench",
+        width: 1200,
+        height: 1600,
+      },
+      {
+        id: "field",
+        src: "/assets/images/aerot/vision/aerot-vision-open-field-device.webp",
+        alt: "Open AeroT field device showing its electronics, battery, GPS lead, and antennas inside a portable hard case",
+        width: 1200,
+        height: 1600,
+      },
     ],
   },
   outcomes: {
-    title: "The MVP proved...",
-    stats: [
+    title: "Feedback during the exercise",
+    comparison: [
       {
-        value: "48 hrs -> ~5 sec",
-        label: "Feedback loop compressed from delayed review to live instruction",
+        id: "before",
+        label: "Before AeroT",
+        value: "48",
+        unit: "hours",
+        description:
+          "Marines waited for an after-action review to understand the risks of their radio use.",
       },
       {
-        value: "10 devices",
-        label: "Connected during final field validation",
-      },
-      {
-        value: "~10 miles",
-        label: "Validated across hot, sandy, mountainous 29 Palms terrain",
+        id: "after",
+        label: "After AeroT",
+        value: "~5",
+        unit: "seconds",
+        description:
+          "Instructors received signal feedback within seconds of capture and could review it with Marines during the exercise.",
       },
     ],
+    photo: {
+      src: "/assets/images/aerot/discovery/aerot-discovery-device-on-training-terrain.webp",
+      alt: "An AeroT field device on rocky ground with Marines training in the background",
+      width: 1200,
+      height: 1600,
+    },
   },
   discoverLabels: {
     discoverTitle: "01 | Discover",
-    discoverSubtitle: "Thesis concept, users, and field constraints",
+    discoverSubtitle: "December 2024 to February 2025",
     defineTitle: "02 | Define",
     defineSubtitle: "Frame the thinnest useful training loop",
     developTitle: "03 | Develop",
@@ -184,25 +243,62 @@ export const aerotContent = {
         transmission would likely be detected by adversarial receivers.
       </>
     ),
-    researchTitle: "Discovery needed field truth, not lab optimism",
-    imageDirections: [
-      "Concept visual: NPS thesis-to-product sketch showing RF capture, virtual terrain, and simulated adversarial receivers.",
-      "Field photo: 29 Palms discovery or exercise planning environment with instructors and training terrain context.",
-      "Diagram: delayed feedback loop showing up to 48 hours before students received useful EM-discipline feedback.",
-      "Field photo: hot, sandy, mountainous terrain where devices, power, radio transport, and GPS had to work.",
+    researchTitle: "Research with Marine instructors",
+    researchSummary:
+      "We interviewed stakeholders and tested prototypes to understand the training problem and field constraints.",
+    photos: [
+      {
+        src: "/assets/images/aerot/discovery/aerot-discovery-instructor-device-review.webp",
+        alt: "Marines and the AeroT team reviewing a field device and tablet together around a table",
+        width: 1200,
+        height: 1600,
+      },
+      {
+        src: "/assets/images/aerot/discovery/aerot-discovery-field-command-post.webp",
+        alt: "Marines working beside vehicles and radio equipment under camouflage netting at a field command post",
+        width: 1600,
+        height: 1200,
+      },
+      {
+        src: "/assets/images/aerot/discovery/aerot-discovery-device-on-training-terrain.webp",
+        alt: "An AeroT device and antennas on rocky training terrain while Marines move across the hillside",
+        width: 1200,
+        height: 1600,
+      },
+      {
+        src: "/assets/images/aerot/discovery/aerot-discovery-evening-field-setup.webp",
+        alt: "Marines reviewing laptops and radio equipment at an outdoor AeroT setup after sunset",
+        width: 1600,
+        height: 1200,
+      },
+      {
+        src: "/assets/images/aerot/discovery/aerot-discovery-multi-device-field-setup.webp",
+        alt: "Three open AeroT field devices with antennas and exposed electronics on a table in desert terrain",
+        width: 1200,
+        height: 1600,
+      },
     ],
   },
   discoveryInsights: {
     title: "What we learned from instructors",
-    finding: (
-      <>
-        From December through February, I led discovery with training units from 29 Palms. Those
-        conversations narrowed AeroT to one interaction: helping an instructor show a Marine{" "}
-        <strong>whether a simulated enemy receiver could detect their transmission.</strong>
-      </>
-    ),
-    implication:
-      "We used that interaction to scope the MVP. The tool needed to stay unclassified so instructors and students could use it, and work in training areas without reliable internet or power. That meant bringing our own network and power, with terrain data available offline.",
+    image: {
+      src: "/assets/images/aerot/instructors/aerot-instructors-field-discussion.webp",
+      alt: "Marine instructors talking beside radio equipment on a pickup truck in rocky desert terrain",
+      width: 1246,
+      height: 832,
+    },
+    findings: [
+      {
+        title: "Feedback had to happen during training",
+        description:
+          "Instructors needed to show Marines whether a simulated enemy receiver could detect their transmission.",
+      },
+      {
+        title: "Internet and power weren't reliable",
+        description:
+          "AeroT needed its own network, portable power, and offline terrain data. It also had to remain unclassified for instructors and students to use.",
+      },
+    ],
   },
   problem: {
     title: "What Was Holding Training Back",

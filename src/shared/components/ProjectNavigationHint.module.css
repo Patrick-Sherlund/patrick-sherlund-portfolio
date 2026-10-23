@@ -123,9 +123,46 @@
   --hint-key-edge: #819688;
 }
 
+.hint[data-variant="home"] {
+  --hint-text: #1a1a1a;
+  --hint-outline: #53616c;
+  --hint-muted: #53616c;
+  --hint-key-fill: #224c66;
+  --hint-key-pressed: #041825;
+  --hint-key-text: #e7f4ff;
+  --hint-key-edge: #041825;
+}
+
+:global(.dark) .hint[data-variant="home"] {
+  --hint-text: #ffffff;
+  --hint-outline: #afc2d0;
+  --hint-muted: #afc2d0;
+  --hint-key-fill: #afc2d0;
+  --hint-key-pressed: #7ebaee;
+  --hint-key-text: #041825;
+  --hint-key-edge: #53616c;
+}
+
+.replacement[data-variant="home"] .fallback {
+  gap: 16px;
+}
+
 @media (min-width: 1024px) and (pointer: fine) {
   .hint {
     display: flex;
+  }
+
+  .replacement[data-variant="home"] {
+    min-width: 208px;
+    min-height: 140px;
+    margin-top: 24px;
+    justify-content: center;
+  }
+
+  .replacement[data-variant="home"] .hint {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
   }
 
   .replacement[data-state="pending"] .fallback,

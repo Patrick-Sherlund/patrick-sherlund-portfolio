@@ -1,4 +1,4 @@
-import { useRef, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { useMobilePinnedSection } from "../../hooks/useMobilePinnedSection";
 
 type ConceptsSectionProps = {
@@ -8,7 +8,9 @@ type ConceptsSectionProps = {
 
 export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const carouselTrackRef = useRef<HTMLDivElement>(null);
+  const [carouselGroupCount, setCarouselGroupCount] = useState(4);
   const dragStateRef = useRef({
     isDragging: false,
     pointerId: -1,
@@ -21,8 +23,27 @@ export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps)
     velocity: 0,
   });
   const isMobilePinned = useMobilePinnedSection(sectionRef, isInteractive);
-  const carouselGroups = [images, images, images];
+  const carouselGroups = Array.from({ length: carouselGroupCount }, () => images);
   const isMobileCarouselPointer = () => window.matchMedia("(max-width: 640px)").matches;
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    const collage = carouselTrackRef.current?.querySelector<HTMLElement>(".bishop-concepts-collage");
+
+    if (!carousel || !collage) return;
+
+    const updateGroupCount = () => {
+      if (collage.offsetWidth > 0) {
+        setCarouselGroupCount(Math.ceil(carousel.clientWidth / collage.offsetWidth) + 2);
+      }
+    };
+    const observer = new ResizeObserver(updateGroupCount);
+    observer.observe(carousel);
+    observer.observe(collage);
+    updateGroupCount();
+
+    return () => observer.disconnect();
+  }, []);
 
   const normalizeCarouselOffset = (offset: number) => {
     const track = carouselTrackRef.current;
@@ -56,7 +77,9 @@ export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps)
   };
 
   const handleCarouselPointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if (!isMobileCarouselPointer() || event.pointerType === "mouse") {
+    if (!isMobileCarouselPointer() || event.pointerType === "mouse" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.classList.contains("a11y-reduce-motion")) {
       return;
     }
 
@@ -121,7 +144,10 @@ export function ConceptsSection({ isInteractive, images }: ConceptsSectionProps)
         <h2 className="bishop-concepts-title">Concepts, ideations, iterations</h2>
         <div
           className="bishop-concepts-carousel"
+          ref={carouselRef}
+          role="region"
           aria-label="Bishop concept iterations carousel"
+          tabIndex={0}
           onPointerDown={handleCarouselPointerDown}
           onPointerMove={handleCarouselPointerMove}
           onPointerUp={endCarouselPointerDrag}

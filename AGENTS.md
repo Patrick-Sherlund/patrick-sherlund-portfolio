@@ -1,52 +1,57 @@
-No code comments (ABSOLUTE): Never add comments to code—no //, /* */, KDoc/Javadoc, TODOs, or commented-out code—under any circumstance unless the user explicitly requests it.
+# Patrick Sherlund portfolio
 
-File hygiene: Delete files that become truly obsolete due to your change. Do not delete files to “fix” lint/type errors—stop and ask the user first.
+Build on the existing app in `portfolio/patrick-sherlund-portfolio/`, relative to the workspace root. Run project commands here. Preserve Patrick's thoughtful, personal voice and senior product/full-stack focus.
 
-Coordinate before undoing others: Don’t revert/delete work you didn’t author. If unsure about in-flight work, stop and coordinate.
+## Design and user experience
 
-No destructive git ops: Never run git reset --hard, git restore/checkout to older commits, or rm as a “fix” unless the user explicitly instructs it in this chat.
+Visual quality, user experience, and accessibility are equal acceptance criteria. A change is unfinished if any of them fails.
 
-No reverting others’ files: Never use git restore (or similar) to revert files you didn’t author.
+- Create a distinctive, beautiful composition through typography, proportion, deliberate spacing, aligned edges, and project-specific imagery. Give each section a purpose and focal point. Avoid repetitive card grids and decoration that competes with the story.
+- Make the path through selected work, project evidence, and contact obvious. Use descriptive headings, clear navigation, and recognizable controls. Keep essential information visible and optional detail easy to reach.
+- Refine the existing identity consistently across pages and light/dark themes. Reuse spacing, type, color, and component patterns. Requested design improvements may change presentation within scope; implementation-only refactors should preserve it.
+- Present product screens and diagrams at readable sizes with purposeful crops and captions. Keep related text and media together. Motion should explain behavior or provide feedback without delaying reading or navigation.
+- Use [Portfolio-structure](../../.agents/skills/portfolio-structure/SKILL.md) for case studies, [Hallmark](../../.agents/skills/hallmark/SKILL.md) for UI design, and [Humanizer](../../.agents/skills/humanizer/SKILL.md) for copy. Apply them within the existing app and requested scope. Preserve factual ownership and outcomes.
 
-Observe the folder / file architecture for the project, ensure that you always follow that consistently for all feature work.
+## Responsive composition
 
-No amend: Never amend commits unless explicitly approved in writing.
+- Design mobile, tablet, and desktop arrangements deliberately. Choose breakpoints when the content needs them.
+- On mobile, stack related content in story order and keep navigation/actions reachable. On tablets, rebalance columns before they become cramped. On desktop, use grids and wider media while keeping text lines comfortable to read.
+- Keep DOM, visual, and keyboard reading order consistent. Reposition side navigation and sticky elements when space is limited; they must not obscure content or focus.
+- Use fluid sizing, Grid/Flexbox, and intrinsic media dimensions. Fix overflow at its source. Preserve useful content through reflow, zoom, and orientation changes.
 
-Rebase without editors: Use GIT_EDITOR=: and GIT_SEQUENCE_EDITOR=: (or --no-edit) to avoid interactive editors.
+## Accessibility
 
-Migration priority: Preserve the current user-facing behavior and visual output exactly unless the user explicitly approves a change. Framework, architecture, and asset changes must be implementation-only by default.
+Meet [WCAG 2.2 AA](https://www.w3.org/WAI/WCAG22/quickref/) by default. The existing accessibility settings supplement an already accessible page.
 
-Port before refactor: For framework migrations, first produce a fully working port with matching routes, styling, interactions, and media behavior before doing broader reorganization or cleanup.
+- Use semantic landmarks, a descriptive page heading, ordered headings, a skip link, native buttons/links, and labeled controls. Give informative images useful alternatives; hide decorative images from assistive technology.
+- Support keyboard and touch operation, visible unobscured focus, and logical tab order. Manage and restore focus in dialogs; support Escape to dismiss them. Provide alternatives to hover-only and drag-only interactions.
+- Maintain contrast in both themes: 4.5:1 for normal text, 3:1 for large text and meaningful control boundaries/graphics. Do not communicate state through color alone.
+- Support reflow at 320 CSS pixels and 200% text enlargement. Prefer 44-by-44 CSS pixel touch targets; satisfy WCAG minimum target size or spacing requirements.
+- Respect reduced motion. Provide playback controls and appropriate captions/text alternatives for meaningful media. Keep the story understandable without animation or video playback.
+- Define applicable hover, focus, pressed, disabled, loading, error, and success states. Associate errors with their controls and announce meaningful status changes when needed.
 
-No unapproved visual drift: Do not change layout, spacing, typography, colors, animation timing, responsive behavior, copy, or interaction patterns unless explicitly requested in this chat.
+## Development
 
-Mobile-first compatibility: Ensure the portfolio/case study website is fully responsive and production-quality on mobile, tablet, and desktop, preserving readability, navigation, media behavior, interaction quality, touch targets, spacing, and visual polish across viewport sizes.
+- Keep Next.js App Router, React, strict TypeScript, npm, Tailwind, and existing feature CSS. Preserve static-export compatibility and public URLs. Add dependencies only for a concrete need.
+- Keep `src/app/` for routes, layouts, and metadata; `src/features/<feature>/` for feature UI, hooks, styles, and data; `src/shared/` for reused code; `src/content/` for site-wide content. Use the existing `@/` alias.
+- Default route wrappers to server components; isolate state, effects, and browser APIs in client components. Reuse existing providers and media components. Keep state local and abstractions proportional to actual reuse.
+- Keep styles with their feature and global styles for shared foundations. Ensure Tailwind scans directories containing new utilities. Avoid conflicting overrides.
+- Compress media, reserve layout space, and defer offscreen media. Preserve metadata and working links. Prefer local assets.
+- Preserve unrelated work. Avoid speculative reorganizations, destructive Git operations, and commit amendments unless requested. Do not add code comments unless requested.
 
-SEO changes must be non-invasive: Improve indexing, metadata, rendering strategy, sitemap, robots, structured data, and page semantics without changing the visible UI unless required and approved.
+## Verification
 
-Prefer minimal-risk migrations: When moving frameworks or build systems, preserve existing component logic where practical. Avoid rewrites into a different UI paradigm if a lower-risk migration path exists.
+- Scale checks to the change. Review diffs/links for documentation. For code, prefer `npx tsc --noEmit`; run relevant existing tests or lint when useful. Add tests for consequential behavior, not static copy or cosmetic changes.
+- For UI changes, inspect the affected flow on mobile, tablet, and desktop, including keyboard use, zoom, reduced motion, and relevant themes. Reuse an available preview; start a temporary local preview when needed and stop it afterward. Automated checks do not replace visual inspection.
+- Run `npm run build` for routing, configuration, rendering, dependency, or export changes. Avoid full suites for small styling edits and repeated attempts at known unrelated failures.
+- Report what changed, what was checked, and any remaining gaps. Do not claim visual or accessibility checks that were not performed.
 
-Keep routes stable: Preserve existing public URLs and navigation behavior unless the user explicitly approves route changes.
+<!-- BEGIN:nextjs-agent-rules -->
 
-Asset handling: Prefer local, production-safe static assets over external raw GitHub/Figma-hosted asset URLs during migrations. Do not change the rendered asset appearance without approval.
+# This is NOT the Next.js you know
 
-SSR/SSG safety: When migrating to a server-rendered framework, identify and isolate browser-only logic so the app renders safely on the server without changing client behavior.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
-Architecture changes must follow the app domain: Reorganize code by route, feature, and shared responsibility. Do not introduce folders, abstractions, or helpers that are not justified by repeated usage.
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
-No speculative cleanup: Do not rename, move, split, or delete files purely for style or preference. Structural cleanup must support the migration, maintainability, or a confirmed project direction.
-
-Verification required for migrations: After significant framework or architecture changes, run the relevant build/tests if available and report what was verified and what could not be verified.
-
-Document assumptions in the final response: If any behavior had to be inferred during migration, state the assumption clearly instead of silently changing implementation details.
-
-Verification policy: Do not start or run the dev server unless explicitly requested. Do not run npm run dev, next dev, vite dev, or any long-running local server command by default. For normal UI/content/style changes, prefer fast verification only: run type checks if available and reasonably fast, plus targeted lint/tests only when directly relevant to the changed files. Do not run full production builds for small visual/content changes unless the change affects routing, framework config, SSR/SSG behavior, data loading, or deployment behavior.
-
-Known verification failures: Do not repeatedly chase known environment/sandbox failures. If a command fails due to a known pre-existing issue, permission issue, Git safe-directory issue, sandbox policy issue, Windows EPERM/spawn issue, or unrelated existing project error, stop after the first clear failure. Report it once in the final response and do not try alternate launch paths, background process starts, port probing, or repeated command variants unless explicitly requested.
-
-Type checks: Type checks are the preferred verification step when available. If type checks fail because of unrelated pre-existing errors, report the failure briefly and do not fix unrelated files. If type checks pass, do not continue into slower verification unless the change warrants it.
-
-Final response verification format: Always summarize verification as:
-- Verified: <commands that passed>
-- Not run: <commands intentionally skipped and why>
-- Blocked: <commands that failed due to environment/pre-existing issues, if any>
+<!-- END:nextjs-agent-rules -->
